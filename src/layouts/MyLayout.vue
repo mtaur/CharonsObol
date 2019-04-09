@@ -20,7 +20,9 @@
       </q-toolbar>
     </q-header>
 
-    <q-drawer
+    <drawer v-if="leftDrawerOpen"></drawer>
+
+    <!-- <q-drawer
       v-model="leftDrawerOpen"
       bordered
       content-class="bg-grey-2"
@@ -73,7 +75,7 @@
           </q-item-section>
         </q-item>
       </q-list>
-    </q-drawer>
+    </q-drawer> -->
 
     <q-page-container>
       <router-view />
@@ -83,9 +85,13 @@
 
 <script>
 import { openURL } from 'quasar'
+import drawer from '../components/drawer.vue'
 
 export default {
   name: 'MyLayout',
+  components: {
+    'drawer': drawer
+  },
   data () {
     return {
       leftDrawerOpen: this.$q.platform.is.desktop
