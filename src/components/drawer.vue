@@ -1,6 +1,6 @@
 <template>
   <q-drawer
-    v-model="leftDrawerOpen"
+    v-model="visible"
     bordered
     content-class="bg-grey-2"
   >
@@ -60,6 +60,7 @@
 import { openURL } from 'quasar'
 
 export default {
+  props: ['visible'],
   data () {
     return {
       leftDrawerOpen: true // this.$q.platform.is.desktop

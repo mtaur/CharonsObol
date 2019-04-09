@@ -20,7 +20,8 @@
       </q-toolbar>
     </q-header>
 
-    <drawer v-if="leftDrawerOpen"></drawer>
+    <drawer :visible="leftDrawerOpen"></drawer>
+    <!-- <drawer v-if="leftDrawerOpen"></drawer> -->
 
     <!-- <q-drawer
       v-model="leftDrawerOpen"
