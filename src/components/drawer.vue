@@ -60,10 +60,11 @@
 import { openURL } from 'quasar'
 
 export default {
+  name: 'leftDrawer',
   props: ['visible'],
   data () {
     return {
-      leftDrawerOpen: true // this.$q.platform.is.desktop
+      // leftDrawerOpen: this.$q.platform.is.desktop
     }
   },
   methods: {

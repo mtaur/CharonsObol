@@ -22,7 +22,7 @@ class Team {
   constructor (side) {
     this.side = side
     if (side === Unit.SIDE.PLAYER) {
-      this.SP = 100
+      this.SP = 300
     }
   }
 }
