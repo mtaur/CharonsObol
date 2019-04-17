@@ -1,20 +1,20 @@
 <template>
-  <q-page class="flex flex-center">
-    <div class="col">
+  <q-page>
+    <div class="column">
       <!-- <div class="row">
         <div class="col">
           <img alt="Quasar logo" src="~assets/quasar-logo-full.svg">
         </div>
       </div> -->
       <div class="row justify-center">
-        <div class="justify-center">
-          <h3 class="col-4 justify-center" :key='SP'>SP: {{ playerTeam.SP }}</h3>
+        <div>
+          <h4 :key='SP'>SP: {{ playerTeam.SP }}</h4>
         </div>
       </div>
-      <div class="row justify-center">
+      <div class="row justify-center items-stretch">
         <unitdetail v-for="unit in playerTeam.front" :unit="unit" :key="unit.name"></unitdetail>
       </div>
-      <div class="row justify-center">
+      <div class="row justify-center items-stretch">
         <unitdetail v-for="unit in playerTeam.back" :unit="unit" :key="unit.name"></unitdetail>
       </div>
     </div>
@@ -23,6 +23,7 @@
 </template>
 
 <style>
+  h4 { margin: 20px 0; }
 </style>
 
 <script>
@@ -53,3 +54,12 @@ export default {
   components: { unitdetail }
 }
 </script>
+
+<style scoped>
+
+  .gamerow {
+    /* flex-grow: 1; */
+    /* height: 400px; */
+  }
+
+</style>

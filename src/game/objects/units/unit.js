@@ -144,21 +144,6 @@ console.log('DR', jaq.baseStats.DR.value)
 
 console.log(playerTeam)
 
-var lynn = new Unit({ name: Soul.LIB.LYNN.name, hero: true })
-playerTeam.front.push(lynn)
-lynn.souls = [Soul.LIB.LYNN]
-lynn.raise('RANGED')
-lynn.raise('RANGED')
-lynn.raise('RANGED')
-lynn.raise('MELEE')
-lynn.raise('MELEE')
-lynn.raise('MELEE')
-lynn.raise('HP')
-lynn.raise('HP')
-lynn.raise('HP')
-console.log(lynn.souls)
-console.log(lynn.baseSummary)
-console.log(lynn.soulSummary)
 var pen = new Unit({ name: Soul.LIB.PENELOPE.name, hero: true })
 playerTeam.back.push(pen)
 pen.souls = [Soul.LIB.PENELOPE]
@@ -175,5 +160,21 @@ console.log(pen.souls)
 console.log(pen.baseSummary)
 console.log(pen.soulSummary)
 console.log(jaq.soulSummary)
+
+var lynn = new Unit({ name: Soul.LIB.LYNN.name, hero: true })
+playerTeam.front.push(lynn)
+lynn.souls = [Soul.LIB.LYNN]
+lynn.raise('RANGED')
+lynn.raise('RANGED')
+lynn.raise('RANGED')
+lynn.raise('MELEE')
+lynn.raise('MELEE')
+lynn.raise('MELEE')
+lynn.raise('HP')
+lynn.raise('HP')
+lynn.raise('HP')
+console.log(lynn.souls)
+console.log(lynn.baseSummary)
+console.log(lynn.soulSummary)
 
 export { Unit, cpuTeam, playerTeam, Team }
