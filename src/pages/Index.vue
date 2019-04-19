@@ -1,4 +1,6 @@
 <template>
+  <span>
+  <drawer :activeUnit="activeUnit" :visible="leftDrawerOpen"></drawer>
   <q-page>
     <div class="column">
       <!-- <div class="row">
@@ -12,14 +14,23 @@
         </div>
       </div>
       <div class="row justify-center items-stretch">
-        <unitdetail v-for="unit in playerTeam.front" :unit="unit" :key="unit.name"></unitdetail>
+        <unitdetail
+          v-for="unit in playerTeam.front"
+          :unit="unit"
+          :key="unit.name"
+          @click.native="makeActive(unit, $event)">
+        </unitdetail>
       </div>
       <div class="row justify-center items-stretch">
-        <unitdetail v-for="unit in playerTeam.back" :unit="unit" :key="unit.name"></unitdetail>
+        <unitdetail v-for="unit in playerTeam.back"
+          :unit="unit"
+          :key="unit.name"
+          @click.native="makeActive(unit, $event)">
+        </unitdetail>
       </div>
     </div>
   </q-page>
-
+  </span>
 </template>
 
 <style>
@@ -38,12 +49,23 @@
 // console.log(test.player.front)
 import { playerTeam } from 'src/game/objects/units/unit.js'
 import unitdetail from 'src/components/unitdetail'
+import { openURL } from 'quasar'
+import drawer from '../components/drawer.vue'
 
 export default {
   data: function () {
     return {
-      playerTeam: playerTeam
+      playerTeam: playerTeam,
+      activeUnit: [],
+      leftDrawerOpen: true // this.$q.platform.is.desktop
     }
+  },
+  methods: {
+    makeActive: function (unit, event) {
+      this.activeUnit = [unit]
+      alert(unit.name)
+    },
+    openURL
   },
   computed: {
     SP: function () {
@@ -51,7 +73,7 @@ export default {
     }
   },
   name: 'PageIndex',
-  components: { unitdetail }
+  components: { unitdetail, drawer }
 }
 </script>
 

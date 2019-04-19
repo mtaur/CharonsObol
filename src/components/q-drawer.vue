@@ -4,11 +4,7 @@
     bordered
     content-class="bg-grey-2"
   >
-    <unitdetail v-for="unit in activeUnit"
-      :unit="unit"
-      :key="unit.name">
-    </unitdetail>
-    <!-- <q-list>
+    <q-list>
       <q-item-label header>Essential Links</q-item-label>
       <q-item clickable tag="a" target="_blank" href="http://v1.quasar-framework.org">
         <q-item-section avatar>
@@ -55,18 +51,17 @@
           <q-item-label caption>@quasarframework</q-item-label>
         </q-item-section>
       </q-item>
-    </q-list> -->
+    </q-list>
   </q-drawer>
 
 </template>
 
 <script>
 import { openURL } from 'quasar'
-import unitdetail from 'src/components/unitdetail'
 
 export default {
   name: 'leftDrawer',
-  props: ['visible', 'activeUnit'],
+  props: ['visible'],
   data () {
     return {
       // leftDrawerOpen: this.$q.platform.is.desktop
@@ -74,7 +69,6 @@ export default {
   },
   methods: {
     openURL
-  },
-  components: { unitdetail }
+  }
 }
 </script>

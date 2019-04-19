@@ -2,7 +2,7 @@
   <q-layout view="lHh Lpr lFf">
     <q-header elevated class="glossy">
       <q-toolbar>
-        <q-btn
+        <!-- <q-btn
           flat
           dense
           round
@@ -10,7 +10,7 @@
           aria-label="Menu"
         >
           <q-icon name="menu" />
-        </q-btn>
+        </q-btn> -->
 
         <q-toolbar-title>
           Quasar App
@@ -20,7 +20,6 @@
       </q-toolbar>
     </q-header>
 
-    <drawer :visible="leftDrawerOpen"></drawer>
     <!-- <drawer v-if="leftDrawerOpen"></drawer> -->
 
     <!-- <q-drawer
@@ -85,21 +84,18 @@
 </template>
 
 <script>
-import { openURL } from 'quasar'
-import drawer from '../components/drawer.vue'
+// import { openURL } from 'quasar'
+// import drawer from '../components/drawer.vue'
 
 export default {
   name: 'MyLayout',
-  components: {
-    'drawer': drawer
-  },
   data () {
     return {
-      leftDrawerOpen: this.$q.platform.is.desktop
+      // leftDrawerOpen: this.$q.platform.is.desktop
     }
   },
   methods: {
-    openURL
+    // openURL
   }
 }
 </script>
