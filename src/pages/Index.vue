@@ -63,7 +63,6 @@ export default {
   methods: {
     makeActive: function (unit, event) {
       this.activeUnit = [unit]
-      alert(unit.name)
     },
     openURL
   },
