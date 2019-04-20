@@ -10,7 +10,11 @@
         <div class = "col-6"
         v-for="stat in unit.baseStats" :key="stat.name">
         <!-- <div v-for="stat in unit.baseStats" :unit="unit" :stat="stat"> -->
-        {{stat.name}}: {{stat.value}}
+        <q-chip dense color="white">
+          <q-avatar color="red" text-color="white">{{ stat.value }}</q-avatar>
+          {{ stat.name }}
+        </q-chip>
+        <!-- {{stat.name}}: {{stat.value}} -->
         </div>
       </div>
     </div>
@@ -68,6 +72,7 @@ export default {
     margin: 5px 0 0 5px;
     text-align: center;
     justify-content: center;
+    border-radius: 5px;
   }
   .active {
     background-color: #4cd;

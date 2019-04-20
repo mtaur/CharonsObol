@@ -3,6 +3,7 @@
   <drawer :activeUnit="activeUnit" :visible="leftDrawerOpen"
     :playerTeam="playerTeam">
   </drawer>
+  <rightdrawer :visible="rightDrawerOpen"></rightdrawer>
   <q-page class="qpage">
     <div class="column">
       <div class="row justify-center items-stretch unitrow">
@@ -68,6 +69,7 @@ import { playerTeam, cpuTeam } from 'src/game/objects/units/unit.js'
 import fieldplayer from 'src/components/fieldplayer'
 import { openURL } from 'quasar'
 import drawer from '../components/drawer.vue'
+import rightdrawer from '../components/rightdrawer.vue'
 
 export default {
   data: function () {
@@ -75,9 +77,11 @@ export default {
       playerTeam: playerTeam,
       cpuTeam: cpuTeam,
       activeUnit: [],
-      leftDrawerOpen: true // this.$q.platform.is.desktop
+      leftDrawerOpen: true
+      // rightDrawerOpen: true // this.$q.platform.is.desktop
     }
   },
+  props: ['rightDrawerOpen'],
   methods: {
     makeActive: function (unit, event) {
       this.activeUnit = [unit]
@@ -95,7 +99,8 @@ export default {
   name: 'PageIndex',
   components: { // unitdetail,
     drawer,
-    fieldplayer
+    fieldplayer,
+    rightdrawer
   }
 }
 </script>

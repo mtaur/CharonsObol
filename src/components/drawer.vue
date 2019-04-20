@@ -4,6 +4,7 @@
     bordered
     content-class="bg-grey-2"
     :width="250"
+    :breakpoint="0"
   >
     <div class="sp">
       <div>

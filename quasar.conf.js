@@ -37,7 +37,9 @@ module.exports = function (ctx) {
         'QItem',
         'QItemSection',
         'QItemLabel',
-        'QBadge'
+        'QBadge',
+        'QChip',
+        'QAvatar'
       ],
 
       directives: [

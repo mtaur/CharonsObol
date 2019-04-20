@@ -49,6 +49,8 @@ export default {
     height: 100px;
     text-align: center;
     justify-content: center;
+    margin-top: 10px;
+    border-radius: 5px;
   }
 
 </style>
