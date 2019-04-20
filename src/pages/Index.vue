@@ -1,32 +1,47 @@
 <template>
   <span>
-  <drawer :activeUnit="activeUnit" :visible="leftDrawerOpen"></drawer>
-  <q-page>
+  <drawer :activeUnit="activeUnit" :visible="leftDrawerOpen"
+    :playerTeam="playerTeam">
+  </drawer>
+  <q-page class="qpage">
     <div class="column">
-      <!-- <div class="row">
-        <div class="col">
-          <img alt="Quasar logo" src="~assets/quasar-logo-full.svg">
-        </div>
-      </div> -->
-      <div class="row justify-center">
-        <div>
-          <h4 :key='SP'>SP: {{ playerTeam.SP }}</h4>
-        </div>
+      <div class="row justify-center items-stretch unitrow">
+        <fieldplayer
+          v-for="unit in cpuTeam.back"
+          :unit="unit"
+          :key="unit.name">
+          <!-- @click.native="makeActive(unit, $event)"> -->
+        </fieldplayer>
       </div>
-      <div class="row justify-center items-stretch">
-        <unitdetail
+      <div class="row justify-center items-stretch unitrow">
+        <fieldplayer
+          v-for="unit in cpuTeam.front"
+          :unit="unit"
+          :key="unit.name">
+          <!-- @click.native="makeActive(unit, $event)"> -->
+        </fieldplayer>
+      </div>
+      <!-- Divider -->
+      <div><hr /></div>
+      <!-- Player -->
+      <div class="row justify-center items-stretch unitrow">
+        <fieldplayer
           v-for="unit in playerTeam.front"
           :unit="unit"
           :key="unit.name"
+          :isActive="isActive(unit)"
           @click.native="makeActive(unit, $event)">
-        </unitdetail>
+          <!-- :class="{'active': isActive(unit)}" -->
+        </fieldplayer>
       </div>
-      <div class="row justify-center items-stretch">
-        <unitdetail v-for="unit in playerTeam.back"
+      <div class="row justify-center items-stretch unitrow">
+        <fieldplayer v-for="unit in playerTeam.back"
           :unit="unit"
           :key="unit.name"
+          :isActive="isActive(unit)"
           @click.native="makeActive(unit, $event)">
-        </unitdetail>
+          <!-- :class="{'active': isActive(unit)}" -->
+        </fieldplayer>
       </div>
     </div>
   </q-page>
@@ -47,8 +62,10 @@
 // import * as test from 'src/game/selectors/select'
 // import 'src/game/utility/promises'
 // console.log(test.player.front)
-import { playerTeam } from 'src/game/objects/units/unit.js'
-import unitdetail from 'src/components/unitdetail'
+import { playerTeam, cpuTeam } from 'src/game/objects/units/unit.js'
+// import { cpuTeam } from 'src/game/objects/units/unit.js'
+// import unitdetail from 'src/components/unitdetail'
+import fieldplayer from 'src/components/fieldplayer'
 import { openURL } from 'quasar'
 import drawer from '../components/drawer.vue'
 
@@ -56,6 +73,7 @@ export default {
   data: function () {
     return {
       playerTeam: playerTeam,
+      cpuTeam: cpuTeam,
       activeUnit: [],
       leftDrawerOpen: true // this.$q.platform.is.desktop
     }
@@ -63,6 +81,9 @@ export default {
   methods: {
     makeActive: function (unit, event) {
       this.activeUnit = [unit]
+    },
+    isActive: function (unit) {
+      return this.activeUnit[0] ? unit.name === this.activeUnit[0].name : false
     },
     openURL
   },
@@ -72,15 +93,29 @@ export default {
     }
   },
   name: 'PageIndex',
-  components: { unitdetail, drawer }
+  components: { // unitdetail,
+    drawer,
+    fieldplayer
+  }
 }
 </script>
 
 <style scoped>
-
   .gamerow {
     /* flex-grow: 1; */
     /* height: 400px; */
   }
-
+  .qpage {
+    /* height: 85vh; */
+    display: flex;
+    position: relative;
+  }
+  .unitrow {
+    /* flex-basis: 20vh; */
+    flex: 1 1 20vh;
+    /* overflow-y: auto; */
+  }
+  /* .column {
+    flex-shrink: 1;
+  } */
 </style>

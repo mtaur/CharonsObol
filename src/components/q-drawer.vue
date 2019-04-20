@@ -1,4 +1,5 @@
 <template>
+  <!-- NOT USED! Replaced with drawer for detailed player unit info -->
   <q-drawer
     v-model="visible"
     bordered

@@ -27,6 +27,7 @@ export default {
 <style scoped>
   h6 {
     margin: 0 5px 10px 5px;
+    text-align: center;
   }
   .col-3 {
     /* height: auto; */
