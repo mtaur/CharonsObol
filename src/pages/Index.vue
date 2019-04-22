@@ -4,13 +4,13 @@
     :playerTeam="playerTeam">
   </drawer>
   <rightdrawer :visible="rightDrawerOpen"></rightdrawer>
-  <q-page class="qpage">
+  <q-page class="qpage non-selectable">
     <div class="column">
       <div class="row justify-center items-stretch unitrow">
         <fieldplayer
           v-for="unit in cpuTeam.back"
           :unit="unit"
-          :key="unit.name">
+          :key="unit.id">
           <!-- @click.native="makeActive(unit, $event)"> -->
         </fieldplayer>
       </div>
@@ -18,7 +18,7 @@
         <fieldplayer
           v-for="unit in cpuTeam.front"
           :unit="unit"
-          :key="unit.name">
+          :key="unit.id">
           <!-- @click.native="makeActive(unit, $event)"> -->
         </fieldplayer>
       </div>
@@ -29,7 +29,7 @@
         <fieldplayer
           v-for="unit in playerTeam.front"
           :unit="unit"
-          :key="unit.name"
+          :key="unit.id"
           :isActive="isActive(unit)"
           @click.native="makeActive(unit, $event)">
           <!-- :class="{'active': isActive(unit)}" -->
@@ -38,7 +38,7 @@
       <div class="row justify-center items-stretch unitrow">
         <fieldplayer v-for="unit in playerTeam.back"
           :unit="unit"
-          :key="unit.name"
+          :key="unit.id"
           :isActive="isActive(unit)"
           @click.native="makeActive(unit, $event)">
           <!-- :class="{'active': isActive(unit)}" -->
@@ -54,22 +54,13 @@
 </style>
 
 <script>
-// console.log('test123')
-// import Doge from 'src/loadtest/folder/file1'
-// import Doge from '../loadtest/folder/file1'
-// var doge = new Doge()
-// doge.bark()
-// import 'src/loadtest/jsload'
-// import * as test from 'src/game/selectors/select'
-// import 'src/game/utility/promises'
-// console.log(test.player.front)
+
 import { playerTeam, cpuTeam } from 'src/game/objects/units/unit.js'
-// import { cpuTeam } from 'src/game/objects/units/unit.js'
-// import unitdetail from 'src/components/unitdetail'
 import fieldplayer from 'src/components/fieldplayer'
-import { openURL } from 'quasar'
 import drawer from '../components/drawer.vue'
 import rightdrawer from '../components/rightdrawer.vue'
+
+import { openURL } from 'quasar'
 
 export default {
   data: function () {

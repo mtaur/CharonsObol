@@ -8,7 +8,7 @@
   >
     <div class="sp">
       <div>
-        <h4 :key='SP'>SP: {{ playerTeam.SP }}</h4>
+        <h4 key='SP'>SP: {{ playerTeam.SP }}</h4>
       </div>
     </div>
 

@@ -28,15 +28,16 @@ class Soul {
     return true
   }
 
-  // Constructor automatically archives new soul in
-  // Soul.LIB
   constructor (obj) {
     if (Soul.validateObj(obj)) {
-      if (!Soul.LIB[obj.NAME]) {
-        // default cost properties
-        if (!obj.cost) { obj.cost = [0, 5, 10] }
-        Soul.LIB[obj.NAME] = obj
-      }
+      if (!obj.cost) { obj.cost = [0, 5, 10] }
+
+      // Constructor automatically archives new soul in
+      // Soul.LIB.  ESLint dislikes, moved.
+      // if (!Soul.LIB[obj.NAME]) {
+      //   // default cost properties
+      //   Soul.LIB[obj.NAME] = obj
+      // }
       return obj
     }
   }
@@ -47,7 +48,7 @@ for (let key in soulLib) {
   let soul = new soulLib[key]()
   // Redundant functionality with constructor, but ESLint
   // doesn't like 'unused' objects:
-  Soul.LIB[soul.NAME] = soul
+  if (!Soul.LIB[soul.NAME]) { Soul.LIB[soul.NAME] = soul }
 }
 
 // console.log(Soul.LIB)

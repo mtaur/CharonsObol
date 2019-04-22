@@ -3,6 +3,12 @@ import { Soul } from '../souls/soul.js'
 import { StatMods } from './statMods/statMods.js'
 import { cloneDeep as clone } from 'lodash'
 
+function uniqClone (unit) {
+  let copy = clone(unit)
+  copy.id = Unit.id
+  return copy
+}
+
 // Create Team objects
 class Team {
   side = '' // PLAYER or CPU
@@ -27,10 +33,6 @@ class Team {
   }
 }
 
-//
-// default base stats before souls/items/etc.
-//
-
 class Unit {
   static SIDE = {
     PLAYER: 'player',
@@ -40,6 +42,13 @@ class Unit {
     FRONT: 'front',
     BACK: 'back',
     BENCH: 'bench'
+  }
+
+  static _id = 0
+
+  static get id () {
+    Unit._id++
+    return Unit._id
   }
 
   raise = function (statName) {
@@ -107,11 +116,14 @@ class Unit {
     for (let key in template) {
       this[key] = obj[key] ? obj[key] : template[key]
     }
+    this.id = Unit.id
+    console.log(this, this.id)
     // if (this.side === Unit.SIDE.PLAYER) {
     //   playerTeam.front.push(this)
     // } else { cpuTeam.front.push(this) }
   }
 }
+/// ^ end of class ^ ///
 
 var playerTeam = new Team(Unit.SIDE.PLAYER)
 var cpuTeam = new Team(Unit.SIDE.CPU)
@@ -138,7 +150,7 @@ jaq.raise('MELEE')
 
 // var jaqs = []
 for (let i = 0; i < 6; i++) {
-  i < 4 ? cpuTeam.front.push(clone(jaq)) : cpuTeam.back.push(clone(jaq))
+  i < 4 ? cpuTeam.front.push(uniqClone(jaq)) : cpuTeam.back.push(uniqClone(jaq))
 }
 
 // console.log('DR', jaq.baseStats.DR.value)
