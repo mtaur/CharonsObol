@@ -45,10 +45,10 @@ class Soul {
 
 // populate library using jsload from ./bulk
 for (let key in soulLib) {
-  let NamedSoul = soulLib[key]
+  let soul = new soulLib[key]()
   // Redundant functionality with constructor, but ESLint
   // doesn't like 'unused' objects:
-  if (!Soul.LIB[NamedSoul.NAME]) { Soul.LIB[NamedSoul.NAME] = NamedSoul }
+  if (!Soul.LIB[soul.NAME]) { Soul.LIB[soul.NAME] = soul }
 }
 
 // console.log(Soul.LIB)

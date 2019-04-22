@@ -2,8 +2,6 @@ import { Soul } from '../soul.js'
 
 // console.log(Soul)
 class Lynn {
-  static NAME = 'LYNN'
-
   constructor () {
     return new Soul({
       name: 'Lynneth Javelle',

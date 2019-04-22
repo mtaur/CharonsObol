@@ -161,11 +161,9 @@ jaq.raise('DR')
 
 // console.log(playerTeam)
 
-var pensoul = new Soul.LIB.PENELOPE()
-var pen = new Unit({ name: pensoul.name, hero: true })
-// var pen = new Unit({ name: Soul.LIB.PENELOPE().name, hero: true })
+var pen = new Unit({ name: Soul.LIB.PENELOPE.name, hero: true })
 playerTeam.back.push(pen)
-pen.souls = [pensoul]
+pen.souls = [Soul.LIB.PENELOPE]
 pen.raise('RANGED')
 pen.raise('RANGED')
 pen.raise('MAGIC')
@@ -180,11 +178,9 @@ pen.raise('HP')
 // console.log(pen.soulSummary)
 // console.log(jaq.soulSummary)
 
-var lynnsoul = new Soul.LIB.LYNN()
-var lynn = new Unit({ name: lynnsoul.name, hero: true })
+var lynn = new Unit({ name: Soul.LIB.LYNN.name, hero: true })
 playerTeam.front.push(lynn)
-// lynn.souls = [Soul.LIB.LYNN()]
-lynn.souls = [lynnsoul]
+lynn.souls = [Soul.LIB.LYNN]
 lynn.raise('RANGED')
 lynn.raise('RANGED')
 lynn.raise('RANGED')
@@ -198,11 +194,9 @@ lynn.raise('HP')
 // console.log(lynn.baseSummary)
 // console.log(lynn.soulSummary)
 
-var brosoul = new Soul.LIB.BROCANTRIP()
-var bro = new Unit({ name: brosoul.name, hero: true })
+var bro = new Unit({ name: Soul.LIB.BROCANTRIP.name, hero: true })
 playerTeam.front.push(bro)
-// bro.souls = [Soul.LIB.BROCANTRIP()]
-bro.souls = [brosoul]
+bro.souls = [Soul.LIB.BROCANTRIP]
 bro.raise('RANGED')
 bro.raise('MP')
 bro.raise('MP')
