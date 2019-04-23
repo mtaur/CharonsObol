@@ -1,34 +1,30 @@
 import { CtrlState } from '../ctrlstates.js'
 
 // Nothing is selected.  No action in progress.
-class ChooseUnit {
+class ChooseUnit extends CtrlState {
   static NAME = 'CHOOSEUNIT'
 
-  function getClickMode (unit) {
-    if (game.playerTeam.active.indexOf(unit) > -1) {
-      return 'makeActive'
+  function getClickJSON (unit) {
+    if (game.playerTeam.field.indexOf(unit) > -1) {
+      return {
+        viewState: '',
+        onClick: 'makeActive'
+      }
     }
-    if (game.cpuTeam.active.indexOf(unit) > -1) {
-      return 'inspect'
+    if (game.cpuTeam.field.indexOf(unit) > -1) {
+      return {
+        viewState: '',
+        onClick: 'inspect'
+      }
     }
   }
 
-  constructor (selector) {
-
-    selector.getClickMode = this.getClickMode
-    // return new Soul({
-    //   name: 'Lynneth Javelle',
-    //   NAME: 'LYNN',
-    //   desc: `Lynneth Javelle, or Lynn if you're a friend.  She does not respond to "Javelin"...`,
-    //   bonus: {
-    //     HP: 12,
-    //     RANGED: 6,
-    //     MELEE: 6,
-    //     INIT: 1
-    //   },
-    //   skills: []
-    // })
+  constructor (selector, obj) {
+    super(selector, obj)
+    selector.getClickJSON = this.getClickJSON
   }
+
+
 }
 
 export default ChooseUnit

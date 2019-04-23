@@ -4,15 +4,17 @@ import { CtrlState } from '../ctrlstates.js'
 class ChooseAction {
   static NAME = 'CHOOSEACTION'
 
+  // change to getClickJSON (unit) { ... }
   function getClickMode (unit) {
 
     if (selector.isSelected(unit)) {
+      // change to obj, { viewState: '', onClick: ''}
       return 'deactivate'
     }
-    else if (game.playerTeam.active.indexOf(unit) > -1) {
+    else if (game.playerTeam.field.indexOf(unit) > -1) {
       return 'makeActive'
     }
-    else if (game.cpuTeam.active.indexOf(unit) > -1) {
+    else if (game.cpuTeam.field.indexOf(unit) > -1) {
       return 'inspect'
     }
   }
