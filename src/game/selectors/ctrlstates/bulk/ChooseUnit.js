@@ -21,7 +21,7 @@ class ChooseUnit extends CtrlState {
 
   constructor (selector, obj) {
     super(selector, obj)
-    selector.getClickJSON = this.getClickJSON
+    selector.getClickMode = this.getClickMode
   }
 
 
