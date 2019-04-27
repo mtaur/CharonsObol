@@ -1,5 +1,6 @@
-import CtrlState from './ctrlstates/CtrlState.js'
-import onClicks from './onClicks/onClicks.js'
+import { CtrlState } from './ctrlstates/CtrlState.js'
+import { onClicks } from './onClicks/onClicks.js'
+import { classdir as ctrlStateLib } from './ctrlstates/jsload.js'
 
 class Selector {
   // game object
@@ -17,26 +18,30 @@ class Selector {
   ctrlState = {}
   // Targetting details?
   stateData = {
-    // inspectUnit
-    activeUnit = {}
+    inspectUnit: {},
+    activeUnit: {}
     // skill = {}
     // (skill will have info about valid click targets and number of steps)
     // targets[i] = target clicked at step i
   }
 
-  function getClickJSON (unit) {
-      return {
-        viewState: '',
-        onClick: ''
-      }
+  isSelected (unit) {
+    return unit && unit.id && this.stateData.activeUnit.id ? this.stateData.activeUnit.id === unit.id : false
   }
 
-  function toClickFcn (str) {
+  getClickJSON (selector, unit) {
+    return {
+      viewState: '',
+      onClick: ''
+    }
+  }
+
+  toClickFcn (str) {
     return this.onClicks[str]
   }
 
-  function getClickMode (unit) {
-    let obj = this.getClickJSON(unit)
+  getClickMode (unit) {
+    let obj = this.getClickJSON(this, unit)
     return {
       // Keep as string, let Vue handle logic
       viewState: obj.viewState,
@@ -68,13 +73,22 @@ class Selector {
   // }
 
   // Try to make it so obj auto-fills the slot correctly here
-  changeState (NAME, obj = stateData) {
-    CtrlState.LIB.NAME(this, obj)
+  changeState (name, obj = this.stateData) {
+    this.state = new CtrlState.LIB[name](this, obj)
   }
 
   constructor (gameObj = {}) {
     this.game = gameObj
   }
+}
+
+// Store classes, not instances.
+// populate library using jsload from ./bulk
+for (let key in ctrlStateLib) {
+  let CtrlStateSubclass = ctrlStateLib[key]
+  console.log(key + ' is the current key')
+  if (!CtrlState.LIB[key]) { CtrlState.LIB[key] = CtrlStateSubclass }
+  // if (!CtrlState.LIB[CtrlStateSubclass.name]) { CtrlState.LIB[CtrlStateSubclass.name] = CtrlStateSubclass }
 }
 
 // selector = new Selector(gameObj)

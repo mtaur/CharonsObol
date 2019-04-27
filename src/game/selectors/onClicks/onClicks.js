@@ -1,5 +1,7 @@
 // import { Stat } from '../units/baseStats.js'
-import { classdir as onClicks } from './jsload.js'
+import { classdir } from './jsload.js'
+
+var onClicks = classdir
 
 // for (let key in onClickLib) {
 //   let onClick = onClickLib[key]
@@ -11,4 +13,4 @@ import { classdir as onClicks } from './jsload.js'
 //
 // CtrlState.LIB.NAME(selector, params)
 
-export OnClicks
+export { onClicks }

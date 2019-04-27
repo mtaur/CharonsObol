@@ -10,7 +10,10 @@
         <fieldplayer
           v-for="unit in cpuTeam.back"
           :unit="unit"
-          :key="unit.id">
+          :key="unit.id"
+          :isActive="isActive(selector, unit)"
+          @click.native="battlefieldClick(selector, unit)"
+          >
           <!-- @click.native="makeActive(unit, $event)"> -->
         </fieldplayer>
       </div>
@@ -18,7 +21,10 @@
         <fieldplayer
           v-for="unit in cpuTeam.front"
           :unit="unit"
-          :key="unit.id">
+          :key="unit.id"
+          :isActive="isActive(selector, unit)"
+          @click.native="battlefieldClick(selector, unit)"
+          >
           <!-- @click.native="makeActive(unit, $event)"> -->
         </fieldplayer>
       </div>
@@ -30,18 +36,23 @@
           v-for="unit in playerTeam.front"
           :unit="unit"
           :key="unit.id"
-          :isActive="isActive(unit)"
-          @click.native="makeActive(unit, $event)">
-          <!-- :class="{'active': isActive(unit)}" -->
+          :isActive="isActive(selector, unit)"
+          :class="{'active': isActive(selector, unit)}"
+          @click.native="battlefieldClick(selector, unit)"
+          >
+          <!-- @click.native="makeActive(unit, $event)" -->
         </fieldplayer>
       </div>
       <div class="row justify-center items-stretch unitrow">
         <fieldplayer v-for="unit in playerTeam.back"
           :unit="unit"
           :key="unit.id"
-          :isActive="isActive(unit)"
-          @click.native="makeActive(unit, $event)">
-          <!-- :class="{'active': isActive(unit)}" -->
+          :isActive="isActive(selector, unit)"
+          :class="{'active': isActive(selector, unit)}"
+          @click.native="battlefieldClick(selector, unit)"
+          >
+          <!-- :isActive="isActive(unit)" -->
+          <!-- @click.native="makeActive(unit, $event)" -->
         </fieldplayer>
       </div>
     </div>
@@ -59,6 +70,15 @@ import { playerTeam, cpuTeam } from 'src/game/objects/units/unit.js'
 import fieldplayer from 'src/components/fieldplayer'
 import drawer from '../components/drawer.vue'
 import rightdrawer from '../components/rightdrawer.vue'
+import Selector from 'src/game/selectors/Selector.js'
+
+var selector = new Selector({
+  playerTeam: playerTeam,
+  cpuTeam: cpuTeam
+})
+selector.changeState('ChooseUnit')
+
+// console.log(selector.onClicks)
 
 import { openURL } from 'quasar'
 
@@ -68,17 +88,30 @@ export default {
       playerTeam: playerTeam,
       cpuTeam: cpuTeam,
       activeUnit: [],
-      leftDrawerOpen: true
+      leftDrawerOpen: true,
+      selector
       // rightDrawerOpen: true // this.$q.platform.is.desktop
     }
   },
   props: ['rightDrawerOpen'],
   methods: {
-    makeActive: function (unit, event) {
-      this.activeUnit = [unit]
+    // makeActive: function (unit, event) {
+    //   this.activeUnit = [unit]
+    // },
+    // isActive: function (unit) {
+    //   return this.activeUnit[0] ? unit.name === this.activeUnit[0].name : false
+    // },
+    isActive: function (selector, unit) {
+      return selector.stateData.activeUnit.id
+        ? unit.id === selector.stateData.activeUnit.id
+        : false
     },
-    isActive: function (unit) {
-      return this.activeUnit[0] ? unit.name === this.activeUnit[0].name : false
+    battlefieldClick: function (selector, unit) {
+      selector.getClickMode(unit).onClick(selector, unit)
+      console.log(selector.getClickMode(unit))
+      this.activeUnit = selector.stateData.activeUnit.id
+        ? [selector.stateData.activeUnit]
+        : []
     },
     openURL
   },

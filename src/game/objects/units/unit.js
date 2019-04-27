@@ -214,6 +214,6 @@ bro.raise('HP')
 bro.raise('HP')
 bro.raise('HP')
 
-lynn.actions = ['melee','ranged','lunge','block']
+lynn.actions = ['melee', 'ranged', 'lunge', 'block']
 
 export { Unit, cpuTeam, playerTeam, Team }

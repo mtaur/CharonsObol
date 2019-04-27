@@ -1,19 +1,20 @@
-import { CtrlState } from '../ctrlstates.js'
+import { CtrlState } from '../CtrlState.js'
 
 // Nothing is selected.  No action in progress.
 class ChooseUnit extends CtrlState {
-  static NAME = 'CHOOSEUNIT'
-
-  function getClickJSON (unit) {
+  // static NAME = 'CHOOSEUNIT'
+  // static name = 'ChooseUnit'
+  //
+  getClickJSON (selector, unit) {
     if (selector.game.playerTeam.field.indexOf(unit) > -1) {
       return {
-        viewState: '',
+        viewState: 'idle',
         onClick: 'makeActive'
       }
     }
     if (selector.game.cpuTeam.field.indexOf(unit) > -1) {
       return {
-        viewState: '',
+        viewState: 'idle',
         onClick: 'inspect'
       }
     }
@@ -23,8 +24,6 @@ class ChooseUnit extends CtrlState {
     super(selector, obj)
     selector.getClickJSON = this.getClickJSON
   }
-
-
 }
 
 export default ChooseUnit

@@ -8,7 +8,7 @@ var makeActive = function (selector, unit) {
   //   // targets[i] = target clicked at step i
   // }
   selector.stateData.activeUnit = unit
-  selector.changeState('CHOOSEACTION')
+  selector.changeState('ChooseAction')
 }
 
 export default makeActive

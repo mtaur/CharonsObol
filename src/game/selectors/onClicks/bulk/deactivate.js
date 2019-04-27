@@ -8,7 +8,7 @@ var deactivate = function (selector, unit) {
   //   // targets[i] = target clicked at step i
   // }
   selector.stateData.activeUnit = {}
-  selector.changeState('CHOOSEUNIT')
+  selector.changeState('ChooseUnit')
 }
 
-export default makeActive
+export default deactivate

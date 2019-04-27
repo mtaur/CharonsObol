@@ -1,10 +1,8 @@
 // import { Stat } from '../units/baseStats.js'
-import { classdir as ctrlStateLib } from './jsload.js'
+// import { classdir as ctrlStateLib } from './jsload.js'
 
 class CtrlState {
-
   static LIB = {}
-
   // static validateObj (obj) {
   //   // Soul with no bonuses is ok, nothing to check
   //   if (!obj.bonus) { return true }
@@ -46,13 +44,13 @@ class CtrlState {
     // return this
   }
 }
-
-// Store classes, not instances.
-// populate library using jsload from ./bulk
-for (let key in ctrlStateLib) {
-  let CtrlState = ctrlStateLib[key]
-  if (!CtrlState.LIB[CtrlState.NAME]) { CtrlState.LIB[CtrlState.NAME] = CtrlState }
-}
+//
+// // Store classes, not instances.
+// // populate library using jsload from ./bulk
+// for (let key in ctrlStateLib) {
+//   let CtrlState = ctrlStateLib[key]
+//   if (!CtrlState.LIB[CtrlState.NAME]) { CtrlState.LIB[CtrlState.NAME] = CtrlState }
+// }
 
 // Instantiate class to change state of selector object.
 // Apply state to selector object by calling:

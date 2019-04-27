@@ -17,6 +17,7 @@ var classdir = {}
 for (var key in cache) {
   if (cache[key].default) {
     let obj = cache[key].default
+    // console.log(obj)
     classdir[obj.name] = obj
     console.log('cacheing', cache[key].default)
   }
