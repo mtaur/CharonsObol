@@ -5,13 +5,13 @@ class ChooseUnit extends CtrlState {
   static NAME = 'CHOOSEUNIT'
 
   function getClickJSON (unit) {
-    if (game.playerTeam.field.indexOf(unit) > -1) {
+    if (selector.game.playerTeam.field.indexOf(unit) > -1) {
       return {
         viewState: '',
         onClick: 'makeActive'
       }
     }
-    if (game.cpuTeam.field.indexOf(unit) > -1) {
+    if (selector.game.cpuTeam.field.indexOf(unit) > -1) {
       return {
         viewState: '',
         onClick: 'inspect'
@@ -21,7 +21,7 @@ class ChooseUnit extends CtrlState {
 
   constructor (selector, obj) {
     super(selector, obj)
-    selector.getClickMode = this.getClickMode
+    selector.getClickJSON = this.getClickJSON
   }
 
 

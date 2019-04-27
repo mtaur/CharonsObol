@@ -8,6 +8,7 @@ class Selector {
   onClicks = onClicks
 
   // Which player, if any, is highlighted as active?
+  // activeUnit = {}
   // activeUnit = []
 
   // Use computed property to dectect activeUnit from getClickMode function?
@@ -17,28 +18,49 @@ class Selector {
   // Targetting details?
   stateData = {
     // inspectUnit
-    // activeUnit = {}
+    activeUnit = {}
     // skill = {}
     // (skill will have info about valid click targets and number of steps)
     // targets[i] = target clicked at step i
   }
 
-  // Tell Vue: give element this style state and this click handler.
-  // Use simplified string IDs
-  getClickMode (unit) {
+  function getClickJSON (unit) {
+      return {
+        viewState: '',
+        onClick: ''
+      }
+  }
+
+  function toClickFcn (str) {
+    return this.onClicks[str]
+  }
+
+  function getClickMode (unit) {
+    let obj = this.getClickJSON(unit)
     return {
-      // View layer will interpret this string(?) for each display instance
-      // of the unit
-      viewState: '',
-      // onClick = onClicks[name] = function(selector, unit)
-      // View layer will call this on click
-      // Battlefield (center) receives this click handler only.
-      onClick: () => {}
-      // Method passed to Vue component:
-      //
-      // selector.onClicks[selector.getClickMode(unit).onClick](selector, unit)
+      // Keep as string, let Vue handle logic
+      viewState: obj.viewState,
+      // Convert to function
+      onClick: this.toClickFcn(obj.onClick)
     }
   }
+
+  // Tell Vue: give element this style state and this click handler.
+  // Use simplified string IDs
+  // getClickMode (unit) {
+  //   return {
+  //     // View layer will interpret this string(?) for each display instance
+  //     // of the unit
+  //     viewState: '',
+  //     // onClick = onClicks[name] = function(selector, unit)
+  //     // View layer will call this on click
+  //     // Battlefield (center) receives this click handler only.
+  //     onClick: () => {}
+  //     // Method passed to Vue component:
+  //     //
+  //     // selector.onClicks[selector.getClickMode(unit).onClick](selector, unit)
+  //   }
+  // }
 
   // return actual function
   // getClickFcn (unit) {

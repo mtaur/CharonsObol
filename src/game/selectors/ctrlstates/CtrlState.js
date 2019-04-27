@@ -17,26 +17,27 @@ class CtrlState {
   //   }
   //   return true
   // }
-  function getClickJSON (unit) {
-      return {
-        viewState: '',
-        onClick: ''
-      }
-  }
 
-  function toClickFcn (str) {
-    return this.selector.onClicks[str]
-  }
-
-  function getClickMode (unit) {
-    let obj = this.getClickJSON(unit)
-    return {
-      // Keep as string, let Vue handle logic
-      viewState: obj.viewState,
-      // Convert to function
-      onClick: this.toClickFcn(obj.onClick)
-    }
-  }
+  // function getClickJSON (unit) {
+  //     return {
+  //       viewState: '',
+  //       onClick: ''
+  //     }
+  // }
+  //
+  // function toClickFcn (str) {
+  //   return this.selector.onClicks[str]
+  // }
+  //
+  // function getClickMode (unit) {
+  //   let obj = this.getClickJSON(unit)
+  //   return {
+  //     // Keep as string, let Vue handle logic
+  //     viewState: obj.viewState,
+  //     // Convert to function
+  //     onClick: this.toClickFcn(obj.onClick)
+  //   }
+  // }
 
   constructor (selector, obj) {
     this.selector = selector
