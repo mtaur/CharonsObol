@@ -6,6 +6,7 @@
   </div>
   <div class="row statline align-center">
     <statrow v-for="stat in unit.baseStats" :unit="unit" :stat="stat" :key="stat.name"></statrow>
+    <!-- <statrow v-for="stat in basicStats" :unit="unit" :stat="unit.baseStats[stat]" :key="stat"></statrow> -->
   </div>
 </div>
 </template>
@@ -17,7 +18,9 @@ export default {
   props: ['unit'],
   components: { statrow },
   data () {
-    return { }
+    return {
+      // basicStats: ['INIT', 'MELEE', 'RANGED', 'MAGIC', 'DR']
+    }
   },
   methods: {
   }

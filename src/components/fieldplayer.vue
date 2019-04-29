@@ -7,12 +7,16 @@
         <div class="placeholder">(Unit)</div>
       </div>
       <div class="align-center col-8 row">
+        <!-- <div class = "col-6"
+        v-for="stat in unit.baseStats" :key="stat.name"> -->
         <div class = "col-6"
-        v-for="stat in unit.baseStats" :key="stat.name">
+        v-for="stat in baseStats" :key="stat.name" :unit="unit">
         <!-- <div v-for="stat in unit.baseStats" :unit="unit" :stat="stat"> -->
+        <!-- <statrow v-for="stat in basicStats" :unit="unit" :stat="unit.baseStats[stat]" :key="stat"></statrow> -->
         <q-chip dense color="white">
-          <q-avatar color="red" text-color="white">{{ stat.value }}</q-avatar>
-          {{ stat.name }}
+          <q-avatar color="red" text-color="white">{{ unit.baseStats[stat].value }}</q-avatar>
+          <!-- <q-avatar color="red" text-color="white">{{ stat.value }}</q-avatar> -->
+          {{ unit.baseStats[stat].name }}
         </q-chip>
         <!-- {{stat.name}}: {{stat.value}} -->
         </div>
@@ -35,7 +39,9 @@ export default {
   props: ['unit', 'isActive'],
   // components: { statrow },
   data () {
-    return { }
+    return {
+      baseStats: ['INIT', 'MELEE', 'RANGED', 'MAGIC', 'DR']
+    }
   },
   methods: {
   }
