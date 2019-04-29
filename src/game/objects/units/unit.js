@@ -45,7 +45,7 @@ class Unit {
     BENCH: 'bench'
   }
 
-  static _id = 0
+  static _id = -1
 
   static get id () {
     Unit._id++
@@ -56,6 +56,9 @@ class Unit {
     let stat = this.baseStats[statName]
     // if global SP > 0...
     if (playerTeam.SP >= stat.cost) {
+      if (stat.isResource) {
+        stat.current += stat.benefit
+      }
       this.SP += stat.cost
       playerTeam.SP -= stat.cost
       stat.increase()
@@ -98,6 +101,15 @@ class Unit {
       // to create independent instances!
       obj[key] = Stat.LIB[key]()
     }
+
+    // if (obj.isResource) {
+    //   obj.current = obj.start
+    //   Object.defineProperty(this, 'max',
+    //     {
+    //       get () { return this.value }
+    //     }
+    //   )
+    // }
     return obj
   }
 
@@ -105,7 +117,7 @@ class Unit {
     // !!!Must reset the template or else data will be shared!!!
     let template = {
       name: 'Jaqen',
-      side: Unit.SIDE.PLAYER,
+      side: Unit.SIDE.CPU,
       pos: Unit.POS.FRONT,
       hero: false,
       // Configure stats with default setup.
@@ -149,14 +161,19 @@ jaq.raise('MELEE')
 // console.log('MELEE', jaq.baseStats.MELEE.value)
 // console.log('SP', jaq.SP)
 
+var jaqClone = uniqClone(jaq)
+console.log(jaqClone)
+
 // var jaqs = []
 for (let i = 0; i < 6; i++) {
-  i < 4 ? cpuTeam.front.push(uniqClone(jaq)) : cpuTeam.back.push(uniqClone(jaq))
+  i < 4 ? cpuTeam.front.push(new Unit()) : cpuTeam.back.push(new Unit())
+  // i < 4 ? cpuTeam.front.push(uniqClone(jaq)) : cpuTeam.back.push(uniqClone(jaq))
 }
 
 // console.log('DR', jaq.baseStats.DR.value)
-jaq.raise('DR')
-jaq.raise('DR')
+cpuTeam.front[0].raise('DR')
+// jaq.raise('DR')
+// jaq.raise('DR')
 // console.log('SP', jaq.SP)
 // console.log('DR', jaq.baseStats.DR.value)
 
@@ -195,6 +212,8 @@ lynn.raise('MELEE')
 lynn.raise('HP')
 lynn.raise('HP')
 lynn.raise('HP')
+
+lynn.baseStats.HP.current -= 15
 // console.log(lynn.souls)
 // console.log(lynn.baseSummary)
 // console.log(lynn.soulSummary)

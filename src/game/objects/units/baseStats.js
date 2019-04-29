@@ -24,7 +24,18 @@ class Stat {
 
   constructor (obj) {
     for (let key in Stat.template) {
+      // Receive non-empty fields or fall back to default values
       this[key] = obj[key] ? obj[key] : Stat.template[key]
+    }
+
+    // resources have current and max...
+    if (obj.isResource) {
+      this.current = this.value
+      Object.defineProperty(this, 'max',
+        {
+          get () { return this.value }
+        }
+      )
     }
   }
 

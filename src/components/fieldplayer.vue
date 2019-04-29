@@ -10,17 +10,23 @@
         <!-- <div class = "col-6"
         v-for="stat in unit.baseStats" :key="stat.name"> -->
         <div class = "col-6"
-        v-for="stat in baseStats" :key="stat.name" :unit="unit">
-        <!-- <div v-for="stat in unit.baseStats" :unit="unit" :stat="stat"> -->
-        <!-- <statrow v-for="stat in basicStats" :unit="unit" :stat="unit.baseStats[stat]" :key="stat"></statrow> -->
-        <q-chip dense color="white">
-          <q-avatar color="red" text-color="white">{{ unit.baseStats[stat].value }}</q-avatar>
-          <!-- <q-avatar color="red" text-color="white">{{ stat.value }}</q-avatar> -->
-          {{ unit.baseStats[stat].name }}
-        </q-chip>
-        <!-- {{stat.name}}: {{stat.value}} -->
+          v-for="stat in baseStats" :key="stat.name" :unit="unit">
+          <!-- <div v-for="stat in unit.baseStats" :unit="unit" :stat="stat"> -->
+          <!-- <statrow v-for="stat in basicStats" :unit="unit" :stat="unit.baseStats[stat]" :key="stat"></statrow> -->
+          <q-chip dense color="white">
+            <q-avatar color="red" text-color="white">{{ unit.baseStats[stat].value }}</q-avatar>
+            <!-- <q-avatar color="red" text-color="white">{{ stat.value }}</q-avatar> -->
+            {{ unit.baseStats[stat].name }}
+          </q-chip>
+          <!-- {{stat.name}}: {{stat.value}} -->
         </div>
       </div>
+    </div>
+    <div class="row">
+      <resbar :resource="unit.baseStats.MP"></resbar>
+    </div>
+    <div class="row">
+      <resbar :resource="unit.baseStats.HP"></resbar>
     </div>
     <div class="row namebox justify-center align-center">
       <h6>{{ unit.name }}</h6>
@@ -34,6 +40,7 @@
 
 <script>
 // import statrow from './statchange.vue'
+import resbar from './resbar.vue'
 
 export default {
   props: ['unit', 'isActive'],
@@ -42,6 +49,9 @@ export default {
     return {
       baseStats: ['INIT', 'MELEE', 'RANGED', 'MAGIC', 'DR']
     }
+  },
+  components: {
+    resbar
   },
   methods: {
   }
