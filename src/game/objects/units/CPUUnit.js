@@ -1,8 +1,10 @@
-import { Unit, playerTeam, cpuTeam } from './unit.js'
+// import { Unit, playerTeam, cpuTeam } from './unit.js'
+import { Unit } from './unit.js'
 
+// Constructor requires a reference to cpuTeam!!!
 class CPUUnit extends Unit {
   // override
-  cpuTeam = cpuTeam
+  // cpuTeam = cpuTeam
   raise = function (statname) {
     // let stat = this.baseStats[statName]
     // // if global SP > 0...
@@ -90,7 +92,7 @@ class CPUUnit extends Unit {
     }
   }
 
-  constructor (obj = {}) {
+  constructor (gameObj, unitObj = {}) {
     // {
     //   name: 'Jaqen',
     //   side: Unit.SIDE.CPU,
@@ -102,7 +104,7 @@ class CPUUnit extends Unit {
     //   souls: [],
     //   SP: 0
     // }
-    super()
+    super(gameObj, unitObj)
 }
 
   // static template = {

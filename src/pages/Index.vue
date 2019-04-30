@@ -66,7 +66,8 @@
 
 <script>
 
-import { playerTeam, cpuTeam } from 'src/game/objects/units/unit.js'
+// import { playerTeam, cpuTeam } from 'src/game/objects/units/unit.js'
+import { playerTeam, cpuTeam } from 'src/game/initialize.js'
 import fieldplayer from 'src/components/fieldplayer'
 import drawer from '../components/drawer.vue'
 import rightdrawer from '../components/rightdrawer.vue'
