@@ -70,7 +70,7 @@ for (let i = 1; i < 5; i++) {
       HP: 6,
       MP: 0,
       INIT: 1,
-      MELEE: 6,
+      MELEE: 5,
       RANGED: 0,
       DR: 4
     }
@@ -83,9 +83,9 @@ for (let i = 1; i < 5; i++) {
   } else {
     let unit = new CPUUnit(gameObj, caenenTemplate())
     unit.statWeights = {
-      HP: 4,
+      HP: 3,
       MP: 1,
-      INIT: 3,
+      INIT: 2,
       MELEE: 0,
       RANGED: 8,
       DR: 2
