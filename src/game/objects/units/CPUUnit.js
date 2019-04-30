@@ -5,18 +5,7 @@ import { Unit } from './unit.js'
 class CPUUnit extends Unit {
   // override
   // cpuTeam = cpuTeam
-  raise = function (statname) {
-    // let stat = this.baseStats[statName]
-    // // if global SP > 0...
-    // if (playerTeam.SP >= stat.cost) {
-    //   if (stat.isResource) {
-    //     stat.current += stat.benefit
-    //   }
-    //   this.SP += stat.cost
-    //   playerTeam.SP -= stat.cost
-    //   stat.increase()
-    //   console.log(playerTeam.SP, 'team SP remaining!')
-    // }
+  raise = function (statName) {
     let stat = this.baseStats[statName]
     if (this.cpuTeam.SP >= this.SP + stat.cost) {
       if (stat.isResource) {
@@ -28,57 +17,65 @@ class CPUUnit extends Unit {
   }
 
   // relative ratio of counters maintained.
+  // static LIB = {
+  //   HP: HP,
+  //   MP: MP,
+  //   INIT: INIT,
+  //   MELEE: MELEE,
+  //   RANGED: RANGED,
+  //   MAGIC: MAGIC,
+  //   DR: DR
+  // }
   statWeights = {
-    // static LIB = {
-      //   HP: HP,
-      //   MP: MP,
-      //   INIT: INIT,
-      //   MELEE: MELEE,
-      //   RANGED: RANGED,
-      //   MAGIC: MAGIC,
-      //   DR: DR
-      // }
-      HP: 5,
-      MP: 2,
-      INIT: 1,
-      MELEE: 4,
-      RANGED: 4,
-      MAGIC: 4,
-      DR: 3
+    HP: 5,
+    MP: 2,
+    INIT: 1,
+    MELEE: 4,
+    RANGED: 4,
+    MAGIC: 4,
+    DR: 3
   }
 
   autoRaiseOne = function () {
+    // console.log('autoraiseone this: ', this)
+    let unit = this
+    let baseStats = unit.baseStats
     let avail = this.cpuTeam.SP - this.SP
     let totalRatio = 0
     for (let key in this.statWeights) {
-      totalRatio += statWeights[key]
+      totalRatio += this.statWeights[key]
     }
     let totalCounters = 0
     for (let key in this.statWeights) {
-      totalCounters += this.baseStats[key].counters
+      totalCounters += baseStats[key].counters
     }
 
-    function canAfford(statname) {
-      return avail > this.baseStats[statname].cost
+    function canAfford (statname) {
+      // console.log('statname: ', statname)
+      // console.log('avail: ', avail)
+      // console.log('unit: ', unit)
+      // console.log(baseStats)
+      return (avail > baseStats[statname].cost)
     }
-    function needsRaise(statname) {
+    function needsRaise (statname) {
       if (totalCounters === 0) return true
-      return this.baseStats[statname].counters / totalCounters < this.statWeights[statname] / totalRatio
+      return baseStats[statname].counters / totalCounters < unit.statWeights[statname] / totalRatio
     }
-    function compareStats(a, b) {
+    function compareStats (a, b) {
       // b comes first if larger
-      return this.baseStats[b].counters - this.baseStats[a].counters
+      return baseStats[b].counters - baseStats[a].counters
     }
 
     let arr = []
     for (let key in this.statWeights) {
-      arr.push(statWeights[key])
+      arr.push(key)
+      // arr.push(this.statWeights[key])
     }
 
-    arr = arr.filter(canAfford).filter(needsRaise).sortBy(compareStats)
+    arr = arr.filter(canAfford).filter(needsRaise).sort(compareStats)
     if (arr.length > 0) {
       this.raise(arr[0])
-      console.log('Auto-raised ', arr[0])
+      console.log('Auto-raised', arr[0], ', avail =', avail)
       return true
     } else {
       return false
@@ -93,6 +90,8 @@ class CPUUnit extends Unit {
   }
 
   constructor (gameObj, unitObj = {}) {
+    // gameObj = { playerTeam, cpuTeam }
+    //
     // {
     //   name: 'Jaqen',
     //   side: Unit.SIDE.CPU,
@@ -105,8 +104,7 @@ class CPUUnit extends Unit {
     //   SP: 0
     // }
     super(gameObj, unitObj)
-}
-
+  }
   // static template = {
   //   name: '',
   //   start: 0,
@@ -120,18 +118,6 @@ class CPUUnit extends Unit {
   // get benefit () { return this.benScale }
   // get value () { return this.start + this.benScale * this.counters }
   // increase () { this.counters++ }
-
 }
-
-// function HP () {
-//   return new Stat({
-//     name: 'HP',
-//     start: 48,
-//     // counters: 1,
-//     // costScale: 1,
-//     benScale: 12,
-//     isResource: true
-//   })
-// }
 
 export { CPUUnit }
