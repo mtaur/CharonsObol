@@ -1,3 +1,5 @@
+import { hasIn as hasProp } from 'lodash'
+
 class Stat {
   // ( default values are written from template upon
   // construction )
@@ -19,17 +21,25 @@ class Stat {
 
   get cost () { return this.costScale * this.counters }
   get benefit () { return this.benScale }
-  get value () { return this.start + this.benScale * this.counters }
+  get value () { return this.start + (this.benScale * this.counters) }
   increase () { this.counters++ }
 
   constructor (obj) {
+    console.log('Stat.template:', Stat.template)
     for (let key in Stat.template) {
       // Receive non-empty fields or fall back to default values
-      this[key] = obj[key] ? obj[key] : Stat.template[key]
+      this[key] = hasProp(obj, key) ? obj[key] : Stat.template[key]
+      // console.log('obj', obj, 'hasProp', key, '?', hasProp(obj, key))
+      // console.log(key, ':', this[key])
+      // this[key] = obj[key] ? obj[key] : Stat.template[key]
+      // if (!hasProp(obj, key)) {
+      //   console.log(key, 'is missing from stat', obj.name)
+      //   console.log('Using fallback value', this[key])
+      // }
     }
 
     // resources have current and max...
-    if (obj.isResource) {
+    if (obj.isResource === true) {
       this.current = this.value
       Object.defineProperty(this, 'max',
         {
@@ -46,7 +56,8 @@ class Stat {
     MELEE: MELEE,
     RANGED: RANGED,
     MAGIC: MAGIC,
-    DR: DR
+    DRED: DRED,
+    DREF: DREF
   }
 }
 
@@ -110,11 +121,21 @@ function MAGIC () {
     // isResource: false
   })
 }
-function DR () {
+function DRED () {
   return new Stat({
-    name: 'DR',
+    name: 'DRED',
     // start: 0,
     counters: 2,
+    // costScale: 1,
+    benScale: 1
+    // isResource: false
+  })
+}
+function DREF () {
+  return new Stat({
+    name: 'DREF',
+    // start: 0,
+    counters: 0,
     // costScale: 1,
     benScale: 1
     // isResource: false

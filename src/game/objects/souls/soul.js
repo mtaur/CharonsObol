@@ -1,4 +1,4 @@
-import { Stat } from '../units/baseStats.js'
+import { Stat } from '../units/Stat.js'
 import { classdir as soulLib } from './jsload.js'
 
 class Soul {

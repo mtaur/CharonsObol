@@ -47,7 +47,7 @@ export default {
   // components: { statrow },
   data () {
     return {
-      baseStats: ['INIT', 'MELEE', 'RANGED', 'MAGIC', 'DR']
+      baseStats: ['INIT', 'MELEE', 'RANGED', 'MAGIC', 'DRED', 'DREF']
     }
   },
   components: {

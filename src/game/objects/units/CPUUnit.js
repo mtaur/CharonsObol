@@ -1,5 +1,5 @@
 // import { Unit, playerTeam, cpuTeam } from './unit.js'
-import { Unit } from './unit.js'
+import { Unit } from './Unit.js'
 
 // Constructor requires a reference to cpuTeam!!!
 class CPUUnit extends Unit {
@@ -33,7 +33,8 @@ class CPUUnit extends Unit {
     MELEE: 4,
     RANGED: 4,
     MAGIC: 4,
-    DR: 3
+    DRED: 3,
+    DREF: 3
   }
 
   autoRaiseOne = function () {

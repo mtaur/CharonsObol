@@ -1,4 +1,4 @@
-import { Unit, Team } from './objects/units/unit.js'
+import { Unit, Team } from './objects/units/Unit.js'
 import { cloneDeep as clone } from 'lodash'
 import { Soul } from './objects/souls/soul.js'
 import { CPUUnit } from './objects/units/CPUUnit.js'
@@ -15,6 +15,8 @@ var gameObj = { playerTeam: playerTeam, cpuTeam: cpuTeam }
 
 // test script
 var jaq = new CPUUnit(gameObj)
+console.log('Outside of constructor...')
+console.log(jaq)
 jaq.raiseAll()
 cpuTeam.front.push(jaq)
 
@@ -62,7 +64,7 @@ function caenenTemplate () {
 var jaqClone = uniqClone(jaq)
 console.log(jaqClone)
 
-// var jaqs = []
+// Knight of Caenenfoeder
 for (let i = 1; i < 5; i++) {
   if (i < 2) {
     let unit = new CPUUnit(gameObj, caenenTemplate())
@@ -72,14 +74,14 @@ for (let i = 1; i < 5; i++) {
       INIT: 1,
       MELEE: 5,
       RANGED: 0,
-      DR: 4
+      DRED: 3,
+      DREF: 3
     }
-    // unit.baseStats.HP.benScale = 6 // 12
-    // unit.baseStats.MELEE.benscale = 2 // 3
-    // unit.baseStats.MAGIC.benscale = 2 // 3
     unit.name = 'Knight of Caenenfoeder ' + i
     unit.raiseAll()
     cpuTeam.front.push(unit)
+    console.log('Outside of constructor...')
+    console.log(unit)
   } else {
     let unit = new CPUUnit(gameObj, caenenTemplate())
     unit.statWeights = {
@@ -88,82 +90,44 @@ for (let i = 1; i < 5; i++) {
       INIT: 2,
       MELEE: 0,
       RANGED: 8,
-      DR: 2
+      DRED: 2,
+      DREF: 0
     }
-    // unit.baseStats.HP.benScale = 6 // 12
-    // unit.baseStats.MELEE.benscale = 2 // 3
-    // unit.baseStats.MAGIC.benscale = 2 // 3
     unit.name = 'Archer of Caenenfoeder ' + i
     unit.raiseAll()
     cpuTeam.back.push(unit)
+    console.log('Outside of constructor...')
+    console.log(unit)
   }
-  // i < 4 ? cpuTeam.front.push(new Unit()) : cpuTeam.back.push(new Unit())
-  // i < 4 ? cpuTeam.front.push(uniqClone(jaq)) : cpuTeam.back.push(uniqClone(jaq))
 }
 
-// console.log('DR', jaq.baseStats.DR.value)
-// cpuTeam.front[0].raise('DR')
-// jaq.raise('DR')
-// jaq.raise('DR')
-// console.log('SP', jaq.SP)
-// console.log('DR', jaq.baseStats.DR.value)
-
-// console.log(playerTeam)
-
 var pensoul = new Soul.LIB.PENELOPE()
-var pen = new Unit(gameObj, { name: pensoul.name, hero: true })
-// var pen = new Unit({ name: Soul.LIB.PENELOPE().name, hero: true })
+var pen = new Unit(gameObj, { name: pensoul.name, hero: true, side: Unit.SIDE.PLAYER, pos: Unit.POS.BACK })
 playerTeam.back.push(pen)
 pen.souls = [pensoul]
-// pen.raise('RANGED')
-// pen.raise('RANGED')
-// pen.raise('MAGIC')
-// pen.raise('MAGIC')
-// pen.raise('MAGIC')
-// pen.raise('MAGIC')
-// pen.raise('MP')
-// pen.raise('HP')
-// pen.raise('HP')
-// console.log(pen.souls)
-// console.log(pen.baseSummary)
-// console.log(pen.soulSummary)
-// console.log(jaq.soulSummary)
+console.log('Outside of constructor...')
+console.log(pen)
 
 var lynnsoul = new Soul.LIB.LYNN()
-var lynn = new Unit(gameObj, { name: lynnsoul.name, hero: true })
+var lynn = new Unit(gameObj, { name: lynnsoul.name, hero: true, side: Unit.SIDE.PLAYER, pos: Unit.POS.FRONT })
 playerTeam.front.push(lynn)
-// lynn.souls = [Soul.LIB.LYNN()]
 lynn.souls = [lynnsoul]
-// lynn.raise('RANGED')
-// lynn.raise('RANGED')
-// lynn.raise('RANGED')
-// lynn.raise('MELEE')
-// lynn.raise('MELEE')
-// lynn.raise('MELEE')
-// lynn.raise('HP')
-// lynn.raise('HP')
-// lynn.raise('HP')
+lynn.actions = ['melee', 'ranged', 'lunge', 'block']
 
 lynn.baseStats.HP.current -= 15
-// console.log(lynn.souls)
-// console.log(lynn.baseSummary)
-// console.log(lynn.soulSummary)
+console.log('Outside of constructor...')
+console.log(lynn)
+
+console.log('Enumerability test...')
+for (let key in lynn.baseStats.DREF) {
+  console.log(key, ':', lynn.baseStats.DREF[key])
+}
 
 var brosoul = new Soul.LIB.BROCANTRIP()
-var bro = new Unit(gameObj, { name: brosoul.name, hero: true })
+var bro = new Unit(gameObj, { name: brosoul.name, hero: true, side: Unit.SIDE.PLAYER, pos: Unit.POS.FRONT })
 playerTeam.front.push(bro)
-// bro.souls = [Soul.LIB.BROCANTRIP()]
 bro.souls = [brosoul]
-// bro.raise('RANGED')
-// bro.raise('MP')
-// bro.raise('MP')
-// bro.raise('RANGED')
-// bro.raise('MAGIC')
-// bro.raise('MAGIC')
-// bro.raise('HP')
-// bro.raise('HP')
-// bro.raise('HP')
-
-lynn.actions = ['melee', 'ranged', 'lunge', 'block']
+console.log('Outside of constructor...')
+console.log(bro)
 
 export { cpuTeam, playerTeam }

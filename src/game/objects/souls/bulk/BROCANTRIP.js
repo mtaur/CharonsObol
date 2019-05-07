@@ -12,7 +12,7 @@ class Brocantrip {
       bonus: {
         MP: 1,
         MAGIC: 6,
-        DR: 2,
+        DRED: 2,
         INIT: 1
       },
       skills: []

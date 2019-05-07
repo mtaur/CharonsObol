@@ -1,7 +1,8 @@
-import { Stat } from './baseStats.js'
+import { Stat } from './Stat.js'
 // import { Soul } from '../souls/soul.js'
 import { StatMods } from './statMods/statMods.js'
-import { cloneDeep as clone } from 'lodash'
+import { cloneDeep as clone, hasIn as hasProp } from 'lodash'
+// import { has as hasProp } from 'lodash'
 //
 // function uniqClone (unit) {
 //   let copy = clone(unit)
@@ -71,11 +72,20 @@ class Unit {
       stat.increase()
       console.log(this.playerTeam.SP, 'team SP remaining!')
     }
+    // console.log(this.name)
+    // console.log(stat)
   }
 
   // Define getters in an external file and bind them here.
   get baseStatValues () { return StatMods.getBaseStatValues.call(this) }
   get soulStatValues () { return StatMods.getSoulStatValues.call(this) }
+  get bonusStatValues () { return StatMods.getBonusStatValues.call(this) }
+  get convertedStatValues () { return StatMods.getConvertedStatValues.call(this) }
+  get effectiveStatValues () { return StatMods.getEffectiveValues.call(this) }
+
+  get statBonuses () { return StatMods.getStatBonuses.call(this) }
+  get statConversions () { return StatMods.getStatConversions.call(this) }
+  get statReplacements () { return StatMods.getStatReplacements.call(this) }
 
   get baseSummary () {
     let obj = this.baseStatValues
@@ -138,15 +148,24 @@ class Unit {
       hero: false,
       // Configure stats with default setup.
       baseStats: Unit.defaultStats(),
-      inventory: {},
+      items: {},
+      // inventory: {},
       souls: [],
       SP: 0
     }
     for (let key in template) {
-      this[key] = obj[key] ? obj[key] : template[key]
+      // this[key] = obj[key] ? obj[key] : template[key]
+      // Is this necessary?
+      this[key] = hasProp(obj, key) ? obj[key] : template[key]
     }
     this.id = Unit.id
+    console.log('Log inside of constructor...')
     console.log(this, this.id)
+    console.log('baseStats:')
+    console.log(this.baseStats)
+    for (let key in this.baseStats) {
+      console.log(key, ':', this.baseStats[key])
+    }
     // if (this.side === Unit.SIDE.PLAYER) {
     //   playerTeam.front.push(this)
     // } else { cpuTeam.front.push(this) }
