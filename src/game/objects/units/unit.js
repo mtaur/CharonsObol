@@ -2,6 +2,8 @@ import { Stat } from './Stat.js'
 // import { Soul } from '../souls/soul.js'
 import { StatMods } from './statMods/statMods.js'
 import { cloneDeep as clone, hasIn as hasProp } from 'lodash'
+
+import { ResourceManager } from './ResourceManager.js'
 // import { has as hasProp } from 'lodash'
 //
 // function uniqClone (unit) {
@@ -81,7 +83,7 @@ class Unit {
   get soulStatValues () { return StatMods.getSoulStatValues.call(this) }
   get bonusStatValues () { return StatMods.getBonusStatValues.call(this) }
   get convertedStatValues () { return StatMods.getConvertedStatValues.call(this) }
-  get effectiveStatValues () { return StatMods.getEffectiveValues.call(this) }
+  get effectiveStatValues () { return StatMods.getEffectiveStatValues.call(this) }
 
   get statBonuses () { return StatMods.getStatBonuses.call(this) }
   get statConversions () { return StatMods.getStatConversions.call(this) }
@@ -159,13 +161,15 @@ class Unit {
       this[key] = hasProp(obj, key) ? obj[key] : template[key]
     }
     this.id = Unit.id
-    console.log('Log inside of constructor...')
-    console.log(this, this.id)
-    console.log('baseStats:')
-    console.log(this.baseStats)
+    // console.log('Log inside of constructor...')
+    // console.log(this, this.id)
+    // console.log('baseStats:')
+    // console.log(this.baseStats)
     for (let key in this.baseStats) {
       console.log(key, ':', this.baseStats[key])
     }
+
+    this.resourceManager = new ResourceManager(this)
     // if (this.side === Unit.SIDE.PLAYER) {
     //   playerTeam.front.push(this)
     // } else { cpuTeam.front.push(this) }

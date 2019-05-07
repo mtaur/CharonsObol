@@ -26,7 +26,7 @@ class StatMods {
   }
 
   // Apply flat bonuses from items
-  static getBonusStats () {
+  static getBonusStatValues () {
     let bonuses = this.statBonuses
     let bonusStatValues = this.soulStatValues
 
@@ -43,8 +43,8 @@ class StatMods {
     return bonusStatValues
   }
 
-  static getConvertedStats () {
-    let convertedStatValues = []
+  static getConvertedStatValues () {
+    let convertedStatValues = this.bonusStatValues // = []
     // mods = []
     // fetch modifiers
     // sort modifiers
@@ -52,8 +52,8 @@ class StatMods {
     return convertedStatValues
   }
 
-  static getEffectiveStats () {
-    let effectiveStatValues = []
+  static getEffectiveStatValues () {
+    let effectiveStatValues = this.convertedStatValues // = []
     // mods = []
     // fetch modifiers
     // sort modifiers

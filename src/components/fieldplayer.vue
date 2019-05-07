@@ -14,9 +14,11 @@
           <!-- <div v-for="stat in unit.baseStats" :unit="unit" :stat="stat"> -->
           <!-- <statrow v-for="stat in basicStats" :unit="unit" :stat="unit.baseStats[stat]" :key="stat"></statrow> -->
           <q-chip dense color="white">
-            <q-avatar color="red" text-color="white">{{ unit.baseStats[stat].value }}</q-avatar>
+            <q-avatar color="red" text-color="white">{{ unit.effectiveStatValues[stat] }}</q-avatar>
+            <!-- <q-avatar color="red" text-color="white">{{ unit.baseStats[stat].value }}</q-avatar> -->
             <!-- <q-avatar color="red" text-color="white">{{ stat.value }}</q-avatar> -->
-            {{ unit.baseStats[stat].name }}
+            {{ stat }}
+            <!-- {{ unit.baseStats[stat].name }} -->
           </q-chip>
           <!-- {{stat.name}}: {{stat.value}} -->
         </div>

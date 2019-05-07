@@ -102,16 +102,16 @@ for (let i = 1; i < 5; i++) {
 }
 
 var pensoul = new Soul.LIB.PENELOPE()
-var pen = new Unit(gameObj, { name: pensoul.name, hero: true, side: Unit.SIDE.PLAYER, pos: Unit.POS.BACK })
+var pen = new Unit(gameObj, { name: pensoul.name, hero: true, souls: [pensoul], side: Unit.SIDE.PLAYER, pos: Unit.POS.BACK })
 playerTeam.back.push(pen)
-pen.souls = [pensoul]
+// pen.souls = [pensoul]
 console.log('Outside of constructor...')
 console.log(pen)
 
 var lynnsoul = new Soul.LIB.LYNN()
-var lynn = new Unit(gameObj, { name: lynnsoul.name, hero: true, side: Unit.SIDE.PLAYER, pos: Unit.POS.FRONT })
+var lynn = new Unit(gameObj, { name: lynnsoul.name, souls: [lynnsoul], hero: true, side: Unit.SIDE.PLAYER, pos: Unit.POS.FRONT })
 playerTeam.front.push(lynn)
-lynn.souls = [lynnsoul]
+// lynn.souls = [lynnsoul]
 lynn.actions = ['melee', 'ranged', 'lunge', 'block']
 
 lynn.baseStats.HP.current -= 15
@@ -124,9 +124,9 @@ for (let key in lynn.baseStats.DREF) {
 }
 
 var brosoul = new Soul.LIB.BROCANTRIP()
-var bro = new Unit(gameObj, { name: brosoul.name, hero: true, side: Unit.SIDE.PLAYER, pos: Unit.POS.FRONT })
+var bro = new Unit(gameObj, { name: brosoul.name, hero: true, souls: [brosoul], side: Unit.SIDE.PLAYER, pos: Unit.POS.FRONT })
 playerTeam.front.push(bro)
-bro.souls = [brosoul]
+// bro.souls = [brosoul]
 console.log('Outside of constructor...')
 console.log(bro)
 

@@ -1,4 +1,5 @@
 import { hasIn as hasProp } from 'lodash'
+// import { ResourceManager } from './ResourceManager'
 
 class Stat {
   // ( default values are written from template upon
@@ -37,16 +38,15 @@ class Stat {
       //   console.log('Using fallback value', this[key])
       // }
     }
-
     // resources have current and max...
-    if (obj.isResource === true) {
-      this.current = this.value
-      Object.defineProperty(this, 'max',
-        {
-          get () { return this.value }
-        }
-      )
-    }
+    // if (obj.isResource === true) {
+    //   this.current = this.value
+    //   Object.defineProperty(this, 'max',
+    //     {
+    //       get () { return this.value }
+    //     }
+    //   )
+    // }
   }
 
   static LIB = {
