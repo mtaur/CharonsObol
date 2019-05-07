@@ -32,7 +32,8 @@ class StatMods {
 
     // mods = [{HP: 15, MELEE: 4, DRED: 1, DREF: 1}, {...}]
 
-    for (let bonus in bonuses) {
+    for (let index in bonuses) {
+      let bonus = bonuses[index]
       for (let statName in bonus) {
         if (hasProp(bonusStatValues, statName)) {
           bonusStatValues[statName] += bonus[statName]
@@ -71,8 +72,10 @@ class StatMods {
     let items = this.items
     let statuses = this.statuses
 
-    for (let item in items) {
+    for (let index in items) {
+      let item = items[index]
       modHolders.push(item)
+      console.log(item)
     }
     for (let status in statuses) {
       modHolders.push(status)
@@ -81,10 +84,12 @@ class StatMods {
     //   modHolders.push(soul.skills)
     // }
 
-    for (let item in modHolders) {
-      if (hasProp(item, 'statBounus')) {
+    for (let index in modHolders) {
+      let item = modHolders[index]
+      if (hasProp(item, 'statBonus')) {
         mods.push(item.statBonus)
-      }
+        console.log(item.statBonus)
+      } else { console.log('No statBonus for', item) }
     }
 
     return mods

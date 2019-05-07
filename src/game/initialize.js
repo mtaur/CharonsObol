@@ -102,14 +102,41 @@ for (let i = 1; i < 5; i++) {
 }
 
 var pensoul = new Soul.LIB.PENELOPE()
-var pen = new Unit(gameObj, { name: pensoul.name, hero: true, souls: [pensoul], side: Unit.SIDE.PLAYER, pos: Unit.POS.BACK })
+var pen = new Unit(gameObj, { name: pensoul.name,
+  hero: true,
+  souls: [pensoul],
+  side: Unit.SIDE.PLAYER,
+  pos: Unit.POS.BACK,
+  items: [{
+    name: 'Blue Ring',
+    statBonus: { MP: 1 }
+  },
+  {
+    name: 'Magic Staff',
+    statBonus: { MAGIC: 5 }
+  }]
+})
 playerTeam.back.push(pen)
 // pen.souls = [pensoul]
 console.log('Outside of constructor...')
 console.log(pen)
 
 var lynnsoul = new Soul.LIB.LYNN()
-var lynn = new Unit(gameObj, { name: lynnsoul.name, souls: [lynnsoul], hero: true, side: Unit.SIDE.PLAYER, pos: Unit.POS.FRONT })
+var lynn = new Unit(gameObj, {
+  name: lynnsoul.name,
+  souls: [lynnsoul],
+  hero: true,
+  side: Unit.SIDE.PLAYER,
+  pos: Unit.POS.FRONT,
+  items: [{
+    name: 'Bronze Ring',
+    statBonus: { DRED: 1 }
+  },
+  {
+    name: 'Spikey Shield',
+    statBonus: { DRED: 1, DREF: 2 }
+  }]
+})
 playerTeam.front.push(lynn)
 // lynn.souls = [lynnsoul]
 lynn.actions = ['melee', 'ranged', 'lunge', 'block']
