@@ -1,13 +1,13 @@
 import { Unit, Team } from './objects/units/Unit.js'
-import { cloneDeep as clone } from 'lodash'
+// import { cloneDeep as clone } from 'lodash'
 import { Soul } from './objects/souls/soul.js'
 import { CPUUnit } from './objects/units/CPUUnit.js'
 
-function uniqClone (unit) {
-  let copy = clone(unit)
-  copy.id = Unit.id
-  return copy
-}
+// function uniqClone (unit) {
+//   let copy = clone(unit)
+//   copy.id = Unit.id
+//   return copy
+// }
 
 var playerTeam = new Team(Unit.SIDE.PLAYER)
 var cpuTeam = new Team(Unit.SIDE.CPU)
@@ -15,7 +15,7 @@ var gameObj = { playerTeam: playerTeam, cpuTeam: cpuTeam }
 
 // test script
 var jaq = new CPUUnit(gameObj)
-console.log('Outside of constructor...')
+// console.log('Outside of constructor...')
 console.log(jaq)
 jaq.raiseAll()
 cpuTeam.front.push(jaq)
@@ -61,8 +61,8 @@ function caenenTemplate () {
 
 // console.log('caenentemplate:', caenenTemplate.baseStats)
 
-var jaqClone = uniqClone(jaq)
-console.log(jaqClone)
+// var jaqClone = uniqClone(jaq)
+// console.log(jaqClone)
 
 // Knight of Caenenfoeder
 for (let i = 1; i < 5; i++) {
@@ -80,8 +80,8 @@ for (let i = 1; i < 5; i++) {
     unit.name = 'Knight of Caenenfoeder ' + i
     unit.raiseAll()
     cpuTeam.front.push(unit)
-    console.log('Outside of constructor...')
-    console.log(unit)
+    // console.log('Outside of constructor...')
+    // console.log(unit)
   } else {
     let unit = new CPUUnit(gameObj, caenenTemplate())
     unit.statWeights = {
@@ -96,8 +96,8 @@ for (let i = 1; i < 5; i++) {
     unit.name = 'Archer of Caenenfoeder ' + i
     unit.raiseAll()
     cpuTeam.back.push(unit)
-    console.log('Outside of constructor...')
-    console.log(unit)
+    // console.log('Outside of constructor...')
+    // console.log(unit)
   }
 }
 
@@ -118,7 +118,7 @@ var pen = new Unit(gameObj, { name: pensoul.name,
 })
 playerTeam.back.push(pen)
 // pen.souls = [pensoul]
-console.log('Outside of constructor...')
+// console.log('Outside of constructor...')
 console.log(pen)
 
 var lynnsoul = new Soul.LIB.LYNN()
@@ -142,19 +142,50 @@ playerTeam.front.push(lynn)
 lynn.actions = ['melee', 'ranged', 'lunge', 'block']
 
 lynn.baseStats.HP.current -= 15
-console.log('Outside of constructor...')
+// console.log('Outside of constructor...')
 console.log(lynn)
 
-console.log('Enumerability test...')
-for (let key in lynn.baseStats.DREF) {
-  console.log(key, ':', lynn.baseStats.DREF[key])
-}
+// console.log('Enumerability test...')
+// for (let key in lynn.baseStats.DREF) {
+//   console.log(key, ':', lynn.baseStats.DREF[key])
+// }
 
 var brosoul = new Soul.LIB.BROCANTRIP()
-var bro = new Unit(gameObj, { name: brosoul.name, hero: true, souls: [brosoul], side: Unit.SIDE.PLAYER, pos: Unit.POS.FRONT })
+var bro = new Unit(gameObj, {
+  name: brosoul.name,
+  hero: true,
+  souls: [brosoul],
+  side: Unit.SIDE.PLAYER,
+  pos: Unit.POS.FRONT,
+  items: [{
+    name: 'Martyr Staff',
+    converts: [
+      { from: 'DRED', to: 'DREF', value: 2 },
+      { from: 'DRED', to: 'DRED', value: -1 },
+      { from: 'DRED', to: 'MP', value: 0.1 },
+      { from: 'DRED', to: 'MAGIC', value: 0.2 }
+    ]
+  },
+  {
+    name: 'YOLO Mace',
+    converts: [
+      { from: 'DRED', to: 'MELEE', value: 3 },
+      { from: 'DRED', to: 'DRED', value: -1 }
+    ]
+  },
+  {
+    name: 'Divine Barrier',
+    converts: [
+      { from: 'MAGIC', to: 'DRED', value: 0.15 },
+      { from: 'MP', to: 'DRED', value: 2 },
+      { from: 'MP', to: 'MP', value: -0.25 }
+    ]
+  }
+  ]
+})
 playerTeam.front.push(bro)
 // bro.souls = [brosoul]
-console.log('Outside of constructor...')
+// console.log('Outside of constructor...')
 console.log(bro)
 
 export { cpuTeam, playerTeam }

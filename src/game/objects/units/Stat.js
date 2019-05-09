@@ -26,7 +26,7 @@ class Stat {
   increase () { this.counters++ }
 
   constructor (obj) {
-    console.log('Stat.template:', Stat.template)
+    // console.log('Stat.template:', Stat.template)
     for (let key in Stat.template) {
       // Receive non-empty fields or fall back to default values
       this[key] = hasProp(obj, key) ? obj[key] : Stat.template[key]

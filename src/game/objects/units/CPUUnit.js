@@ -76,7 +76,7 @@ class CPUUnit extends Unit {
     arr = arr.filter(canAfford).filter(needsRaise).sort(compareStats)
     if (arr.length > 0) {
       this.raise(arr[0])
-      console.log('Auto-raised', arr[0], ', avail =', avail)
+      // console.log('Auto-raised', arr[0], ', avail =', avail)
       return true
     } else {
       return false

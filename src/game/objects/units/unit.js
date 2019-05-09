@@ -72,7 +72,7 @@ class Unit {
       this.SP += stat.cost
       this.playerTeam.SP -= stat.cost
       stat.increase()
-      console.log(this.playerTeam.SP, 'team SP remaining!')
+      // console.log(this.playerTeam.SP, 'team SP remaining!')
     }
     // console.log(this.name)
     // console.log(stat)
@@ -165,10 +165,11 @@ class Unit {
     // console.log(this, this.id)
     // console.log('baseStats:')
     // console.log(this.baseStats)
-    for (let key in this.baseStats) {
-      console.log(key, ':', this.baseStats[key])
-    }
-
+    //
+    // for (let key in this.baseStats) {
+    //   console.log(key, ':', this.baseStats[key])
+    // }
+    //
     this.resourceManager = new ResourceManager(this)
     // if (this.side === Unit.SIDE.PLAYER) {
     //   playerTeam.front.push(this)

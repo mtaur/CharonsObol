@@ -58,7 +58,7 @@ class Unit {
       this.SP += stat.cost
       playerTeam.SP -= stat.cost
       stat.increase()
-      console.log(playerTeam.SP, 'team SP remaining!')
+      // console.log(playerTeam.SP, 'team SP remaining!')
     }
   }
 

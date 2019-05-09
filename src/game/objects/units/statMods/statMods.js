@@ -1,4 +1,4 @@
-// import { Stat } from '../baseStats.js'
+import { Stat } from '../Stat.js'
 import { cloneDeep as clone, hasIn as hasProp } from 'lodash'
 
 // Let's code the stat modifiers as a bunch of getters here.
@@ -45,48 +45,61 @@ class StatMods {
   }
 
   static getConvertedStatValues () {
-    // converts = [{from: 'MELEE', to: 'RANGED', value: 0.5}, {...}]
-    let converts = this.statConversions
-    let convertTo = {}
-    // convertTo.RANGED = [{ from: 'MELEE', value: 0.5}, {...}]
-    // convertTo.MAGIC = [{ from: 'HP', value: .05}, {...}]
-    // convertTo = { RANGED: [{ from: 'MELEE', value: 0.5}, {...}]
-    //  MAGIC: [{ from: 'HP', value: .05}, {...}]
-    // }
+    // converts = [{ from: 'MELEE', to: 'RANGED', value: 0.5 }, {...}]
+    let converts = clone(this.statConversions)
+    let convertTo = {} // filter: convertTo.RANGED = [{ ..., to: 'RANGED', ... }, {...}]
+    let bonusStatValues = clone(this.bonusStatValues)
 
-    let convertedStatValues = this.bonusStatValues // = []
+    let convertedStatValues = clone(this.bonusStatValues) // = []
+    console.log('converts', converts)
 
-    // Sort stat conversions by "to" field
-    for (let index in converts) {
-      let to = converts[index].to
-      let partial = {
-        from: converts[index].from
-        value: converts[index].value
-      }
-      convertTo[to].push(partial)
+    for (let statName in Stat.LIB) {
+      // console.log('Setting up converts to', statName)
+      convertTo[statName] = converts.filter(item => item.to === statName)
+      console.log('convertTo.', statName, '=', convertTo[statName])
+      // console.log('Done:', convertTo[statName])
     }
 
     let weightSum = function (weights) {
       // let sum = values[key]
+      // let weights = weights
       let sum = 0
       for (let weightIndex in weights) {
-        let weight = weightIndex[weights]
-        sum += weight[value]*this.bonusStatValues[weight.from]
+        console.log('weights:', weights)
+        let weight = weights[weightIndex]
+        sum += weight.value * bonusStatValues[weight.from]
       }
+      console.log('sum:', sum)
+      return sum
     }
 
-    for (let toStatName in contertTo) {
-      let alpha = 1
-      let weights = convertTo[toStatName]
-      // convertedStatValues[toStatName] === this.bonusStatValues[toStatName]
-      convertedStatValues[toStatName] += weightSum(weights)
-      convertedStatValues[toStatName] = Math.floor(convertedStatValues[toStatName])
-      if (convertedStatValues[toStatName] < 0) {
-        alpha = -this.bonusStatValues[toStatName] / weightSum(weights)
-        convertedStatValues[toStatName] = this.bonusStatValues[toStatName] + alpha*weightSum(weights)
-      }
+    let alphaSum = function (alphaI, toStatName) {
+      // let weights = convertTo[toStatName]
+      let sum = bonusStatValues[toStatName] + alphaI * weightSum(convertTo[toStatName])
+      return sum
     }
 
+    let alpha = 1
+
+    for (let toStatName in Stat.LIB) {
+      if (alphaSum(alpha, toStatName) < 0) {
+        console.log(toStatName, 'was negative:', alphaSum(alpha, toStatName))
+        alpha = -bonusStatValues[toStatName] / weightSum(convertTo[toStatName])
+      }
+      // let weights = convertTo[toStatName]
+      // // convertedStatValues[toStatName] === this.bonusStatValues[toStatName]
+      // convertedStatValues[toStatName] += weightSum(weights)
+      // convertedStatValues[toStatName] = Math.floor(convertedStatValues[toStatName])
+      // if (convertedStatValues[toStatName] < 0) {
+      //   alpha = -this.bonusStatValues[toStatName] / weightSum(weights)
+      //   convertedStatValues[toStatName] = this.bonusStatValues[toStatName] + alpha*weightSum(weights)
+      // }
+    }
+    for (let toStatName in Stat.LIB) {
+      convertedStatValues[toStatName] = Math.floor(alphaSum(alpha, toStatName))
+    }
+
+    console.log('alpha:', alpha)
     return convertedStatValues
   }
 
@@ -148,7 +161,6 @@ class StatMods {
     for (let index in items) {
       let item = items[index]
       convertHolders.push(item)
-      console.log(item)
     }
     for (let status in statuses) {
       convertHolders.push(status)
@@ -159,9 +171,11 @@ class StatMods {
 
     for (let index in convertHolders) {
       let item = convertHolders[index]
-      if (hasProp(item, 'statConvert')) {
-        converts.push(item.statConverts)
-        console.log(item.statConverts)
+      console.log('Checking', item, 'for stat converts')
+      if (hasProp(item, 'converts')) {
+        item.converts.forEach(conversion => converts.push(conversion))
+        // converts.push(item.converts)
+        // console.log(item.converts)
       } else { console.log('No statConverts for', item) }
     }
 

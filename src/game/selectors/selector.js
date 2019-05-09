@@ -86,7 +86,7 @@ class Selector {
 // populate library using jsload from ./bulk
 for (let key in ctrlStateLib) {
   let CtrlStateSubclass = ctrlStateLib[key]
-  console.log(key + ' is the current key')
+  // console.log(key + ' is the current key')
   if (!CtrlState.LIB[key]) { CtrlState.LIB[key] = CtrlStateSubclass }
   // if (!CtrlState.LIB[CtrlStateSubclass.name]) { CtrlState.LIB[CtrlStateSubclass.name] = CtrlStateSubclass }
 }

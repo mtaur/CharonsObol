@@ -17,10 +17,10 @@ class ResourceManager {
 
   // Check if it's a resource and then initialize if so
   makeResource = function (unit, stat) {
-    console.log('unit:', unit)
-    console.log('stat:', stat)
-    console.log('unit.baseStats:', unit.baseStats)
-    console.log('unit.effectiveStatValues:', unit.effectiveStatValues)
+    // console.log('unit:', unit)
+    // console.log('stat:', stat)
+    // console.log('unit.baseStats:', unit.baseStats)
+    // console.log('unit.effectiveStatValues:', unit.effectiveStatValues)
     if (hasProp(stat, 'isResource')) {
       if (stat.isResource === true) {
         // unit.baseStats[stat].statManager = this
