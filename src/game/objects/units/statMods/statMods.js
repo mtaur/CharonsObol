@@ -45,11 +45,48 @@ class StatMods {
   }
 
   static getConvertedStatValues () {
+    // converts = [{from: 'MELEE', to: 'RANGED', value: 0.5}, {...}]
+    let converts = this.statConversions
+    let convertTo = {}
+    // convertTo.RANGED = [{ from: 'MELEE', value: 0.5}, {...}]
+    // convertTo.MAGIC = [{ from: 'HP', value: .05}, {...}]
+    // convertTo = { RANGED: [{ from: 'MELEE', value: 0.5}, {...}]
+    //  MAGIC: [{ from: 'HP', value: .05}, {...}]
+    // }
+
     let convertedStatValues = this.bonusStatValues // = []
-    // mods = []
-    // fetch modifiers
-    // sort modifiers
-    // apply modifiers
+
+    // Sort stat conversions by "to" field
+    for (let index in converts) {
+      let to = converts[index].to
+      let partial = {
+        from: converts[index].from
+        value: converts[index].value
+      }
+      convertTo[to].push(partial)
+    }
+
+    let weightSum = function (weights) {
+      // let sum = values[key]
+      let sum = 0
+      for (let weightIndex in weights) {
+        let weight = weightIndex[weights]
+        sum += weight[value]*this.bonusStatValues[weight.from]
+      }
+    }
+
+    for (let toStatName in contertTo) {
+      let alpha = 1
+      let weights = convertTo[toStatName]
+      // convertedStatValues[toStatName] === this.bonusStatValues[toStatName]
+      convertedStatValues[toStatName] += weightSum(weights)
+      convertedStatValues[toStatName] = Math.floor(convertedStatValues[toStatName])
+      if (convertedStatValues[toStatName] < 0) {
+        alpha = -this.bonusStatValues[toStatName] / weightSum(weights)
+        convertedStatValues[toStatName] = this.bonusStatValues[toStatName] + alpha*weightSum(weights)
+      }
+    }
+
     return convertedStatValues
   }
 
@@ -100,6 +137,35 @@ class StatMods {
   }
 
   static getStatConversions () {
+    let convertHolders = []
+    // filtered for mods
+    let converts = []
+
+    // let souls = this.souls
+    let items = this.items
+    let statuses = this.statuses
+
+    for (let index in items) {
+      let item = items[index]
+      convertHolders.push(item)
+      console.log(item)
+    }
+    for (let status in statuses) {
+      convertHolders.push(status)
+    }
+    // for (let soul in souls) {
+    //   modHolders.push(soul.skills)
+    // }
+
+    for (let index in convertHolders) {
+      let item = convertHolders[index]
+      if (hasProp(item, 'statConvert')) {
+        converts.push(item.statConverts)
+        console.log(item.statConverts)
+      } else { console.log('No statConverts for', item) }
+    }
+
+    return converts
     // mods = []
     // fetch modifiers
     // sort modifiers
