@@ -51,12 +51,12 @@ class StatMods {
     let bonusStatValues = clone(this.bonusStatValues)
 
     let convertedStatValues = clone(this.bonusStatValues) // = []
-    console.log('converts', converts)
+    // console.log('converts', converts)
 
     for (let statName in Stat.LIB) {
       // console.log('Setting up converts to', statName)
       convertTo[statName] = converts.filter(item => item.to === statName)
-      console.log('convertTo.', statName, '=', convertTo[statName])
+      // console.log('convertTo.', statName, '=', convertTo[statName])
       // console.log('Done:', convertTo[statName])
     }
 
@@ -65,11 +65,11 @@ class StatMods {
       // let weights = weights
       let sum = 0
       for (let weightIndex in weights) {
-        console.log('weights:', weights)
+        // console.log('weights:', weights)
         let weight = weights[weightIndex]
         sum += weight.value * bonusStatValues[weight.from]
       }
-      console.log('sum:', sum)
+      // console.log('sum:', sum)
       return sum
     }
 
@@ -83,7 +83,7 @@ class StatMods {
 
     for (let toStatName in Stat.LIB) {
       if (alphaSum(alpha, toStatName) < 0) {
-        console.log(toStatName, 'was negative:', alphaSum(alpha, toStatName))
+        // console.log(toStatName, 'was negative:', alphaSum(alpha, toStatName))
         alpha = -bonusStatValues[toStatName] / weightSum(convertTo[toStatName])
       }
       // let weights = convertTo[toStatName]
@@ -99,7 +99,7 @@ class StatMods {
       convertedStatValues[toStatName] = Math.floor(alphaSum(alpha, toStatName))
     }
 
-    console.log('alpha:', alpha)
+    // console.log('alpha:', alpha)
     return convertedStatValues
   }
 
@@ -125,7 +125,7 @@ class StatMods {
     for (let index in items) {
       let item = items[index]
       modHolders.push(item)
-      console.log(item)
+      // console.log(item)
     }
     for (let status in statuses) {
       modHolders.push(status)
@@ -138,8 +138,8 @@ class StatMods {
       let item = modHolders[index]
       if (hasProp(item, 'statBonus')) {
         mods.push(item.statBonus)
-        console.log(item.statBonus)
-      } else { console.log('No statBonus for', item) }
+        // console.log(item.statBonus)
+      } // else { console.log('No statBonus for', item) }
     }
 
     return mods
@@ -171,12 +171,12 @@ class StatMods {
 
     for (let index in convertHolders) {
       let item = convertHolders[index]
-      console.log('Checking', item, 'for stat converts')
+      // console.log('Checking', item, 'for stat converts')
       if (hasProp(item, 'converts')) {
         item.converts.forEach(conversion => converts.push(conversion))
         // converts.push(item.converts)
         // console.log(item.converts)
-      } else { console.log('No statConverts for', item) }
+      } // else { console.log('No statConverts for', item) }
     }
 
     return converts

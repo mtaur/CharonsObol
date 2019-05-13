@@ -2,7 +2,7 @@
   <q-tooltip anchor="center right" self="center left" :offset="[10, 10]">
       <strong>Effects of raising this stat:</strong>
       <!-- {{ newStats }} -->
-      <div v-for="stat in statChanges" :key="stat" :class="{ red: stat.value < 0 }">
+      <div v-for="stat in statChanges" :key="stat.name" :class="{ red: stat.value < 0 }">
         {{ stat.name }}: <span v-if="stat.value > 0">+</span>{{ stat.value }}
       </div>
   </q-tooltip>
