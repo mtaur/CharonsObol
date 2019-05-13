@@ -64,10 +64,10 @@ class Stat {
 function HP () {
   return new Stat({
     name: 'HP',
-    start: 48,
+    start: 60,
     // counters: 1,
     // costScale: 1,
-    benScale: 12,
+    benScale: 15,
     isResource: true
   })
 }
@@ -97,7 +97,7 @@ function MELEE () {
     // start: 0,
     counters: 2,
     // costScale: 1,
-    benScale: 3
+    benScale: 4
     // isResource: false
   })
 }
@@ -107,7 +107,7 @@ function RANGED () {
     // start: 0,
     counters: 2,
     // costScale: 1,
-    benScale: 3
+    benScale: 4
     // isResource: false
   })
 }
@@ -117,7 +117,7 @@ function MAGIC () {
     // start: 0,
     counters: 2,
     // costScale: 1,
-    benScale: 3
+    benScale: 4
     // isResource: false
   })
 }
@@ -134,8 +134,8 @@ function DRED () {
 function DREF () {
   return new Stat({
     name: 'DREF',
-    // start: 0,
-    counters: 0,
+    start: -1,
+    counters: 1,
     // costScale: 1,
     benScale: 1
     // isResource: false

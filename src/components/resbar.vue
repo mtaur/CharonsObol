@@ -5,7 +5,8 @@
       <q-linear-progress
       class="q-mt-sm"
       rounded style="height: 15px"
-      :value="progress" :color="getColor" />
+      :value="progress" :color="getColor"
+      />
     </div>
     <div class="col-3">{{ resource.current }}/{{ resource.max }}</div>
   </div>

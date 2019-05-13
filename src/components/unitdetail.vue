@@ -8,15 +8,21 @@
     <statrow v-for="stat in unit.baseStats" :unit="unit" :stat="stat" :key="stat.name"></statrow>
     <!-- <statrow v-for="stat in basicStats" :unit="unit" :stat="unit.baseStats[stat]" :key="stat"></statrow> -->
   </div>
+  <div v-for="item in unit.items" :key="item.name" class="row justify-center">
+    <strong>{{ item.name }}</strong>
+    <itemTooltip :item="item" :unit="unit"></itemTooltip>
+    <!-- {{ item.desc }} -->
+  </div>
 </div>
 </template>
 
 <script>
 import statrow from './statchange.vue'
+import itemTooltip from './itemTooltip.vue'
 
 export default {
   props: ['unit'],
-  components: { statrow },
+  components: { statrow, itemTooltip },
   data () {
     return {
       // basicStats: ['INIT', 'MELEE', 'RANGED', 'MAGIC', 'DR']

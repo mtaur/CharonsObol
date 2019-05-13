@@ -40,7 +40,8 @@ module.exports = function (ctx) {
         'QBadge',
         'QChip',
         'QAvatar',
-        'QLinearProgress'
+        'QLinearProgress',
+        'QTooltip'
       ],
 
       directives: [

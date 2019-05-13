@@ -50,12 +50,12 @@ function caenenTemplate () {
     souls: [],
     SP: 0
   }
-  templ.baseStats.HP.benScale = 6 // 12
-  templ.baseStats.HP.start = 40 // 48
-  templ.baseStats.HP.current = templ.baseStats.HP.value // 48
-  templ.baseStats.MELEE.benScale = 2 // 3
-  templ.baseStats.RANGED.benScale = 2 // 3
-  templ.baseStats.MAGIC.benScale = 2 // 3
+  templ.baseStats.HP.benScale = 10 // 15
+  templ.baseStats.HP.start = 40 // 60
+  templ.baseStats.HP.current = templ.baseStats.HP.value // 60
+  templ.baseStats.MELEE.benScale = 3 // 4
+  templ.baseStats.RANGED.benScale = 3 // 4
+  templ.baseStats.MAGIC.benScale = 3 // 4
   return templ
 }
 
@@ -65,7 +65,7 @@ function caenenTemplate () {
 // console.log(jaqClone)
 
 // Knight of Caenenfoeder
-for (let i = 1; i < 5; i++) {
+for (let i = 1; i < 4; i++) {
   if (i < 2) {
     let unit = new CPUUnit(gameObj, caenenTemplate())
     unit.statWeights = {
@@ -109,11 +109,13 @@ var pen = new Unit(gameObj, { name: pensoul.name,
   pos: Unit.POS.BACK,
   items: [{
     name: 'Blue Ring',
-    statBonus: { MP: 1 }
+    statBonus: { MP: 1 },
+    desc: '+1 MP'
   },
   {
     name: 'Magic Staff',
-    statBonus: { MAGIC: 5 }
+    statBonus: { MAGIC: 5 },
+    desc: '+5 MAGIC'
   }]
 })
 playerTeam.back.push(pen)
@@ -130,11 +132,13 @@ var lynn = new Unit(gameObj, {
   pos: Unit.POS.FRONT,
   items: [{
     name: 'Bronze Ring',
-    statBonus: { DRED: 1 }
+    statBonus: { DRED: 1 },
+    desc: '+1 DRED'
   },
   {
     name: 'Spikey Shield',
-    statBonus: { DRED: 1, DREF: 2 }
+    statBonus: { DRED: 1, DREF: 2 },
+    desc: '+1 DRED, +2 DREF'
   }]
 })
 playerTeam.front.push(lynn)
@@ -160,18 +164,20 @@ var bro = new Unit(gameObj, {
   items: [{
     name: 'Martyr Staff',
     converts: [
-      { from: 'DRED', to: 'DREF', value: 2 },
+      { from: 'DRED', to: 'DREF', value: 1 },
       { from: 'DRED', to: 'DRED', value: -1 },
       { from: 'DRED', to: 'MP', value: 0.1 },
-      { from: 'DRED', to: 'MAGIC', value: 0.2 }
-    ]
+      { from: 'DRED', to: 'MAGIC', value: 0.25 }
+    ],
+    desc: 'Nullifies base DRED, converting each point into 1 DREF, .1 MP, and .25 MAGIC.'
   },
   {
     name: 'YOLO Mace',
     converts: [
       { from: 'DRED', to: 'MELEE', value: 3 },
       { from: 'DRED', to: 'DRED', value: -1 }
-    ]
+    ],
+    desc: 'Nullifies base 100% DRED, converting each point to 3 MELEE.\nYOLO!!!'
   },
   {
     name: 'Divine Barrier',
@@ -179,7 +185,8 @@ var bro = new Unit(gameObj, {
       { from: 'MAGIC', to: 'DRED', value: 0.15 },
       { from: 'MP', to: 'DRED', value: 2 },
       { from: 'MP', to: 'MP', value: -0.25 }
-    ]
+    ],
+    desc: 'Lose 25% base MP, gaining 2 DRED per base MP and 0.15 DRED per base MAGIC.'
   }
   ]
 })

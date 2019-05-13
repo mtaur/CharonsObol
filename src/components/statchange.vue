@@ -6,6 +6,7 @@
       <div class="col-3">
         <q-btn round size="10px" @click="increase" >
           <span class="btxt">+</span>
+          <statTooltip :stat="stat" :unit="unit"></statTooltip>
           <q-badge color="purple" floating>{{ stat.cost }}</q-badge>
         </q-btn>
       </div>
@@ -14,11 +15,14 @@
 </template>
 
 <script>
+import statTooltip from './statTooltip'
+
 export default {
   props: ['stat', 'unit'],
   data () {
     return { }
   },
+  components: { statTooltip },
   methods: {
     increase: function () { this.unit.raise(this.stat.name) }
   }
