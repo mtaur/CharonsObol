@@ -1,4 +1,4 @@
-import { Soul } from '../soul.js'
+import { Soul } from '../Soul.js'
 
 // console.log(Soul)
 class Penelope {

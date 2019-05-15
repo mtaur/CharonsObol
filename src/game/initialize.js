@@ -1,7 +1,8 @@
 import { Unit, Team } from './objects/units/Unit.js'
 // import { cloneDeep as clone } from 'lodash'
-import { Soul } from './objects/souls/soul.js'
+import { Soul } from './objects/souls/Soul.js'
 import { CPUUnit } from './objects/units/CPUUnit.js'
+import { Item } from './objects/items/Item.js'
 
 // function uniqClone (unit) {
 //   let copy = clone(unit)
@@ -107,53 +108,18 @@ var pen = new Unit(gameObj, { name: pensoul.name,
   souls: [pensoul],
   side: Unit.SIDE.PLAYER,
   pos: Unit.POS.BACK,
-  items: [{
-    name: 'Blue Ring',
-    statBonus: { MP: 1 },
-    desc: '+1 MP'
-  },
-  {
-    name: 'Magic Staff',
-    statBonus: { MAGIC: 5 },
-    desc: '+5 MAGIC'
-  }
-  ]
+  items: []
 })
 
-var spellsword = {
-  name: 'Bastard Spellsword',
-  desc: 'Use the average of MAGIC and MELEE in place of either stat when beneficial',
-  // replacements[0] = { statName: 'MELEE', value: 0.5*(MELEE + MAGIC) }
-  replacements: [
-    {
-      statName: 'MELEE',
-      value: function (unit) {
-        return 0.5 * (unit.convertedStatValues.MELEE + unit.convertedStatValues.MAGIC)
-      }
-      // value: 0.5 * (pen.convertedStatValues.MELEE + pen.convertedStatValues.MAGIC)
-    },
-    {
-      statName: 'MAGIC',
-      value: function (unit) {
-        return 0.5 * (unit.convertedStatValues.MELEE + unit.convertedStatValues.MAGIC)
-      }
-      // value: 0.5 * (pen.convertedStatValues.MELEE + pen.convertedStatValues.MAGIC)
-    }
-  ]
-}
+let spellsword = new Item.LIB.SPELLSWORD()
+let blueRing = new Item.LIB.BLUERING()
+let magicStaff = new Item.LIB.MAGICSTAFF()
 
-// Object.defineProperty(spellsword.replacements[0], 'value', {
-//   get () {
-//     console.log('MELEE', pen.convertedStatValues.MELEE)
-//     return 0.5 * (pen.convertedStatValues.MELEE + pen.convertedStatValues.MAGIC)
-//   }
-// })
-// Object.defineProperty(spellsword.replacements[1], 'value', {
-//   get () { return 0.5 * (pen.convertedStatValues.MELEE + pen.convertedStatValues.MAGIC) }
-// })
-console.log('Spellsword:', spellsword)
+spellsword.equipTo(pen)
+blueRing.equipTo(pen)
+magicStaff.equipTo(pen)
+// pen.items.push(spellsword)
 
-pen.items.push(spellsword)
 playerTeam.back.push(pen)
 // pen.souls = [pensoul]
 // console.log('Outside of constructor...')
@@ -166,19 +132,16 @@ var lynn = new Unit(gameObj, {
   hero: true,
   side: Unit.SIDE.PLAYER,
   pos: Unit.POS.FRONT,
-  items: [{
-    name: 'Bronze Ring',
-    statBonus: { DRED: 1 },
-    desc: '+1 DRED'
-  },
-  {
-    name: 'Spikey Shield',
-    statBonus: { DRED: 1, DREF: 2 },
-    desc: '+1 DRED, +2 DREF'
-  }]
+  items: []
 })
 playerTeam.front.push(lynn)
 // lynn.souls = [lynnsoul]
+
+let spikeyShield = new Item.LIB.SPIKEYSHIELD()
+let bronzeRing = new Item.LIB.BRONZERING()
+
+spikeyShield.equipTo(lynn)
+bronzeRing.equipTo(lynn)
 lynn.actions = ['melee', 'ranged', 'lunge', 'block']
 
 lynn.baseStats.HP.current -= 15
@@ -197,35 +160,13 @@ var bro = new Unit(gameObj, {
   souls: [brosoul],
   side: Unit.SIDE.PLAYER,
   pos: Unit.POS.FRONT,
-  items: [{
-    name: 'Martyr Staff',
-    converts: [
-      { from: 'DRED', to: 'DREF', value: 1 },
-      { from: 'DRED', to: 'DRED', value: -1 },
-      { from: 'DRED', to: 'MP', value: 0.1 },
-      { from: 'DRED', to: 'MAGIC', value: 0.25 }
-    ],
-    desc: 'Nullifies base DRED, converting each point into 1 DREF, .1 MP, and .25 MAGIC.'
-  },
-  {
-    name: 'YOLO Mace',
-    converts: [
-      { from: 'DRED', to: 'MELEE', value: 3 },
-      { from: 'DRED', to: 'DRED', value: -1 }
-    ],
-    desc: 'Nullifies base 100% DRED, converting each point to 3 MELEE.\nYOLO!!!'
-  },
-  {
-    name: 'Divine Barrier',
-    converts: [
-      { from: 'MAGIC', to: 'DRED', value: 0.15 },
-      { from: 'MP', to: 'DRED', value: 2 },
-      { from: 'MP', to: 'MP', value: -0.25 }
-    ],
-    desc: 'Lose 25% base MP, gaining 2 DRED per base MP and 0.15 DRED per base MAGIC.'
-  }
-  ]
+  items: []
 })
+let divineBarrier = new Item.LIB.DIVINEBARRIER()
+divineBarrier.equipTo(bro)
+bro.items.push(new Item.LIB.YOLOMACE())
+bro.items.push(new Item.LIB.MARTYRSTAFF())
+// bro.items.push(new Item.LIB.DIVINEBARRIER())
 playerTeam.front.push(bro)
 // bro.souls = [brosoul]
 // console.log('Outside of constructor...')

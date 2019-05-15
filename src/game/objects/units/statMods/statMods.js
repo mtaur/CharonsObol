@@ -114,10 +114,6 @@ class StatMods {
     for (let statName in Stat.LIB) {
       replace[statName] = replacements.filter(item => item.statName === statName)
       for (let index in replace[statName]) {
-        // console.log('index', index)
-        // console.log('statName', statName)
-        // console.log('replace[statName]', replace[statName])
-        // console.log('replace[statName][index]', replace[statName][index])
         let newVal = replace[statName][index].value(this)
         if (effectiveStatValues[statName] < newVal) {
           effectiveStatValues[statName] = Math.floor(newVal)
