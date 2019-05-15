@@ -116,8 +116,44 @@ var pen = new Unit(gameObj, { name: pensoul.name,
     name: 'Magic Staff',
     statBonus: { MAGIC: 5 },
     desc: '+5 MAGIC'
-  }]
+  }
+  ]
 })
+
+var spellsword = {
+  name: 'Bastard Spellsword',
+  desc: 'Use the average of MAGIC and MELEE in place of either stat when beneficial',
+  // replacements[0] = { statName: 'MELEE', value: 0.5*(MELEE + MAGIC) }
+  replacements: [
+    {
+      statName: 'MELEE',
+      value: function (unit) {
+        return 0.5 * (unit.convertedStatValues.MELEE + unit.convertedStatValues.MAGIC)
+      }
+      // value: 0.5 * (pen.convertedStatValues.MELEE + pen.convertedStatValues.MAGIC)
+    },
+    {
+      statName: 'MAGIC',
+      value: function (unit) {
+        return 0.5 * (unit.convertedStatValues.MELEE + unit.convertedStatValues.MAGIC)
+      }
+      // value: 0.5 * (pen.convertedStatValues.MELEE + pen.convertedStatValues.MAGIC)
+    }
+  ]
+}
+
+// Object.defineProperty(spellsword.replacements[0], 'value', {
+//   get () {
+//     console.log('MELEE', pen.convertedStatValues.MELEE)
+//     return 0.5 * (pen.convertedStatValues.MELEE + pen.convertedStatValues.MAGIC)
+//   }
+// })
+// Object.defineProperty(spellsword.replacements[1], 'value', {
+//   get () { return 0.5 * (pen.convertedStatValues.MELEE + pen.convertedStatValues.MAGIC) }
+// })
+console.log('Spellsword:', spellsword)
+
+pen.items.push(spellsword)
 playerTeam.back.push(pen)
 // pen.souls = [pensoul]
 // console.log('Outside of constructor...')

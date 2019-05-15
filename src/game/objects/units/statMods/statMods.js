@@ -104,11 +104,27 @@ class StatMods {
   }
 
   static getEffectiveStatValues () {
-    let effectiveStatValues = this.convertedStatValues // = []
-    // mods = []
-    // fetch modifiers
-    // sort modifiers
-    // apply modifiers
+    // converts = [{ from: 'MELEE', to: 'RANGED', value: 0.5 }, {...}]
+    let replacements = this.statReplacements
+    let effectiveStatValues = clone(this.convertedStatValues)
+    let replace = {}
+
+    // console.log(replacements)
+
+    for (let statName in Stat.LIB) {
+      replace[statName] = replacements.filter(item => item.statName === statName)
+      for (let index in replace[statName]) {
+        // console.log('index', index)
+        // console.log('statName', statName)
+        // console.log('replace[statName]', replace[statName])
+        // console.log('replace[statName][index]', replace[statName][index])
+        let newVal = replace[statName][index].value(this)
+        if (effectiveStatValues[statName] < newVal) {
+          effectiveStatValues[statName] = Math.floor(newVal)
+        }
+      }
+    }
+
     return effectiveStatValues
   }
 
@@ -187,6 +203,36 @@ class StatMods {
   }
 
   static getStatReplacements () {
+    let replacementHolders = []
+    // filtered for mods
+    let replacements = []
+
+    // let souls = this.souls
+    let items = this.items
+    let statuses = this.statuses
+
+    for (let index in items) {
+      let item = items[index]
+      replacementHolders.push(item)
+    }
+    for (let status in statuses) {
+      replacementHolders.push(status)
+    }
+    // for (let soul in souls) {
+    //   modHolders.push(soul.skills)
+    // }
+
+    for (let index in replacementHolders) {
+      let item = replacementHolders[index]
+      if (hasProp(item, 'replacements')) {
+        // replacements[0] = { statName: 'MELEE', value: 0.5*(MELEE + MAGIC) }
+        item.replacements.forEach(replacement => replacements.push(replacement))
+        // converts.push(item.converts)
+        // console.log(item.converts)
+      } // else { console.log('No statConverts for', item) }
+    }
+
+    return replacements
     // mods = []
     // fetch modifiers
     // sort modifiers
