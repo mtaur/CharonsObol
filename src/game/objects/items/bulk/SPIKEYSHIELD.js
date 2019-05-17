@@ -16,8 +16,4 @@ class SpikeyShield {
   }
 }
 
-// {
-//   name: 'Spikey Shield',
-// }
-
 export default SpikeyShield

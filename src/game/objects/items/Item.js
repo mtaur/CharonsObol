@@ -1,5 +1,6 @@
-import { hasIn as hasProp } from 'lodash'
+import { hasIn as hasProp, cloneDeep as clone } from 'lodash'
 import { classdir as itemLib } from './jsload.js'
+// import { cloneDeep as clone } from 'lodash'
 
 // console.log(Soul)
 class Item {
@@ -21,6 +22,26 @@ class Item {
   // function (unit, validSlotArrayForItem)
   equipTo = function (unit) {
     if (this.unit === null) {
+      // Don't exceed new max.  Gain resource increase to current value.
+      let copy = clone(unit)
+      copy.items.push(this)
+      let stats = unit.effectiveStatValues
+      let cloneStats = copy.effectiveStatValues
+      for (let key in stats) {
+        let diff = cloneStats[key] - stats[key]
+        console.log('key:', key, 'diff:', diff)
+        if (unit.baseStats[key].isResource) {
+          if (diff > 0) {
+            unit.baseStats[key].current += diff
+            // stat.current += diff
+          }
+          if (unit.baseStats[key].current > copy.effectiveStatValues[key]) {
+            // stat.current = copy.effectiveStatValues[statName]
+            unit.baseStats[key].current = copy.effectiveStatValues[key]
+          }
+        }
+      }
+
       unit.items.push(this)
       this.unit = unit
     }

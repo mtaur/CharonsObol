@@ -16,10 +16,4 @@ class BronzeRing {
   }
 }
 
-// {
-//   name: 'Spikey Shield',
-//   statBonus: { DRED: 1, DREF: 2 },
-//   desc: '+1 DRED, +2 DREF'
-// }
-
 export default BronzeRing

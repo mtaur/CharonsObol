@@ -1,11 +1,9 @@
-import { Stat } from './Stat.js'
 // import { Soul } from '../souls/soul.js'
+import { Stat } from './Stat.js'
 import { StatMods } from './statMods/statMods.js'
-import { cloneDeep as clone, hasIn as hasProp } from 'lodash'
-
 import { ResourceManager } from './ResourceManager.js'
-// import { has as hasProp } from 'lodash'
-//
+
+import { cloneDeep as clone, hasIn as hasProp } from 'lodash'
 // function uniqClone (unit) {
 //   let copy = clone(unit)
 //   copy.id = Unit.id
@@ -71,11 +69,23 @@ class Unit {
       }
       this.SP += stat.cost
       this.playerTeam.SP -= stat.cost
+
+      let copy = clone(this)
+      copy.baseStats[statName].increase()
+      for (let key in this.baseStats) {
+        let diff = copy.effectiveStatValues[key] - this.effectiveStatValues[key]
+        if (this.baseStats[key].isResource) {
+          console.log('key:', key, 'diff:', diff)
+          if (diff > 0) {
+            this.baseStats[key].current += diff
+          }
+          if (this.baseStats[key].current > copy.effectiveStatValues[key]) {
+            this.baseStats[key].current = copy.effectiveStatValues[key]
+          }
+        }
+      }
       stat.increase()
-      // console.log(this.playerTeam.SP, 'team SP remaining!')
     }
-    // console.log(this.name)
-    // console.log(stat)
   }
 
   // Define getters in an external file and bind them here.
@@ -120,15 +130,6 @@ class Unit {
       // to create independent instances!
       obj[key] = Stat.LIB[key]()
     }
-
-    // if (obj.isResource) {
-    //   obj.current = obj.start
-    //   Object.defineProperty(this, 'max',
-    //     {
-    //       get () { return this.value }
-    //     }
-    //   )
-    // }
     return obj
   }
 
@@ -151,25 +152,14 @@ class Unit {
       // Configure stats with default setup.
       baseStats: Unit.defaultStats(),
       items: {},
-      // inventory: {},
       souls: [],
       SP: 0
     }
     for (let key in template) {
       // this[key] = obj[key] ? obj[key] : template[key]
-      // Is this necessary?
       this[key] = hasProp(obj, key) ? obj[key] : template[key]
     }
     this.id = Unit.id
-    // console.log('Log inside of constructor...')
-    // console.log(this, this.id)
-    // console.log('baseStats:')
-    // console.log(this.baseStats)
-    //
-    // for (let key in this.baseStats) {
-    //   console.log(key, ':', this.baseStats[key])
-    // }
-    //
     this.resourceManager = new ResourceManager(this)
     // if (this.side === Unit.SIDE.PLAYER) {
     //   playerTeam.front.push(this)
@@ -177,103 +167,4 @@ class Unit {
   }
 }
 /// ^ end of class ^ ///
-
-// var playerTeam = new Team(Unit.SIDE.PLAYER)
-// var cpuTeam = new Team(Unit.SIDE.CPU)
-//
-// // test script
-// var jaq = new Unit()
-// // playerTeam.front.push(jaq)
-//
-// // console.log('SP', jaq.SP)
-// // console.log('HP', jaq.baseStats.HP.value)
-// jaq.raise('HP')
-// jaq.raise('HP')
-// jaq.raise('HP')
-// // console.log('SP', jaq.SP)
-// // console.log('HP', jaq.baseStats.HP.value)
-//
-// // console.log('MELEE', jaq.baseStats.MELEE.value)
-// jaq.raise('MELEE')
-// jaq.raise('MELEE')
-// jaq.raise('MELEE')
-// jaq.raise('MELEE')
-// // console.log('MELEE', jaq.baseStats.MELEE.value)
-// // console.log('SP', jaq.SP)
-//
-// var jaqClone = uniqClone(jaq)
-// console.log(jaqClone)
-//
-// // var jaqs = []
-// for (let i = 0; i < 6; i++) {
-//   i < 4 ? cpuTeam.front.push(new Unit()) : cpuTeam.back.push(new Unit())
-//   // i < 4 ? cpuTeam.front.push(uniqClone(jaq)) : cpuTeam.back.push(uniqClone(jaq))
-// }
-//
-// // console.log('DR', jaq.baseStats.DR.value)
-// cpuTeam.front[0].raise('DR')
-// // jaq.raise('DR')
-// // jaq.raise('DR')
-// // console.log('SP', jaq.SP)
-// // console.log('DR', jaq.baseStats.DR.value)
-//
-// // console.log(playerTeam)
-//
-// var pensoul = new Soul.LIB.PENELOPE()
-// var pen = new Unit({ name: pensoul.name, hero: true })
-// // var pen = new Unit({ name: Soul.LIB.PENELOPE().name, hero: true })
-// playerTeam.back.push(pen)
-// pen.souls = [pensoul]
-// pen.raise('RANGED')
-// pen.raise('RANGED')
-// pen.raise('MAGIC')
-// pen.raise('MAGIC')
-// pen.raise('MAGIC')
-// pen.raise('MAGIC')
-// pen.raise('MP')
-// pen.raise('HP')
-// pen.raise('HP')
-// // console.log(pen.souls)
-// // console.log(pen.baseSummary)
-// // console.log(pen.soulSummary)
-// // console.log(jaq.soulSummary)
-//
-// var lynnsoul = new Soul.LIB.LYNN()
-// var lynn = new Unit({ name: lynnsoul.name, hero: true })
-// playerTeam.front.push(lynn)
-// // lynn.souls = [Soul.LIB.LYNN()]
-// lynn.souls = [lynnsoul]
-// lynn.raise('RANGED')
-// lynn.raise('RANGED')
-// lynn.raise('RANGED')
-// lynn.raise('MELEE')
-// lynn.raise('MELEE')
-// lynn.raise('MELEE')
-// lynn.raise('HP')
-// lynn.raise('HP')
-// lynn.raise('HP')
-//
-// lynn.baseStats.HP.current -= 15
-// // console.log(lynn.souls)
-// // console.log(lynn.baseSummary)
-// // console.log(lynn.soulSummary)
-//
-// var brosoul = new Soul.LIB.BROCANTRIP()
-// var bro = new Unit({ name: brosoul.name, hero: true })
-// playerTeam.front.push(bro)
-// // bro.souls = [Soul.LIB.BROCANTRIP()]
-// bro.souls = [brosoul]
-// bro.raise('RANGED')
-// bro.raise('MP')
-// bro.raise('MP')
-// bro.raise('RANGED')
-// bro.raise('MAGIC')
-// bro.raise('MAGIC')
-// bro.raise('HP')
-// bro.raise('HP')
-// bro.raise('HP')
-//
-// lynn.actions = ['melee', 'ranged', 'lunge', 'block']
-//
-// export { Unit, cpuTeam, playerTeam, Team }
 export { Unit, Team }
