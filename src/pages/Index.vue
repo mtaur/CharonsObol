@@ -142,7 +142,7 @@ export default {
   }
   .unitrow {
     /* flex-basis: 20vh; */
-    flex: 1 1 20vh;
+    flex: 1 1 15vh;
     /* overflow-y: auto; */
   }
   /* .column {
