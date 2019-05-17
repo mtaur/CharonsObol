@@ -1,6 +1,7 @@
 // import { Soul } from '../souls/soul.js'
 import { Stat } from './Stat.js'
 import { StatMods } from './statMods/statMods.js'
+import { StatSmart } from './statMods/statSmart.js'
 import { ResourceManager } from './ResourceManager.js'
 
 import { cloneDeep as clone, hasIn as hasProp } from 'lodash'
@@ -61,31 +62,32 @@ class Unit {
   }
 
   raise = function (statName) {
-    let stat = this.baseStats[statName]
-    // if global SP > 0...
-    if (this.playerTeam.SP >= stat.cost) {
-      if (stat.isResource) {
-        stat.current += stat.benefit
-      }
-      this.SP += stat.cost
-      this.playerTeam.SP -= stat.cost
-
-      let copy = clone(this)
-      copy.baseStats[statName].increase()
-      for (let key in this.baseStats) {
-        let diff = copy.effectiveStatValues[key] - this.effectiveStatValues[key]
-        if (this.baseStats[key].isResource) {
-          console.log('key:', key, 'diff:', diff)
-          if (diff > 0) {
-            this.baseStats[key].current += diff
-          }
-          if (this.baseStats[key].current > copy.effectiveStatValues[key]) {
-            this.baseStats[key].current = copy.effectiveStatValues[key]
-          }
-        }
-      }
-      stat.increase()
-    }
+    this.levelUp(statName)
+    // let stat = this.baseStats[statName]
+    // // if global SP > 0...
+    // if (this.playerTeam.SP >= stat.cost) {
+    //   if (stat.isResource) {
+    //     stat.current += stat.benefit
+    //   }
+    //   this.SP += stat.cost
+    //   this.playerTeam.SP -= stat.cost
+    //
+    //   let copy = clone(this)
+    //   copy.baseStats[statName].increase()
+    //   for (let key in this.baseStats) {
+    //     let diff = copy.effectiveStatValues[key] - this.effectiveStatValues[key]
+    //     if (this.baseStats[key].isResource) {
+    //       console.log('key:', key, 'diff:', diff)
+    //       if (diff > 0) {
+    //         this.baseStats[key].current += diff
+    //       }
+    //       if (this.baseStats[key].current > copy.effectiveStatValues[key]) {
+    //         this.baseStats[key].current = copy.effectiveStatValues[key]
+    //       }
+    //     }
+    //   }
+    //   stat.increase()
+    // }
   }
 
   // Define getters in an external file and bind them here.
@@ -98,6 +100,11 @@ class Unit {
   get statBonuses () { return StatMods.getStatBonuses.call(this) }
   get statConversions () { return StatMods.getStatConversions.call(this) }
   get statReplacements () { return StatMods.getStatReplacements.call(this) }
+
+  applyChange (...params) { StatSmart.applyChange.call(this, ...params) }
+  //
+  equip (...params) { StatSmart.equip.call(this, ...params) }
+  levelUp (...params) { StatSmart.levelUp.call(this, ...params) }
 
   get baseSummary () {
     let obj = this.baseStatValues

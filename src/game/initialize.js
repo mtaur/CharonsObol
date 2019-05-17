@@ -163,9 +163,12 @@ var bro = new Unit(gameObj, {
   items: []
 })
 let divineBarrier = new Item.LIB.DIVINEBARRIER()
-divineBarrier.equipTo(bro)
-bro.items.push(new Item.LIB.YOLOMACE())
-bro.items.push(new Item.LIB.MARTYRSTAFF())
+// divineBarrier.equipTo(bro)
+// bro.items.push(new Item.LIB.YOLOMACE())
+// bro.items.push(new Item.LIB.MARTYRSTAFF())
+bro.equip(new Item.LIB.YOLOMACE())
+bro.equip(new Item.LIB.MARTYRSTAFF())
+bro.equip(divineBarrier)
 // bro.items.push(new Item.LIB.DIVINEBARRIER())
 playerTeam.front.push(bro)
 // bro.souls = [brosoul]
