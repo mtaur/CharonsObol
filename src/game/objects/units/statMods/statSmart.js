@@ -13,9 +13,9 @@ class StatSmart {
     let unit = this
     let baseStats = unit.baseStats
 
-    for (let key in unit.effectiveStatValues) {
-      let oldStatVal = unit.effectiveStatValues[key]
-      let newStatVal = copy.effectiveStatValues[key]
+    for (let key in unit.convertedStatValues) {
+      let oldStatVal = unit.convertedStatValues[key]
+      let newStatVal = copy.convertedStatValues[key]
       let diff = newStatVal - oldStatVal
       if (baseStats[key].isResource) {
         if (diff > 0) {
