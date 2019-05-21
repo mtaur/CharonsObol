@@ -7,20 +7,12 @@
         <div class="placeholder">(Unit)</div>
       </div>
       <div class="align-center col-8 row">
-        <!-- <div class = "col-6"
-        v-for="stat in unit.baseStats" :key="stat.name"> -->
         <div class = "col-6"
           v-for="stat in baseStats" :key="stat.name" :unit="unit">
-          <!-- <div v-for="stat in unit.baseStats" :unit="unit" :stat="stat"> -->
-          <!-- <statrow v-for="stat in basicStats" :unit="unit" :stat="unit.baseStats[stat]" :key="stat"></statrow> -->
           <q-chip dense color="white">
             <q-avatar color="red" text-color="white">{{ unit.effectiveStatValues[stat] }}</q-avatar>
-            <!-- <q-avatar color="red" text-color="white">{{ unit.baseStats[stat].value }}</q-avatar> -->
-            <!-- <q-avatar color="red" text-color="white">{{ stat.value }}</q-avatar> -->
             {{ stat }}
-            <!-- {{ unit.baseStats[stat].name }} -->
           </q-chip>
-          <!-- {{stat.name}}: {{stat.value}} -->
         </div>
       </div>
     </div>
@@ -31,7 +23,15 @@
       <resbar :resource="unit.baseStats.HP"></resbar>
     </div>
     <div class="row namebox justify-center align-center">
-      <h6>{{ unit.name }}</h6>
+      <!-- <q-chip color="deep-orange"> -->
+      <q-chip color="teal" text-color="white">
+        <q-avatar>
+          <!-- <img src="statics/icons/action-both.png"> -->
+          <img :src="actStatus">
+        </q-avatar>
+        <h6>{{ unit.name }}</h6>
+      </q-chip>
+      <!-- <h6>{{ unit.name }}</h6> -->
     </div>
   </div>
   <!-- <div class="row statline align-center">
@@ -52,6 +52,21 @@ export default {
       baseStats: ['INIT', 'MELEE', 'RANGED', 'MAGIC', 'DRED', 'DREF']
     }
   },
+  computed: {
+    actStatus () {
+      if (this.unit.hasAction.major) {
+        if (this.unit.hasAction.minor) {
+          return 'statics/icons/action-both.png'
+        } else { return 'statics/icons/action-star.png' }
+      } else {
+        if (this.unit.hasAction.minor) {
+          return 'statics/icons/action-dot.png'
+        } else { return 'statics/icons/action-none.png' }
+      }
+      // if (this.unit.name === 'Lynneth Javelle') { return 'statics/icons/action-dot.png' }
+      // return 'statics/icons/action-both.png'
+    }
+  },
   components: {
     resbar
   },
@@ -62,9 +77,10 @@ export default {
 
 <style scoped>
   h6 {
-    margin: 0 5px 10px 5px;
+    margin: 5px 0px 5px 0px;
+    /* margin: 0 5px 10px 5px; */
     text-align: center;
-    font-size: 18px;
+    font-size: 16px;
   }
   .col-3 {
     /* height: auto; */

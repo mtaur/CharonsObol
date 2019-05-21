@@ -20,6 +20,8 @@ var jaq = new CPUUnit(gameObj)
 console.log(jaq)
 jaq.raiseAll()
 cpuTeam.front.push(jaq)
+jaq.hasAction.major = false
+jaq.hasAction.minor = false
 
 // playerTeam.front.push(jaq)
 
@@ -151,6 +153,8 @@ lynn.baseStats.HP.current -= 15
 // console.log('Outside of constructor...')
 console.log(lynn)
 
+lynn.hasAction.major = false
+
 // console.log('Enumerability test...')
 // for (let key in lynn.baseStats.DREF) {
 //   console.log(key, ':', lynn.baseStats.DREF[key])
@@ -172,6 +176,7 @@ let divineBarrier = new Item.LIB.DIVINEBARRIER()
 bro.equip(new Item.LIB.YOLOMACE())
 bro.equip(new Item.LIB.MARTYRSTAFF())
 bro.equip(divineBarrier)
+bro.hasAction.minor = false
 // bro.items.push(new Item.LIB.DIVINEBARRIER())
 playerTeam.front.push(bro)
 // bro.souls = [brosoul]

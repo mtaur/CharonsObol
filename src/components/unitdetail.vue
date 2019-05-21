@@ -54,8 +54,9 @@ export default {
   }
   .placeholder {
     background-color: #a77;
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
+    margin: 5px 0 0 5px;
     text-align: center;
     justify-content: center;
     margin-top: 10px;

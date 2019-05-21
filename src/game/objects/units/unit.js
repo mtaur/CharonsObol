@@ -160,6 +160,7 @@ class Unit {
       baseStats: Unit.defaultStats(),
       items: {},
       souls: [],
+      hasAction: { major: true, minor: true },
       SP: 0
     }
     for (let key in template) {
