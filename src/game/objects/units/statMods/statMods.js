@@ -115,10 +115,15 @@ class StatMods {
       replace[statName] = replacements.filter(item => item.statName === statName)
       for (let index in replace[statName]) {
         let newVal = replace[statName][index].value(this)
-        if (effectiveStatValues[statName] < newVal) {
-          effectiveStatValues[statName] = Math.floor(newVal)
+        // if (effectiveStatValues[statName] < newVal) {
+        //   effectiveStatValues[statName] = Math.floor(newVal)
+        // }
+        let diff = newVal - this.convertedStatValues[statName]
+        if (diff > 0) {
+          effectiveStatValues[statName] += diff
         }
       }
+      effectiveStatValues[statName] = Math.floor(effectiveStatValues[statName])
     }
 
     return effectiveStatValues

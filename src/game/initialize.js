@@ -142,7 +142,9 @@ let bronzeRing = new Item.LIB.BRONZERING()
 
 spikeyShield.equipTo(lynn)
 bronzeRing.equipTo(lynn)
-lynn.equip(new Item.LIB.BERSERKERAXE())
+// lynn.equip(new Item.LIB.BERSERKERAXE())
+lynn.equip(new Item.LIB.YOLOMACE())
+// lynn.equip(new Item.LIB.SPELLSWORD())
 lynn.actions = ['melee', 'ranged', 'lunge', 'block']
 
 lynn.baseStats.HP.current -= 15
