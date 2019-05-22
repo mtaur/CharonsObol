@@ -9,7 +9,7 @@
       <div class="align-center col-8 row">
         <div class = "col-6"
           v-for="stat in baseStats" :key="stat.name" :unit="unit">
-          <q-chip dense color="white">
+          <q-chip square dense color="white">
             <q-avatar color="red" text-color="white">{{ unit.effectiveStatValues[stat] }}</q-avatar>
             {{ stat }}
           </q-chip>
@@ -24,10 +24,10 @@
     </div>
     <div class="row namebox justify-center align-center">
       <!-- <q-chip color="deep-orange"> -->
-      <q-chip color="teal" text-color="white">
+      <q-chip square color="teal" text-color="white">
         <q-avatar>
           <!-- <img src="statics/icons/action-both.png"> -->
-          <img :src="actStatus">
+          <img :src="actStatusImg">
         </q-avatar>
         <h6>{{ unit.name }}</h6>
       </q-chip>
@@ -53,7 +53,7 @@ export default {
     }
   },
   computed: {
-    actStatus () {
+    actStatusImg () {
       if (this.unit.hasAction.major) {
         if (this.unit.hasAction.minor) {
           return 'statics/icons/action-both.png'

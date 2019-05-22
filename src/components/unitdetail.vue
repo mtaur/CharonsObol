@@ -1,6 +1,8 @@
 <template>
 <div class="col-3 wind justify-center align-center">
-  <div class="row placebox justify-center align-center"><div class="placeholder">(Unit)</div></div>
+  <div class="row placebox justify-center align-center">
+    <div class="placeholder">(Unit)</div>
+  </div>
   <div class="row namebox justify-center align-center">
     <h6>{{ unit.name }}</h6>
   </div>
@@ -8,21 +10,30 @@
     <statrow v-for="stat in unit.baseStats" :unit="unit" :stat="stat" :key="stat.name"></statrow>
     <!-- <statrow v-for="stat in basicStats" :unit="unit" :stat="unit.baseStats[stat]" :key="stat"></statrow> -->
   </div>
-  <div v-for="item in unit.items" :key="item.name" class="row justify-center">
-    <strong>{{ item.name }}</strong>
-    <itemTooltip :item="item" :unit="unit"></itemTooltip>
-    <!-- {{ item.desc }} -->
+  <div class="row items-center justify-center">
+    <div class="col-8">
+      <div v-for="item in unit.items" :key="item.name" class="row justify-center">
+        <strong>{{ item.name }}</strong>
+        <itemTooltip :item="item" :unit="unit"></itemTooltip>
+        <!-- {{ item.desc }} -->
+      </div>
+    </div>
+    <div class="col-4">
+      <q-btn color="teal" glossy label="Items"></q-btn>
+    </div>
   </div>
+  <actions :unit="unit"></actions>
 </div>
 </template>
 
 <script>
 import statrow from './statchange.vue'
 import itemTooltip from './itemTooltip.vue'
+import actions from './actions.vue'
 
 export default {
   props: ['unit'],
-  components: { statrow, itemTooltip },
+  components: { statrow, itemTooltip, actions },
   data () {
     return {
       // basicStats: ['INIT', 'MELEE', 'RANGED', 'MAGIC', 'DR']

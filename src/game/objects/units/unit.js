@@ -160,6 +160,12 @@ class Unit {
       baseStats: Unit.defaultStats(),
       items: {},
       souls: [],
+      actions: [
+        { name: 'melee', type: 'major', desc: 'Basic malee attack. Must target front row if possible.' },
+        { name: 'ranged', type: 'major', desc: 'Basic ranged attack. Can target back row UNLESS a unit in the front row has GUARD activated.' },
+        { name: 'guard', type: 'minor', desc: 'Doubles DRED, and prevents back row from being attacked by ranged attacks.  Deactived upon taking a hit or performing another action.' },
+        { name: 'run', type: 'minor', desc: 'Run away!' }
+      ],
       hasAction: { major: true, minor: true },
       SP: 0
     }

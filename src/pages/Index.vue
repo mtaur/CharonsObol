@@ -1,7 +1,8 @@
 <template>
   <span>
   <drawer :activeUnit="activeUnit" :visible="leftDrawerOpen"
-    :playerTeam="playerTeam">
+    :playerTeam="playerTeam"
+    class="non-selectable">
   </drawer>
   <rightdrawer :visible="rightDrawerOpen"></rightdrawer>
   <q-page class="qpage non-selectable">
