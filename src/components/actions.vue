@@ -34,7 +34,6 @@ export default {
   components: {},
   data () {
     return {
-      // basicStats: ['INIT', 'MELEE', 'RANGED', 'MAGIC', 'DR']
     }
   },
   methods: {

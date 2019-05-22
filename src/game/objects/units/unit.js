@@ -1,5 +1,6 @@
 // import { Soul } from '../souls/soul.js'
 import { Stat } from './Stat.js'
+import { Action } from '../actions/Action.js'
 import { StatMods } from './statMods/statMods.js'
 import { StatSmart } from './statMods/statSmart.js'
 import { ResourceManager } from './ResourceManager.js'
@@ -161,10 +162,16 @@ class Unit {
       items: {},
       souls: [],
       actions: [
-        { name: 'melee', type: 'major', desc: 'Basic malee attack. Must target front row if possible.' },
-        { name: 'ranged', type: 'major', desc: 'Basic ranged attack. Can target back row UNLESS a unit in the front row has GUARD activated.' },
-        { name: 'guard', type: 'minor', desc: 'Doubles DRED, and prevents back row from being attacked by ranged attacks.  Deactived upon taking a hit or performing another action.' },
-        { name: 'run', type: 'minor', desc: 'Run away!' }
+        new Action.LIB.MELEE(),
+        new Action.LIB.RANGED(),
+        new Action.LIB.MOVE(),
+        new Action.LIB.GUARD(),
+        new Action.LIB.RUN(),
+        new Action.LIB.DERP()
+        // { name: 'melee', type: 'major', desc: 'Basic malee attack. Must target front row if possible.' },
+        // { name: 'ranged', type: 'major', desc: 'Basic ranged attack. Can target back row UNLESS a unit in the front row has GUARD activated.' },
+        // { name: 'guard', type: 'minor', desc: 'Doubles DRED, and prevents back row from being attacked by ranged attacks.  Deactived upon taking a hit or performing another action.' },
+        // { name: 'run', type: 'minor', desc: 'Run away!' }
       ],
       hasAction: { major: true, minor: true },
       SP: 0
