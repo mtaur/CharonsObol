@@ -15,7 +15,53 @@ class TargetRule {
   prevTargs = []
   caster = {}
   find = function () { return [] }
-  basics = {}
+  basics = {
+    enemy: function (unit) {
+      let retVal = false
+      for (let index in this.enemies) {
+        if (this.enemies[index].id === unit.id) { retVal = true }
+      }
+      return retVal
+    },
+    ally: function (unit) {
+      let retVal = false
+      for (let index in this.allies) {
+        if (this.allies[index].id === unit.id) { retVal = true }
+      }
+      return retVal
+    },
+    front: function (unit) {
+      return unit.pos === Unit.POS.FRONT
+    },
+    back: function (unit) {
+      return unit.pos === Unit.POS.BACK
+    },
+    field: function (unit) {
+      return unit.pos === Unit.POS.BACK || unit.pos === Unit.POS.FRONT
+    },
+    bench: function (unit) {
+      return unit.pos === Unit.POS.BENCH
+    },
+    live: function (unit) {
+      return unit.live === true
+    },
+    dead: function (unit) {
+      return unit.live === false
+    },
+    guarding: function (unit) {
+      return unit.statuses.indexOf('guard') > -1
+    },
+    caster: function (unit) {
+      return unit.id === this.caster.id
+    },
+    different: function (unit) {
+      let retVal = true
+      for (let index of this.prevTargs) {
+        if (unit.id === this.prevTargs[index].id) { retVal = false }
+      }
+      return retVal
+    }
+  }
 
   static LIB = {}
 
@@ -33,6 +79,9 @@ class TargetRule {
     field: true,
     bench: false
   }) {
+    for (let key in this.basics) {
+      this.basics[key] = this.basics[key].bind(this)
+    }
     // Update this object
     this.caster = obj.caster
     this.prevTargs = obj.prevTargs
@@ -47,56 +96,9 @@ class TargetRule {
     } else { alert('Unit passed to targeting rule has no valid side...') }
 
     let targRule = this
-    let basics = {
-      enemy: function (unit) {
-        let retVal = false
-        for (let index in targRule.enemies) {
-          if (targRule.enemies[index].id === unit.id) { retVal = true }
-        }
-        return retVal
-      },
-      ally: function (unit) {
-        let retVal = false
-        for (let index in targRule.allies) {
-          if (targRule.allies[index].id === unit.id) { retVal = true }
-        }
-        return retVal
-      },
-      front: function (unit) {
-        return unit.pos === Unit.POS.FRONT
-      },
-      back: function (unit) {
-        return unit.pos === Unit.POS.BACK
-      },
-      field: function (unit) {
-        return unit.pos === Unit.POS.BACK || unit.pos === Unit.POS.FRONT
-      },
-      bench: function (unit) {
-        return unit.pos === Unit.POS.BENCH
-      },
-      live: function (unit) {
-        return unit.live === true
-      },
-      dead: function (unit) {
-        return unit.live === false
-      },
-      guarding: function (unit) {
-        return unit.statuses.indexOf('guard') > -1
-      },
-      caster: function (unit) {
-        return unit.id === targRule.caster.id
-      },
-      different: function (unit) {
-        let retVal = true
-        for (let index of targRule.prevTargs) {
-          if (unit.id === targRule.prevTargs[index].id) { retVal = false }
-        }
-        return retVal
-      }
-    }
 
     let byString = function (input) {
-      if (typeof input === 'string') { return basics[input] }
+      if (typeof input === 'string') { return targRule.basics[input] }
       if (typeof input === 'function') { return input }
       alert('TargetRule constructor received neither string nor function...')
       return () => { return true }
@@ -111,10 +113,10 @@ class TargetRule {
       // console.log('playerTeam', this.playerTeam)
       // console.log('cpuTeam', this.cpuTeam)
       let all = this.playerTeam.all.concat(this.cpuTeam.all)
-      if (obj.live === false) { nots.push(basics.live) }
-      if (obj.dead === false) { nots.push(basics.dead) }
-      if (obj.field === false) { nots.push(basics.field) }
-      if (obj.bench === false) { nots.push(basics.bench) }
+      if (obj.live === false) { nots.push(this.basics.live) }
+      if (obj.dead === false) { nots.push(this.basics.dead) }
+      if (obj.field === false) { nots.push(this.basics.field) }
+      if (obj.bench === false) { nots.push(this.basics.bench) }
 
       // console.log('reqs:', reqs)
 
