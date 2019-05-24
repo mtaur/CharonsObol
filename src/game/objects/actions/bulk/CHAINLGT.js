@@ -11,7 +11,7 @@ class CHAINLGT {
       type: 'major',
       desc: 'Deal 1xMAGIC damage to two targets, hitting one each from the front and back rows if possible.',
       cost: 2,
-      targetRules: []
+      targetRules: ['CHAINLGT1', 'CHAINLGT2']
     })
   }
 }

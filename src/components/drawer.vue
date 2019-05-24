@@ -14,6 +14,8 @@
 
     <unitdetail v-for="unit in activeUnit"
       :unit="unit"
+      :cpuTeam = "cpuTeam"
+      :playerTeam = "playerTeam"
       :key="unit.name">
     </unitdetail>
   </q-drawer>
@@ -25,7 +27,7 @@ import unitdetail from 'src/components/unitdetail'
 
 export default {
   name: 'leftDrawer',
-  props: ['visible', 'activeUnit', 'playerTeam'],
+  props: ['visible', 'activeUnit', 'playerTeam', 'cpuTeam'],
   data () {
     return {
       // leftDrawerOpen: this.$q.platform.is.desktop

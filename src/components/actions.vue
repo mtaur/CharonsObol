@@ -2,7 +2,9 @@
 <div class="col-3 wind justify-center align-center">
   <div class="row items-center justify-center">
     <div v-for="action in unit.actions" :key="action.name" class="justify-center">
-      <q-chip square v-if="canUse(action)" clickable :color="buttonColor(action)" text-color="white">
+      <q-chip square v-if="canUse(action)"
+      clickable @click="skillClick(action)"
+      :color="buttonColor(action)" text-color="white">
         <q-avatar>
           <img :src="getIcon(action)">
         </q-avatar>
@@ -30,7 +32,7 @@
 // import itemTooltip from './itemTooltip.vue'
 
 export default {
-  props: ['unit'],
+  props: ['unit', 'playerTeam', 'cpuTeam'],
   components: {},
   data () {
     return {
@@ -52,6 +54,33 @@ export default {
     buttonColor (action) {
       if (this.canUse(action)) return 'indigo'
       else return 'blue-grey'
+    },
+    skillClick (action) {
+      console.log('unit:', this.unit)
+      console.log('action:', action)
+      console.log('rule constructor:', action.targetRules[0])
+      let rule = new action.targetRules[0]({
+        caster: this.unit,
+        playerTeam: this.playerTeam,
+        cpuTeam: this.cpuTeam
+      })
+      // console.log('rule:', rule)
+      // console.log('find:', rule.find())
+      rule.find().forEach((item, index) => { console.log(item.name + ' is a possible target of ' + action.name) })
+      // constructor (obj = {
+      //   caster: {},
+      //   reqs: [],
+      //   nots: [],
+      //   prefs: [],
+      //   playerTeam: [],
+      //   cpuTeam: [],
+      //   prevTargs: [],
+      //   // Vast majority of skills use these, MUST overwrite as bool if not:
+      //   live: true,
+      //   dead: false,
+      //   field: true,
+      //   bench: false
+      // })
     }
   },
   computed: {

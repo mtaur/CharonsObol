@@ -9,7 +9,7 @@ class MOVE {
       name: 'Move',
       type: 'minor',
       desc: 'Change rows.',
-      targetRules: []
+      targetRules: ['SELF']
     })
   }
 }

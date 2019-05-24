@@ -22,7 +22,7 @@
       <q-btn color="teal" glossy label="Items"></q-btn>
     </div>
   </div>
-  <actions :unit="unit"></actions>
+  <actions :unit="unit" :playerTeam="playerTeam" :cpuTeam="cpuTeam"></actions>
 </div>
 </template>
 
@@ -32,7 +32,7 @@ import itemTooltip from './itemTooltip.vue'
 import actions from './actions.vue'
 
 export default {
-  props: ['unit'],
+  props: ['unit', 'playerTeam', 'cpuTeam'],
   components: { statrow, itemTooltip, actions },
   data () {
     return {

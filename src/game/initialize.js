@@ -97,6 +97,7 @@ for (let i = 1; i < 4; i++) {
       DRED: 2,
       DREF: 0
     }
+    unit.pos = Unit.POS.BACK
     unit.name = 'Archer of Caenenfoeder ' + i
     unit.raiseAll()
     cpuTeam.back.push(unit)

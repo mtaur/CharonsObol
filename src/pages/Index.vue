@@ -2,6 +2,7 @@
   <span>
   <drawer :activeUnit="activeUnit" :visible="leftDrawerOpen"
     :playerTeam="playerTeam"
+    :cpuTeam="cpuTeam"
     class="non-selectable">
   </drawer>
   <rightdrawer :visible="rightDrawerOpen"></rightdrawer>

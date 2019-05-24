@@ -9,7 +9,7 @@ class RUN {
       name: 'Run away',
       type: 'minor',
       desc: 'Run away!',
-      targetRules: []
+      targetRules: ['SELF']
     })
   }
 }

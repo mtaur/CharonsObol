@@ -18,6 +18,7 @@ class Team {
   front = []
   back = []
   bench = []
+  dead = []
   // dead...?
 
   get field () { return this.front.concat(this.back) }
