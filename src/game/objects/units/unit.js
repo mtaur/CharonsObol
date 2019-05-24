@@ -21,12 +21,14 @@ class Team {
   // dead...?
 
   get field () { return this.front.concat(this.back) }
-  get all () { return this.front.concat(this.back).concate(this.bench) }
+  get all () { return this.front.concat(this.back).concat(this.bench).concat(this.dead) }
+  get live () { return this.front.concat(this.back).concat(this.bench) }
 
   reset () {
     this.front = []
     this.back = []
     this.bench = []
+    this.dead = []
   }
 
   constructor (side) {
@@ -157,6 +159,7 @@ class Unit {
       side: Unit.SIDE.CPU,
       pos: Unit.POS.FRONT,
       hero: false,
+      live: true,
       // Configure stats with default setup.
       baseStats: Unit.defaultStats(),
       items: {},
@@ -173,6 +176,7 @@ class Unit {
         // { name: 'guard', type: 'minor', desc: 'Doubles DRED, and prevents back row from being attacked by ranged attacks.  Deactived upon taking a hit or performing another action.' },
         // { name: 'run', type: 'minor', desc: 'Run away!' }
       ],
+      statuses: [],
       hasAction: { major: true, minor: true },
       SP: 0
     }
