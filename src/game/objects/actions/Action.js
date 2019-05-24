@@ -1,6 +1,7 @@
 import { classdir as actionLib } from './jsload.js'
 // import { hasIn as hasProp, cloneDeep as clone } from 'lodash'
 import { hasIn as hasProp } from 'lodash'
+import { TargetRule } from './targetRules/TargetRule.js'
 // import { cloneDeep as clone } from 'lodash'
 
 // console.log(Soul)
@@ -15,7 +16,7 @@ class Action {
   type = 'minor'
   cost = 0
   // Must encode general data object for all targeting schemes...
-  targetRules = []
+  targetRules = ['SELF'] // target1, target2.......
   // stage 0 { casterCond: , }
   canUse = function () { return true }
 
@@ -35,6 +36,7 @@ class Action {
         this[propName] = obj[propName]
       } else { alert('Missing prop', propName) }
     }
+    this.targetRules = this.targetRules.map((str) => TargetRule.LIB[str])
     // this.name = obj.name
     // this.statBonus = obj.statBonus
     // this.desc = obj.desc
