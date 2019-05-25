@@ -8,8 +8,9 @@ class INSPIRE {
   // { name: 'guard', type: 'minor', desc: 'Doubles DRED, and prevents back row from being attacked by ranged attacks.  Deactived upon taking a hit or performing another action.' },
   // { name: 'run', type: 'minor', desc: 'Run away!' }
   // { name: 'lunge', type: 'both', desc: 'Lunge FROM the back row TO the front row, doing 2x the SMALLER of MELEE and RANGED as damage to a target with a melee attack.' }
-  constructor () {
+  constructor (unit = null) {
     return new Action({
+      unit: unit,
       NAME: 'INSPIRE',
       name: 'Inspire',
       type: 'major',

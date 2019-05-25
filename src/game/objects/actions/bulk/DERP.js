@@ -3,8 +3,9 @@ import { Action } from '../Action.js'
 class DERP {
   static NAME = 'DERP'
 
-  constructor () {
+  constructor (unit = null) {
     return new Action({
+      unit: unit
     })
   }
 }

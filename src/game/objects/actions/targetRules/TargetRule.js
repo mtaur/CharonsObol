@@ -15,6 +15,8 @@ class TargetRule {
   prevTargs = []
   caster = {}
   find = function () { return [] }
+
+  // Functions are "this" bound in the constructor
   basics = {
     enemy: function (unit) {
       let retVal = false
@@ -56,7 +58,7 @@ class TargetRule {
     },
     different: function (unit) {
       let retVal = true
-      for (let index of this.prevTargs) {
+      for (let index in this.prevTargs) {
         if (unit.id === this.prevTargs[index].id) { retVal = false }
       }
       return retVal

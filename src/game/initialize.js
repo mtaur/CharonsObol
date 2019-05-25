@@ -125,8 +125,8 @@ magicStaff.equipTo(pen)
 // pen.items.push(spellsword)
 
 playerTeam.back.push(pen)
-pen.actions.push(new Action.LIB.FLAMEFIST())
-pen.actions.push(new Action.LIB.CHAINLGT())
+pen.actions.push(new Action.LIB.FLAMEFIST(pen))
+pen.actions.push(new Action.LIB.CHAINLGT(pen))
 
 // pen.souls = [pensoul]
 // console.log('Outside of constructor...')
@@ -153,7 +153,7 @@ bronzeRing.equipTo(lynn)
 // lynn.equip(new Item.LIB.YOLOMACE())
 // lynn.equip(new Item.LIB.SPELLSWORD())
 // lynn.actions.push({ name: 'lunge', type: 'both', desc: 'Lunge FROM the back row TO the front row, doing 2x the SMALLER of MELEE and RANGED as damage to a target with a melee attack.' }) // = ['melee', 'ranged', 'lunge', 'block']
-lynn.actions.push(new Action.LIB.LUNGE()) // = ['melee', 'ranged', 'lunge', 'block']
+lynn.actions.push(new Action.LIB.LUNGE(lynn)) // = ['melee', 'ranged', 'lunge', 'block']
 
 lynn.baseStats.HP.current -= 15
 // console.log('Outside of constructor...')
@@ -183,8 +183,8 @@ bro.equip(new Item.LIB.YOLOMACE())
 bro.equip(new Item.LIB.MARTYRSTAFF())
 bro.equip(divineBarrier)
 bro.hasAction.minor = false
-bro.actions.push(new Action.LIB.INSPIRE())
-bro.actions.push(new Action.LIB.HEAL())
+bro.actions.push(new Action.LIB.INSPIRE(bro))
+bro.actions.push(new Action.LIB.HEAL(bro))
 // bro.items.push(new Item.LIB.DIVINEBARRIER())
 playerTeam.front.push(bro)
 // bro.souls = [brosoul]

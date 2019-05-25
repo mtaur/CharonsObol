@@ -152,6 +152,7 @@ class Unit {
     // unit initialization object
     obj = {}
   ) {
+    let thisUnit = this
     this.playerTeam = gameObj.playerTeam
     this.cpuTeam = gameObj.cpuTeam
     // !!!Must reset the template or else data will be shared!!!
@@ -166,12 +167,12 @@ class Unit {
       items: {},
       souls: [],
       actions: [
-        new Action.LIB.MELEE(),
-        new Action.LIB.RANGED(),
-        new Action.LIB.MOVE(),
-        new Action.LIB.GUARD(),
-        new Action.LIB.RUN(),
-        new Action.LIB.DERP()
+        new Action.LIB.MELEE(thisUnit),
+        new Action.LIB.RANGED(thisUnit),
+        new Action.LIB.MOVE(thisUnit),
+        new Action.LIB.GUARD(thisUnit),
+        new Action.LIB.RUN(thisUnit),
+        new Action.LIB.DERP(thisUnit)
         // { name: 'melee', type: 'major', desc: 'Basic malee attack. Must target front row if possible.' },
         // { name: 'ranged', type: 'major', desc: 'Basic ranged attack. Can target back row UNLESS a unit in the front row has GUARD activated.' },
         // { name: 'guard', type: 'minor', desc: 'Doubles DRED, and prevents back row from being attacked by ranged attacks.  Deactived upon taking a hit or performing another action.' },

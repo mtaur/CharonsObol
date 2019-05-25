@@ -1,8 +1,8 @@
 import { classdir as actionLib } from './jsload.js'
 // import { hasIn as hasProp, cloneDeep as clone } from 'lodash'
-import { hasIn as hasProp } from 'lodash'
-import { TargetRule } from './targetRules/TargetRule.js'
 // import { cloneDeep as clone } from 'lodash'
+import { hasIn as hasProp, cloneDeep as clone } from 'lodash'
+import { TargetRule } from './targetRules/TargetRule.js'
 
 // console.log(Soul)
 class Action {
@@ -28,6 +28,34 @@ class Action {
       unit.actions.push(this)
       this.unit = unit
     }
+  }
+
+  targLog (prevTargs = []) {
+    // console.log('unit:', this.unit)
+    // console.log('action:', action)
+    // console.log('rule constructor:', action.targetRules[0])
+    let rule = new this.targetRules[0]({
+      caster: this.unit,
+      playerTeam: this.unit.playerTeam,
+      cpuTeam: this.unit.cpuTeam,
+      prevTargs: prevTargs
+    })
+    if (prevTargs.length > 0) {
+      prevTargs.forEach((targ, index) => { console.log(index, ':', targ.name) })
+    }
+    console.log('rule.prevTargs:', rule.prevTargs)
+    rule.find().forEach((item, index) => {
+      console.log(item.name + ' is a possible target of ' + this.name)
+      // clone & repeat?
+      if (this.targetRules.length > 1) {
+        let next = clone(this)
+        let currTargLog = clone(prevTargs)
+        currTargLog.push(item)
+        next.targetRules.shift()
+        // next.targetRules[0].prevTargs = currTargLog
+        next.targLog(currTargLog)
+      }
+    })
   }
 
   constructor (obj) {

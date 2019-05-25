@@ -3,8 +3,9 @@ import { Action } from '../Action.js'
 class RANGED {
   static NAME = 'RANGED'
 
-  constructor () {
+  constructor (unit = null) {
     return new Action({
+      unit: unit,
       NAME: 'RANGED',
       name: 'Ranged',
       type: 'major',

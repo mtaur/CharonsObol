@@ -3,8 +3,9 @@
   <div class="row items-center justify-center">
     <div v-for="action in unit.actions" :key="action.name" class="justify-center">
       <q-chip square v-if="canUse(action)"
-      clickable @click="skillClick(action)"
+      clickable @click="targLog(action)"
       :color="buttonColor(action)" text-color="white">
+      <!-- clickable @click="skillClick(action)" -->
         <q-avatar>
           <img :src="getIcon(action)">
         </q-avatar>
@@ -54,6 +55,9 @@ export default {
     buttonColor (action) {
       if (this.canUse(action)) return 'indigo'
       else return 'blue-grey'
+    },
+    targLog (action) {
+      action.targLog()
     },
     skillClick (action) {
       console.log('unit:', this.unit)

@@ -11,6 +11,7 @@ class CHAINLGT2 {
       nots: [],
       prefs: ['back'],
       playerTeam: obj.playerTeam,
+      prevTargs: obj.prevTargs,
       cpuTeam: obj.cpuTeam
       // Vast majority of skills use these, MUST overwrite as bool if not:
       // live: true,

@@ -3,8 +3,9 @@ import { Action } from '../Action.js'
 class RUN {
   static NAME = 'RUN'
 
-  constructor () {
+  constructor (unit = null) {
     return new Action({
+      unit: unit,
       NAME: 'RUN',
       name: 'Run away',
       type: 'minor',
