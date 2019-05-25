@@ -37,7 +37,7 @@ export default {
     newStats: function () {
       let copy = clone(this.unit)
       copy.raise(this.stat.name)
-      console.log('Nothing happened?')
+      // console.log('Nothing happened?')
       // return copy.effectiveStatValues
       return copy.effectiveStatValues
       // this.newStats = copy.effectiveStatValues

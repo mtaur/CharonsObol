@@ -2,6 +2,7 @@ import { Unit } from '../../units/Unit.js'
 // import { Action } from '../Action.js'
 import { classdir as ruleLib } from './jsload.js'
 // import { cloneDeep as clone, hasIn as hasProp } from 'lodash'
+import { hasIn as hasProp } from 'lodash'
 
 class TargetRule {
   // pref = []
@@ -67,28 +68,32 @@ class TargetRule {
 
   static LIB = {}
 
-  constructor (obj = {
-    caster: {},
-    reqs: [],
-    nots: [],
-    prefs: [],
-    playerTeam: [],
-    cpuTeam: [],
-    prevTargs: [],
-    // Vast majority of skills use these, MUST overwrite as bool if not:
-    live: true,
-    dead: false,
-    field: true,
-    bench: false
-  }) {
+  constructor (obj = {}) {
     for (let key in this.basics) {
       this.basics[key] = this.basics[key].bind(this)
     }
+    let templ = {
+      caster: {},
+      reqs: [],
+      nots: [],
+      prefs: [],
+      playerTeam: [],
+      cpuTeam: [],
+      prevTargs: [],
+      // Vast majority of skills use these, MUST overwrite as bool if not:
+      live: true,
+      dead: false,
+      field: true,
+      bench: false
+    }
+    for (let key in templ) {
+      this[key] = hasProp(obj, key) ? obj[key] : templ[key]
+    }
     // Update this object
-    this.caster = obj.caster
-    this.prevTargs = obj.prevTargs
-    this.playerTeam = obj.playerTeam
-    this.cpuTeam = obj.cpuTeam
+    // this.caster = obj.caster
+    // this.prevTargs = obj.prevTargs
+    // this.playerTeam = obj.playerTeam
+    // this.cpuTeam = obj.cpuTeam
     if (this.caster.side === Unit.SIDE.PLAYER) {
       this.allies = obj.playerTeam.all
       this.enemies = obj.cpuTeam.all
@@ -115,22 +120,22 @@ class TargetRule {
       // console.log('playerTeam', this.playerTeam)
       // console.log('cpuTeam', this.cpuTeam)
       let all = this.playerTeam.all.concat(this.cpuTeam.all)
-      if (obj.live === false) { nots.push(this.basics.live) }
-      if (obj.dead === false) { nots.push(this.basics.dead) }
-      if (obj.field === false) { nots.push(this.basics.field) }
-      if (obj.bench === false) { nots.push(this.basics.bench) }
+      if (this.live === false) { nots.push(this.basics.live) }
+      if (this.dead === false) { nots.push(this.basics.dead) }
+      if (this.field === false) { nots.push(this.basics.field) }
+      if (this.bench === false) { nots.push(this.basics.bench) }
 
       // console.log('reqs:', reqs)
 
       for (let index in reqs) {
         all = all.filter(reqs[index])
       }
-      console.log('Units remaining after reqs:', all)
-      console.log('nots', nots)
+      // console.log('Units remaining after reqs:', all)
+      // console.log('nots', nots)
       for (let index in nots) {
         all = all.filter((item) => { return !(nots[index](item)) })
       }
-      console.log('Units remaining after nots:', all)
+      // console.log('Units remaining after nots:', all)
       let prefTargets = all
       for (let index in prefs) {
         prefTargets = prefTargets.filter(prefs[index])

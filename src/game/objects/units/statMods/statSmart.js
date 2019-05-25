@@ -8,7 +8,7 @@ class StatSmart {
   static applyChange (changer) {
     let copy = clone(this)
     changer(copy)
-    console.log('Copy after change:', copy)
+    // console.log('Copy after change:', copy)
 
     let unit = this
     let baseStats = unit.baseStats
@@ -33,7 +33,7 @@ class StatSmart {
   static equip (item) {
     function tryOn (unit) {
       // if (canEquip) { ... }
-      console.log('unit', unit)
+      // console.log('unit', unit)
       unit.items.push(item)
       item.unit = unit
     }
