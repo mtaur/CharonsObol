@@ -31,9 +31,6 @@ class Action {
   }
 
   targLog (prevTargs = []) {
-    // console.log('unit:', this.unit)
-    // console.log('action:', action)
-    // console.log('rule constructor:', action.targetRules[0])
     let rule = new this.targetRules[0]({
       caster: this.unit,
       playerTeam: this.unit.playerTeam,

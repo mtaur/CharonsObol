@@ -222,6 +222,7 @@ bro.equip(divineBarrier)
 bro.hasAction.minor = false
 bro.actions.push(new Action.LIB.INSPIRE(bro))
 bro.actions.push(new Action.LIB.HEAL(bro))
+bro.actions.push(new Action.LIB.NATLOG(bro))
 // bro.items.push(new Item.LIB.DIVINEBARRIER())
 playerTeam.front.push(bro)
 // bro.souls = [brosoul]
