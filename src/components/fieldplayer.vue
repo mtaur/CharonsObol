@@ -83,6 +83,7 @@ export default {
     font-size: 16px;
   }
   .col-3 {
+    /* width: 25%; */
     /* height: auto; */
   }
   .wind {
@@ -111,5 +112,7 @@ export default {
   }
   .active {
     background-color: #4cd;
+    /* width: 55%; */
+    /* flex-grow: 1; */
   }
 </style>

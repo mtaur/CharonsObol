@@ -85,7 +85,7 @@ for (let i = 1; i < 4; i++) {
     unit.raiseAll()
     cpuTeam.front.push(unit)
     // console.log('Outside of constructor...')
-    // console.log(unit)
+    console.log(unit)
   } else {
     let unit = new CPUUnit(gameObj, caenenTemplate())
     unit.statWeights = {
@@ -102,7 +102,7 @@ for (let i = 1; i < 4; i++) {
     unit.raiseAll()
     cpuTeam.back.push(unit)
     // console.log('Outside of constructor...')
-    // console.log(unit)
+    console.log(unit)
   }
 }
 
@@ -123,7 +123,7 @@ deadGuy.pos = Unit.POS.BENCH
 deadGuy.name = 'Archer of Caenenfoeder (deceased)'
 cpuTeam.bench.push(deadGuy)
 // console.log('Outside of constructor...')
-// console.log(unit)
+console.log(deadGuy)
 
 let benchGuy = new CPUUnit(gameObj, caenenTemplate())
 deadGuy.statWeights = {
@@ -141,7 +141,7 @@ benchGuy.pos = Unit.POS.BENCH
 benchGuy.name = 'Archer of Caenenfoeder (benched)'
 cpuTeam.bench.push(benchGuy)
 // console.log('Outside of constructor...')
-// console.log(unit)
+console.log(benchGuy)
 
 var pensoul = new Soul.LIB.PENELOPE()
 var pen = new Unit(gameObj, { name: pensoul.name,
