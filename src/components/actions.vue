@@ -3,6 +3,7 @@
   <div class="row items-center justify-center">
     <div v-for="action in unit.actions" :key="action.name" class="justify-center">
       <q-chip square v-if="canUse(action)"
+      class="glossy"
       clickable @click="targLog(action)"
       :color="buttonColor(action)" text-color="white">
       <!-- clickable @click="skillClick(action)" -->

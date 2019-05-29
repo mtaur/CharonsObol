@@ -4,7 +4,7 @@
     <div class="row align-end">
       <div class="col-9 statname">{{ stat.name }}: {{ stat.value }}</div>
       <div class="col-3">
-        <q-btn round size="10px" @click="increase" >
+        <q-btn round glossy color="amber" text-color="black" size="10px" @click="increase" >
           <span class="btxt">+</span>
           <statTooltip :stat="stat" :unit="unit"></statTooltip>
           <q-badge color="purple" floating>{{ stat.cost }}</q-badge>
@@ -43,9 +43,9 @@ export default {
   /* span {
     background-color: #cc0;
   } */
-  button {
+  /* button {
     background-color: #ec5;
-  }
+  } */
 
   q-btn {
     /* color: #cc7; */
