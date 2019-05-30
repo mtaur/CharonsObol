@@ -6,7 +6,12 @@ class ChooseTarget extends CtrlState {
   // static name = 'ChooseTarget'
   //
   getClickJSON (selector, unit) {
-    if (selector.isSelected(unit)) {
+    if (selector.canTarget(unit)) {
+      return {
+        viewState: 'canTarget',
+        onClick: selector.stateData.activeSkill.targetRules.length > 1 ? 'pickTarget' : 'execute'
+      }
+    } else if (selector.isSelected(unit)) {
       // change to obj, { viewState: '', onClick: ''}
       return {
         viewState: 'active',
@@ -14,12 +19,12 @@ class ChooseTarget extends CtrlState {
       }
     } else if (selector.game.playerTeam.field.indexOf(unit) > -1) {
       return {
-        viewState: '',
+        viewState: 'idle',
         onClick: 'makeActive'
       }
     } else if (selector.game.cpuTeam.field.indexOf(unit) > -1) {
       return {
-        viewState: '',
+        viewState: 'idle',
         onClick: 'inspect'
       }
     }

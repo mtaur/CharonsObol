@@ -1,7 +1,8 @@
 <template>
-<div class="row col-3 justify-center align-center">
+<div class="row col-3 justify-center align-center"
+  :class="{active: isActive, canTarget: canTarget}">
   <div class="wind justify-center align-center"
-    :class="{active: isActive}">
+    :class="{active: isActive, canTarget: canTarget}">
     <div class="row">
       <div class="col-4 placebox justify-center align-center">
         <div class="placeholder">(Unit)</div>
@@ -45,7 +46,7 @@
 import resbar from './resbar.vue'
 
 export default {
-  props: ['unit', 'isActive'],
+  props: ['unit', 'isActive', 'canTarget'],
   // components: { statrow },
   data () {
     return {
@@ -114,5 +115,8 @@ export default {
     background-color: #4cd;
     /* width: 55%; */
     /* flex-grow: 1; */
+  }
+  .canTarget {
+    background-color: #c26;
   }
 </style>

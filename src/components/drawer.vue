@@ -16,6 +16,7 @@
       :unit="unit"
       :cpuTeam = "cpuTeam"
       :playerTeam = "playerTeam"
+      :selector = "selector"
       :key="unit.name">
     </unitdetail>
   </q-drawer>
@@ -27,7 +28,7 @@ import unitdetail from 'src/components/unitdetail'
 
 export default {
   name: 'leftDrawer',
-  props: ['visible', 'activeUnit', 'playerTeam', 'cpuTeam'],
+  props: ['visible', 'activeUnit', 'playerTeam', 'cpuTeam', 'selector'],
   data () {
     return {
       // leftDrawerOpen: this.$q.platform.is.desktop

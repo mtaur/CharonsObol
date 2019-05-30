@@ -58,7 +58,7 @@ class Unit {
     BENCH: 'bench'
   }
 
-  static _id = -1
+  static _id = 0 // -1
 
   static get id () {
     Unit._id++

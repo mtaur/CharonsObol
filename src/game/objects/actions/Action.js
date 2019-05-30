@@ -19,6 +19,7 @@ class Action {
   targetRules = ['SELF'] // target1, target2.......
   // stage 0 { casterCond: , }
   canUse = function () { return true }
+  prevTargs = []
 
   unit = null
   // function (unit, validSlotArrayForItem)
@@ -28,6 +29,33 @@ class Action {
       unit.actions.push(this)
       this.unit = unit
     }
+  }
+
+  // targSelect (prevTargs = []) {
+  targSelect (selector, pendingAction = {}) {
+    let rule = new this.targetRules[0]({
+      caster: this.unit,
+      playerTeam: this.unit.playerTeam,
+      cpuTeam: this.unit.cpuTeam,
+      prevTargs: pendingAction.prevTargs
+    })
+    console.log(rule)
+    let prevTargs = pendingAction.prevTargs
+    if (prevTargs.length > 0) {
+      prevTargs.forEach((targ, index) => { console.log('Target', index, ':', targ.name) })
+    }
+    // rule.find().forEach((item, index) => {
+    //   console.log(item.name + ' is a possible target of ' + this.name)
+    //   // clone & repeat?
+    //   if (this.targetRules.length > 1) {
+    //     let next = clone(this)
+    //     let currTargLog = clone(prevTargs)
+    //     currTargLog.push(item)
+    //     next.targetRules.shift()
+    //     // next.targetRules[0].prevTargs = currTargLog
+    //     next.targLog(currTargLog)
+    //   }
+    // })
   }
 
   targLog (prevTargs = []) {

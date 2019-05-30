@@ -8,6 +8,7 @@ var deactivate = function (selector, unit) {
   //   // targets[i] = target clicked at step i
   // }
   selector.stateData.activeUnit = {}
+  selector.stateData.activeSkill = {}
   selector.changeState('ChooseUnit')
 }
 

@@ -14,16 +14,6 @@ import { Action } from './objects/actions/Action.js'
 var playerTeam = new Team(Unit.SIDE.PLAYER)
 var cpuTeam = new Team(Unit.SIDE.CPU)
 var gameObj = { playerTeam: playerTeam, cpuTeam: cpuTeam }
-
-// test script
-var jaq = new CPUUnit(gameObj)
-// console.log('Outside of constructor...')
-console.log(jaq)
-jaq.raiseAll()
-cpuTeam.front.push(jaq)
-jaq.hasAction.major = false
-jaq.hasAction.minor = false
-
 // playerTeam.front.push(jaq)
 
 // // console.log('SP', jaq.SP)
@@ -63,6 +53,15 @@ function caenenTemplate () {
   return templ
 }
 
+// test script
+// var jaq2 = new CPUUnit(gameObj)
+// // console.log('Outside of constructor...')
+// console.log(jaq2)
+// jaq2.raiseAll()
+// cpuTeam.front.push(jaq2)
+// jaq2.hasAction.major = true
+// jaq2.hasAction.minor = true
+//
 // console.log('caenentemplate:', caenenTemplate.baseStats)
 
 // var jaqClone = uniqClone(jaq)
@@ -105,6 +104,15 @@ for (let i = 1; i < 4; i++) {
     console.log(unit)
   }
 }
+
+var jaq = new CPUUnit(gameObj)
+// console.log('Outside of constructor...')
+console.log(jaq)
+jaq.raiseAll()
+cpuTeam.front.push(jaq)
+jaq.hasAction.major = false
+jaq.hasAction.minor = false
+//
 
 let deadGuy = new CPUUnit(gameObj, caenenTemplate())
 deadGuy.statWeights = {

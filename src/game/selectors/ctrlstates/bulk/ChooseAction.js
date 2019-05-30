@@ -29,6 +29,7 @@ class ChooseAction extends CtrlState {
   constructor (selector, obj) {
     super(selector, obj)
     selector.getClickJSON = this.getClickJSON
+    selector.resetSkill()
   }
   // constructor (selector, unit) {
   //   // return new Soul({

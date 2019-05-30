@@ -3,6 +3,7 @@
   <drawer :activeUnit="activeUnit" :visible="leftDrawerOpen"
     :playerTeam="playerTeam"
     :cpuTeam="cpuTeam"
+    :selector="selector"
     class="non-selectable">
   </drawer>
   <rightdrawer :visible="rightDrawerOpen"></rightdrawer>
@@ -14,6 +15,7 @@
           :unit="unit"
           :key="unit.id"
           :isActive="isActive(selector, unit)"
+          :canTarget="canTarget(selector, unit)"
           @click.native="battlefieldClick(selector, unit)"
           >
           <!-- @click.native="makeActive(unit, $event)"> -->
@@ -25,6 +27,7 @@
           :unit="unit"
           :key="unit.id"
           :isActive="isActive(selector, unit)"
+          :canTarget="canTarget(selector, unit)"
           @click.native="battlefieldClick(selector, unit)"
           >
           <!-- @click.native="makeActive(unit, $event)"> -->
@@ -39,6 +42,7 @@
           :unit="unit"
           :key="unit.id"
           :isActive="isActive(selector, unit)"
+          :canTarget="canTarget(selector, unit)"
           :class="{'active': isActive(selector, unit)}"
           @click.native="battlefieldClick(selector, unit)"
           >
@@ -50,6 +54,7 @@
           :unit="unit"
           :key="unit.id"
           :isActive="isActive(selector, unit)"
+          :canTarget="canTarget(selector, unit)"
           :class="{'active': isActive(selector, unit)}"
           @click.native="battlefieldClick(selector, unit)"
           >
@@ -104,6 +109,9 @@ export default {
     // isActive: function (unit) {
     //   return this.activeUnit[0] ? unit.name === this.activeUnit[0].name : false
     // },
+    canTarget: function (selector, unit) {
+      return selector.canTarget(unit)
+    },
     isActive: function (selector, unit) {
       return selector.stateData.activeUnit.id
         ? unit.id === selector.stateData.activeUnit.id

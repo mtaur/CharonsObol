@@ -19,14 +19,43 @@ class Selector {
   // Targetting details?
   stateData = {
     inspectUnit: {},
-    activeUnit: {}
+    activeUnit: {},
+    activeSkill: {}
     // skill = {}
     // (skill will have info about valid click targets and number of steps)
     // targets[i] = target clicked at step i
   }
 
+  resetData () {
+    this.stateData = {
+      inspectUnit: {},
+      activeUnit: {},
+      activeSkill: {}
+    }
+  }
+
+  resetSkill () {
+    this.activeSkill = {}
+  }
+
   isSelected (unit) {
     return unit && unit.id && this.stateData.activeUnit.id ? this.stateData.activeUnit.id === unit.id : false
+  }
+
+  canTarget (unit) {
+    if (unit && unit.id && this.stateData.activeSkill && this.stateData.activeSkill.targetRules) {
+      let rule = new this.stateData.activeSkill.targetRules[0]({
+        caster: this.stateData.activeUnit,
+        playerTeam: this.stateData.activeUnit.playerTeam,
+        cpuTeam: this.stateData.activeUnit.cpuTeam,
+        prevTargs: this.stateData.activeSkill.prevTargs
+      })
+      console.log('Rule:', rule)
+      if (rule.canFind(unit)) { return true } else { return false }
+    } else {
+      console.log('State data:', this.stateData)
+      return false
+    }
   }
 
   getClickJSON (selector, unit) {

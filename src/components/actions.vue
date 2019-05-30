@@ -4,8 +4,9 @@
     <div v-for="action in unit.actions" :key="action.name" class="justify-center">
       <q-chip square v-if="canUse(action)"
       class="glossy"
-      clickable @click="targLog(action)"
+      clickable @click="targSelect(action)"
       :color="buttonColor(action)" text-color="white">
+      <!-- clickable @click="targLog(action)" -->
       <!-- clickable @click="skillClick(action)" -->
         <q-avatar>
           <img :src="getIcon(action)">
@@ -34,7 +35,7 @@
 // import itemTooltip from './itemTooltip.vue'
 
 export default {
-  props: ['unit', 'playerTeam', 'cpuTeam'],
+  props: ['unit', 'playerTeam', 'cpuTeam', 'selector'],
   components: {},
   data () {
     return {
@@ -56,6 +57,21 @@ export default {
     buttonColor (action) {
       if (this.canUse(action)) return 'indigo'
       else return 'blue-grey'
+    },
+    // targLog (action) {
+    //   action.targLog()
+    // },
+    targSelect (action) {
+      // action.targSelect(selector)
+      this.selector.onClicks.pickSkill(this.selector, action)
+      // battlefieldClick: function (selector, unit) {
+      //   selector.getClickMode(unit).onClick(selector, unit)
+      //   console.log(selector.getClickMode(unit))
+      //   this.activeUnit = selector.stateData.activeUnit.id
+      //     ? [selector.stateData.activeUnit]
+      //     : []
+      // }
+      // action.targSelect(selector)
     },
     targLog (action) {
       action.targLog()

@@ -16,6 +16,15 @@ class TargetRule {
   prevTargs = []
   caster = {}
   find = function () { return [] }
+  canFind = function (unit) {
+    let found = false
+    this.find().forEach((validTarg) => {
+      if (validTarg.id === unit.id) {
+        found = true
+      }
+    })
+    return found
+  }
 
   // Functions are "this" bound in the constructor
   basics = {
