@@ -110,8 +110,8 @@ var jaq = new CPUUnit(gameObj)
 console.log(jaq)
 jaq.raiseAll()
 cpuTeam.front.push(jaq)
-jaq.hasAction.major = false
-jaq.hasAction.minor = false
+// jaq.hasAction.major = false
+// jaq.hasAction.minor = false
 //
 
 let deadGuy = new CPUUnit(gameObj, caenenTemplate())
@@ -204,7 +204,7 @@ lynn.baseStats.HP.current -= 15
 // console.log('Outside of constructor...')
 console.log(lynn)
 
-lynn.hasAction.major = false
+// lynn.hasAction.major = false
 
 // console.log('Enumerability test...')
 // for (let key in lynn.baseStats.DREF) {
@@ -227,7 +227,7 @@ let divineBarrier = new Item.LIB.DIVINEBARRIER()
 bro.equip(new Item.LIB.YOLOMACE())
 bro.equip(new Item.LIB.MARTYRSTAFF())
 bro.equip(divineBarrier)
-bro.hasAction.minor = false
+// bro.hasAction.minor = false
 bro.actions.push(new Action.LIB.INSPIRE(bro))
 bro.actions.push(new Action.LIB.HEAL(bro))
 bro.actions.push(new Action.LIB.NATLOG(bro))

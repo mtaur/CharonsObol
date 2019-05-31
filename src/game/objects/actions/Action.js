@@ -15,6 +15,8 @@ class Action {
   desc = 'Derp around doing nothing.'
   type = 'minor'
   cost = 0
+  after = []
+  prereqs = []
   // Must encode general data object for all targeting schemes...
   targetRules = ['SELF'] // target1, target2.......
   // stage 0 { casterCond: , }

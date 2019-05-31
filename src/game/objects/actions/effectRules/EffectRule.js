@@ -1,4 +1,4 @@
-import { Unit } from '../../units/Unit.js'
+// import { Unit } from '../../units/Unit.js'
 // import { Action } from '../Action.js'
 import { classdir as ruleLib } from './jsload.js'
 // import { cloneDeep as clone, hasIn as hasProp } from 'lodash'
@@ -27,8 +27,9 @@ class EffectRule {
     //   this[key] = hasProp(obj, key) ? obj[key] : templ[key]
     // }
     // let apply = function (target = {}, caster = {}) {}
-    if (hasProp(EffectRule.LIB, effectObj.NAME) {
+    if (hasProp(EffectRule.LIB, effectObj.NAME)) {
       this.apply = EffectRule.LIB[effectObj.NAME](effectObj, target, caster)
+      this.name = effectObj.name
     }
   }
 }
