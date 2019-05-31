@@ -20,6 +20,7 @@ class Action {
   // stage 0 { casterCond: , }
   canUse = function () { return true }
   prevTargs = []
+  effects = [] // match effect to target by index
 
   unit = null
   // function (unit, validSlotArrayForItem)

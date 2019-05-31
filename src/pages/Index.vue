@@ -16,6 +16,7 @@
           :key="unit.id"
           :isActive="isActive(selector, unit)"
           :canTarget="canTarget(selector, unit)"
+          :prevTarget="prevTarget(selector, unit)"
           @click.native="battlefieldClick(selector, unit)"
           >
           <!-- @click.native="makeActive(unit, $event)"> -->
@@ -28,6 +29,7 @@
           :key="unit.id"
           :isActive="isActive(selector, unit)"
           :canTarget="canTarget(selector, unit)"
+          :prevTarget="prevTarget(selector, unit)"
           @click.native="battlefieldClick(selector, unit)"
           >
           <!-- @click.native="makeActive(unit, $event)"> -->
@@ -43,6 +45,7 @@
           :key="unit.id"
           :isActive="isActive(selector, unit)"
           :canTarget="canTarget(selector, unit)"
+          :prevTarget="prevTarget(selector, unit)"
           :class="{'active': isActive(selector, unit)}"
           @click.native="battlefieldClick(selector, unit)"
           >
@@ -55,6 +58,7 @@
           :key="unit.id"
           :isActive="isActive(selector, unit)"
           :canTarget="canTarget(selector, unit)"
+          :prevTarget="prevTarget(selector, unit)"
           :class="{'active': isActive(selector, unit)}"
           @click.native="battlefieldClick(selector, unit)"
           >
@@ -116,6 +120,9 @@ export default {
       return selector.stateData.activeUnit.id
         ? unit.id === selector.stateData.activeUnit.id
         : false
+    },
+    prevTarget: function (selector, unit) {
+      return selector.isPrevTarg(unit)
     },
     battlefieldClick: function (selector, unit) {
       selector.getClickMode(unit).onClick(selector, unit)

@@ -10,7 +10,13 @@ class RUN {
       name: 'Run away',
       type: 'minor',
       desc: 'Run away!',
-      targetRules: ['SELF']
+      targetRules: ['SELF'],
+      effects: [
+        {
+          NAME: 'RUN',
+          name: 'run'
+        }
+      ]
     })
   }
 }

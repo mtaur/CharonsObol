@@ -6,21 +6,6 @@
         {{ stat.name }}: <span v-if="stat.value > 0">+</span>{{ stat.value }}
       </div>
   </q-tooltip>
-  <!-- <div class="col-6">
-    <div class="row align-end">
-      <div class="col-9 statname">{{ stat.name }}: {{ stat.value }}</div>
-      <div class="col-3">
-        <q-btn round size="10px" @click="increase" >
-          <span class="btxt">+</span>
-          <q-tooltip anchor="center right" self="center left" :offset="[10, 10]">
-            <strong>Effects of raising this stat:</strong>
-            (<q-icon name="keyboard_arrow_right"/>)
-          </q-tooltip>
-          <q-badge color="purple" floating>{{ stat.cost }}</q-badge>
-        </q-btn>
-      </div>
-    </div>
-  </div> -->
 </template>
 
 <script>

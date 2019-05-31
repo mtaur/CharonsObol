@@ -1,8 +1,10 @@
 <template>
-<div class="row col-3 justify-center align-center"
-  :class="{active: isActive, canTarget: canTarget}">
-  <div class="wind justify-center align-center"
-    :class="{active: isActive, canTarget: canTarget}">
+<div class="row col-3 justify-center align-center q-pa-xs"
+  :class="marginColorClass">
+  <!-- :class="{active: isActive, canTarget: canTarget, prevTarget: prevTarget}"> -->
+  <div class="wind justify-center align-center q-gutter-xs"
+    :class="[bgColorClass, windClass]">
+    <!-- :class="{active: isActive, canTarget: canTarget, prevTarget: prevTarget}"> -->
     <div class="row">
       <div class="col-4 placebox justify-center align-center">
         <div class="placeholder">(Unit)</div>
@@ -44,9 +46,11 @@
 <script>
 // import statrow from './statchange.vue'
 import resbar from './resbar.vue'
+import { hasIn as hasProp } from 'lodash'
 
 export default {
-  props: ['unit', 'isActive', 'canTarget'],
+  props: ['unit', 'isActive', 'canTarget', 'prevTarget'],
+  // props: ['unit', 'status'],
   // components: { statrow },
   data () {
     return {
@@ -66,6 +70,44 @@ export default {
       }
       // if (this.unit.name === 'Lynneth Javelle') { return 'statics/icons/action-dot.png' }
       // return 'statics/icons/action-both.png'
+    },
+    status () {
+      if (this.canTarget) {
+        return 'canTarget'
+      }
+      if (this.prevTarget) {
+        return 'prevTarget'
+      }
+      if (this.isActive) {
+        return 'isActive'
+      }
+      return 'idle'
+    },
+    bgColorClass () {
+      let bgColor = 'grey-4'
+      let palette = {
+        idle: 'grey-4',
+        isActive: 'cyan',
+        canTarget: 'teal',
+        prevTarget: 'indigo'
+      }
+      if (hasProp(palette, this.status)) {
+        bgColor = palette[this.status]
+      }
+      return 'bg-' + bgColor
+      // if (this.isActive) { bgColor = 'cyan' }
+    },
+    marginColorClass () {
+      if (this.status === 'idle') {
+        return 'grey-4'
+      }
+      return this.bgColorClass
+    },
+    windClass () {
+      if (this.status === 'idle') {
+        return 'wind'
+      }
+      return 'highlightWind'
     }
   },
   components: {
@@ -88,15 +130,16 @@ export default {
     /* height: auto; */
   }
   .wind {
-    background-color: #ddd;
+    /* background-color: #ddd; */
     border-radius: 10px;
-    margin: 5px;
+    /* margin: 5px; */
     /* height: 22vh; */
     /* display: flex; */
     /* height: 320px */
   }
-  /* .namebox {  } */
-  /* .statline { height: 45px; } */
+  .highlightWind {
+    border-radius: 0px;
+  }
 
   .placebox {
     /* height: 110px; */
@@ -111,12 +154,10 @@ export default {
     justify-content: center;
     border-radius: 5px;
   }
-  .active {
+  /* .active {
     background-color: #4cd;
-    /* width: 55%; */
-    /* flex-grow: 1; */
   }
   .canTarget {
     background-color: #c26;
-  }
+  } */
 </style>

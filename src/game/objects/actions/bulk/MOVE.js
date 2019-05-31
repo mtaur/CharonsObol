@@ -10,7 +10,13 @@ class MOVE {
       name: 'Move',
       type: 'minor',
       desc: 'Change rows.',
-      targetRules: ['SELF']
+      targetRules: ['SELF'],
+      effects: [
+        {
+          NAME: 'ROWSWAP',
+          name: 'rowSwap'
+        }
+      ]
     })
   }
 }

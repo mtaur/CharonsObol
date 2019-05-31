@@ -12,7 +12,19 @@ class FLAMEFIST {
       type: 'major',
       desc: 'Deal 1x(MELEE + MAGIC) damage to a target with a melee attack.',
       cost: 2,
-      targetRules: ['MELEE']
+      targetRules: ['MELEE'],
+      effects: [
+        {
+          NAME: 'DAMAGE',
+          name: 'damage',
+          scale: {
+            MAGIC: 1,
+            MELEE: 1
+          },
+          DREDScale: 2,
+          DREFScale: 2
+        }
+      ]
     })
   }
 }

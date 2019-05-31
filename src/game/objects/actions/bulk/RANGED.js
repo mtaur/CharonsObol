@@ -10,7 +10,18 @@ class RANGED {
       name: 'Ranged',
       type: 'major',
       desc: 'Basic ranged attack. Can target back row UNLESS a unit in the front row has GUARD activated.',
-      targetRules: ['RANGED']
+      targetRules: ['RANGED'],
+      effects: [
+        {
+          NAME: 'DAMAGE',
+          name: 'damage',
+          scale: {
+            RANGED: 1
+          },
+          DREDScale: 1,
+          DREFScale: 1
+        }
+      ]
     })
   }
 }

@@ -11,7 +11,21 @@ class LUNGE {
       name: 'Lunge',
       type: 'major',
       desc: 'Lunge FROM the back row TO the front row, doing 2x the SMALLER of MELEE and RANGED as damage to a target with a melee attack.',
-      targetRules: ['MELEE']
+      targetRules: ['MELEE'],
+      effects: [
+        {
+          NAME: 'DAMAGE',
+          name: 'damage',
+          scale: {
+            min: {
+              MELEE: 2,
+              RANGED: 2
+            }
+          },
+          DREDScale: 2,
+          DREFScale: 2
+        }
+      ]
     })
   }
 }

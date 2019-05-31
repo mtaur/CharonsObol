@@ -58,6 +58,16 @@ class Selector {
     }
   }
 
+  isPrevTarg (unit) {
+    if (unit && unit.id && this.stateData.activeSkill && this.stateData.activeSkill.prevTargs) {
+      let prevTargs = this.stateData.activeSkill.prevTargs
+      for (let key in prevTargs) {
+        if (prevTargs[key].id === unit.id) { return true }
+      }
+      return false
+    }
+  }
+
   getClickJSON (selector, unit) {
     return {
       viewState: '',

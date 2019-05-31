@@ -1,4 +1,5 @@
 import { Action } from '../Action.js'
+// import { Stat } from '../../units/Stat.js'
 
 class CHAINLGT {
   static NAME = 'CHAINLGT'
@@ -12,7 +13,27 @@ class CHAINLGT {
       type: 'major',
       desc: 'Deal 1xMAGIC damage to two targets, hitting one each from the front and back rows if possible.',
       cost: 2,
-      targetRules: ['CHAINLGT1', 'CHAINLGT2']
+      targetRules: ['CHAINLGT1', 'CHAINLGT2'],
+      effects: [
+        {
+          NAME: 'DAMAGE',
+          name: 'damage',
+          scale: {
+            MAGIC: 1
+          },
+          DREDScale: 1,
+          DREFScale: 1
+        },
+        {
+          NAME: 'DAMAGE',
+          name: 'damage',
+          scale: {
+            MAGIC: 1
+          },
+          DREDScale: 1,
+          DREFScale: 1
+        }
+      ]
     })
   }
 }
