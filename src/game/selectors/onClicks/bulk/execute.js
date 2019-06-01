@@ -30,6 +30,11 @@ var execute = function (selector, unit) {
   if (skill.type === 'minor' || skill.type === 'both') {
     caster.hasAction.minor = false
   }
+  for (let index in skill.after) {
+    let after = new EffectRule(skill.after[index], {}, caster)
+    after.apply()
+  }
+  if (skill.cost > 0) { caster.baseStats.MP.current -= skill.cost }
   selector.stateData.activeUnit = {}
   selector.stateData.activeSkill = {}
   selector.stateData.inspectUnit = {}

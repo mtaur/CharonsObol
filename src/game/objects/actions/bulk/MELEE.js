@@ -11,6 +11,9 @@ class MELEE {
       type: 'major',
       desc: 'Basic melee attack. Must target front row if possible. Move to front row if not already there.',
       targetRules: ['MELEE'],
+      after: [{
+        NAME: 'ROWFRONT'
+      }],
       effects: [
         {
           NAME: 'DAMAGE',

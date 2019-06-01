@@ -13,6 +13,9 @@ class FLAMEFIST {
       desc: 'Deal 1x(MELEE + MAGIC) damage to a target with a melee attack.',
       cost: 2,
       targetRules: ['MELEE'],
+      after: [{
+        NAME: 'ROWFRONT'
+      }],
       effects: [
         {
           NAME: 'DAMAGE',

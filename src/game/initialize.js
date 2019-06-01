@@ -183,10 +183,10 @@ var lynn = new Unit(gameObj, {
   souls: [lynnsoul],
   hero: true,
   side: Unit.SIDE.PLAYER,
-  pos: Unit.POS.FRONT,
+  pos: Unit.POS.BACK,
   items: []
 })
-playerTeam.front.push(lynn)
+playerTeam.back.push(lynn)
 // lynn.souls = [lynnsoul]
 
 let spikeyShield = new Item.LIB.SPIKEYSHIELD()
@@ -232,6 +232,9 @@ bro.actions.push(new Action.LIB.INSPIRE(bro))
 bro.actions.push(new Action.LIB.HEAL(bro))
 bro.actions.push(new Action.LIB.NATLOG(bro))
 // bro.items.push(new Item.LIB.DIVINEBARRIER())
+
+bro.baseStats.HP.current -= 40
+
 playerTeam.front.push(bro)
 // bro.souls = [brosoul]
 // console.log('Outside of constructor...')

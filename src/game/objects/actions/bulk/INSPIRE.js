@@ -16,7 +16,7 @@ class INSPIRE {
       type: 'major',
       desc: 'Restores a friendly unit\'s major action.',
       cost: 1,
-      targetRules: ['ALLYNOTSELF'],
+      targetRules: ['INSPIRE'],
       effects: [{
         NAME: 'INSPIRE',
         name: 'inspire',

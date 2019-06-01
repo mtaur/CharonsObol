@@ -49,10 +49,11 @@ export default {
       return 'statics/icons/action-none.png'
     },
     canUse (action) {
-      if (action.type === 'both') { return this.unit.hasAction.major && this.unit.hasAction.minor }
-      if (action.type === 'major') { return this.unit.hasAction.major }
-      if (action.type === 'minor') { return this.unit.hasAction.minor }
-      return true
+      // if (action.type === 'both') { return this.unit.hasAction.major && this.unit.hasAction.minor }
+      // if (action.type === 'major') { return this.unit.hasAction.major }
+      // if (action.type === 'minor') { return this.unit.hasAction.minor }
+      // return true
+      return action.canUse()
     },
     buttonColor (action) {
       if (this.canUse(action)) return 'indigo'

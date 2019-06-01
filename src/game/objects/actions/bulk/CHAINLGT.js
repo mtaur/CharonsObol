@@ -14,6 +14,9 @@ class CHAINLGT {
       desc: 'Deal 1xMAGIC damage to two targets, hitting one each from the front and back rows if possible.',
       cost: 2,
       targetRules: ['CHAINLGT1', 'CHAINLGT2'],
+      after: [{
+        NAME: 'ROWFRONT'
+      }],
       effects: [
         {
           NAME: 'DAMAGE',

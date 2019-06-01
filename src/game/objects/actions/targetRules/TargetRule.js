@@ -66,6 +66,12 @@ class TargetRule {
     caster: function (unit) {
       return unit.id === this.caster.id
     },
+    hasMajorAction: function (unit) {
+      return unit.hasAction.major
+    },
+    hasMinorAction: function (unit) {
+      return unit.hasAction.minor
+    },
     different: function (unit) {
       let retVal = true
       for (let index in this.prevTargs) {
@@ -155,7 +161,6 @@ class TargetRule {
       } else return all
       // console.log('Units remaining after prefs:', prefTargets)
     }
-
     this.find = find
   }
 }

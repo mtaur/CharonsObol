@@ -20,9 +20,21 @@ class Action {
   // Must encode general data object for all targeting schemes...
   targetRules = ['SELF'] // target1, target2.......
   // stage 0 { casterCond: , }
-  canUse = function () { return true }
   prevTargs = []
   effects = [] // match effect to target by index
+  canUse = function () {
+    let retVal = true
+    let obj = { playerTeam: this.unit.playerTeam, cpuTeam: this.unit.cpuTeam, caster: this.unit }
+    this.prereqs.forEach((prereq) => {
+      let rule = new TargetRule.LIB[prereq](obj)
+      if (rule.canFind(this.unit) === false) { retVal = false }
+    })
+    if (this.cost > this.unit.baseStats.MP.current) { retVal = false }
+    if (this.type === 'both' && !(this.unit.hasAction.major && this.unit.hasAction.minor)) { retVal = false }
+    if (this.type === 'major' && !this.unit.hasAction.major) { retVal = false }
+    if (this.type === 'minor' && !this.unit.hasAction.minor) { retVal = false }
+    return retVal
+  }
 
   unit = null
   // function (unit, validSlotArrayForItem)

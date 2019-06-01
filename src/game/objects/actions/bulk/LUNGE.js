@@ -12,8 +12,13 @@ class LUNGE {
       type: 'both',
       desc: 'Lunge FROM the back row TO the front row, doing 2x the SMALLER of MELEE and RANGED as damage to a target with a melee attack.',
       targetRules: ['MELEE'],
-      prereqs: ['BACK'],
-      after: ['ROWSWAP'],
+      prereqs: ['BACK'], // TargetRules.LIB.BACK ...
+      after: [{
+        NAME: 'ROWFRONT'
+      }],
+      // after: [{
+      //   NAME: 'ROWSWAP'
+      // }],
       effects: [
         {
           NAME: 'DAMAGE',
