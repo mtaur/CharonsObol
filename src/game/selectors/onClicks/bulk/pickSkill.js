@@ -13,5 +13,9 @@ var pickSkill = function (selector, skill) {
   // console.log('Pick skill', skill)
   selector.changeState('ChooseTarget')
 }
-
-export default pickSkill
+var obj = {
+  filename: 'pickSkill',
+  exprt: pickSkill
+}
+export default obj
+// export default pickSkill

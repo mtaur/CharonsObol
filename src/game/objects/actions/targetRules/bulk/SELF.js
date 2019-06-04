@@ -2,6 +2,7 @@ import { TargetRule } from '../TargetRule.js'
 
 class SELF {
   static NAME = 'SELF'
+  static filename = 'SELF'
 
   // { name: 'lunge', type: 'both', desc: 'Lunge FROM the back row TO the front row, doing 2x the SMALLER of MELEE and RANGED as damage to a target with a melee attack.' }
   constructor (obj) {

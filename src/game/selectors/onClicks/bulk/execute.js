@@ -41,5 +41,9 @@ var execute = function (selector, unit) {
   selector.stateData.skill = {}
   selector.changeState('ChooseUnit')
 }
-
-export default execute
+var obj = {
+  filename: 'execute',
+  exprt: execute
+}
+export default obj
+// export default execute

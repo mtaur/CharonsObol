@@ -1,8 +1,9 @@
 import { Item } from '../Item.js'
 
 // console.log(Soul)
-class Spellsword {
+class SPELLSWORD {
   static NAME = 'SPELLSWORD'
+  static filename = 'SPELLSWORD'
 
   constructor () {
     return new Item({
@@ -29,5 +30,9 @@ class Spellsword {
     })
   }
 }
-
-export default Spellsword
+var obj = {
+  filename: 'SPELLSWORD',
+  exprt: SPELLSWORD
+}
+export default obj
+// export default Spellsword

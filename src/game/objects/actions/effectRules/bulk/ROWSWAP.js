@@ -44,7 +44,11 @@ function ROWSWAP (effectObj = {}, target = {}, caster = {}) {
   }
   return apply
 }
-
-ROWSWAP.NAME = 'ROWSWAP'
-
-export default ROWSWAP
+var obj = {
+  filename: 'ROWSWAP',
+  exprt: ROWSWAP
+}
+export default obj
+// ROWSWAP.NAME = 'ROWSWAP'
+//
+// export default ROWSWAP

@@ -34,6 +34,11 @@ function HEAL (effectObj = {}, target = {}, caster = {}) {
   return apply
 }
 
-HEAL.NAME = 'HEAL'
-
-export default HEAL
+var obj = {
+  filename: 'HEAL',
+  exprt: HEAL
+}
+export default obj
+// HEAL.NAME = 'HEAL'
+//
+// export default HEAL

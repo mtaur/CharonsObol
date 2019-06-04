@@ -1,8 +1,9 @@
 import { Item } from '../Item.js'
 
 // console.log(Soul)
-class MagicStaff {
+class MAGICSTAFF {
   static NAME = 'MAGICSTAFF'
+  static filename = 'MAGICSTAFF'
 
   constructor () {
     return new Item({
@@ -15,5 +16,9 @@ class MagicStaff {
     })
   }
 }
-
-export default MagicStaff
+var obj = {
+  filename: 'MAGICSTAFF',
+  exprt: MAGICSTAFF
+}
+export default obj
+// export default MagicStaff

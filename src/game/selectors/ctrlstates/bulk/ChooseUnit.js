@@ -4,6 +4,7 @@ import { CtrlState } from '../CtrlState.js'
 class ChooseUnit extends CtrlState {
   // static NAME = 'CHOOSEUNIT'
   // static name = 'ChooseUnit'
+  static filename = 'ChooseUnit'
   //
   getClickJSON (selector, unit) {
     if (selector.game.playerTeam.field.indexOf(unit) > -1) {

@@ -12,6 +12,7 @@ class Action {
   // { name: 'melee', type: 'major', desc: 'Basic malee attack. Must target front row if possible.' },
   NAME = 'DERP'
   name = 'Derp'
+  filename = 'Derp'
   desc = 'Derp around doing nothing.'
   type = 'minor'
   cost = 0
@@ -102,7 +103,10 @@ class Action {
     for (let propName in obj) {
       if (hasProp(this, propName)) {
         this[propName] = obj[propName]
-      } else { alert('Missing prop', propName) }
+      } else {
+        alert('Action constructor: Missing prop', propName, 'obj:', obj)
+        console.log('Action constructor: Missing prop', propName, 'obj:', obj)
+      }
     }
     this.targetRules = this.targetRules.map((str) => TargetRule.LIB[str])
     // this.name = obj.name
@@ -121,7 +125,8 @@ for (let key in actionLib) {
   let NamedAction = actionLib[key]
   // Redundant functionality with constructor, but ESLint
   // doesn't like 'unused' objects:
-  if (!Action.LIB[NamedAction.NAME]) { Action.LIB[NamedAction.NAME] = NamedAction }
+  // if (!Action.LIB[NamedAction.NAME]) { Action.LIB[NamedAction.NAME] = NamedAction }
+  if (!Action.LIB[NamedAction.filename]) { Action.LIB[NamedAction.filename] = NamedAction }
 }
 
 export { Action }

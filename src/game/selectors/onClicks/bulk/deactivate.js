@@ -11,5 +11,9 @@ var deactivate = function (selector, unit) {
   selector.stateData.activeSkill = {}
   selector.changeState('ChooseUnit')
 }
-
-export default deactivate
+var obj = {
+  filename: 'deactivate',
+  exprt: deactivate
+}
+export default obj
+// export default deactivate

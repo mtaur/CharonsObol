@@ -1,8 +1,9 @@
 import { Item } from '../Item.js'
 
 // console.log(Soul)
-class BronzeRing {
+class BRONZERING {
   static NAME = 'BRONZERING'
+  static filename = 'BRONZERING'
 
   constructor () {
     return new Item({
@@ -15,5 +16,9 @@ class BronzeRing {
     })
   }
 }
-
-export default BronzeRing
+var obj = {
+  filename: 'BRONZERING',
+  exprt: BRONZERING
+}
+export default obj
+// export default BronzeRing

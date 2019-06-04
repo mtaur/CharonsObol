@@ -1,8 +1,9 @@
 import { Item } from '../Item.js'
 
 // console.log(Soul)
-class SpikeyShield {
+class SPIKEYSHIELD {
   static NAME = 'SPIKEYSHIELD'
+  static filename = 'SPIKEYSHIELD'
 
   constructor () {
     return new Item({
@@ -15,5 +16,9 @@ class SpikeyShield {
     })
   }
 }
-
-export default SpikeyShield
+var obj = {
+  filename: 'SPIKEYSHIELD',
+  exprt: SPIKEYSHIELD
+}
+export default obj
+// export default SpikeyShield

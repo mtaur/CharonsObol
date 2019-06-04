@@ -4,6 +4,7 @@ import { CtrlState } from '../CtrlState.js'
 class ChooseTarget extends CtrlState {
   // static NAME = 'CHOOSETARGET'
   // static name = 'ChooseTarget'
+  static filename = 'ChooseTarget'
   //
   getClickJSON (selector, unit) {
     if (selector.canTarget(unit)) {

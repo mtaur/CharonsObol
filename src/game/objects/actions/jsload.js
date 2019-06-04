@@ -16,8 +16,8 @@ var classdir = {}
 // destructure cache to store only by class name
 for (var key in cache) {
   if (cache[key].default) {
-    let obj = cache[key].default
-    classdir[obj.name] = obj
+    let Obj = cache[key].default
+    classdir[Obj.filename] = Obj
     // console.log('cacheing', cache[key].default)
   }
 }

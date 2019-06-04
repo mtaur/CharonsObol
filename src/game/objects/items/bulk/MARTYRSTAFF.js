@@ -1,8 +1,9 @@
 import { Item } from '../Item.js'
 
 // console.log(Soul)
-class Martyrstaff {
+class MARTYRSTAFF {
   static NAME = 'MARTYRSTAFF'
+  static filename = 'MARTYRSTAFF'
 
   constructor () {
     return new Item({
@@ -20,5 +21,9 @@ class Martyrstaff {
     })
   }
 }
-
-export default Martyrstaff
+var obj = {
+  filename: 'MARTYRSTAFF',
+  exprt: MARTYRSTAFF
+}
+export default obj
+// export default Martyrstaff

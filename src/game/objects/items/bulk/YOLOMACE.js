@@ -1,8 +1,9 @@
 import { Item } from '../Item.js'
 
 // console.log(Soul)
-class Yolomace {
+class YOLOMACE {
   static NAME = 'YOLOMACE'
+  static filename = 'YOLOMACE'
 
   constructor () {
     return new Item({
@@ -18,5 +19,9 @@ class Yolomace {
     })
   }
 }
-
-export default Yolomace
+var obj = {
+  filename: 'YOLOMACE',
+  exprt: YOLOMACE
+}
+export default obj
+// export default Yolomace

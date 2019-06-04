@@ -53,7 +53,7 @@ class Item {
     for (let propName in obj) {
       if (hasProp(this, propName)) {
         this[propName] = obj[propName]
-      } else { alert('Missing prop', propName) }
+      } else { alert('Item constructor: Missing prop', propName) }
     }
     // this.name = obj.name
     // this.statBonus = obj.statBonus

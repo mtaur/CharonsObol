@@ -24,7 +24,11 @@ function ROWFRONT (effectObj = {}, target = {}, caster = {}) {
   }
   return apply
 }
-
-ROWFRONT.NAME = 'ROWFRONT'
-
-export default ROWFRONT
+var obj = {
+  filename: 'ROWFRONT',
+  exprt: ROWFRONT
+}
+export default obj
+// ROWFRONT.NAME = 'ROWFRONT'
+//
+// export default ROWFRONT

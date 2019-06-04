@@ -11,5 +11,9 @@ var makeActive = function (selector, unit) {
   selector.stateData.activeSkill = {}
   selector.changeState('ChooseAction')
 }
-
-export default makeActive
+var obj = {
+  filename: 'makeActive',
+  exprt: makeActive
+}
+export default obj
+// export default makeActive

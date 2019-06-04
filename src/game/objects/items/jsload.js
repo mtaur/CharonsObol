@@ -17,7 +17,8 @@ var classdir = {}
 for (var key in cache) {
   if (cache[key].default) {
     let obj = cache[key].default
-    classdir[obj.name] = obj
+    // classdir[obj.name] = obj
+    classdir[obj.filename] = obj.exprt
     // console.log('cacheing', cache[key].default)
   }
 }

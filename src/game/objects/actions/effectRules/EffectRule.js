@@ -37,7 +37,8 @@ class EffectRule {
 // populate library using jsload from ./bulk
 for (let key in ruleLib) {
   let NamedRule = ruleLib[key]
-  if (!EffectRule.LIB[NamedRule.NAME]) { EffectRule.LIB[NamedRule.NAME] = NamedRule }
+  // if (!EffectRule.LIB[NamedRule.NAME]) { EffectRule.LIB[NamedRule.NAME] = NamedRule }
+  if (!EffectRule.LIB[NamedRule.filename]) { EffectRule.LIB[NamedRule.filename] = NamedRule.exprt }
 }
 
 export { EffectRule }

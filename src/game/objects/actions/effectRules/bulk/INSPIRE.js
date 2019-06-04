@@ -19,7 +19,12 @@ function INSPIRE (effectObj = {}, target = {}, caster = {}) {
   }
   return apply
 }
-
-INSPIRE.NAME = 'INSPIRE'
-
-export default INSPIRE
+var obj = {
+  filename: 'INSPIRE',
+  exprt: INSPIRE
+}
+export default obj
+//
+// INSPIRE.NAME = 'INSPIRE'
+//
+// export default INSPIRE

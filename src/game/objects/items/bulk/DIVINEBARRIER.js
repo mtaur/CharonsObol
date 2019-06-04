@@ -1,8 +1,9 @@
 import { Item } from '../Item.js'
 
 // console.log(Soul)
-class DivineBarrier {
+class DIVINEBARRIER {
   static NAME = 'DIVINEBARRIER'
+  static filename = 'DIVINEBARRIER'
 
   constructor () {
     return new Item({
@@ -19,5 +20,9 @@ class DivineBarrier {
     })
   }
 }
-
-export default DivineBarrier
+var obj = {
+  filename: 'DIVINEBARRIER',
+  exprt: DIVINEBARRIER
+}
+export default obj
+// export default DivineBarrier

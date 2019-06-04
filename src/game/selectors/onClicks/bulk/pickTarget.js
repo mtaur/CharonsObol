@@ -26,5 +26,9 @@ var pickTarget = function (selector, unit) {
   // }
   // selector.changeState('ChooseUnit')
 }
-
-export default pickTarget
+var obj = {
+  filename: 'pickTarget',
+  exprt: pickTarget
+}
+export default obj
+// export default pickTarget

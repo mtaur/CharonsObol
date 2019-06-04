@@ -3,6 +3,7 @@ import { Soul } from '../Soul.js'
 // console.log(Soul)
 class Penelope {
   static NAME = 'PENELOPE'
+  static filename = 'PENELOPE'
 
   constructor () {
     return new Soul({

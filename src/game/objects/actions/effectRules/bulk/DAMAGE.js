@@ -34,6 +34,10 @@ function DAMAGE (effectObj = {}, target = {}, caster = {}) {
   return apply
 }
 
-DAMAGE.NAME = 'DAMAGE'
-
-export default DAMAGE
+var obj = {
+  filename: 'DAMAGE',
+  exprt: DAMAGE
+}
+export default obj
+// DAMAGE.NAME = 'DAMAGE'
+// export default DAMAGE
