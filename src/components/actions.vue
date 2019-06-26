@@ -2,9 +2,10 @@
 <div class="col-3 wind justify-center align-center">
   <div class="row items-center justify-center">
     <div v-for="action in unit.actions" :key="action.name" class="justify-center">
-      <q-chip square v-if="canUse(action)"
+      <!-- <q-chip square v-if="canUse(action)" ></q-chip> -->
+      <q-chip square
       class="glossy"
-      :style="{ height: buttonSize(action), fontSize: fontSize(action)}"
+      :style="actionStyle(action)"
       clickable @click="targSelect(action)"
       :color="buttonColor(action)" text-color="white">
       <!-- clickable @click="targLog(action)" -->
@@ -17,7 +18,7 @@
             <span style="font-size: 14px"><h6>{{ action.name }}:</h6> {{ action.desc }}</span>
         </q-tooltip>
       </q-chip>
-      <q-chip square dense v-else :color="buttonColor(action)" text-color="white">
+      <!-- <q-chip square dense v-else :color="buttonColor(action)" text-color="white">
         <q-avatar>
           <img :src="getIcon(action)">
         </q-avatar>
@@ -25,7 +26,7 @@
         <q-tooltip anchor="center right" self="center left" :offset="[10, 10]" max-width="20vw">
           <span style="font-size: 14px"><h6>{{ action.name }}:</h6> {{ action.desc }}</span>
         </q-tooltip>
-      </q-chip>
+      </q-chip> -->
     </div>
   </div>
 </div>
@@ -55,6 +56,27 @@ export default {
       // if (action.type === 'minor') { return this.unit.hasAction.minor }
       // return true
       return action.canUse()
+    },
+    actionStyle (action) {
+      if (this.selector.stateData.activeSkill.name === action.name) {
+        return {
+          // backgroundColor: 'amber',
+          height: '40px',
+          fontSize: '18px'
+        }
+      } else if (this.canUse(action)) {
+        return {
+          // backgroundColor: 'indigo',
+          height: '32px',
+          fontSize: '14px'
+        }
+      } else {
+        return {
+          // backgroundColor: 'blue-grey',
+          height: '24px',
+          fontSize: '12px'
+        }
+      }
     },
     buttonColor (action) {
       if (this.selector.stateData.activeSkill.name === action.name) return 'amber'
