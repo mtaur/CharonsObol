@@ -2,7 +2,8 @@
   <div class="col-6">
     <!-- {{ stat.name }}: {{ stat.value }}  <button @click="increase">+  <q-badge color="red" floating>{{ stat.cost }}</q-badge></button> -->
     <div class="row align-end">
-      <div class="col-9 statname">{{ stat.name }}: {{ stat.value }}</div>
+      <!-- <div class="col-9 statname">{{ stat.name }}: {{ stat.value }}</div> -->
+      <div class="col-9 statname">{{ stat.name }}: {{ val(stat) }}</div>
       <div class="col-3">
         <q-btn round glossy color="amber" text-color="black" size="10px" @click="increase" >
           <span class="btxt">+</span>
@@ -24,7 +25,10 @@ export default {
   },
   components: { statTooltip },
   methods: {
-    increase: function () { this.unit.raise(this.stat.name) }
+    increase: function () { this.unit.raise(this.stat.name) },
+    val (stat) {
+      return this.unit.effectiveStatValues[stat.name]
+    }
   }
 }
 </script>

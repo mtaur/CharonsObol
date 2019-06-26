@@ -4,6 +4,7 @@
     <div v-for="action in unit.actions" :key="action.name" class="justify-center">
       <q-chip square v-if="canUse(action)"
       class="glossy"
+      :style="{ height: buttonSize(action), fontSize: fontSize(action)}"
       clickable @click="targSelect(action)"
       :color="buttonColor(action)" text-color="white">
       <!-- clickable @click="targLog(action)" -->
@@ -56,15 +57,28 @@ export default {
       return action.canUse()
     },
     buttonColor (action) {
-      if (this.canUse(action)) return 'indigo'
+      if (this.selector.stateData.activeSkill.name === action.name) return 'amber'
+      else if (this.canUse(action)) return 'indigo'
       else return 'blue-grey'
+    },
+    buttonSize (action) {
+      if (this.selector.stateData.activeSkill.name === action.name) return '40px'
+      else return '32px'
+    },
+    fontSize (action) {
+      if (this.selector.stateData.activeSkill.name === action.name) return '18px'
+      else return '14px'
     },
     // targLog (action) {
     //   action.targLog()
     // },
     targSelect (action) {
       // action.targSelect(selector)
-      this.selector.onClicks.pickSkill(this.selector, action)
+      if (this.selector.stateData.activeSkill.name === action.name) {
+        this.selector.onClicks.unpickSkill(this.selector, action)
+      } else {
+        this.selector.onClicks.pickSkill(this.selector, action)
+      }
       // battlefieldClick: function (selector, unit) {
       //   selector.getClickMode(unit).onClick(selector, unit)
       //   console.log(selector.getClickMode(unit))
