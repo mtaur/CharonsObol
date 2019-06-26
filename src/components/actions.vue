@@ -2,8 +2,7 @@
 <div class="col-3 wind justify-center align-center">
   <div class="row items-center justify-center">
     <div v-for="action in unit.actions" :key="action.name" class="justify-center">
-      <!-- <q-chip square v-if="canUse(action)" ></q-chip> -->
-      <q-chip square
+      <q-chip square v-if="canUse(action)"
       class="glossy"
       :style="actionStyle(action)"
       clickable @click="targSelect(action)"
@@ -15,18 +14,41 @@
         </q-avatar>
         {{ action.name }}
         <q-tooltip anchor="center right" self="center left" :offset="[10, 10]" content-class="bg-teal" max-width="20vw">
-            <span style="font-size: 14px"><h6>{{ action.name }}:</h6> {{ action.desc }}</span>
+            <span style="font-size: 14px">
+              <h6>
+                {{ action.name }}
+                <div v-if="action.cost > 0" :style="{ color: 'blue' }">
+                  {{ action.cost }} MP
+                </div>
+              </h6>
+              <div>
+                {{ action.desc }}
+              </div>
+            </span>
         </q-tooltip>
       </q-chip>
-      <!-- <q-chip square dense v-else :color="buttonColor(action)" text-color="white">
+      <q-chip square dense v-else :color="buttonColor(action)" text-color="white">
         <q-avatar>
           <img :src="getIcon(action)">
         </q-avatar>
         {{ action.name }}
-        <q-tooltip anchor="center right" self="center left" :offset="[10, 10]" max-width="20vw">
-          <span style="font-size: 14px"><h6>{{ action.name }}:</h6> {{ action.desc }}</span>
+        <q-tooltip anchor="center right" self="center left" :offset="[10, 10]" content-class="bg-teal" max-width="20vw">
+            <span style="font-size: 14px">
+              <h6>
+                {{ action.name }}
+                <div v-if="action.cost > 0 && action.cost > unit.baseStats.MP.current" :style="{ color: 'red' }">
+                  {{ action.cost }} MP
+                </div>
+                <div v-if="action.cost > 0 && action.cost <= unit.baseStats.MP.current" :style="{ color: 'blue' }">
+                  {{ action.cost }} MP
+                </div>
+              </h6>
+              <div>
+                {{ action.desc }}
+              </div>
+            </span>
         </q-tooltip>
-      </q-chip> -->
+      </q-chip>
     </div>
   </div>
 </div>

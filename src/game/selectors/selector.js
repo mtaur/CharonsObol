@@ -1,6 +1,7 @@
 import { CtrlState } from './ctrlstates/CtrlState.js'
 import { onClicks } from './onClicks/onClicks.js'
 import { classdir as ctrlStateLib } from './ctrlstates/jsload.js'
+import { hasIn as hasProp } from 'lodash'
 
 class Selector {
   // game object
@@ -43,7 +44,8 @@ class Selector {
   }
 
   canTarget (unit) {
-    if (unit && unit.id && this.stateData.activeSkill && this.stateData.activeSkill.targetRules) {
+    // if (unit && unit.id && this.stateData.activeSkill && this.stateData.activeSkill.targetRules) {
+    if (hasProp(unit, 'id') && hasProp(this, 'stateData.activeSkill.targetRules')) {
       let rule = new this.stateData.activeSkill.targetRules[0]({
         caster: this.stateData.activeUnit,
         playerTeam: this.stateData.activeUnit.playerTeam,
@@ -59,13 +61,14 @@ class Selector {
   }
 
   isPrevTarg (unit) {
-    if (unit && unit.id && this.stateData.activeSkill && this.stateData.activeSkill.prevTargs) {
+    // if (unit && unit.id && this.stateData.activeSkill && this.stateData.activeSkill.prevTargs) {
+    if (hasProp(unit, 'id') && hasProp(this, 'stateData.activeSkill.prevTargs')) {
       let prevTargs = this.stateData.activeSkill.prevTargs
       for (let key in prevTargs) {
         if (prevTargs[key].id === unit.id) { return true }
       }
-      return false
     }
+    return false
   }
 
   getClickJSON (selector, unit) {
