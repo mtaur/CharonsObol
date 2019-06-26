@@ -14,11 +14,24 @@ class Penelope {
       `It used to be taboo for women wearing pants to do ` +
       `sorcery, but now it's kind of accepted but not really...`,
       bonus: {
-        HP: -18,
-        MP: 3,
+        // HP: -18,
+        // MP: 3,
+        // MP: 2,
         RANGED: 6,
         MAGIC: 6
       },
+      converts: [
+        {
+          from: 'HP',
+          to: 'MP',
+          value: 0.02
+        },
+        {
+          from: 'HP',
+          to: 'HP',
+          value: -0.2
+        }
+      ],
       skills: []
     })
   }

@@ -16,6 +16,28 @@ class Brocantrip {
         DRED: 2,
         INIT: 1
       },
+      converts: [
+        {
+          from: 'MAGIC',
+          to: 'DRED',
+          value: 0.1
+        },
+        {
+          from: 'MAGIC',
+          to: 'DREF',
+          value: 0.1
+        },
+        {
+          from: 'DREF',
+          to: 'DREF',
+          value: -0.5
+        },
+        {
+          from: 'DRED',
+          to: 'DRED',
+          value: -0.5
+        }
+      ],
       skills: []
     })
   }

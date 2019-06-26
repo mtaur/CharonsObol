@@ -16,6 +16,7 @@ class TargetRule {
   prevTargs = []
   caster = {}
   find = function () { return [] }
+  // Is the given unit a valid target?
   canFind = function (unit) {
     let found = false
     this.find().forEach((validTarg) => {
@@ -155,7 +156,7 @@ class TargetRule {
       for (let index in prefs) {
         prefTargets = prefTargets.filter(prefs[index])
       }
-      console.log('Units remaining after prefs:', prefTargets)
+      // console.log('Units remaining after prefs:', prefTargets)
       if (prefTargets.length > 0) {
         return prefTargets
       } else return all

@@ -174,6 +174,7 @@ class StatMods {
     // let souls = this.souls
     let items = this.items
     let statuses = this.statuses
+    let souls = this.souls
 
     for (let index in items) {
       let item = items[index]
@@ -181,6 +182,10 @@ class StatMods {
     }
     for (let status in statuses) {
       convertHolders.push(status)
+    }
+    for (let index in souls) {
+      convertHolders.push(souls[index])
+      // console.log(soul)
     }
     // for (let soul in souls) {
     //   modHolders.push(soul.skills)

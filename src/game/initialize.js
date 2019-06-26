@@ -82,7 +82,9 @@ for (let i = 1; i < 4; i++) {
     }
     unit.name = 'Knight of Caenenfoeder ' + i
     unit.raiseAll()
+    //
     cpuTeam.front.push(unit)
+    //
     // console.log('Outside of constructor...')
     console.log(unit)
   } else {
@@ -99,7 +101,9 @@ for (let i = 1; i < 4; i++) {
     unit.pos = Unit.POS.BACK
     unit.name = 'Archer of Caenenfoeder ' + i
     unit.raiseAll()
+    //
     cpuTeam.back.push(unit)
+    //
     // console.log('Outside of constructor...')
     console.log(unit)
   }
@@ -109,7 +113,9 @@ var jaq = new CPUUnit(gameObj)
 // console.log('Outside of constructor...')
 console.log(jaq)
 jaq.raiseAll()
+//
 cpuTeam.front.push(jaq)
+//
 // jaq.hasAction.major = false
 // jaq.hasAction.minor = false
 //

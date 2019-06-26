@@ -31,7 +31,6 @@ class Soul {
   constructor (obj) {
     if (Soul.validateObj(obj)) {
       if (!obj.cost) { obj.cost = [0, 5, 10] }
-
       // Constructor automatically archives new soul in
       // Soul.LIB.  ESLint dislikes, moved.
       // if (!Soul.LIB[obj.NAME]) {

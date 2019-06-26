@@ -77,7 +77,8 @@ export default {
       // if (action.type === 'major') { return this.unit.hasAction.major }
       // if (action.type === 'minor') { return this.unit.hasAction.minor }
       // return true
-      return action.canUse()
+      return action.canUseTree()
+      // return action.canUse()
     },
     actionStyle (action) {
       if (this.selector.stateData.activeSkill.name === action.name) {

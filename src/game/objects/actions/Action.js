@@ -74,6 +74,44 @@ class Action {
     // })
   }
 
+  canUseTree = function () {
+    if (!this.canUse()) { return false }
+    let validPaths = []
+    this.canUseRecursion([], validPaths)
+    if (validPaths.length > 0) {
+      console.log('Valid target paths:', validPaths)
+      return true
+    }
+    console.log('No targets for', this.name)
+    return false
+  }
+
+  canUseRecursion = function (prevTargs = [], validPaths = []) {
+    let rule = new this.targetRules[0]({
+      caster: this.unit,
+      playerTeam: this.unit.playerTeam,
+      cpuTeam: this.unit.cpuTeam,
+      prevTargs: prevTargs
+    })
+    // if (rule.find().length === 0) {
+    //   console.log('No targets for', this.name)
+    //   return false
+    // }
+    rule.find().forEach((item, index) => {
+      // console.log(item.name + ' is a possible target of ' + this.name)
+      // clone & repeat?
+      let currTargLog = clone(prevTargs)
+      currTargLog.push(item)
+      if (this.targetRules.length > 1) {
+        let next = clone(this)
+        next.targetRules.shift()
+        next.canUseRecursion(currTargLog, validPaths)
+      } else {
+        validPaths.push(currTargLog)
+      }
+    })
+  }
+
   targLog (prevTargs = []) {
     let rule = new this.targetRules[0]({
       caster: this.unit,

@@ -16,6 +16,23 @@ class Lynn {
         MELEE: 6,
         INIT: 1
       },
+      converts: [
+        {
+          from: 'MELEE',
+          to: 'RANGED',
+          value: 0.1
+        },
+        {
+          from: 'RANGED',
+          to: 'MELEE',
+          value: 0.1
+        },
+        {
+          from: 'MAGIC',
+          to: 'MAGIC',
+          value: -0.15
+        }
+      ],
       skills: []
     })
   }

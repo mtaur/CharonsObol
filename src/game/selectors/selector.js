@@ -40,7 +40,8 @@ class Selector {
   }
 
   isSelected (unit) {
-    return unit && unit.id && this.stateData.activeUnit.id ? this.stateData.activeUnit.id === unit.id : false
+    // return unit && unit.id && this.stateData.activeUnit.id ? this.stateData.activeUnit.id === unit.id : false
+    return hasProp(unit, 'id') && hasProp(this, 'stateData.activeUnit.id') ? this.stateData.activeUnit.id === unit.id : false
   }
 
   canTarget (unit) {
