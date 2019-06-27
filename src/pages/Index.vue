@@ -126,7 +126,7 @@ export default {
     },
     battlefieldClick: function (selector, unit) {
       selector.getClickMode(unit).onClick(selector, unit)
-      console.log(selector.getClickMode(unit))
+      // console.log(selector.getClickMode(unit))
       this.activeUnit = selector.stateData.activeUnit.id
         ? [selector.stateData.activeUnit]
         : []

@@ -53,10 +53,10 @@ class Selector {
         cpuTeam: this.stateData.activeUnit.cpuTeam,
         prevTargs: this.stateData.activeSkill.prevTargs
       })
-      console.log('Rule:', rule)
+      // console.log('Rule:', rule)
       if (rule.canFind(unit)) { return true } else { return false }
     } else {
-      console.log('State data:', this.stateData)
+      // console.log('State data:', this.stateData)
       return false
     }
   }

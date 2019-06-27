@@ -18,8 +18,8 @@ var pickTarget = function (selector, unit) {
   // next.targetRules[0].prevTargs = currTargLog
   selector.stateData.activeSkill.prevTargs.push(unit)
   selector.stateData.activeSkill.targetRules.shift()
-  console.log('Active skill:', selector.stateData.activeSkill.name)
-  console.log('prevTargs:', selector.stateData.activeSkill.prevTargs)
+  // console.log('Active skill:', selector.stateData.activeSkill.name)
+  // console.log('prevTargs:', selector.stateData.activeSkill.prevTargs)
   // next.targLog(currTargLog)
   // selector.activeSkill = ???
   selector.changeState('ChooseTarget')

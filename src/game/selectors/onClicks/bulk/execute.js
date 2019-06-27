@@ -12,10 +12,10 @@ var execute = function (selector, unit) {
   let caster = selector.stateData.activeUnit
   skill.prevTargs.push(unit)
   skill.targetRules.shift()
-  console.log('LIB:', EffectRule.LIB)
-  console.log('Execute!')
-  console.log('Skill:', skill)
-  console.log('Caster:', caster)
+  // console.log('LIB:', EffectRule.LIB)
+  // console.log('Execute!')
+  // console.log('Skill:', skill)
+  // console.log('Caster:', caster)
   // console.log('Skill:', skill.name)
   // console.log('Targets:', skill.prevTargs)
   for (let index in skill.effects) {

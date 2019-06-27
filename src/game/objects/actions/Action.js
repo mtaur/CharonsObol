@@ -79,10 +79,10 @@ class Action {
     let validPaths = []
     this.canUseRecursion([], validPaths)
     if (validPaths.length > 0) {
-      console.log('Valid target paths:', validPaths)
+      // console.log('Valid target paths:', validPaths)
       return true
     }
-    console.log('No targets for', this.name)
+    // console.log('No targets for', this.name)
     return false
   }
 

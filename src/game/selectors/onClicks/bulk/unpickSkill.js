@@ -10,7 +10,7 @@ var unpickSkill = function (selector, skill) {
   //
   // The following line is not needed:
   // selector.stateData.activeUnit = unit
-  console.log('Unselected the skill', skill.name)
+  // console.log('Unselected the skill', skill.name)
   selector.stateData.activeSkill = {}
   selector.changeState('ChooseAction')
 }
