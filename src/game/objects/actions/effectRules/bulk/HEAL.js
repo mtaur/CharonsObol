@@ -31,7 +31,7 @@ function HEAL (effectObj = {}, target = {}, caster = {}) {
     // console.log('target:', target)
     // console.log(target.effectiveStatValues)
     // console.log(target.baseStats.HP.current)
-    console.log(amount)
+    // console.log(amount)
     // amount -= target.effectiveStatValues.DRED * effectObj.DREDScale
     // console.log(amount)
     // amount = Math.max(0, Math.floor(amount))
@@ -39,6 +39,19 @@ function HEAL (effectObj = {}, target = {}, caster = {}) {
     target.baseStats.HP.current = target.baseStats.HP.current > 0 ? Math.floor(target.baseStats.HP.current) : 0
     // caster.baseStats.HP.current -= effectObj.DREFScale * target.effectiveStatValues.DREF
     // caster.baseStats.HP.current = caster.baseStats.HP.current > 0 ? Math.floor(caster.baseStats.HP.current) : 0
+    this.summary = {}
+    this.summary.amount = amount
+    this.summary =
+    [
+      {
+        text: `${caster.name} healed ${target.name} for ${Math.floor(amount)} HP`,
+        type: 'heal',
+        value: Math.floor(amount),
+        caster: caster,
+        target: target
+      }
+    ]
+    // console.log(this.summary.text)
   }
   return apply
 }

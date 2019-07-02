@@ -6,6 +6,7 @@ import { hasIn as hasProp } from 'lodash'
 class Selector {
   // game object
   game = {}
+  log = []
   // click handler object, stored by name
   onClicks = onClicks
 
@@ -122,6 +123,7 @@ class Selector {
 
   constructor (gameObj = {}) {
     this.game = gameObj
+    this.log = gameObj.log
   }
 }
 

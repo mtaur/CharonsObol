@@ -14,6 +14,8 @@ class EffectRule {
   target = {}
   effectName = ''
   apply = function () {}
+  summary = {}
+  // summary = { text: , ... }
 
   static LIB = {}
 
@@ -28,8 +30,11 @@ class EffectRule {
     // }
     // let apply = function (target = {}, caster = {}) {}
     if (hasProp(EffectRule.LIB, effectObj.NAME)) {
+      // effectObj.summary = {}
+      // this.summary = effectObj.summary
       this.apply = EffectRule.LIB[effectObj.NAME](effectObj, target, caster)
       this.name = effectObj.name
+      // this.summary = effectObj.summary
     }
   }
 }

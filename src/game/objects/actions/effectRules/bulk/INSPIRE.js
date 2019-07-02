@@ -16,6 +16,24 @@ function INSPIRE (effectObj = {}, target = {}, caster = {}) {
     if (effectObj.minor) {
       target.hasAction.minor = true
     }
+    this.summary =
+    [
+      {
+        text: `${caster.name} inspired ${target.name}!`,
+        type: 'inspire',
+        // value: Math.floor(this.summary.reflected),
+        caster: caster,
+        target: target
+      },
+      {
+        text: `${target.name}'s major action point was restored.`,
+        type: 'inspire',
+        // value: Math.floor(this.summary.reflected),
+        caster: caster,
+        target: target
+      }
+    ]
+  // console.log(this.summary.text)
   }
   return apply
 }

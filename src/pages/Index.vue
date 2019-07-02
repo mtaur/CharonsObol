@@ -6,7 +6,7 @@
     :selector="selector"
     class="non-selectable">
   </drawer>
-  <rightdrawer :visible="rightDrawerOpen"></rightdrawer>
+  <rightdrawer :visible="rightDrawerOpen" :selector="selector"></rightdrawer>
   <q-page class="qpage non-selectable">
     <div class="column">
       <div class="row justify-center items-stretch unitrow">
@@ -86,7 +86,8 @@ import Selector from 'src/game/selectors/Selector.js'
 
 var selector = new Selector({
   playerTeam: playerTeam,
-  cpuTeam: cpuTeam
+  cpuTeam: cpuTeam,
+  log: []
 })
 selector.changeState('ChooseUnit')
 

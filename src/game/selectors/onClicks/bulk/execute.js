@@ -8,6 +8,7 @@ var execute = function (selector, unit) {
   //   // (skill will have info about valid click targets and number of steps)
   //   // targets[i] = target clicked at step i
   // }
+  selector.log.push(`${selector.stateData.actickUnit} used ${selector.stateData.activeSkill}.`)
   let skill = selector.stateData.activeSkill
   let caster = selector.stateData.activeUnit
   skill.prevTargs.push(unit)
@@ -23,6 +24,8 @@ var execute = function (selector, unit) {
     let effect = new EffectRule(effectObj, skill.prevTargs[index], caster)
     console.log(effect)
     effect.apply()
+    // this.summary = effectObj.summary
+    effect.summary.forEach((item) => selector.log.push(item))
   }
   if (skill.type === 'major' || skill.type === 'both') {
     caster.hasAction.major = false
@@ -33,6 +36,7 @@ var execute = function (selector, unit) {
   for (let index in skill.after) {
     let after = new EffectRule(skill.after[index], {}, caster)
     after.apply()
+    selector.log.push(after.summary)
   }
   if (skill.cost > 0) { caster.baseStats.MP.current -= skill.cost }
   selector.stateData.activeUnit = {}
@@ -40,6 +44,7 @@ var execute = function (selector, unit) {
   selector.stateData.inspectUnit = {}
   selector.stateData.skill = {}
   selector.changeState('ChooseUnit')
+  console.log('log', selector.log)
 }
 var obj = {
   filename: 'execute',

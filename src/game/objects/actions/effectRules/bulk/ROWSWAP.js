@@ -40,7 +40,19 @@ function ROWSWAP (effectObj = {}, target = {}, caster = {}) {
         }
       }
     }
-    console.log('Unit moved?', caster)
+    this.summary =
+    [
+      {
+        text: `${caster.name} swapped rows.`,
+        type: 'move',
+        // value: Math.floor(this.summary.reflected),
+        caster: caster // ,
+        // target: target
+      }
+    ]
+    // this.summary.text =
+    // console.log(this.summary.text)
+    // console.log('Unit moved?', caster)
   }
   return apply
 }

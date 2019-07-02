@@ -21,6 +21,18 @@ function ROWFRONT (effectObj = {}, target = {}, caster = {}) {
         }
       }
     }
+    // this.summary.text =
+    this.summary =
+    [
+      {
+        text: `${caster.name} moved to the front row.`,
+        type: 'move',
+        // value: Math.floor(this.summary.reflected),
+        caster: caster // ,
+        // target: target
+      }
+    ]
+    // console.log(this.summary.text)
   }
   return apply
 }

@@ -40,6 +40,18 @@ function RUN (effectObj = {}, target = {}, caster = {}) {
         }
       }
     }
+    this.summary =
+    [
+      {
+        text: `${caster.name} ran away!`,
+        type: 'run',
+        // value: Math.floor(this.summary.reflected),
+        caster: caster // ,
+        // target: target
+      }
+    ]
+    // this.summary.text =
+    // console.log(effectObj.summary.text)
     // console.log('Unit moved?', caster)
   }
   return apply
