@@ -4,7 +4,31 @@
 import { Unit } from '../../../units/Unit.js'
 
 function RUN (effectObj = {}, target = {}, caster = {}) {
+  let summarize = function () {
+    let data = {
+      type: 'run',
+      caster: caster
+    }
+    let log =
+    [
+      {
+        text: `${caster.name} ran away!`,
+        type: 'run',
+        // value: Math.floor(this.summary.reflected),
+        caster: caster // ,
+        // target: target
+      }
+    ]
+    let summary = {
+      data: data,
+      log: log
+    }
+    return summary
+  }
+
   let apply = function () {
+    this.summary = this.summarize()
+
     if (caster.pos === Unit.POS.FRONT) {
       caster.pos = Unit.POS.BENCH
       if (caster.side === Unit.SIDE.PLAYER) {
@@ -40,21 +64,22 @@ function RUN (effectObj = {}, target = {}, caster = {}) {
         }
       }
     }
-    this.summary =
-    [
-      {
-        text: `${caster.name} ran away!`,
-        type: 'run',
-        // value: Math.floor(this.summary.reflected),
-        caster: caster // ,
-        // target: target
-      }
-    ]
+    // this.summary =
+    // [
+    //   {
+    //     text: `${caster.name} ran away!`,
+    //     type: 'run',
+    //     // value: Math.floor(this.summary.reflected),
+    //     caster: caster // ,
+    //     // target: target
+    //   }
+    // ]
     // this.summary.text =
     // console.log(effectObj.summary.text)
     // console.log('Unit moved?', caster)
   }
-  return apply
+  return { apply: apply, summarize: summarize }
+  // return apply
 }
 var obj = {
   filename: 'RUN',

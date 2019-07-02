@@ -12,7 +12,9 @@ class GUARD {
       desc: 'Increased DRED stat.  Interrupts targeting of melee or ranged skills.',
       remove: [
         'TAKEDAMAGE',
-        'DAMAGE'
+        'DAMAGE',
+        'ENDBATTLE',
+        'BEGINBATTLE'
       ],
       effects: [
         // { trigger: , effect: }

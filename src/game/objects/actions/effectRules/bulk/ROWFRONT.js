@@ -4,7 +4,31 @@
 import { Unit } from '../../../units/Unit.js'
 
 function ROWFRONT (effectObj = {}, target = {}, caster = {}) {
+  let summarize = function () {
+    let data = {
+      type: 'rowfront',
+      caster: caster
+    }
+    let log =
+    [
+      {
+        text: `${caster.name} moved to the front row.`,
+        type: 'move',
+        // value: Math.floor(this.summary.reflected),
+        caster: caster // ,
+        // target: target
+      }
+    ]
+    let summary = {
+      data: data,
+      log: log
+    }
+    return summary
+  }
+
   let apply = function () {
+    this.summary = this.summarize()
+
     caster.pos = Unit.POS.FRONT
     if (caster.side === Unit.SIDE.PLAYER) {
       for (let index in caster.playerTeam.back) {
@@ -22,19 +46,20 @@ function ROWFRONT (effectObj = {}, target = {}, caster = {}) {
       }
     }
     // this.summary.text =
-    this.summary =
-    [
-      {
-        text: `${caster.name} moved to the front row.`,
-        type: 'move',
-        // value: Math.floor(this.summary.reflected),
-        caster: caster // ,
-        // target: target
-      }
-    ]
+    // this.summary =
+    // [
+    //   {
+    //     text: `${caster.name} moved to the front row.`,
+    //     type: 'move',
+    //     // value: Math.floor(this.summary.reflected),
+    //     caster: caster // ,
+    //     // target: target
+    //   }
+    // ]
     // console.log(this.summary.text)
   }
-  return apply
+  return { apply: apply, summarize: summarize }
+  // return apply
 }
 var obj = {
   filename: 'ROWFRONT',

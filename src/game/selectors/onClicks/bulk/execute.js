@@ -29,7 +29,7 @@ var execute = function (selector, unit) {
     console.log(effect.NAME, 'effect.NAME')
     // unit.statuses.forEach((status) => { status.clearCheck(unit, effect.NAME) })
     // this.summary = effectObj.summary
-    effect.summary.forEach(
+    effect.summary.log.forEach(
       (item) => {
         selector.logID++
         item.id = selector.logID
@@ -48,7 +48,7 @@ var execute = function (selector, unit) {
     after.apply()
     // unit.statuses.forEach((status) => { status.clearCheck(unit, after.NAME) })
     // unit.statuses.forEach((status) => { status.clearCheck(unit, 'USETURN') })
-    after.summary.forEach(
+    after.summary.log.forEach(
       (item) => {
         selector.logID++
         item.id = selector.logID

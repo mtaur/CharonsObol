@@ -4,7 +4,38 @@
 import { Unit } from '../../../units/Unit.js'
 
 function ROWSWAP (effectObj = {}, target = {}, caster = {}) {
+  let summarize = function () {
+    let data = {
+      type: 'rowfront',
+      caster: caster
+    }
+    let log =
+    [
+      {
+        text: `${caster.name} inspired ${target.name}!`,
+        type: 'inspire',
+        // value: Math.floor(this.summary.reflected),
+        caster: caster,
+        target: target
+      },
+      {
+        text: `${target.name}'s major action point was restored.`,
+        type: 'inspire',
+        // value: Math.floor(this.summary.reflected),
+        caster: caster,
+        target: target
+      }
+    ]
+    let summary = {
+      data: data,
+      log: log
+    }
+    return summary
+  }
+
   let apply = function () {
+    this.summary = this.summarize()
+
     if (caster.pos === Unit.POS.FRONT) {
       caster.pos = Unit.POS.BACK
       if (caster.side === Unit.SIDE.PLAYER) {
@@ -40,21 +71,22 @@ function ROWSWAP (effectObj = {}, target = {}, caster = {}) {
         }
       }
     }
-    this.summary =
-    [
-      {
-        text: `${caster.name} swapped rows.`,
-        type: 'move',
-        // value: Math.floor(this.summary.reflected),
-        caster: caster // ,
-        // target: target
-      }
-    ]
+    // this.summary =
+    // [
+    //   {
+    //     text: `${caster.name} swapped rows.`,
+    //     type: 'move',
+    //     // value: Math.floor(this.summary.reflected),
+    //     caster: caster // ,
+    //     // target: target
+    //   }
+    // ]
     // this.summary.text =
     // console.log(this.summary.text)
     // console.log('Unit moved?', caster)
   }
-  return apply
+  return { apply: apply, summarize: summarize }
+  // return apply
 }
 var obj = {
   filename: 'ROWSWAP',

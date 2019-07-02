@@ -14,8 +14,9 @@ class EffectRule {
   target = {}
   effectName = ''
   apply = function () {}
+  summarize = function () {}
   summary = {}
-  // summary = { text: , ... }
+  // summary = { data: ... , log: ... }
 
   static LIB = {}
 
@@ -32,7 +33,10 @@ class EffectRule {
     if (hasProp(EffectRule.LIB, effectObj.NAME)) {
       // effectObj.summary = {}
       // this.summary = effectObj.summary
-      this.apply = EffectRule.LIB[effectObj.NAME](effectObj, target, caster)
+      let imprt = EffectRule.LIB[effectObj.NAME](effectObj, target, caster)
+      // this.apply = EffectRule.LIB[effectObj.NAME](effectObj, target, caster)
+      this.apply = imprt.apply
+      this.summarize = imprt.summarize
       this.name = effectObj.name
       this.NAME = effectObj.NAME
       // this.summary = effectObj.summary

@@ -5,10 +5,13 @@
 import { Status } from '../../../statuses/Status.js'
 
 function GUARD (effectObj = {}, target = {}, caster = {}) {
-  let apply = function () {
-    caster.statuses.push(new Status.LIB.GUARD())
-    // this.summary.text =
-    this.summary =
+  let summarize = function () {
+    let data = {
+      type: 'guard',
+      caster: caster,
+      target: target
+    }
+    let log =
     [
       {
         text: `${caster.name} guarded.`,
@@ -18,9 +21,31 @@ function GUARD (effectObj = {}, target = {}, caster = {}) {
         // target: target
       }
     ]
+    let summary = {
+      data: data,
+      log: log
+    }
+    return summary
+  }
+
+  let apply = function () {
+    this.summary = this.summarize()
+    caster.statuses.push(new Status.LIB.GUARD())
+    // this.summary.text =
+    // this.summary =
+    // [
+    //   {
+    //     text: `${caster.name} guarded.`,
+    //     type: 'guard',
+    //     // value: Math.floor(this.summary.reflected),
+    //     caster: caster // ,
+    //     // target: target
+    //   }
+    // ]
     // console.log(this.summary.text)
   }
-  return apply
+  return { apply: apply, summarize: summarize }
+  // return apply
 }
 var obj = {
   filename: 'GUARD',
