@@ -93,6 +93,11 @@ class Unit {
     //   stat.increase()
     // }
   }
+  get allies () {
+    if (this.side === Unit.SIDE.PLAYER) {
+      return this.playerTeam
+    } else return this.cpuTeam
+  }
 
   // Define getters in an external file and bind them here.
   get baseStatValues () { return StatMods.getBaseStatValues.call(this) }

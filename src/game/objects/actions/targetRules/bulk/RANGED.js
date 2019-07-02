@@ -9,8 +9,9 @@ class RANGED {
     return new TargetRule({
       caster: obj.caster,
       reqs: ['enemy'],
-      nots: [],
+      nots: ['hasSecondCover'],
       prefs: ['front', 'guarding'],
+      // prefNots: ['back', 'notguarding'],
       playerTeam: obj.playerTeam,
       // prevTargs: obj.prevTargs,
       cpuTeam: obj.cpuTeam

@@ -45,9 +45,10 @@ class TargetRule {
     },
     behind: function (unit) {
       if (unit.pos === Unit.POS.FRONT) { return false }
-      for (let index in this.allies) {
-        if (this.allies[index].pos === Unit.POS.FRONT) { return true }
-      }
+      if (unit.allies.front.length > 0) { return true }
+      // for (let index in unit.allies.field) {
+      //   if (unit.allies.field[index].pos === Unit.POS.FRONT) { return true }
+      // }
       return false
     },
     front: function (unit) {
@@ -78,6 +79,29 @@ class TargetRule {
       return false
       // return unit.statuses.indexOf('guard') > -1
     },
+    hasSecondCover: function (unit) {
+      if (unit.pos === Unit.POS.FRONT) { return false }
+      for (let index in unit.statuses) {
+        if (unit.statuses[index].name === 'guard') { return false }
+      }
+      for (let index in unit.allies.field) {
+        let ally = unit.allies.field[index]
+        for (let statIndex in ally.statuses) {
+          if (ally.statuses[statIndex].name === 'guard') { return true }
+        }
+      }
+      return false
+    },
+    // notguarding: function (unit) {
+    //   for (let index in unit.statuses) {
+    //     let status = unit.statuses[index]
+    //     if (status.name === 'guard') {
+    //       return false
+    //     }
+    //   }
+    //   return true
+    //   // return unit.statuses.indexOf('guard') > -1
+    // },
     caster: function (unit) {
       return unit.id === this.caster.id
     },
@@ -110,6 +134,7 @@ class TargetRule {
       playerTeam: [],
       cpuTeam: [],
       prevTargs: [],
+      prefNots: [],
       // Vast majority of skills use these, MUST overwrite as bool if not:
       live: true,
       dead: false,
@@ -144,6 +169,7 @@ class TargetRule {
     let reqs = obj.reqs.map(byString)
     let nots = obj.nots.map(byString)
     let prefs = obj.prefs.map(byString)
+    // let prefNots = obj.prefNots ? obj.prefNots.map(byString) : []
 
     // construct array of valid targets
     let find = function () {
@@ -170,10 +196,20 @@ class TargetRule {
       for (let index in prefs) {
         prefTargets = prefTargets.filter(prefs[index])
       }
-      // console.log('Units remaining after prefs:', prefTargets)
+      console.log('Units remaining after prefs:', prefTargets)
       if (prefTargets.length > 0) {
         return prefTargets
       } else return all
+      // if (prefTargets.length > 0) {
+      //   return prefTargets
+      // } else {
+      //   let prefTargets2 = all
+      //   for (let index in prefNots) {
+      //     prefTargets2 = prefTargets2.filter((unit) => !prefNots[index](unit))
+      //   }
+      //   if (prefTargets2.length > 0) { return prefTargets2 }
+      //   return all
+      // }
       // console.log('Units remaining after prefs:', prefTargets)
     }
     this.find = find
