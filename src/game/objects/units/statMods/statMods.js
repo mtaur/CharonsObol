@@ -180,7 +180,8 @@ class StatMods {
       let item = items[index]
       convertHolders.push(item)
     }
-    for (let status in statuses) {
+    for (let index in statuses) {
+      let status = statuses[index]
       convertHolders.push(status)
     }
     for (let index in souls) {

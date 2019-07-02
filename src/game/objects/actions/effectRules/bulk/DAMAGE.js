@@ -42,6 +42,9 @@ function DAMAGE (effectObj = {}, target = {}, caster = {}) {
     target.baseStats.HP.current = target.baseStats.HP.current > 0 ? Math.floor(target.baseStats.HP.current) : 0
     caster.baseStats.HP.current -= effectObj.DREFScale * target.effectiveStatValues.DREF
     caster.baseStats.HP.current = caster.baseStats.HP.current > 0 ? Math.floor(caster.baseStats.HP.current) : 0
+    target.statuses.forEach((status) => status.clearCheck(target, 'TAKEDAMAGE'))
+    caster.statuses.forEach((status) => status.clearCheck(caster, 'DAMAGE'))
+    // unit.statuses.forEach((status) => { status.clearCheck(unit, 'BEFORETURN') })
     // logging!
     this.summary = {}
     this.summary.amount = amount

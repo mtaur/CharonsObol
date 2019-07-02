@@ -87,7 +87,8 @@ import Selector from 'src/game/selectors/Selector.js'
 var selector = new Selector({
   playerTeam: playerTeam,
   cpuTeam: cpuTeam,
-  log: []
+  log: [],
+  logID: 0
 })
 selector.changeState('ChooseUnit')
 

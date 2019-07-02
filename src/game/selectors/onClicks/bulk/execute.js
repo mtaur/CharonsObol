@@ -23,9 +23,19 @@ var execute = function (selector, unit) {
     let effectObj = skill.effects[index]
     let effect = new EffectRule(effectObj, skill.prevTargs[index], caster)
     console.log(effect)
+    // unit.statuses.forEach((status) => { status.clearCheck(unit, 'BEFORETURN') })
     effect.apply()
+    // unit.statuses.forEach((status) => status.clearCheck(unit, 'USETURN'))
+    console.log(effect.NAME, 'effect.NAME')
+    // unit.statuses.forEach((status) => { status.clearCheck(unit, effect.NAME) })
     // this.summary = effectObj.summary
-    effect.summary.forEach((item) => selector.log.push(item))
+    effect.summary.forEach(
+      (item) => {
+        selector.logID++
+        item.id = selector.logID
+        selector.log.push(item)
+      }
+    )
   }
   if (skill.type === 'major' || skill.type === 'both') {
     caster.hasAction.major = false
@@ -36,7 +46,16 @@ var execute = function (selector, unit) {
   for (let index in skill.after) {
     let after = new EffectRule(skill.after[index], {}, caster)
     after.apply()
-    selector.log.push(after.summary)
+    // unit.statuses.forEach((status) => { status.clearCheck(unit, after.NAME) })
+    // unit.statuses.forEach((status) => { status.clearCheck(unit, 'USETURN') })
+    after.summary.forEach(
+      (item) => {
+        selector.logID++
+        item.id = selector.logID
+        selector.log.push(item)
+      }
+    )
+    // selector.log.push(after.summary)
   }
   if (skill.cost > 0) { caster.baseStats.MP.current -= skill.cost }
   selector.stateData.activeUnit = {}

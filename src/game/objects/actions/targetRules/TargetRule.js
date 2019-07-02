@@ -62,7 +62,13 @@ class TargetRule {
       return unit.live === false
     },
     guarding: function (unit) {
-      return unit.statuses.indexOf('guard') > -1
+      for (let status in unit.statuses) {
+        if (status.name === 'guard') {
+          return true
+        }
+      }
+      return false
+      // return unit.statuses.indexOf('guard') > -1
     },
     caster: function (unit) {
       return unit.id === this.caster.id

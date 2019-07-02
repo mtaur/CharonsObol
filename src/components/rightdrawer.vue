@@ -15,7 +15,7 @@
       </div>
       <div class="row justify-center">
         <span class="row justify-center"
-        v-for="item in selector.log" :key="selector.log.indexOf(item)">
+        v-for="item in selector.log" :key="item.id">
           <div class="col-1"></div>
           <div class="col-10">
             <span v-if="show(item.type)" :style="actionStyle(item.type)">

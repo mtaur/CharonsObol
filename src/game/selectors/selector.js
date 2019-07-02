@@ -7,6 +7,7 @@ class Selector {
   // game object
   game = {}
   log = []
+  logID = 0
   // click handler object, stored by name
   onClicks = onClicks
 

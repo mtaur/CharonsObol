@@ -34,6 +34,7 @@ class EffectRule {
       // this.summary = effectObj.summary
       this.apply = EffectRule.LIB[effectObj.NAME](effectObj, target, caster)
       this.name = effectObj.name
+      this.NAME = effectObj.NAME
       // this.summary = effectObj.summary
     }
   }
