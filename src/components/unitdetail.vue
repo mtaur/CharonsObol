@@ -38,8 +38,6 @@ export default {
     return {
       // basicStats: ['INIT', 'MELEE', 'RANGED', 'MAGIC', 'DR']
     }
-  },
-  methods: {
   }
 }
 </script>

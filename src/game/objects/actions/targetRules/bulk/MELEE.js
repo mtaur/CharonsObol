@@ -9,8 +9,8 @@ class MELEE {
     return new TargetRule({
       caster: obj.caster,
       reqs: ['enemy'],
-      nots: [],
-      prefs: ['front'],
+      nots: ['behind'],
+      prefs: ['guarding'],
       playerTeam: obj.playerTeam,
       // prevTargs: obj.prevTargs,
       cpuTeam: obj.cpuTeam

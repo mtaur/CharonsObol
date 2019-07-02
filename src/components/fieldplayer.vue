@@ -3,7 +3,8 @@
   :class="marginColorClass">
   <!-- :class="{active: isActive, canTarget: canTarget, prevTarget: prevTarget}"> -->
   <div class="wind justify-center align-center q-gutter-xs"
-    :class="[bgColorClass, windClass]">
+    :class="[bgColorClass, windClass]"
+    :style="guardStyle">
     <!-- :class="{active: isActive, canTarget: canTarget, prevTarget: prevTarget}"> -->
     <div class="row">
       <div class="col-4 placebox justify-center align-center">
@@ -108,6 +109,16 @@ export default {
         return 'wind'
       }
       return 'highlightWind'
+    },
+    guardStyle () {
+      let isGuarding = false
+      for (let index in this.unit.statuses) {
+        if (this.unit.statuses[index].name === 'guard') { isGuarding = true }
+      }
+      if (isGuarding) {
+        return { borderWidth: '8px', borderColor: 'black', borderStyle: 'solid', borderRadius: '0px' }
+      }
+      return {}
     }
   },
   components: {

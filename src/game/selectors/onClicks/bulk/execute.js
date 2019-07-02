@@ -8,7 +8,7 @@ var execute = function (selector, unit) {
   //   // (skill will have info about valid click targets and number of steps)
   //   // targets[i] = target clicked at step i
   // }
-  selector.log.push(`${selector.stateData.actickUnit} used ${selector.stateData.activeSkill}.`)
+  selector.log.push(`${selector.stateData.activeUnit} used ${selector.stateData.activeSkill}.`)
   let skill = selector.stateData.activeSkill
   let caster = selector.stateData.activeUnit
   skill.prevTargs.push(unit)

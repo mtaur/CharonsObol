@@ -91,6 +91,11 @@ var selector = new Selector({
   logID: 0
 })
 selector.changeState('ChooseUnit')
+// selector.activeUnit = selector.game.cpuTeam.front[0]
+// selector.activeSkill = cpuTeam.front[0].actions[3]
+selector.onClicks.makeActive(selector, selector.game.cpuTeam.front[0])
+selector.onClicks.pickSkill(selector, selector.game.cpuTeam.front[0].actions[3])
+selector.onClicks.execute(selector, selector.game.cpuTeam.front[0])
 
 // console.log(selector.onClicks)
 

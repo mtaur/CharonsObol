@@ -43,6 +43,13 @@ class TargetRule {
       }
       return retVal
     },
+    behind: function (unit) {
+      if (unit.pos === Unit.POS.FRONT) { return false }
+      for (let index in this.allies) {
+        if (this.allies[index].pos === Unit.POS.FRONT) { return true }
+      }
+      return false
+    },
     front: function (unit) {
       return unit.pos === Unit.POS.FRONT
     },
@@ -62,7 +69,8 @@ class TargetRule {
       return unit.live === false
     },
     guarding: function (unit) {
-      for (let status in unit.statuses) {
+      for (let index in unit.statuses) {
+        let status = unit.statuses[index]
         if (status.name === 'guard') {
           return true
         }
