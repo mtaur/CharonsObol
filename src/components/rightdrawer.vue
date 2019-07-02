@@ -10,10 +10,19 @@
 
     <h4 class="row justify-center">Battle log</h4>
     <div class="row justify-center">
-      <q-btn @click="toggleVerbose" color="blue">Verbose</q-btn>
-      <div v-for="item in selector.log" :key="selector.log.indexOf(item)">
-        <span v-if="show(item.type)" :style="actionStyle(item.type)">
-          {{ item.text }}
+      <div class="row justify-center">
+        <q-btn @click="toggleVerbose" color="blue">Verbose</q-btn>
+      </div>
+      <div class="row justify-center">
+        <span class="row justify-center"
+        v-for="item in selector.log" :key="selector.log.indexOf(item)">
+          <div class="col-1"></div>
+          <div class="col-10">
+            <span v-if="show(item.type)" :style="actionStyle(item.type)">
+              {{ item.text }}
+            </span>
+          </div>
+          <div class="col-1"></div>
         </span>
       </div>
     </div>
