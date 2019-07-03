@@ -56,6 +56,7 @@ export default {
         })
       this.selector.changeState('ChooseUnit')
     },
+
     enemyTurn () {
       let remainingTurn = false
       for (let index in this.cpuTeam.field) {

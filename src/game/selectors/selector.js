@@ -39,7 +39,8 @@ class Selector {
   }
 
   resetSkill () {
-    this.activeSkill = {}
+    this.stateData.activeSkill = {}
+    // this.activeSkill = {}
   }
 
   isSelected (unit) {

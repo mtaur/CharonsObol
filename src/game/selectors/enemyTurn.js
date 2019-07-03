@@ -11,8 +11,10 @@ var enemyTurn = function () {
   function choose (arr) {
     return arr[Math.floor(arr.length * Math.random())]
   }
+  let skill = {}
+  let caster = {}
 
-  let execute = function (skill, caster) {
+  let execute = function () {
     for (let index in skill.effects) {
       let effectObj = skill.effects[index]
       let effect = new EffectRule(effectObj, skill.prevTargs[index], caster)
@@ -62,14 +64,16 @@ var enemyTurn = function () {
 
   let hasTurn = cpuTeam.field.filter((unit) => unit.baseStats.HP.current > 0 && (unit.hasAction.major || unit.hasAction.minor))
   if (hasTurn.length > 0) {
-    let unit = choose(hasTurn)
-    console.log('unit:', unit.name, unit)
-    let canUse = unit.actions.filter((action) => action.canUse())
+    caster = choose(hasTurn)
+    console.log('unit:', caster.name, caster)
+    let canUse = caster.actions.filter((action) => action.canUse())
     console.log('canUse:', canUse)
-    let skill = clone(choose(canUse))
+    skill = clone(choose(canUse))
     console.log('skill:', skill)
     skill.prevTargs = choose(skill.validPathArr())
-    execute(skill, unit)
+    skill.targRules = []
+    selector.log.push({ text: `${caster.name} used ${skill.name}.` })
+    execute()
   }
 }
 

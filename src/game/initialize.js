@@ -53,6 +53,15 @@ function caenenTemplate () {
   return templ
 }
 
+function removeByNAME (arr, str) {
+  // let found = -1
+  for (let index in arr) {
+    if (arr[index].NAME === str) {
+      arr.splice(index, 1)
+    }
+  }
+}
+
 // test script
 // var jaq2 = new CPUUnit(gameObj)
 // // console.log('Outside of constructor...')
@@ -86,6 +95,9 @@ for (let i = 1; i < 4; i++) {
     cpuTeam.front.push(unit)
     //
     // console.log('Outside of constructor...')
+    removeByNAME(unit.actions, 'RANGED')
+    removeByNAME(unit.actions, 'RUN')
+    removeByNAME(unit.actions, 'MOVE')
     console.log(unit)
   } else {
     let unit = new CPUUnit(gameObj, caenenTemplate())
@@ -105,6 +117,8 @@ for (let i = 1; i < 4; i++) {
     cpuTeam.back.push(unit)
     //
     // console.log('Outside of constructor...')
+    removeByNAME(unit.actions, 'MELEE')
+    removeByNAME(unit.actions, 'MOVE')
     console.log(unit)
   }
 }
@@ -114,6 +128,9 @@ var jaq = new CPUUnit(gameObj)
 console.log(jaq)
 jaq.raiseAll()
 //
+jaq.actions.push(new Action.LIB.FLAMEFIST(jaq))
+jaq.actions.push(new Action.LIB.HEAL(jaq))
+jaq.actions.push(new Action.LIB.LUNGE(jaq))
 cpuTeam.front.push(jaq)
 //
 // jaq.hasAction.major = false
