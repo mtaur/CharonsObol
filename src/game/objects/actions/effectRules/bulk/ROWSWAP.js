@@ -12,18 +12,11 @@ function ROWSWAP (effectObj = {}, target = {}, caster = {}) {
     let log =
     [
       {
-        text: `${caster.name} inspired ${target.name}!`,
-        type: 'inspire',
+        text: `${caster.name} swapped rows.`,
+        type: 'move',
         // value: Math.floor(this.summary.reflected),
-        caster: caster,
-        target: target
-      },
-      {
-        text: `${target.name}'s major action point was restored.`,
-        type: 'inspire',
-        // value: Math.floor(this.summary.reflected),
-        caster: caster,
-        target: target
+        caster: caster // ,
+        // target: target
       }
     ]
     let summary = {

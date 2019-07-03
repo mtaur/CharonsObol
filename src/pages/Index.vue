@@ -93,12 +93,16 @@ var selector = new Selector({
 selector.changeState('ChooseUnit')
 // selector.activeUnit = selector.game.cpuTeam.front[0]
 // selector.activeSkill = cpuTeam.front[0].actions[3]
-selector.onClicks.makeActive(selector, selector.game.cpuTeam.front[0])
-selector.onClicks.pickSkill(selector, selector.game.cpuTeam.front[0].actions[3])
-selector.onClicks.execute(selector, selector.game.cpuTeam.front[0])
-selector.onClicks.makeActive(selector, selector.game.cpuTeam.back[1])
-selector.onClicks.pickSkill(selector, selector.game.cpuTeam.back[1].actions[3])
-selector.onClicks.execute(selector, selector.game.cpuTeam.back[1])
+// selector.onClicks.makeActive(selector, selector.game.cpuTeam.front[0])
+// selector.onClicks.pickSkill(selector, selector.game.cpuTeam.front[0].actions[3])
+// selector.onClicks.execute(selector, selector.game.cpuTeam.front[0])
+// selector.onClicks.makeActive(selector, selector.game.cpuTeam.back[1])
+// selector.onClicks.pickSkill(selector, selector.game.cpuTeam.back[1].actions[3])
+// selector.onClicks.execute(selector, selector.game.cpuTeam.back[1])
+// selector.changeState('EnemyTurn')
+// selector.changeState('EnemyTurn')
+// selector.changeState('EnemyTurn')
+// selector.changeState('EnemyTurn')
 
 // console.log(selector.onClicks)
 

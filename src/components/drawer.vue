@@ -12,6 +12,11 @@
       </div>
     </div>
 
+    <div class="justify-center">
+      <q-btn size='md' color="red" @click="enemyTurn">Enemy Turn</q-btn>
+      <q-btn size='md' color="green" @click="newRound">New Round</q-btn>
+    </div>
+
     <unitdetail v-for="unit in activeUnit"
       :unit="unit"
       :cpuTeam = "cpuTeam"
@@ -35,7 +40,35 @@ export default {
     }
   },
   methods: {
-    openURL
+    openURL,
+    newRound () {
+      this.playerTeam.field.forEach(
+        (unit) => {
+          if (!unit.hasAction.major) { this.playerTeam.SP += 2 }
+          if (!unit.hasAction.minor) { this.playerTeam.SP += 1 }
+          unit.hasAction.major = true
+          unit.hasAction.minor = true
+        })
+      this.cpuTeam.field.forEach(
+        (unit) => {
+          unit.hasAction.major = true
+          unit.hasAction.minor = true
+        })
+      this.selector.changeState('ChooseUnit')
+    },
+    enemyTurn () {
+      let remainingTurn = false
+      for (let index in this.cpuTeam.field) {
+        let unit = this.cpuTeam.field[index]
+        if (unit.hasAction.major || unit.hasAction.minor) {
+          remainingTurn = true
+        }
+      }
+      if (remainingTurn) {
+        this.playerTeam.SP += 1
+        this.selector.changeState('EnemyTurn')
+      }
+    }
   },
   components: { unitdetail }
 }

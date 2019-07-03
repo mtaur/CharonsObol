@@ -2,6 +2,7 @@ import { CtrlState } from './ctrlstates/CtrlState.js'
 import { onClicks } from './onClicks/onClicks.js'
 import { classdir as ctrlStateLib } from './ctrlstates/jsload.js'
 import { hasIn as hasProp } from 'lodash'
+import { enemyTurn } from './enemyTurn.js'
 
 class Selector {
   // game object
@@ -121,6 +122,9 @@ class Selector {
   changeState (name, obj = this.stateData) {
     this.state = new CtrlState.LIB[name](this, obj)
   }
+
+  // get enemyTurn () { return enemyTurn.call(this) }
+  enemyTurn () { enemyTurn.call(this) }
 
   constructor (gameObj = {}) {
     this.game = gameObj

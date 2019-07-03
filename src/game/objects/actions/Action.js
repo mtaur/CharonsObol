@@ -86,6 +86,19 @@ class Action {
     return false
   }
 
+  validPathArr = function () {
+    if (!this.canUse()) { return false }
+    let validPaths = []
+    this.canUseRecursion([], validPaths)
+    if (validPaths.length > 0) {
+      // console.log('Valid target paths:', validPaths)
+      // return true
+      return validPaths
+    }
+    // console.log('No targets for', this.name)
+    return false
+  }
+
   canUseRecursion = function (prevTargs = [], validPaths = []) {
     let rule = new this.targetRules[0]({
       caster: this.unit,

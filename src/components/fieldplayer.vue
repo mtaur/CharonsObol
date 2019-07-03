@@ -1,10 +1,10 @@
 <template>
 <div class="row col-3 justify-center align-center q-pa-xs"
-  :class="marginColorClass">
+  :class="marginColorClass"
+  :style="guardStyle">
   <!-- :class="{active: isActive, canTarget: canTarget, prevTarget: prevTarget}"> -->
   <div class="wind justify-center align-center q-gutter-xs"
-    :class="[bgColorClass, windClass]"
-    :style="guardStyle">
+    :class="[bgColorClass, windClass]">
     <!-- :class="{active: isActive, canTarget: canTarget, prevTarget: prevTarget}"> -->
     <div class="row">
       <div class="col-4 placebox justify-center align-center">
@@ -116,7 +116,12 @@ export default {
         if (this.unit.statuses[index].name === 'guard') { isGuarding = true }
       }
       if (isGuarding) {
-        return { borderWidth: '8px', borderColor: 'black', borderStyle: 'solid', borderRadius: '0px' }
+        return {
+          borderWidth: '8px',
+          borderColor: 'black',
+          borderStyle: 'solid',
+          borderRadius: '0px'
+        }
       }
       return {}
     }
