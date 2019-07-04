@@ -42,24 +42,24 @@ class Status {
     unit.equip(this)
   }
   clearCheck = function (unit, trigger) {
-    console.log('this:', this)
-    console.log('trigger:', trigger)
+    // console.log('this:', this)
+    // console.log('trigger:', trigger)
     for (let index in this.remove) {
       let cond = this.remove[index]
-      console.log('cond:', cond)
+      // console.log('cond:', cond)
       if (cond === trigger) {
-        console.log('should clear something...')
+        // console.log('should clear something...')
         this.clear(unit)
       } // return true
     }
     // return false
   }
   clear = function (unit) {
-    console.log('Clear this:', this)
-    console.log('unit:', unit)
+    // console.log('Clear this:', this)
+    // console.log('unit:', unit)
     for (let index in unit.statuses) {
       if (unit.statuses[index].NAME === this.NAME) {
-        console.log('splice!!!!')
+        // console.log('splice!!!!')
         unit.statuses.splice(index, 1)
       }
     }

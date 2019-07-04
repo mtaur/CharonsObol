@@ -128,6 +128,9 @@ var jaq = new CPUUnit(gameObj)
 console.log(jaq)
 jaq.raiseAll()
 //
+// removeByNAME(jaq.actions, 'RUN')
+// removeByNAME(jaq.actions, 'GUARD')
+// removeByNAME(jaq.actions, 'MOVE')
 jaq.actions.push(new Action.LIB.FLAMEFIST(jaq))
 jaq.actions.push(new Action.LIB.HEAL(jaq))
 jaq.actions.push(new Action.LIB.LUNGE(jaq))
@@ -223,7 +226,7 @@ bronzeRing.equipTo(lynn)
 // lynn.actions.push({ name: 'lunge', type: 'both', desc: 'Lunge FROM the back row TO the front row, doing 2x the SMALLER of MELEE and RANGED as damage to a target with a melee attack.' }) // = ['melee', 'ranged', 'lunge', 'block']
 lynn.actions.push(new Action.LIB.LUNGE(lynn)) // = ['melee', 'ranged', 'lunge', 'block']
 
-lynn.baseStats.HP.current -= 15
+// lynn.baseStats.HP.current -= 15
 // console.log('Outside of constructor...')
 console.log(lynn)
 
@@ -261,9 +264,11 @@ bro.actions.push(new Action.LIB.HEAL(bro))
 bro.actions.push(new Action.LIB.NATLOG(bro))
 // bro.items.push(new Item.LIB.DIVINEBARRIER())
 
-bro.baseStats.HP.current -= 40
+// bro.baseStats.HP.current -= 40
 
 playerTeam.front.push(bro)
+
+// playerTeam.all.forEach((unit) => { unit.baseStats.HP.current = 1 })
 // bro.souls = [brosoul]
 // console.log('Outside of constructor...')
 console.log(bro)

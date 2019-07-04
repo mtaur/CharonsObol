@@ -8,6 +8,7 @@ var enemyTurn = function () {
   //
   let selector = this
   let cpuTeam = this.game.cpuTeam
+  let playerTeam = this.game.playerTeam
   function choose (arr) {
     return arr[Math.floor(arr.length * Math.random())]
   }
@@ -18,11 +19,12 @@ var enemyTurn = function () {
     for (let index in skill.effects) {
       let effectObj = skill.effects[index]
       let effect = new EffectRule(effectObj, skill.prevTargs[index], caster)
-      console.log(effect)
+      // console.log('skill.prevTargs[index]', skill.prevTargs[index])
+      // console.log(effect)
       // unit.statuses.forEach((status) => { status.clearCheck(unit, 'BEFORETURN') })
       effect.apply()
       // unit.statuses.forEach((status) => status.clearCheck(unit, 'USETURN'))
-      console.log(effect.NAME, 'effect.NAME')
+      // console.log(effect.NAME, 'effect.NAME')
       // unit.statuses.forEach((status) => { status.clearCheck(unit, effect.NAME) })
       // this.summary = effectObj.summary
       effect.summary.log.forEach(
@@ -59,18 +61,34 @@ var enemyTurn = function () {
     selector.stateData.inspectUnit = {}
     selector.stateData.skill = {}
     selector.changeState('ChooseUnit')
-    console.log('log', selector.log)
+    // console.log('log', selector.log)
   }
 
-  let hasTurn = cpuTeam.field.filter((unit) => unit.baseStats.HP.current > 0 && (unit.hasAction.major || unit.hasAction.minor))
+  let unclone = function (unit) {
+    let everyone = playerTeam.all.concat(cpuTeam.all)
+    for (let index in everyone) {
+      if (everyone[index].id === unit.id) return everyone[index]
+    }
+    alert('No match found for', unit)
+  }
+
+  let canMove = function (unit) {
+    let retVal = false
+    unit.actions.forEach((action) => { if (action.canUseTree()) { retVal = true } })
+    return retVal
+  }
+  // let hasTurn = cpuTeam.field.filter((unit) => unit.baseStats.HP.current > 0 && (unit.hasAction.major || unit.hasAction.minor))
+  let hasTurn = cpuTeam.field.filter(canMove)
   if (hasTurn.length > 0) {
     caster = choose(hasTurn)
-    console.log('unit:', caster.name, caster)
-    let canUse = caster.actions.filter((action) => action.canUse())
-    console.log('canUse:', canUse)
+    // console.log('unit:', caster.name, caster)
+    let canUse = caster.actions.filter((action) => action.canUseTree())
+    // console.log('canUse:', canUse)
     skill = clone(choose(canUse))
-    console.log('skill:', skill)
+    // console.log('skill:', skill)
     skill.prevTargs = choose(skill.validPathArr())
+    skill.prevTargs = skill.prevTargs.map(unclone)
+    // console.log('skill.prevTargs', skill.prevTargs)
     skill.targRules = []
     selector.log.push({ text: `${caster.name} used ${skill.name}.` })
     execute()

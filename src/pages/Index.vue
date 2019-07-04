@@ -113,7 +113,7 @@ export default {
     return {
       playerTeam: playerTeam,
       cpuTeam: cpuTeam,
-      activeUnit: [],
+      // activeUnit: [],
       leftDrawerOpen: true,
       selector
       // rightDrawerOpen: true // this.$q.platform.is.desktop
@@ -141,15 +141,20 @@ export default {
     battlefieldClick: function (selector, unit) {
       selector.getClickMode(unit).onClick(selector, unit)
       // console.log(selector.getClickMode(unit))
-      this.activeUnit = selector.stateData.activeUnit.id
-        ? [selector.stateData.activeUnit]
-        : []
+      // this.activeUnit = selector.stateData.activeUnit.id
+      //   ? [selector.stateData.activeUnit]
+      //   : []
     },
     openURL
   },
   computed: {
     SP: function () {
       return playerTeam.SP
+    },
+    activeUnit: function () {
+      return selector.stateData.activeUnit.id
+        ? [selector.stateData.activeUnit]
+        : []
     }
   },
   name: 'PageIndex',

@@ -51,6 +51,8 @@ export default {
         })
       this.cpuTeam.field.forEach(
         (unit) => {
+          if (unit.hasAction.major) { this.playerTeam.SP -= 5 }
+          if (unit.hasAction.minor) { this.playerTeam.SP -= 3 }
           unit.hasAction.major = true
           unit.hasAction.minor = true
         })

@@ -90,6 +90,7 @@ function HEAL (effectObj = {}, target = {}, caster = {}) {
     let data = summary.data
     target.baseStats.HP.current += data.amount
     target.baseStats.HP.current = target.baseStats.HP.current > 0 ? Math.floor(target.baseStats.HP.current) : 0
+    target.baseStats.HP.current = Math.min(target.baseStats.HP.current, target.baseStats.HP.max)
     // caster.baseStats.HP.current -= effectObj.DREFScale * target.effectiveStatValues.DREF
     // caster.baseStats.HP.current = caster.baseStats.HP.current > 0 ? Math.floor(caster.baseStats.HP.current) : 0
     // this.summary = {}

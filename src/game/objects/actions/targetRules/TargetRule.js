@@ -60,6 +60,9 @@ class TargetRule {
     field: function (unit) {
       return unit.pos === Unit.POS.BACK || unit.pos === Unit.POS.FRONT
     },
+    fullhp: function (unit) {
+      return unit.baseStats.HP.current >= unit.baseStats.HP.max
+    },
     bench: function (unit) {
       return unit.pos === Unit.POS.BENCH
     },
@@ -196,7 +199,7 @@ class TargetRule {
       for (let index in prefs) {
         prefTargets = prefTargets.filter(prefs[index])
       }
-      console.log('Units remaining after prefs:', prefTargets)
+      // console.log('Units remaining after prefs:', prefTargets)
       if (prefTargets.length > 0) {
         return prefTargets
       } else return all

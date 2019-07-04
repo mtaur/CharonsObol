@@ -67,6 +67,20 @@ function DAMAGE (effectObj = {}, target = {}, caster = {}) {
         target: target
       }
     ]
+    if (data.amount >= target.HP) {
+      log.push({
+        text: `${target.name} died...`,
+        type: 'death',
+        caster: target
+      })
+    }
+    if (data.dref >= caster.HP) {
+      log.push({
+        text: `${caster.name} died...`,
+        type: 'death',
+        caster: caster
+      })
+    }
     let summary = {
       data: data,
       log: log
@@ -110,6 +124,9 @@ function DAMAGE (effectObj = {}, target = {}, caster = {}) {
 
     target.statuses.forEach((status) => status.clearCheck(target, 'TAKEDAMAGE'))
     caster.statuses.forEach((status) => status.clearCheck(caster, 'DAMAGE'))
+
+    target.checkAlive()
+    caster.checkAlive()
 
     this.summary = summary
     // this.summary.amount = amount

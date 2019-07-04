@@ -42,7 +42,7 @@ class Team {
 
     // CPU units all receive CPU SP separately in full.
     if (side === Unit.SIDE.CPU) {
-      this.SP = 50
+      this.SP = 100 // 50
     }
   }
 }
@@ -55,7 +55,8 @@ class Unit {
   static POS = {
     FRONT: 'front',
     BACK: 'back',
-    BENCH: 'bench'
+    BENCH: 'bench',
+    DEAD: 'dead'
   }
 
   static _id = 0 // -1
@@ -147,6 +148,17 @@ class Unit {
       obj[key] = Stat.LIB[key]()
     }
     return obj
+  }
+
+  checkAlive () {
+    if (this.baseStats.HP.current <= 0 && this.pos !== Unit.POS.DEAD) {
+      this.pos = Unit.POS.DEAD
+      this.allies.front = this.allies.front.filter((unit) => unit.id !== this.id)
+      this.allies.back = this.allies.back.filter((unit) => unit.id !== this.id)
+      this.allies.bench = this.allies.bench.filter((unit) => unit.id !== this.id)
+      this.allies.dead.push(this)
+      this.live = false
+    }
   }
 
   constructor (

@@ -135,9 +135,9 @@ class Action {
     if (prevTargs.length > 0) {
       prevTargs.forEach((targ, index) => { console.log(index, ':', targ.name) })
     }
-    console.log('rule.prevTargs:', rule.prevTargs)
+    // console.log('rule.prevTargs:', rule.prevTargs)
     rule.find().forEach((item, index) => {
-      console.log(item.name + ' is a possible target of ' + this.name)
+      // console.log(item.name + ' is a possible target of ' + this.name)
       // clone & repeat?
       if (this.targetRules.length > 1) {
         let next = clone(this)

@@ -13,7 +13,7 @@ class HEAL {
       type: 'minor',
       desc: 'Heal one ally for 1x MAGIC HP',
       cost: 1,
-      targetRules: ['ALLY'],
+      targetRules: ['HEAL'],
       effects: [
         {
           NAME: 'HEAL',
