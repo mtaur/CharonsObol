@@ -119,6 +119,7 @@ for (let i = 1; i < 4; i++) {
     // console.log('Outside of constructor...')
     removeByNAME(unit.actions, 'MELEE')
     removeByNAME(unit.actions, 'MOVE')
+    removeByNAME(unit.actions, 'RUN')
     console.log(unit)
   }
 }
@@ -128,10 +129,12 @@ var jaq = new CPUUnit(gameObj)
 console.log(jaq)
 jaq.raiseAll()
 //
-// removeByNAME(jaq.actions, 'RUN')
-// removeByNAME(jaq.actions, 'GUARD')
+removeByNAME(jaq.actions, 'RUN')
+removeByNAME(jaq.actions, 'MELEE')
+removeByNAME(jaq.actions, 'GUARD')
 // removeByNAME(jaq.actions, 'MOVE')
-jaq.actions.push(new Action.LIB.FLAMEFIST(jaq))
+jaq.actions.push(new Action.LIB.CHAINLGT(jaq))
+// jaq.actions.push(new Action.LIB.FLAMEFIST(jaq))
 jaq.actions.push(new Action.LIB.HEAL(jaq))
 jaq.actions.push(new Action.LIB.LUNGE(jaq))
 cpuTeam.front.push(jaq)

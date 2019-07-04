@@ -47,8 +47,8 @@ class StatSmart {
     let stat = this.baseStats[statName]
 
     if (this.playerTeam.SP >= stat.cost) {
-      this.applyChange(raise)
       this.playerTeam.SP -= stat.cost
+      this.applyChange(raise)
     }
   }
 }

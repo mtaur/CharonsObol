@@ -44,8 +44,8 @@ export default {
     newRound () {
       this.playerTeam.field.forEach(
         (unit) => {
-          if (!unit.hasAction.major) { this.playerTeam.SP += 2 }
-          if (!unit.hasAction.minor) { this.playerTeam.SP += 1 }
+          // if (!unit.hasAction.major) { this.playerTeam.SP += 2 }
+          // if (!unit.hasAction.minor) { this.playerTeam.SP += 1 }
           unit.hasAction.major = true
           unit.hasAction.minor = true
         })
@@ -53,6 +53,8 @@ export default {
         (unit) => {
           if (unit.hasAction.major) { this.playerTeam.SP -= 5 }
           if (unit.hasAction.minor) { this.playerTeam.SP -= 3 }
+          if (!unit.hasAction.major) { this.playerTeam.SP += 2 }
+          if (!unit.hasAction.minor) { this.playerTeam.SP += 1 }
           unit.hasAction.major = true
           unit.hasAction.minor = true
         })
