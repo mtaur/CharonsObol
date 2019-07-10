@@ -10,8 +10,8 @@ class HARRY {
       unit: unit,
       NAME: 'HARRY',
       // filename: 'LUNGE',
-      name: 'Lunge',
-      type: 'both',
+      name: 'Harry',
+      type: 'minor',
       desc: `Wizard or not, you can use a minor action point to perform a lesser ranged attack from the front row, 1/4 as much as the lesser of RANGED and MELEE.`,
       targetRules: ['RANGED'],
       prereqs: ['FRONT'], // TargetRules.LIB.BACK ...
