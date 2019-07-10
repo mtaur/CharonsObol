@@ -201,6 +201,7 @@ magicStaff.equipTo(pen)
 playerTeam.back.push(pen)
 pen.actions.push(new Action.LIB.FLAMEFIST(pen))
 pen.actions.push(new Action.LIB.CHAINLGT(pen))
+pen.actions.push(new Action.LIB.HOMING(pen))
 
 // pen.souls = [pensoul]
 // console.log('Outside of constructor...')
@@ -228,6 +229,7 @@ bronzeRing.equipTo(lynn)
 // lynn.equip(new Item.LIB.SPELLSWORD())
 // lynn.actions.push({ name: 'lunge', type: 'both', desc: 'Lunge FROM the back row TO the front row, doing 2x the SMALLER of MELEE and RANGED as damage to a target with a melee attack.' }) // = ['melee', 'ranged', 'lunge', 'block']
 lynn.actions.push(new Action.LIB.LUNGE(lynn)) // = ['melee', 'ranged', 'lunge', 'block']
+lynn.actions.push(new Action.LIB.HARRY(lynn)) // = ['melee', 'ranged', 'lunge', 'block']
 
 // lynn.baseStats.HP.current -= 15
 // console.log('Outside of constructor...')
@@ -264,7 +266,7 @@ martyrStaff.equipTo(bro)
 // bro.hasAction.minor = false
 bro.actions.push(new Action.LIB.INSPIRE(bro))
 bro.actions.push(new Action.LIB.HEAL(bro))
-bro.actions.push(new Action.LIB.NATLOG(bro))
+// bro.actions.push(new Action.LIB.NATLOG(bro))
 // bro.items.push(new Item.LIB.DIVINEBARRIER())
 
 // bro.baseStats.HP.current -= 40
@@ -275,5 +277,43 @@ playerTeam.front.push(bro)
 // bro.souls = [brosoul]
 // console.log('Outside of constructor...')
 console.log(bro)
+
+var primsoul = new Soul.LIB.PRIMORDAEA()
+var prim = new Unit(gameObj, {
+  name: primsoul.name,
+  hero: true,
+  souls: [primsoul],
+  side: Unit.SIDE.PLAYER,
+  pos: Unit.POS.FRONT,
+  items: []
+})
+let balsym = new Item.LIB.BALANCESYM()
+balsym.equipTo(prim)
+prim.actions.push(new Action.LIB.DRYAD(prim))
+prim.actions.push(new Action.LIB.FERAL(prim))
+prim.actions.push(new Action.LIB.BASEFORM(prim))
+prim.actions.push(new Action.LIB.HEAL(prim))
+prim.actions.push(new Action.LIB.NATLOG(prim))
+
+playerTeam.back.push(prim)
+console.log(prim)
+
+var ninjasoul = new Soul.LIB.NINJA()
+var ninja = new Unit(gameObj, {
+  name: ninjasoul.name,
+  hero: true,
+  souls: [ninjasoul],
+  side: Unit.SIDE.PLAYER,
+  pos: Unit.POS.FRONT,
+  items: []
+})
+// let balsym = new Item.LIB.BALANCESYM()
+// balsym.equipTo(prim)
+ninja.actions.push(new Action.LIB.HEAL(ninja))
+// ninja.actions.push(new Action.LIB.FLAMEFIST(ninja))
+ninja.actions.push(new Action.LIB.HOMING(ninja))
+
+playerTeam.back.push(ninja)
+console.log(ninja)
 
 export { cpuTeam, playerTeam }

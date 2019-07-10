@@ -14,6 +14,7 @@ class TargetRule {
   playerTeam = []
   cpuTeam = []
   prevTargs = []
+  // rebuild = false // NATLOG needs to re-compute the number of targets each time
   caster = {}
   find = function () { return [] }
   // Is the given unit a valid target?
@@ -120,6 +121,24 @@ class TargetRule {
         if (unit.id === this.prevTargs[index].id) { retVal = false }
       }
       return retVal
+    },
+    frontfull: function (unit) {
+      return (unit.allies.front.length >= 4 && unit.pos === Unit.POS.BACK)
+    },
+    backfull: function (unit) {
+      return (unit.allies.back.length >= 4 && unit.pos === Unit.POS.FRONT)
+    },
+    enemyfrontfull: function (unit) {
+      return (unit.enemies.front.length >= 4)
+    },
+    enemybackfull: function (unit) {
+      return (unit.enemies.back.length >= 4)
+    },
+    otherrowfull: function (unit) {
+      return unit.pos === Unit.POS.FRONT ? unit.allies.back.length >= 4 : unit.allies.front.length >= 4
+    },
+    enemyotherrowfull: function (unit) {
+      return unit.pos === Unit.POS.FRONT ? unit.enemies.back.length >= 4 : unit.enemies.front.length >= 4
     }
   }
 

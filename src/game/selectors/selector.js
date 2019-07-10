@@ -122,6 +122,18 @@ class Selector {
   // Try to make it so obj auto-fills the slot correctly here
   changeState (name, obj = this.stateData) {
     this.state = new CtrlState.LIB[name](this, obj)
+    this.game.playerTeam.field.forEach(
+      (unit) => {
+        unit.actions.forEach((action) => {
+          if (action.rebuild !== false) { action.rebuild(action, unit) }
+        })
+      })
+    this.game.cpuTeam.field.forEach(
+      (unit) => {
+        unit.actions.forEach((action) => {
+          if (action.rebuild !== false) { action.rebuild(action, unit) }
+        })
+      })
   }
 
   // get enemyTurn () { return enemyTurn.call(this) }

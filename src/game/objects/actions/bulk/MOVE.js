@@ -13,6 +13,7 @@ class MOVE {
       type: 'minor',
       desc: 'Change rows.',
       targetRules: ['SELF'],
+      prereqs: ['OTHERROWNOTFULL'],
       effects: [
         {
           NAME: 'ROWSWAP',

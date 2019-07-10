@@ -99,6 +99,11 @@ class Unit {
       return this.playerTeam
     } else return this.cpuTeam
   }
+  get enemies () {
+    if (this.side === Unit.SIDE.PLAYER) {
+      return this.cpuTeam
+    } else return this.playerTeam
+  }
 
   // Define getters in an external file and bind them here.
   get baseStatValues () { return StatMods.getBaseStatValues.call(this) }

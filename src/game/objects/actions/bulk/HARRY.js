@@ -1,23 +1,23 @@
 import { Action } from '../Action.js'
 
-class LUNGE {
-  static NAME = 'LUNGE'
-  static filename = 'LUNGE'
+class HARRY {
+  static NAME = 'HARRY'
+  static filename = 'HARRY'
 
   // { name: 'lunge', type: 'both', desc: 'Lunge FROM the back row TO the front row, doing 2x the SMALLER of MELEE and RANGED as damage to a target with a melee attack.' }
   constructor (unit = null) {
     return new Action({
       unit: unit,
-      NAME: 'LUNGE',
+      NAME: 'HARRY',
       // filename: 'LUNGE',
       name: 'Lunge',
       type: 'both',
-      desc: 'Lunge FROM the back row TO the front row, doing 2x the SMALLER of MELEE and RANGED as damage to a target with a melee attack.',
-      targetRules: ['MELEE'],
-      prereqs: ['BACK', 'FRONTNOTFULL'], // TargetRules.LIB.BACK ...
-      after: [{
-        NAME: 'ROWFRONT'
-      }],
+      desc: `Wizard or not, you can use a minor action point to perform a lesser ranged attack from the front row, 1/4 as much as the lesser of RANGED and MELEE.`,
+      targetRules: ['RANGED'],
+      prereqs: ['FRONT'], // TargetRules.LIB.BACK ...
+      // after: [{
+      //   NAME: 'ROWFRONT'
+      // }],
       // after: [{
       //   NAME: 'ROWSWAP'
       // }],
@@ -27,16 +27,16 @@ class LUNGE {
           name: 'damage',
           scale: {
             min: {
-              MELEE: 2,
-              RANGED: 2
+              MELEE: 0.25,
+              RANGED: 0.25
             }
           },
-          DREDScale: 2,
-          DREFScale: 2
+          DREDScale: 0.25,
+          DREFScale: 0.25
         }
       ]
     })
   }
 }
 
-export default LUNGE
+export default HARRY

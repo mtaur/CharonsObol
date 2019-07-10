@@ -23,6 +23,7 @@ class Action {
   // stage 0 { casterCond: , }
   prevTargs = []
   effects = [] // match effect to target by index
+  rebuild = false // NATLOG needs to re-compute the number of targets each time
   canUse = function () {
     let retVal = true
     let obj = { playerTeam: this.unit.playerTeam, cpuTeam: this.unit.cpuTeam, caster: this.unit }
