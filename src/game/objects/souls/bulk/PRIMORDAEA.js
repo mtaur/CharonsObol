@@ -23,16 +23,16 @@ class Primordaea {
         // MAGIC: 6
       },
       converts: [
-        {
-          from: 'HP',
-          to: 'MP',
-          value: 0.02
-        },
-        {
-          from: 'HP',
-          to: 'HP',
-          value: -0.2
-        }
+        // {
+        //   from: 'HP',
+        //   to: 'MP',
+        //   value: 0.02
+        // },
+        // {
+        //   from: 'HP',
+        //   to: 'HP',
+        //   value: -0.2
+        // }
       ],
       skills: []
     })

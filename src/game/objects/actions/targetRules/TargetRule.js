@@ -135,7 +135,7 @@ class TargetRule {
       return (unit.enemies.back.length >= 4)
     },
     otherrowfull: function (unit) {
-      return unit.pos === Unit.POS.FRONT ? unit.allies.back.length >= 4 : unit.allies.front.length >= 4
+      return (unit.pos === Unit.POS.FRONT ? unit.allies.back.length >= 4 : unit.allies.front.length >= 4)
     },
     enemyotherrowfull: function (unit) {
       return unit.pos === Unit.POS.FRONT ? unit.enemies.back.length >= 4 : unit.enemies.front.length >= 4

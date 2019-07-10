@@ -6,7 +6,7 @@ import { Unit } from '../../../units/Unit.js'
 function ROWSWAP (effectObj = {}, target = {}, caster = {}) {
   let summarize = function () {
     let data = {
-      type: 'rowfront',
+      type: 'rowswap',
       caster: caster
     }
     let log =

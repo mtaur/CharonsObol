@@ -284,11 +284,11 @@ var prim = new Unit(gameObj, {
   hero: true,
   souls: [primsoul],
   side: Unit.SIDE.PLAYER,
-  pos: Unit.POS.FRONT,
+  pos: Unit.POS.BACK,
   items: []
 })
-let balsym = new Item.LIB.BALANCESYM()
-balsym.equipTo(prim)
+// let balsym = new Item.LIB.BALANCESYM()
+// balsym.equipTo(prim)
 prim.actions.push(new Action.LIB.DRYAD(prim))
 prim.actions.push(new Action.LIB.FERAL(prim))
 prim.actions.push(new Action.LIB.BASEFORM(prim))
@@ -304,7 +304,7 @@ var ninja = new Unit(gameObj, {
   hero: true,
   souls: [ninjasoul],
   side: Unit.SIDE.PLAYER,
-  pos: Unit.POS.FRONT,
+  pos: Unit.POS.BACK,
   items: []
 })
 // let balsym = new Item.LIB.BALANCESYM()
@@ -312,6 +312,7 @@ var ninja = new Unit(gameObj, {
 ninja.actions.push(new Action.LIB.HEAL(ninja))
 // ninja.actions.push(new Action.LIB.FLAMEFIST(ninja))
 ninja.actions.push(new Action.LIB.HOMING(ninja))
+ninja.actions.push(new Action.LIB.NIGHTSTRIKE(ninja))
 
 playerTeam.back.push(ninja)
 console.log(ninja)
