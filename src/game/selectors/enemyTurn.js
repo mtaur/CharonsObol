@@ -60,7 +60,8 @@ var enemyTurn = function () {
     selector.stateData.activeSkill = {}
     selector.stateData.inspectUnit = {}
     selector.stateData.skill = {}
-    selector.changeState('ChooseUnit')
+    // selector.changeState('ChooseUnit')
+    selector.changeState('InitCycle')
     // console.log('log', selector.log)
   }
 

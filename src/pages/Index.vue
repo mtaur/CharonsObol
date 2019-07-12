@@ -90,7 +90,10 @@ var selector = new Selector({
   log: [],
   logID: 0
 })
-selector.changeState('ChooseUnit')
+selector.changeState('RoundStart')
+console.log('cpuTeam', cpuTeam)
+console.log('playerTeam', playerTeam)
+// selector.changeState('ChooseUnit')
 // selector.activeUnit = selector.game.cpuTeam.front[0]
 // selector.activeSkill = cpuTeam.front[0].actions[3]
 // selector.onClicks.makeActive(selector, selector.game.cpuTeam.front[0])

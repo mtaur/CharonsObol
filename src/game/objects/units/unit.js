@@ -25,6 +25,48 @@ class Team {
   get all () { return this.front.concat(this.back).concat(this.bench).concat(this.dead) }
   get live () { return this.front.concat(this.back).concat(this.bench) }
 
+  get initTotal () {
+    let total = 0
+    for (let index in this.initArr) {
+      total += this.initArr[index]
+    }
+    return total
+  }
+  // // let hasTurn = cpuTeam.field.filter((unit) => unit.baseStats.HP.current > 0 && (unit.hasAction.major || unit.hasAction.minor))
+  // let hasTurn = cpuTeam.field.filter(canMove)
+  get hasTurn () {
+    let canMove = function (unit) {
+      let retVal = false
+      unit.actions.forEach((action) => { if (action.canUseTree()) { retVal = true } })
+      return retVal
+    }
+    let retVal = false
+    if (this.initTotal === 0) { return false }
+    this.field.forEach((unit) => { if (canMove(unit)) { retVal = true } })
+    // this.field.forEach((unit) => { if (unit.hasAction.major || unit.hasAction.minor) { retVal = true } })
+    return retVal
+  }
+  maxTurnPoints = 1000
+  waitTime = 50
+  initArr = []
+  initReset () {
+    // this.initVal = 0
+    this.initArr = []
+    this.field.forEach((unit) => {
+      unit.hasAction.major = true
+      unit.hasAction.minor = true
+      for (let i = 0; i < 3; i++) {
+        this.initArr.push(unit.effectiveStatValues.INIT)
+      }
+    })
+    this.initArr.sort((a, b) => b - a)
+  }
+  turnPoints = 0
+  initTick () {
+    console.log(this.turnPoints, this.side)
+    this.turnPoints += this.initTotal
+  }
+
   reset () {
     this.front = []
     this.back = []
@@ -37,12 +79,14 @@ class Team {
 
     // Player spends SP between player units.
     if (side === Unit.SIDE.PLAYER) {
-      this.SP = 100
+      // this.SP = 100
+      this.SP = 1000
     }
 
     // CPU units all receive CPU SP separately in full.
     if (side === Unit.SIDE.CPU) {
-      this.SP = 100 // 50
+      this.SP = 10
+      // this.SP = 100 // 50
     }
   }
 }
@@ -158,6 +202,13 @@ class Unit {
   checkAlive () {
     if (this.baseStats.HP.current <= 0 && this.pos !== Unit.POS.DEAD) {
       this.pos = Unit.POS.DEAD
+      if (this.hasAction.minor) {
+        this.allies.initArr.shift()
+      }
+      if (this.hasAction.major) {
+        this.allies.initArr.shift()
+        this.allies.initArr.shift()
+      }
       this.allies.front = this.allies.front.filter((unit) => unit.id !== this.id)
       this.allies.back = this.allies.back.filter((unit) => unit.id !== this.id)
       this.allies.bench = this.allies.bench.filter((unit) => unit.id !== this.id)

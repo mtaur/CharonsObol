@@ -58,12 +58,28 @@ var execute = function (selector, unit) {
     // selector.log.push(after.summary)
   }
   if (skill.cost > 0) { caster.baseStats.MP.current -= skill.cost }
+  if (skill.useInitPoints) {
+    if (skill.type === 'minor') {
+      selector.stateData.activeUnit.allies.initArr.shift()
+    }
+    if (skill.type === 'major') {
+      selector.stateData.activeUnit.allies.initArr.shift()
+      selector.stateData.activeUnit.allies.initArr.shift()
+    }
+    if (skill.type === 'both') {
+      selector.stateData.activeUnit.allies.initArr.shift()
+      selector.stateData.activeUnit.allies.initArr.shift()
+      selector.stateData.activeUnit.allies.initArr.shift()
+    }
+  }
+
   selector.stateData.activeUnit = {}
   selector.stateData.activeSkill = {}
   selector.stateData.inspectUnit = {}
   selector.stateData.skill = {}
-  selector.changeState('ChooseUnit')
+  // selector.changeState('ChooseUnit')
   console.log('log', selector.log)
+  selector.changeState('InitCycle')
 }
 var obj = {
   filename: 'execute',

@@ -11,11 +11,39 @@
         <h4 key='SP'>SP: {{ playerTeam.SP }}</h4>
       </div>
     </div>
-
-    <div class="justify-center">
+    <!-- <div>
+      <h6>Turn points</h6>
+      <div>Player: {{ playerTeam.turnPoints }} / {{ playerTeam.maxTurnPoints }}</div>
+      <div>{{ playerTeam.initTotal }} initiave points remaining (turn gauge refill rate)</div>
+      <div>CPU: {{ cpuTeam.turnPoints }} / {{ cpuTeam.maxTurnPoints }}</div>
+      <div>{{ cpuTeam.initTotal }} initiave points remaining (turn gauge refill rate)</div>
+    </div> -->
+    <div class="col-12 row">
+      <div class="col-2">Player:</div>
+      <div class="col-7">
+        <q-linear-progress
+        class="q-mt-sm"
+        rounded style="height: 15px"
+        :value="playerTeam.turnPoints / playerTeam.maxTurnPoints" color="yellow"
+        />
+      </div>
+      <div class="col-3">{{ playerTeam.turnPoints }}/{{ playerTeam.maxTurnPoints }}</div>
+    </div>
+    <div class="col-12 row">
+      <div class="col-2">CPU:</div>
+      <div class="col-7">
+        <q-linear-progress
+        class="q-mt-sm"
+        rounded style="height: 15px"
+        :value="cpuTeam.turnPoints / cpuTeam.maxTurnPoints" color="yellow"
+        />
+      </div>
+      <div class="col-3">{{ cpuTeam.turnPoints }}/{{ cpuTeam.maxTurnPoints }}</div>
+    </div>
+      <!-- <div class="justify-center">
       <q-btn size='md' color="red" @click="enemyTurn">Enemy Turn</q-btn>
       <q-btn size='md' color="green" @click="newRound">New Round</q-btn>
-    </div>
+    </div> -->
 
     <unitdetail v-for="unit in activeUnit"
       :unit="unit"

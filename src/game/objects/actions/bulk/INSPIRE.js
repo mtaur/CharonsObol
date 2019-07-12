@@ -19,7 +19,8 @@ class INSPIRE {
         name: 'inspire',
         major: true,
         minor: false
-      }]
+      }],
+      useInitPoints: false
     })
   }
 }

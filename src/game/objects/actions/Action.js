@@ -22,6 +22,7 @@ class Action {
   targetRules = ['SELF'] // target1, target2.......
   // stage 0 { casterCond: , }
   prevTargs = []
+  useInitPoints = true // Default behavior, rare exceptions like Inspire refund turns and Init chunks.
   effects = [] // match effect to target by index
   rebuild = false // NATLOG needs to re-compute the number of targets each time
   canUse = function () {

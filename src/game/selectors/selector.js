@@ -7,6 +7,7 @@ import { enemyTurn } from './enemyTurn.js'
 class Selector {
   // game object
   game = {}
+  // game.cpuTeam, game.playerTeam .....
   log = []
   logID = 0
   // click handler object, stored by name

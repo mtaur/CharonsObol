@@ -10,7 +10,7 @@ class BASEFORM {
       unit: unit,
       NAME: 'BASEFORM',
       // filename: 'GUARD',
-      name: 'Baseform',
+      name: 'Base Form',
       type: 'minor',
       desc: 'Revert back to boring old Human form.',
       targetRules: ['SELF'],
