@@ -26,8 +26,8 @@ class InitCycle extends CtrlState {
   }
 
   tick (selector, playerTeam, cpuTeam) {
-    playerTeam.initTick()
-    cpuTeam.initTick()
+    if (playerTeam.hasTurn) { playerTeam.initTick() }
+    if (cpuTeam.hasTurn) { cpuTeam.initTick() }
     if (playerTeam.turnPoints < playerTeam.maxTurnPoints && cpuTeam.turnPoints < cpuTeam.maxTurnPoints) {
       setTimeout(() => { this.tick(selector, playerTeam, cpuTeam) }, playerTeam.waitTime)
     } else {
@@ -74,6 +74,7 @@ class InitCycle extends CtrlState {
 
   constructor (selector, obj) {
     super(selector, obj)
+    selector.turnState = 'idle'
     selector.getClickJSON = this.getClickJSON
     selector.resetData()
     this.runTimers(selector)

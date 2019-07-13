@@ -16,7 +16,7 @@ class LUNGE {
       targetRules: ['MELEE'],
       prereqs: ['BACK', 'FRONTNOTFULL'], // TargetRules.LIB.BACK ...
       after: [{
-        NAME: 'ROWFRONT'
+        NAME: 'CASTERFRONT'
       }],
       // after: [{
       //   NAME: 'ROWSWAP'

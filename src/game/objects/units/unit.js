@@ -46,7 +46,7 @@ class Team {
     // this.field.forEach((unit) => { if (unit.hasAction.major || unit.hasAction.minor) { retVal = true } })
     return retVal
   }
-  maxTurnPoints = 1000
+  maxTurnPoints = 100
   waitTime = 50
   initArr = []
   initReset () {
@@ -80,12 +80,12 @@ class Team {
     // Player spends SP between player units.
     if (side === Unit.SIDE.PLAYER) {
       // this.SP = 100
-      this.SP = 1000
+      this.SP = 50
     }
 
     // CPU units all receive CPU SP separately in full.
     if (side === Unit.SIDE.CPU) {
-      this.SP = 10
+      this.SP = 50
       // this.SP = 100 // 50
     }
   }

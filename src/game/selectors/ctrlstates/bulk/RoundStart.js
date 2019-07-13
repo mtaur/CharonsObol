@@ -27,6 +27,7 @@ class RoundStart extends CtrlState {
 
   constructor (selector, obj) {
     super(selector, obj)
+    selector.turnState = 'idle'
     selector.getClickJSON = this.getClickJSON
     selector.resetData()
     selector.game.playerTeam.initReset()

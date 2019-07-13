@@ -27,6 +27,7 @@ class EnemyTurn extends CtrlState {
 
   constructor (selector, obj) {
     super(selector, obj)
+    selector.turnState = 'cpu'
     selector.getClickJSON = this.getClickJSON
     selector.resetData()
     selector.enemyTurn()

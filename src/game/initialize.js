@@ -304,17 +304,34 @@ var ninja = new Unit(gameObj, {
   hero: true,
   souls: [ninjasoul],
   side: Unit.SIDE.PLAYER,
-  pos: Unit.POS.BACK,
+  pos: Unit.POS.FRONT,
   items: []
 })
-// let balsym = new Item.LIB.BALANCESYM()
-// balsym.equipTo(prim)
+let parry = new Item.LIB.PARRYKNIFE()
+parry.equipTo(ninja)
 ninja.actions.push(new Action.LIB.HEAL(ninja))
-// ninja.actions.push(new Action.LIB.FLAMEFIST(ninja))
 ninja.actions.push(new Action.LIB.HOMING(ninja))
 ninja.actions.push(new Action.LIB.NIGHTSTRIKE(ninja))
 
-playerTeam.back.push(ninja)
+playerTeam.front.push(ninja)
 console.log(ninja)
+
+var baronsoul = new Soul.LIB.BARON()
+var baron = new Unit(gameObj, {
+  name: baronsoul.name,
+  hero: true,
+  souls: [baronsoul],
+  side: Unit.SIDE.PLAYER,
+  pos: Unit.POS.FRONT,
+  items: []
+})
+let axe = new Item.LIB.BERSERKERAXE()
+axe.equipTo(baron)
+baron.actions.push(new Action.LIB.REBUKE(baron))
+// baron.actions.push(new Action.LIB.HOMING(baron))
+// baron.actions.push(new Action.LIB.NIGHTSTRIKE(baron))
+
+playerTeam.front.push(baron)
+console.log(baron)
 
 export { cpuTeam, playerTeam }

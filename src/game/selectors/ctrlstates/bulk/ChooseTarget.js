@@ -34,6 +34,7 @@ class ChooseTarget extends CtrlState {
   constructor (selector, obj) {
     super(selector, obj)
     selector.getClickJSON = this.getClickJSON
+    selector.turnState = 'player'
   }
   // constructor (selector, unit, action) {
   //   // return new Soul({

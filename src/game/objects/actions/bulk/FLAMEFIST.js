@@ -17,7 +17,7 @@ class FLAMEFIST {
       targetRules: ['MELEE'],
       prereqs: ['FRONTNOTFULL'],
       after: [{
-        NAME: 'ROWFRONT'
+        NAME: 'CASTERFRONT'
       }],
       effects: [
         {

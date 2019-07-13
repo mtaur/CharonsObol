@@ -30,7 +30,7 @@ function GUARD (effectObj = {}, target = {}, caster = {}) {
 
   let apply = function () {
     this.summary = this.summarize()
-    caster.statuses.push(new Status.LIB.GUARD())
+    target.statuses.push(new Status.LIB.GUARD())
     // this.summary.text =
     // this.summary =
     // [

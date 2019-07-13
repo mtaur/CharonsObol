@@ -3,17 +3,17 @@
 // import { Stat } from '../../../units/Stat.js'
 import { Unit } from '../../../units/Unit.js'
 
-function ROWBACK (effectObj = {}, target = {}, caster = {}) {
+function CASTERBACK (effectObj = {}, target = {}, caster = {}) {
   let summarize = function () {
     let data = {
-      type: 'rowback',
+      type: 'casterback',
       caster: caster,
       target: target
     }
     let log =
     [
       {
-        text: `${target.name} moved to the back row.`,
+        text: `${caster.name} moved to the back row.`,
         type: 'move',
         // value: Math.floor(this.summary.reflected),
         caster: caster // ,
@@ -30,19 +30,19 @@ function ROWBACK (effectObj = {}, target = {}, caster = {}) {
   let apply = function () {
     this.summary = this.summarize()
 
-    target.pos = Unit.POS.BACK
-    if (target.side === Unit.SIDE.PLAYER) {
-      for (let index in target.playerTeam.front) {
-        if (target.playerTeam.front[index].id === target.id) {
-          target.playerTeam.front.splice(index, 1)
-          target.playerTeam.back.push(target)
+    caster.pos = Unit.POS.BACK
+    if (caster.side === Unit.SIDE.PLAYER) {
+      for (let index in caster.playerTeam.front) {
+        if (caster.playerTeam.front[index].id === caster.id) {
+          caster.playerTeam.front.splice(index, 1)
+          caster.playerTeam.back.push(caster)
         }
       }
-    } else if (target.side === Unit.SIDE.CPU) {
-      for (let index in target.cpuTeam.front) {
-        if (target.cpuTeam.front[index].id === target.id) {
-          target.cpuTeam.front.splice(index, 1)
-          target.cpuTeam.back.push(target)
+    } else if (caster.side === Unit.SIDE.CPU) {
+      for (let index in caster.cpuTeam.front) {
+        if (caster.cpuTeam.front[index].id === caster.id) {
+          caster.cpuTeam.front.splice(index, 1)
+          caster.cpuTeam.back.push(caster)
         }
       }
     }
@@ -63,8 +63,8 @@ function ROWBACK (effectObj = {}, target = {}, caster = {}) {
   // return apply
 }
 var obj = {
-  filename: 'ROWBACK',
-  exprt: ROWBACK
+  filename: 'CASTERBACK',
+  exprt: CASTERBACK
 }
 export default obj
 // ROWFRONT.NAME = 'ROWFRONT'

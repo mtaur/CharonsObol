@@ -4,10 +4,10 @@
 // import { Unit } from '../../../units/Unit.js'
 // import { Status } from '../../../statuses/Status.js'
 
-function GUARD (effectObj = {}, target = {}, caster = {}) {
+function BASEFORM (effectObj = {}, target = {}, caster = {}) {
   let summarize = function () {
     let data = {
-      type: 'guard',
+      type: 'baseform',
       caster: caster,
       target: target
     }
@@ -50,8 +50,8 @@ function GUARD (effectObj = {}, target = {}, caster = {}) {
   // return apply
 }
 var obj = {
-  filename: 'GUARD',
-  exprt: GUARD
+  filename: 'BASEFORM',
+  exprt: BASEFORM
 }
 export default obj
 // ROWFRONT.NAME = 'ROWFRONT'

@@ -15,7 +15,7 @@ class MELEE {
       targetRules: ['MELEE'],
       prereqs: ['FRONTNOTFULL'],
       after: [{
-        NAME: 'ROWFRONT'
+        NAME: 'CASTERFRONT'
       }],
       effects: [
         {

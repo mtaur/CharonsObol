@@ -7,12 +7,13 @@ function ROWFRONT (effectObj = {}, target = {}, caster = {}) {
   let summarize = function () {
     let data = {
       type: 'rowfront',
-      caster: caster
+      caster: caster,
+      target: target
     }
     let log =
     [
       {
-        text: `${caster.name} moved to the front row.`,
+        text: `${target.name} moved to the front row.`,
         type: 'move',
         // value: Math.floor(this.summary.reflected),
         caster: caster // ,
@@ -29,19 +30,19 @@ function ROWFRONT (effectObj = {}, target = {}, caster = {}) {
   let apply = function () {
     this.summary = this.summarize()
 
-    caster.pos = Unit.POS.FRONT
-    if (caster.side === Unit.SIDE.PLAYER) {
-      for (let index in caster.playerTeam.back) {
-        if (caster.playerTeam.back[index].id === caster.id) {
-          caster.playerTeam.back.splice(index, 1)
-          caster.playerTeam.front.push(caster)
+    target.pos = Unit.POS.FRONT
+    if (target.side === Unit.SIDE.PLAYER) {
+      for (let index in target.playerTeam.back) {
+        if (target.playerTeam.back[index].id === target.id) {
+          target.playerTeam.back.splice(index, 1)
+          target.playerTeam.front.push(target)
         }
       }
-    } else if (caster.side === Unit.SIDE.CPU) {
-      for (let index in caster.cpuTeam.back) {
-        if (caster.cpuTeam.back[index].id === caster.id) {
-          caster.cpuTeam.back.splice(index, 1)
-          caster.cpuTeam.front.push(caster)
+    } else if (target.side === Unit.SIDE.CPU) {
+      for (let index in target.cpuTeam.back) {
+        if (target.cpuTeam.back[index].id === target.id) {
+          target.cpuTeam.back.splice(index, 1)
+          target.cpuTeam.front.push(target)
         }
       }
     }

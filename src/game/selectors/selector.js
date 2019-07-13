@@ -12,6 +12,7 @@ class Selector {
   logID = 0
   // click handler object, stored by name
   onClicks = onClicks
+  turnState = 'idle'
 
   // Which player, if any, is highlighted as active?
   // activeUnit = {}
