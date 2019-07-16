@@ -63,7 +63,7 @@ function removeByNAME (arr, str) {
 }
 
 // Knight of Caenenfoeder
-for (let i = 1; i < 3; i++) {
+for (let i = 1; i < 4; i++) {
 // for (let i = 1; i < 4; i++) {
   if (i < 2) {
     let unit = new CPUUnit(gameObj, caenenTemplate())
@@ -76,7 +76,7 @@ for (let i = 1; i < 3; i++) {
       DRED: 3,
       DREF: 3
     }
-    unit.name = 'Knight of Caenenfoeder ' + i
+    unit.name = 'Knight of Caenenfoeder'
     unit.raiseAll()
     //
     cpuTeam.front.push(unit)
@@ -86,7 +86,7 @@ for (let i = 1; i < 3; i++) {
     removeByNAME(unit.actions, 'RUN')
     removeByNAME(unit.actions, 'MOVE')
     console.log(unit)
-  } else {
+  } else if (i < 3) {
     let unit = new CPUUnit(gameObj, caenenTemplate())
     unit.statWeights = {
       HP: 3,
@@ -98,7 +98,7 @@ for (let i = 1; i < 3; i++) {
       DREF: 0
     }
     unit.pos = Unit.POS.BACK
-    unit.name = 'Archer of Caenenfoeder ' + i
+    unit.name = 'Archer of Caenenfoeder'
     unit.raiseAll()
     //
     cpuTeam.back.push(unit)
@@ -107,6 +107,34 @@ for (let i = 1; i < 3; i++) {
     removeByNAME(unit.actions, 'MELEE')
     removeByNAME(unit.actions, 'MOVE')
     removeByNAME(unit.actions, 'RUN')
+    console.log(unit)
+  } else {
+    let unit = new CPUUnit(gameObj, caenenTemplate())
+    unit.statWeights = {
+      HP: 2,
+      MP: 4,
+      INIT: 1,
+      MELEE: 0,
+      MAGIC: 6,
+      RANGED: 6,
+      DRED: 1,
+      DREF: 1
+    }
+    unit.pos = Unit.POS.BACK
+    unit.name = 'Mage of Caenenfoeder'
+    unit.raiseAll()
+    //
+    cpuTeam.back.push(unit)
+    //
+    // console.log('Outside of constructor...')
+    removeByNAME(unit.actions, 'MELEE')
+    removeByNAME(unit.actions, 'RANGED')
+    removeByNAME(unit.actions, 'MOVE')
+    removeByNAME(unit.actions, 'RUN')
+    unit.actions.push(new Action.LIB.HOMING(unit))
+    unit.actions.push(new Action.LIB.REGEN(unit))
+    unit.actions.push(new Action.LIB.HEAL(unit))
+    unit.actions.push(new Action.LIB.CHAINLGT(unit))
     console.log(unit)
   }
 }
@@ -148,7 +176,6 @@ deadGuy.live = false
 deadGuy.pos = Unit.POS.BENCH
 deadGuy.name = 'Archer of Caenenfoeder (deceased)'
 cpuTeam.bench.push(deadGuy)
-// console.log('Outside of constructor...')
 console.log(deadGuy)
 
 let benchGuy = new CPUUnit(gameObj, caenenTemplate())

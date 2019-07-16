@@ -1,14 +1,14 @@
 <template>
 <div class="row col-3 justify-center align-center q-pa-xs"
-  :class="marginColorClass"
-  :style="guardStyle">
+  :class="marginColorClass">
   <!-- :class="{active: isActive, canTarget: canTarget, prevTarget: prevTarget}"> -->
   <div class="wind justify-center align-center q-gutter-xs"
     :class="[bgColorClass, windClass]">
     <!-- :class="{active: isActive, canTarget: canTarget, prevTarget: prevTarget}"> -->
     <div class="row">
       <div class="col-4 placebox justify-center align-center">
-        <div class="placeholder">(Unit)</div>
+        <div class="placeholder"
+        :style="guardStyle">(Unit)</div>
       </div>
       <div class="align-center col-8 row">
         <div class = "col-6"
