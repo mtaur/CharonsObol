@@ -26,6 +26,18 @@
     <div class="row">
       <resbar :resource="unit.baseStats.HP"></resbar>
     </div>
+    <div v-if="hasHealthOverTime" class="col-12 row">
+      <div class="col-2">{{ Math.floor(healthOverTime.amount * healthOverTime.virulence * 3) }} / round</div>
+      <div class="col-7">
+        <q-linear-progress
+        class="q-mt-sm"
+        rounded style="height: 10px"
+        :value="(Math.abs(healthOverTime.amount)) / unit.effectiveStatValues.HP"
+        color="green"
+        />
+      </div>
+      <div class="col-3">{{ healthOverTime.amount }} total</div>
+    </div>
     <div class="row namebox justify-center align-center">
       <!-- <q-chip color="deep-orange"> -->
       <q-chip square color="teal" text-color="white">
@@ -124,6 +136,21 @@ export default {
         }
       }
       return {}
+    },
+    hasHealthOverTime () {
+      for (let index in this.unit.statuses) {
+        if (this.unit.statuses[index].NAME === 'HEALTHOVERTIME') { return true }
+      }
+      return false
+    },
+    healthOverTime () {
+      let effect = {}
+      for (let index in this.unit.statuses) {
+        if (this.unit.statuses[index].NAME === 'HEALTHOVERTIME') {
+          effect = this.unit.statuses[index].effects[0]
+        }
+      }
+      return effect
     }
   },
   components: {

@@ -57,6 +57,9 @@ class HEALTHOVERTIME {
       console.log('Tick!', tick, 'Remaining amount:', effect.amount)
       console.log('Tick! Unit:', unit, 'Effect:', effect)
       // console.log('Amount:', effect.amount)
+      if (effect.amount === 0) {
+        unit.statuses = unit.statuses.filter((status) => status.NAME !== 'HEALTHOVERTIME')
+      }
     }
 
     let getLogItem = function (unit, trigger, actionType, status, selector) {

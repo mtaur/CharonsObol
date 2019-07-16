@@ -51,7 +51,7 @@ function HEALTHOVERTIME (effectObj = {}, target = {}, caster = {}) {
     })
     if (amtAbs > 0) {
       let virulence = tickSum / amtAbs
-      return { amount: amt, virulence: virulence }
+      return { amount: Math.floor(amt), virulence: virulence }
     } else return { amount: 0, virulence: 0.04 }
   }
 

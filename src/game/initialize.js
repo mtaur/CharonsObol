@@ -62,53 +62,54 @@ function removeByNAME (arr, str) {
   }
 }
 
-// // Knight of Caenenfoeder
+// Knight of Caenenfoeder
+for (let i = 1; i < 3; i++) {
 // for (let i = 1; i < 4; i++) {
-//   if (i < 2) {
-//     let unit = new CPUUnit(gameObj, caenenTemplate())
-//     unit.statWeights = {
-//       HP: 6,
-//       MP: 0,
-//       INIT: 1,
-//       MELEE: 5,
-//       RANGED: 0,
-//       DRED: 3,
-//       DREF: 3
-//     }
-//     unit.name = 'Knight of Caenenfoeder ' + i
-//     unit.raiseAll()
-//     //
-//     cpuTeam.front.push(unit)
-//     //
-//     // console.log('Outside of constructor...')
-//     removeByNAME(unit.actions, 'RANGED')
-//     removeByNAME(unit.actions, 'RUN')
-//     removeByNAME(unit.actions, 'MOVE')
-//     console.log(unit)
-//   } else {
-//     let unit = new CPUUnit(gameObj, caenenTemplate())
-//     unit.statWeights = {
-//       HP: 3,
-//       MP: 1,
-//       INIT: 2,
-//       MELEE: 0,
-//       RANGED: 8,
-//       DRED: 2,
-//       DREF: 0
-//     }
-//     unit.pos = Unit.POS.BACK
-//     unit.name = 'Archer of Caenenfoeder ' + i
-//     unit.raiseAll()
-//     //
-//     cpuTeam.back.push(unit)
-//     //
-//     // console.log('Outside of constructor...')
-//     removeByNAME(unit.actions, 'MELEE')
-//     removeByNAME(unit.actions, 'MOVE')
-//     removeByNAME(unit.actions, 'RUN')
-//     console.log(unit)
-//   }
-// }
+  if (i < 2) {
+    let unit = new CPUUnit(gameObj, caenenTemplate())
+    unit.statWeights = {
+      HP: 6,
+      MP: 0,
+      INIT: 1,
+      MELEE: 5,
+      RANGED: 0,
+      DRED: 3,
+      DREF: 3
+    }
+    unit.name = 'Knight of Caenenfoeder ' + i
+    unit.raiseAll()
+    //
+    cpuTeam.front.push(unit)
+    //
+    // console.log('Outside of constructor...')
+    removeByNAME(unit.actions, 'RANGED')
+    removeByNAME(unit.actions, 'RUN')
+    removeByNAME(unit.actions, 'MOVE')
+    console.log(unit)
+  } else {
+    let unit = new CPUUnit(gameObj, caenenTemplate())
+    unit.statWeights = {
+      HP: 3,
+      MP: 1,
+      INIT: 2,
+      MELEE: 0,
+      RANGED: 8,
+      DRED: 2,
+      DREF: 0
+    }
+    unit.pos = Unit.POS.BACK
+    unit.name = 'Archer of Caenenfoeder ' + i
+    unit.raiseAll()
+    //
+    cpuTeam.back.push(unit)
+    //
+    // console.log('Outside of constructor...')
+    removeByNAME(unit.actions, 'MELEE')
+    removeByNAME(unit.actions, 'MOVE')
+    removeByNAME(unit.actions, 'RUN')
+    console.log(unit)
+  }
+}
 
 var jaq = new CPUUnit(gameObj)
 // console.log('Outside of constructor...')
@@ -119,10 +120,12 @@ removeByNAME(jaq.actions, 'RUN')
 removeByNAME(jaq.actions, 'MELEE')
 removeByNAME(jaq.actions, 'GUARD')
 // removeByNAME(jaq.actions, 'MOVE')
-jaq.actions.push(new Action.LIB.CHAINLGT(jaq))
+// jaq.actions.push(new Action.LIB.CHAINLGT(jaq))
 // jaq.actions.push(new Action.LIB.FLAMEFIST(jaq))
-jaq.actions.push(new Action.LIB.HEAL(jaq))
-jaq.actions.push(new Action.LIB.LUNGE(jaq))
+jaq.actions.push(new Action.LIB.REGEN(jaq))
+// jaq.actions.push(new Action.LIB.HEAL(jaq))
+jaq.actions.push(new Action.LIB.VENOMSTRIKE(jaq))
+// jaq.actions.push(new Action.LIB.LUNGE(jaq))
 cpuTeam.front.push(jaq)
 //
 // jaq.hasAction.major = false
@@ -193,47 +196,47 @@ pen.actions.push(new Action.LIB.HOMING(pen))
 // console.log('Outside of constructor...')
 console.log(pen)
 
-// var lynnsoul = new Soul.LIB.LYNN()
-// var lynn = new Unit(gameObj, {
-//   name: lynnsoul.name,
-//   souls: [lynnsoul],
-//   hero: true,
-//   side: Unit.SIDE.PLAYER,
-//   pos: Unit.POS.BACK,
-//   items: []
-// })
-// playerTeam.back.push(lynn)
-//
-// let spikeyShield = new Item.LIB.SPIKEYSHIELD()
-// let bronzeRing = new Item.LIB.BRONZERING()
-//
-// spikeyShield.equipTo(lynn)
-// bronzeRing.equipTo(lynn)
-// lynn.actions.push(new Action.LIB.LUNGE(lynn)) // = ['melee', 'ranged', 'lunge', 'block']
-// lynn.actions.push(new Action.LIB.HARRY(lynn)) // = ['melee', 'ranged', 'lunge', 'block']
-//
-// console.log(lynn)
-//
-// var brosoul = new Soul.LIB.BROCANTRIP()
-// var bro = new Unit(gameObj, {
-//   name: brosoul.name,
-//   hero: true,
-//   souls: [brosoul],
-//   side: Unit.SIDE.PLAYER,
-//   pos: Unit.POS.FRONT,
-//   items: []
-// })
-// let divineBarrier = new Item.LIB.DIVINEBARRIER()
-// let yoloMace = new Item.LIB.YOLOMACE()
-// let martyrStaff = new Item.LIB.MARTYRSTAFF()
-// divineBarrier.equipTo(bro)
-// yoloMace.equipTo(bro)
-// martyrStaff.equipTo(bro)
-// bro.actions.push(new Action.LIB.INSPIRE(bro))
-// bro.actions.push(new Action.LIB.HEAL(bro))
-//
-// playerTeam.front.push(bro)
-// console.log(bro)
+var lynnsoul = new Soul.LIB.LYNN()
+var lynn = new Unit(gameObj, {
+  name: lynnsoul.name,
+  souls: [lynnsoul],
+  hero: true,
+  side: Unit.SIDE.PLAYER,
+  pos: Unit.POS.BACK,
+  items: []
+})
+playerTeam.back.push(lynn)
+
+let spikeyShield = new Item.LIB.SPIKEYSHIELD()
+let bronzeRing = new Item.LIB.BRONZERING()
+
+spikeyShield.equipTo(lynn)
+bronzeRing.equipTo(lynn)
+lynn.actions.push(new Action.LIB.LUNGE(lynn)) // = ['melee', 'ranged', 'lunge', 'block']
+lynn.actions.push(new Action.LIB.HARRY(lynn)) // = ['melee', 'ranged', 'lunge', 'block']
+
+console.log(lynn)
+
+var brosoul = new Soul.LIB.BROCANTRIP()
+var bro = new Unit(gameObj, {
+  name: brosoul.name,
+  hero: true,
+  souls: [brosoul],
+  side: Unit.SIDE.PLAYER,
+  pos: Unit.POS.FRONT,
+  items: []
+})
+let divineBarrier = new Item.LIB.DIVINEBARRIER()
+let yoloMace = new Item.LIB.YOLOMACE()
+let martyrStaff = new Item.LIB.MARTYRSTAFF()
+divineBarrier.equipTo(bro)
+yoloMace.equipTo(bro)
+martyrStaff.equipTo(bro)
+bro.actions.push(new Action.LIB.INSPIRE(bro))
+bro.actions.push(new Action.LIB.HEAL(bro))
+
+playerTeam.front.push(bro)
+console.log(bro)
 
 var primsoul = new Soul.LIB.PRIMORDAEA()
 var prim = new Unit(gameObj, {
@@ -249,8 +252,11 @@ var prim = new Unit(gameObj, {
 prim.actions.push(new Action.LIB.DRYAD(prim))
 prim.actions.push(new Action.LIB.FERAL(prim))
 prim.actions.push(new Action.LIB.BASEFORM(prim))
-prim.actions.push(new Action.LIB.HEAL(prim))
+// prim.actions.push(new Action.LIB.HEAL(prim))
+prim.actions.push(new Action.LIB.REGEN(prim))
 prim.actions.push(new Action.LIB.NATLOG(prim))
+let blueRing2 = new Item.LIB.BLUERING()
+blueRing2.equipTo(prim)
 
 playerTeam.back.push(prim)
 console.log(prim)
@@ -266,7 +272,7 @@ var ninja = new Unit(gameObj, {
 })
 let parry = new Item.LIB.PARRYKNIFE()
 parry.equipTo(ninja)
-ninja.actions.push(new Action.LIB.HEAL(ninja))
+// ninja.actions.push(new Action.LIB.HEAL(ninja))
 // ninja.actions.push(new Action.LIB.HOMING(ninja))
 ninja.actions.push(new Action.LIB.VENOMSTRIKE(ninja))
 ninja.actions.push(new Action.LIB.NIGHTSTRIKE(ninja))
