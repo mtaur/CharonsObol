@@ -7,7 +7,7 @@ class Baron {
 
   constructor () {
     return new Soul({
-      name: 'Baron Von Sentry',
+      name: 'Baron von Sentry',
       NAME: 'BARON',
       desc: `A very pious dude, and quite furious that he wasn't provided his obol after death.`,
       bonus: {

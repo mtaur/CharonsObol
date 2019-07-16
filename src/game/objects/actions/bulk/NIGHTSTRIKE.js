@@ -13,14 +13,15 @@ class NIGHTSTRIKE {
       name: 'Night Strike',
       type: 'both',
       desc: `Deal the average of MELEE, RANGED, and MAGIC as damage to any enemy, bypassing DRED and DREF. Activate Guard for a non-guarding ally (not yourself) and then move to back row.`,
-      targetRules: ['HOMING', 'ALLYNOTGUARDINGNOTSELF', 'SELF'],
+      // targetRules: ['HOMING', 'ALLYNOTGUARDINGNOTSELF', 'SELF'],
+      targetRules: ['HOMING', 'ALLYNOTGUARDINGNOTSELF'],
       prereqs: ['FRONT'], // TargetRules.LIB.BACK ...
       // after: [{
       //   NAME: 'ROWFRONT'
       // }],
-      // after: [{
-      //   NAME: 'ROWSWAP'
-      // }],
+      after: [{
+        NAME: 'CASTERBACK'
+      }],
       effects: [
         {
           NAME: 'DAMAGE',
@@ -36,11 +37,11 @@ class NIGHTSTRIKE {
         {
           NAME: 'GUARD',
           name: 'guard'
-        },
-        {
-          NAME: 'ROWBACK',
-          name: 'rowback'
-        }
+        } // ,
+        // {
+        //   NAME: 'ROWBACK',
+        //   name: 'rowback'
+        // }
       ]
     })
   }

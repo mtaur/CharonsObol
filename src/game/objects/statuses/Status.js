@@ -31,7 +31,7 @@ class Status {
   desc = 'This is a template. It does nothing.'
   upkeep = 0
   remove = []
-  effects = []
+  effects = [{ trigger: [], effects: {} }]
   bonus = []
   converts = [] // [{ from: 'DRED', to: 'DREF', value: 1 }, ...]
   replacements = [] // [{ statName: 'MAGIC', value: function (unit) { return 27.18 } }, ...]
@@ -64,6 +64,32 @@ class Status {
       }
     }
   }
+  triggerCheck = function (unit, trigger, actionType = '', selector = {}) {
+    // console.log('this:', this)
+    // console.log('trigger:', trigger)
+    console.log('triggerCheck', this)
+    // Maybe loop over more than one effect in the future?
+    for (let effectIndx in this.effects) {
+      for (let index in this.effects[effectIndx].trigger) {
+        let cond = this.effects[effectIndx].trigger[index]
+        // console.log('cond:', cond)
+        if (cond === trigger) {
+          console.log('Should fire status update...', this)
+          // console.log('should clear something...')
+          let logItem = this.effects[effectIndx].getLogItem(unit, trigger, actionType, this, selector)
+          selector.log.push(logItem)
+          this.effects[effectIndx].update(unit, trigger, actionType, this.effects[effectIndx])
+        } // return true
+      }
+    }
+    // return false
+  }
+  // trigger = function (unit) {
+  //   //
+  //   // construct from the particular status?
+  //   //
+  // }
+  // caster.statuses.forEach((status) => status.triggerCheck(target, 'ENDTURN', skill.type))
 
   constructor (obj) {
     for (let propName in obj) {

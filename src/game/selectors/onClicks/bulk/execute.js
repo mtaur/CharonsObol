@@ -72,6 +72,7 @@ var execute = function (selector, unit) {
       selector.stateData.activeUnit.allies.initArr.shift()
     }
   }
+  caster.statuses.forEach((status) => status.triggerCheck(caster, 'ENDTURN', skill.type, selector))
 
   selector.stateData.activeUnit = {}
   selector.stateData.activeSkill = {}

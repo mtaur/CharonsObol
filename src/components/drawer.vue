@@ -14,22 +14,24 @@
     <!-- <div>
       <h6>Turn points</h6>
       <div>Player: {{ playerTeam.turnPoints }} / {{ playerTeam.maxTurnPoints }}</div>
-      <div>{{ playerTeam.initTotal }} initiave points remaining (turn gauge refill rate)</div>
       <div>CPU: {{ cpuTeam.turnPoints }} / {{ cpuTeam.maxTurnPoints }}</div>
-      <div>{{ cpuTeam.initTotal }} initiave points remaining (turn gauge refill rate)</div>
     </div> -->
+    <span v-if="selector.turnState === 'player'">
     <div v-if="selector.turnState === 'player'" class="col-12 row">
       <div class="col-2">Player:</div>
       <div class="col-7">
         <q-linear-progress
         class="q-mt-sm"
         rounded style="height: 15px"
-        value="1" color="green"
+        value=1 color="green"
         />
       </div>
       <div class="col-3">READY</div>
     </div>
-    <div v-else class="col-12 row">
+    <div>{{ playerTeam.initTotal }} initiave points remaining (turn gauge refill rate)</div>
+    </span>
+    <span v-else>
+    <div class="col-12 row">
       <div class="col-2">Player:</div>
       <div class="col-7">
         <q-linear-progress
@@ -40,6 +42,8 @@
       </div>
       <div class="col-3">{{ playerTeam.turnPoints }}/{{ playerTeam.maxTurnPoints }}</div>
     </div>
+    <div>{{ playerTeam.initTotal }} initiave points remaining (turn gauge refill rate)</div>
+    </span>
     <div class="col-12 row">
       <div class="col-2">CPU:</div>
       <div class="col-7">
@@ -50,6 +54,7 @@
         />
       </div>
       <div class="col-3">{{ cpuTeam.turnPoints }}/{{ cpuTeam.maxTurnPoints }}</div>
+      <div>{{ cpuTeam.initTotal }} initiave points remaining (turn gauge refill rate)</div>
     </div>
       <!-- <div class="justify-center">
       <q-btn size='md' color="red" @click="enemyTurn">Enemy Turn</q-btn>

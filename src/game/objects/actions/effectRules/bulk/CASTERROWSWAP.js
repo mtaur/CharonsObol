@@ -3,20 +3,20 @@
 // import { Stat } from '../../../units/Stat.js'
 import { Unit } from '../../../units/Unit.js'
 
-function ROWSWAP (effectObj = {}, target = {}, caster = {}) {
+function CASTERROWSWAP (effectObj = {}, target = {}, caster = {}) {
   let summarize = function () {
     let data = {
-      type: 'rowswap',
+      type: 'casterrowswap',
       caster: caster
     }
     let log =
     [
       {
-        text: `${target.name} swapped rows.`,
+        text: `${caster.name} swapped rows.`,
         type: 'move',
         // value: Math.floor(this.summary.reflected),
-        caster: caster,
-        target: target
+        caster: caster // ,
+        // target: target
       }
     ]
     let summary = {
@@ -29,20 +29,20 @@ function ROWSWAP (effectObj = {}, target = {}, caster = {}) {
   let apply = function () {
     this.summary = this.summarize()
 
-    if (target.pos === Unit.POS.FRONT) {
-      target.pos = Unit.POS.BACK
-      if (target.side === Unit.SIDE.PLAYER) {
-        for (let index in target.playerTeam.front) {
-          if (target.playerTeam.front[index].id === target.id) {
-            target.playerTeam.front.splice(index, 1)
-            target.playerTeam.back.push(target)
+    if (caster.pos === Unit.POS.FRONT) {
+      caster.pos = Unit.POS.BACK
+      if (caster.side === Unit.SIDE.PLAYER) {
+        for (let index in caster.playerTeam.front) {
+          if (caster.playerTeam.front[index].id === caster.id) {
+            caster.playerTeam.front.splice(index, 1)
+            caster.playerTeam.back.push(caster)
           }
         }
-      } else if (target.side === Unit.SIDE.CPU) {
-        for (let index in target.cpuTeam.front) {
-          if (target.cpuTeam.front[index].id === target.id) {
-            target.cpuTeam.front.splice(index, 1)
-            target.cpuTeam.back.push(target)
+      } else if (caster.side === Unit.SIDE.CPU) {
+        for (let index in caster.cpuTeam.front) {
+          if (caster.cpuTeam.front[index].id === caster.id) {
+            caster.cpuTeam.front.splice(index, 1)
+            caster.cpuTeam.back.push(caster)
           }
         }
       }
@@ -55,11 +55,11 @@ function ROWSWAP (effectObj = {}, target = {}, caster = {}) {
             caster.playerTeam.front.push(caster)
           }
         }
-      } else if (target.side === Unit.SIDE.CPU) {
-        for (let index in target.cpuTeam.back) {
-          if (target.cpuTeam.back[index].id === target.id) {
-            target.cpuTeam.back.splice(index, 1)
-            target.cpuTeam.front.push(target)
+      } else if (caster.side === Unit.SIDE.CPU) {
+        for (let index in caster.cpuTeam.back) {
+          if (caster.cpuTeam.back[index].id === caster.id) {
+            caster.cpuTeam.back.splice(index, 1)
+            caster.cpuTeam.front.push(caster)
           }
         }
       }
@@ -82,8 +82,8 @@ function ROWSWAP (effectObj = {}, target = {}, caster = {}) {
   // return apply
 }
 var obj = {
-  filename: 'ROWSWAP',
-  exprt: ROWSWAP
+  filename: 'CASTERROWSWAP',
+  exprt: CASTERROWSWAP
 }
 export default obj
 // ROWSWAP.NAME = 'ROWSWAP'

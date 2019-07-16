@@ -56,6 +56,8 @@ var enemyTurn = function () {
       // selector.log.push(after.summary)
     }
     if (skill.cost > 0) { caster.baseStats.MP.current -= skill.cost }
+    caster.statuses.forEach((status) => status.triggerCheck(caster, 'ENDTURN', skill.type, selector))
+
     selector.stateData.activeUnit = {}
     selector.stateData.activeSkill = {}
     selector.stateData.inspectUnit = {}

@@ -85,7 +85,7 @@ class Team {
 
     // CPU units all receive CPU SP separately in full.
     if (side === Unit.SIDE.CPU) {
-      this.SP = 50
+      this.SP = 100
       // this.SP = 100 // 50
     }
   }
