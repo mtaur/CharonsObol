@@ -114,7 +114,7 @@ class Action {
     // }
     rule.find().forEach((item, index) => {
       // console.log(item.name + ' is a possible target of ' + this.name)
-      // clone & repeat???
+      // clone & repeat?
       let currTargLog = clone(prevTargs)
       currTargLog.push(item)
       if (this.targetRules.length > 1) {

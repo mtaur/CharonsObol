@@ -23,7 +23,7 @@
         <q-linear-progress
         class="q-mt-sm"
         rounded style="height: 15px"
-        value=1 color="green"
+        :value="1" color="green"
         />
       </div>
       <div class="col-3">READY</div>

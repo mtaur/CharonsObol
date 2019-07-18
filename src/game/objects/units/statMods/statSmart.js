@@ -94,6 +94,9 @@ class StatSmart {
     unit.souls.forEach((soul, index) => { json.souls[index] = { NAME: soul.NAME, name: soul.name } })
     json.items = []
     unit.items.forEach((item, index) => { json.items[index] = { NAME: item.NAME, name: item.name } })
+    // json.allies = unit.allies.cloneJSON
+    // json.enemies = unit.enemies.cloneJSON
+
     return json
   }
 

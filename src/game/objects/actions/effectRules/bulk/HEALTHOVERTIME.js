@@ -1,12 +1,36 @@
 // import { TargetRule } from '../TargetRule.js'
-// import { hasIn as hasProp } from 'lodash'
-// import { Stat } from '../../../units/Stat.js'
+import { hasIn as hasProp } from 'lodash'
+import { Stat } from '../../../units/Stat.js'
 // import { Unit } from '../../../units/Unit.js'
 import { Status } from '../../../statuses/Status.js'
 
 function HEALTHOVERTIME (effectObj = {}, target = {}, caster = {}) {
   let summarize = function () {
-    let gainlose = effectObj.amount >= 0 ? 'gaining' : 'losing'
+    let amount = 0
+    // let virulence = 0.04
+    for (let statName in Stat.LIB) {
+      // console.log('Looking for amount scaling:')
+      if (hasProp(effectObj.scale, statName)) {
+        // console.log('Found', statName)
+        // console.log('effectObj:', effectObj)
+        amount += caster.effectiveStatValues[statName] * effectObj.scale[statName]
+        // console.log('Amount is now:', amount)
+      }
+    }
+    // if (hasProp(effectObj, 'scale')) {
+    //   for (let statName in effectObj.scale) {
+    //     amount += caster.effectiveStatValues[statName].value * effectObj.scale[statName]
+    //   }
+    // }
+    if (hasProp(effectObj, 'DREDScale')) {
+      amount += target.effectiveStatValues['DRED'] * effectObj.DREDScale
+    }
+    if (hasProp(effectObj, 'flat')) {
+      amount += effectObj.flat
+    }
+
+    let gainlose = amount >= 0 ? 'gaining' : 'losing'
+    // let gainlose = effectObj.amount >= 0 ? 'gaining' : 'losing'
     let data = {
       type: 'healthovertime',
       caster: caster,
