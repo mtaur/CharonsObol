@@ -173,9 +173,9 @@ deadGuy.statWeights = {
 deadGuy.raiseAll()
 deadGuy.baseStats.HP.current = 0
 deadGuy.live = false
-deadGuy.pos = Unit.POS.BENCH
+deadGuy.pos = Unit.POS.DEAD
 deadGuy.name = 'Archer of Caenenfoeder (deceased)'
-cpuTeam.bench.push(deadGuy)
+cpuTeam.dead.push(deadGuy)
 console.log(deadGuy)
 
 let benchGuy = new CPUUnit(gameObj, caenenTemplate())
@@ -324,5 +324,8 @@ baron.actions.push(new Action.LIB.REBUKE(baron))
 
 playerTeam.front.push(baron)
 console.log(baron)
+console.log('Clone JSON of Baron von Sentry:', baron.cloneJSON)
+console.log('Clone JSON of CPU team:', cpuTeam.cloneJSON)
+console.log('Clone JSON of player team:', playerTeam.cloneJSON)
 
 export { cpuTeam, playerTeam }

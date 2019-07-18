@@ -74,6 +74,8 @@ class Team {
     this.dead = []
   }
 
+  get cloneJSON () { return StatSmart.teamJSON.call(this, this) }
+
   constructor (side) {
     this.side = side
 
@@ -164,6 +166,7 @@ class Unit {
   //
   equip (...params) { StatSmart.equip.call(this, ...params) }
   levelUp (...params) { StatSmart.levelUp.call(this, ...params) }
+  get cloneJSON () { return StatSmart.unitJSON.call(this, this) }
 
   get baseSummary () {
     let obj = this.baseStatValues
@@ -237,7 +240,7 @@ class Unit {
       live: true,
       // Configure stats with default setup.
       baseStats: Unit.defaultStats(),
-      items: {},
+      items: [],
       souls: [],
       actions: [
         new Action.LIB.MELEE(thisUnit),

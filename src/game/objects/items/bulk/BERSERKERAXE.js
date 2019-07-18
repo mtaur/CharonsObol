@@ -18,7 +18,7 @@ class BERSERKERAXE {
           statName: 'MELEE',
           value: function (unit) {
             // return unit.convertedStatValues.MELEE + 0.1 * unit.baseStats.HP.current
-            return unit.convertedStatValues.MELEE + Math.min(0.1 * unit.baseStats.HP.current, unit.soulStatValues.DRED)
+            return unit.convertedStatValues.MELEE + Math.min(0.1 * unit.baseStats.HP.current, unit.convertedStatValues.DRED)
           }
         }
       ],
