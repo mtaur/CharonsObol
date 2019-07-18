@@ -77,9 +77,11 @@ class Action {
   }
 
   canUseTree = function () {
+    // let start = performance.now()
     if (!this.canUse()) { return false }
     let validPaths = []
     this.canUseRecursion([], validPaths)
+    // console.log(this.NAME, 'took', (performance.now() - start) * 0.001, 'seconds to calculate canUse().')
     if (validPaths.length > 0) {
       // console.log('Valid target paths:', validPaths)
       return true
