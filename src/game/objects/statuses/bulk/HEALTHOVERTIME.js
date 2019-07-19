@@ -12,17 +12,17 @@ class HEALTHOVERTIME {
     // overwrite default values in the return values below if
     // necessary
     //
-    let virulence = 0.04
-    let amount = 0
     // let flat = 0
     // let targ = target
+    let amount = 0
+    let virulence = 0.04
     for (let statName in Stat.LIB) {
-      console.log('Looking for amount scaling:')
+      // console.log('Looking for amount scaling:')
       if (hasProp(effectObj.scale, statName)) {
-        console.log('Found', statName)
-        console.log('effectObj:', effectObj)
+        // console.log('Found', statName)
+        // console.log('effectObj:', effectObj)
         amount += caster.effectiveStatValues[statName] * effectObj.scale[statName]
-        console.log('Amount is now:', amount)
+        // console.log('Amount is now:', amount)
       }
     }
     // if (hasProp(effectObj, 'scale')) {

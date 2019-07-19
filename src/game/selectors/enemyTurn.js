@@ -56,6 +56,20 @@ var enemyTurn = function () {
       // selector.log.push(after.summary)
     }
     if (skill.cost > 0) { caster.baseStats.MP.current -= skill.cost }
+    if (skill.useInitPoints) {
+      if (skill.type === 'minor') {
+        caster.allies.initArr.shift()
+      }
+      if (skill.type === 'major') {
+        caster.allies.initArr.shift()
+        caster.allies.initArr.shift()
+      }
+      if (skill.type === 'both') {
+        caster.allies.initArr.shift()
+        caster.allies.initArr.shift()
+        caster.allies.initArr.shift()
+      }
+    }
     caster.statuses.forEach((status) => status.triggerCheck(caster, 'ENDTURN', skill.type, selector))
 
     selector.stateData.activeUnit = {}

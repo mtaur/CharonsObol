@@ -46,8 +46,8 @@ class Team {
     // this.field.forEach((unit) => { if (unit.hasAction.major || unit.hasAction.minor) { retVal = true } })
     return retVal
   }
-  maxTurnPoints = 100
-  waitTime = 50
+  maxTurnPoints = 1000
+  waitTime = 100 // 250
   initArr = []
   initReset () {
     // this.initVal = 0
@@ -63,7 +63,7 @@ class Team {
   }
   turnPoints = 0
   initTick () {
-    console.log(this.turnPoints, this.side)
+    // console.log(this.turnPoints, this.side)
     this.turnPoints += this.initTotal
   }
 

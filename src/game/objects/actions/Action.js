@@ -1,7 +1,7 @@
 import { classdir as actionLib } from './jsload.js'
 // import { hasIn as hasProp, cloneDeep as clone } from 'lodash'
 // import { cloneDeep as clone } from 'lodash'
-import { hasIn as hasProp, cloneDeep as clone } from 'lodash'
+import { hasIn as hasProp, cloneDeepWith as clone } from 'lodash'
 import { TargetRule } from './targetRules/TargetRule.js'
 
 // console.log(Soul)
@@ -117,7 +117,7 @@ class Action {
     rule.find().forEach((item, index) => {
       // console.log(item.name + ' is a possible target of ' + this.name)
       // clone & repeat?
-      let currTargLog = clone(prevTargs)
+      let currTargLog = clone(prevTargs, (prop) => { return typeof prop === 'function' ? undefined : prop })
       currTargLog.push(item)
       if (this.targetRules.length > 1) {
         let next = clone(this)
@@ -145,7 +145,7 @@ class Action {
       // clone & repeat?
       if (this.targetRules.length > 1) {
         let next = clone(this)
-        let currTargLog = clone(prevTargs)
+        let currTargLog = clone(prevTargs, (prop) => { return typeof prop === 'function' ? undefined : prop })
         currTargLog.push(item)
         next.targetRules.shift()
         // next.targetRules[0].prevTargs = currTargLog

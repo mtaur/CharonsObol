@@ -26,8 +26,21 @@ class InitCycle extends CtrlState {
   }
 
   tick (selector, playerTeam, cpuTeam) {
-    if (playerTeam.hasTurn) { playerTeam.initTick() }
-    if (cpuTeam.hasTurn) { cpuTeam.initTick() }
+    let benchmarks = [0, 0.25, 0.5, 0.75, 1, 9001]
+    let prog = () => { return Math.max(playerTeam.turnPoints / playerTeam.maxTurnPoints, cpuTeam.turnPoints / cpuTeam.maxTurnPoints) }
+    // console.log('initial prog???', prog())
+    let progIndex = 0
+    benchmarks.forEach((item, index) => { if (prog() >= item) { progIndex = index } })
+    // console.log('progIndex???', progIndex)
+    let progress = prog()
+    // console.log(typeof progIndex, 'type...')
+    // console.log(progIndex + 1, 'progIndex + 1')
+    while (progress < benchmarks[progIndex + 1] && progress < 1) {
+      if (playerTeam.hasTurn) { playerTeam.initTick() }
+      if (cpuTeam.hasTurn) { cpuTeam.initTick() }
+      progress = prog()
+      // console.log('Increased prog???', progress)
+    }
     if (playerTeam.turnPoints < playerTeam.maxTurnPoints && cpuTeam.turnPoints < cpuTeam.maxTurnPoints) {
       setTimeout(() => { this.tick(selector, playerTeam, cpuTeam) }, playerTeam.waitTime)
     } else {

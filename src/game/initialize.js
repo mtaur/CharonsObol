@@ -324,7 +324,7 @@ baron.actions.push(new Action.LIB.REBUKE(baron))
 
 playerTeam.front.push(baron)
 console.log(baron)
-console.log('Clone JSON of Baron von Sentry:', baron.cloneJSON)
+// console.log('Clone JSON of Baron von Sentry:', baron.cloneJSON)
 console.log('Clone JSON of CPU team:', cpuTeam.cloneJSON)
 console.log('Clone JSON of player team:', playerTeam.cloneJSON)
 
