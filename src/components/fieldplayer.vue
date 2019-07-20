@@ -3,7 +3,7 @@
   :class="marginColorClass">
   <!-- :class="{active: isActive, canTarget: canTarget, prevTarget: prevTarget}"> -->
   <div class="wind justify-center align-center q-gutter-xs"
-    :class="[bgColorClass, windClass]">
+    :class="[bgColorClass, windClass, selectableClass]">
     <!-- :class="{active: isActive, canTarget: canTarget, prevTarget: prevTarget}"> -->
     <div class="row">
       <div class="col-4 placebox justify-center align-center">
@@ -99,13 +99,17 @@ export default {
     bgColorClass () {
       let bgColor = 'grey-4'
       let palette = {
-        idle: 'grey-4',
+        idle: 'grey-5',
         isActive: 'cyan',
         canTarget: 'teal',
         prevTarget: 'indigo'
       }
       if (hasProp(palette, this.status)) {
         bgColor = palette[this.status]
+      }
+      // console.log([this.unit.side === 'player', this.selector.turnState === 'player', this.unit.hasTurn, bgColor === 'grey-4'])
+      if (this.unit.side === 'player' && this.selector.turnState === 'player' && (this.unit.hasAction.major || this.unit.hasAction.minor) && bgColor === 'grey-5') {
+        bgColor = 'amber-3'
       }
       return 'bg-' + bgColor
       // if (this.isActive) { bgColor = 'cyan' }
@@ -151,7 +155,14 @@ export default {
         }
       }
       return effect
-    }
+    } // ,
+    // selectableClass () {
+    //   if (this.unit.side === 'player' && this.selector.turnState === 'player') {
+    //     // return 'glossy'
+    //     return 'amber-2'
+    //   }
+    //   return ''
+    // }
   },
   components: {
     resbar

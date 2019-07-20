@@ -63,7 +63,7 @@ function removeByNAME (arr, str) {
 }
 
 // Knight of Caenenfoeder
-for (let i = 1; i < 4; i++) {
+for (let i = 1; i < 5; i++) {
 // for (let i = 1; i < 4; i++) {
   if (i < 2) {
     let unit = new CPUUnit(gameObj, caenenTemplate())
@@ -86,7 +86,7 @@ for (let i = 1; i < 4; i++) {
     removeByNAME(unit.actions, 'RUN')
     removeByNAME(unit.actions, 'MOVE')
     console.log(unit)
-  } else if (i < 3) {
+  } else if (i < 4) {
     let unit = new CPUUnit(gameObj, caenenTemplate())
     unit.statWeights = {
       HP: 3,
@@ -98,7 +98,7 @@ for (let i = 1; i < 4; i++) {
       DREF: 0
     }
     unit.pos = Unit.POS.BACK
-    unit.name = 'Archer of Caenenfoeder'
+    unit.name = 'Archer of Caenenfoeder ' + (i - 1)
     unit.raiseAll()
     //
     cpuTeam.back.push(unit)

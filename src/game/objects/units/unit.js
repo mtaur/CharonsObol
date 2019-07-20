@@ -47,7 +47,7 @@ class Team {
     return retVal
   }
   maxTurnPoints = 1000
-  waitTime = 100 // 250
+  waitTime = 200 // 250
   initArr = []
   initReset () {
     // this.initVal = 0
@@ -87,7 +87,7 @@ class Team {
 
     // CPU units all receive CPU SP separately in full.
     if (side === Unit.SIDE.CPU) {
-      this.SP = 120
+      this.SP = 90 // 100 // 120
       // this.SP = 100 // 50
     }
   }
