@@ -35,6 +35,30 @@ class ChooseTarget extends CtrlState {
     super(selector, obj)
     selector.getClickJSON = this.getClickJSON
     selector.turnState = 'player'
+    console.log(selector.stateData.activeUnit)
+    let rule = new selector.stateData.activeSkill.targetRules[0]({
+      caster: selector.stateData.activeUnit,
+      playerTeam: selector.stateData.activeUnit.playerTeam,
+      cpuTeam: selector.stateData.activeUnit.cpuTeam,
+      prevTargs: selector.stateData.activeSkill.prevTargs
+    })
+    console.log(rule)
+    if (rule.auto) {
+      let legalTargs = rule.find()
+      let targ = legalTargs[Math.floor(Math.random() * legalTargs.length)]
+      console.log(targ, 'AUTO targ!!!')
+      if (selector.stateData.activeSkill.targetRules.length === 1) {
+        selector.onClicks.execute(selector, targ)
+      } else {
+        selector.stateData.activeSkill.prevTargs.push(targ)
+        selector.stateData.activeSkill.targetRules.shift()
+        selector.changeState('ChooseTarget')
+      }
+      // this.selector.stateData.activeUnit = this.unit
+      // this.selector.stateData.activeSkill = clone(this.unit.actions.filter((action) => action.NAME === 'RESTMINOR')[0])
+      // selector.stateData.activeSkill.prevTargs.push(this.unit)
+      // selector.stateData.activeSkill.targetRules.length > 1 ? 'pickTarget' : 'execute'
+    }
   }
   // constructor (selector, unit, action) {
   //   // return new Soul({

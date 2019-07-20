@@ -41,7 +41,7 @@
     <div class="row namebox justify-center align-center">
       <!-- <q-chip color="deep-orange"> -->
       <q-chip square color="teal" text-color="white">
-        <q-avatar>
+        <q-avatar @click.stop="rest">
           <!-- <img src="statics/icons/action-both.png"> -->
           <img :src="actStatusImg">
         </q-avatar>
@@ -59,10 +59,10 @@
 <script>
 // import statrow from './statchange.vue'
 import resbar from './resbar.vue'
-import { hasIn as hasProp } from 'lodash'
+import { hasIn as hasProp, cloneDeep as clone } from 'lodash'
 
 export default {
-  props: ['unit', 'isActive', 'canTarget', 'prevTarget'],
+  props: ['unit', 'isActive', 'canTarget', 'prevTarget', 'selector'],
   // props: ['unit', 'status'],
   // components: { statrow },
   data () {
@@ -157,6 +157,22 @@ export default {
     resbar
   },
   methods: {
+    rest () {
+      if (this.unit.hasAction.minor && this.unit.side === 'player') {
+        this.selector.stateData.activeUnit = this.unit
+        this.selector.stateData.activeSkill = clone(this.unit.actions.filter((action) => action.NAME === 'RESTMINOR')[0])
+        // this.selector.stateData.activeSkill.prevTargs.push(this.unit)
+        // this.selector.stateData.activeSkill.targetRules.shift()
+        this.selector.onClicks.execute(this.selector, this.unit)
+      } else if (this.unit.hasAction.major && this.unit.side === 'player') {
+        this.selector.stateData.activeUnit = this.unit
+        this.selector.stateData.activeSkill = clone(this.unit.actions.filter((action) => action.NAME === 'RESTMAJOR')[0])
+        // this.selector.stateData.activeSkill.prevTargs.push(this.unit)
+        // this.selector.stateData.activeSkill.targetRules.shift()
+        this.selector.onClicks.execute(this.selector, this.unit)
+      }
+      // alert(this.unit.name)
+    }
   }
 }
 </script>

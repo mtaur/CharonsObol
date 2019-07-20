@@ -13,7 +13,8 @@ class SAME {
       prefs: [],
       playerTeam: obj.playerTeam,
       prevTargs: obj.prevTargs,
-      cpuTeam: obj.cpuTeam
+      cpuTeam: obj.cpuTeam,
+      auto: true
       // Vast majority of skills use these, MUST overwrite as bool if not:
       // live: true,
       // dead: false,

@@ -1,7 +1,8 @@
 <template>
 <div class="col-3 wind justify-center align-center">
   <div class="row items-center justify-center">
-    <div v-for="action in unit.actions" :key="action.name" class="justify-center">
+    <div v-for="action in sortedActions" :key="action.name" class="justify-center">
+    <!-- <div v-for="action in unit.actions" :key="action.name" class="justify-center"> -->
       <q-chip square v-if="canUse(action)"
       class="glossy"
       :style="actionStyle(action)"
@@ -57,6 +58,7 @@
 <script>
 // import statrow from './statchange.vue'
 // import itemTooltip from './itemTooltip.vue'
+// import { sort } from 'lodash'
 
 export default {
   props: ['unit', 'playerTeam', 'cpuTeam', 'selector'],
@@ -165,6 +167,11 @@ export default {
     }
   },
   computed: {
+    sortedActions () {
+      let val = (action) => { return action.type === 'minor' ? 1 : action.type === 'major' ? 2 : action.type === 'both' ? 3 : 9001 }
+      let sortBy = (act1, act2) => { return val(act1) - val(act2) }
+      return this.unit.actions.slice().sort(sortBy).filter((action) => action.NAME !== 'RESTMINOR' && action.NAME !== 'RESTMAJOR')
+    }
   }
 }
 </script>

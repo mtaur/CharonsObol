@@ -328,4 +328,9 @@ console.log(baron)
 console.log('Clone JSON of CPU team:', cpuTeam.cloneJSON)
 console.log('Clone JSON of player team:', playerTeam.cloneJSON)
 
+playerTeam.all.forEach((unit) => {
+  unit.actions.push(new Action.LIB.RESTMAJOR(unit))
+  unit.actions.push(new Action.LIB.RESTMINOR(unit))
+})
+
 export { cpuTeam, playerTeam }

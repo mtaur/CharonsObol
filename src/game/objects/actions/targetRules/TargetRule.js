@@ -157,6 +157,7 @@ class TargetRule {
       cpuTeam: [],
       prevTargs: [],
       prefNots: [],
+      auto: false,
       // Vast majority of skills use these, MUST overwrite as bool if not:
       live: true,
       dead: false,
