@@ -2,7 +2,7 @@
 <div class="row col-3 justify-center align-center q-pa-xs"
   :class="marginColorClass">
   <!-- :class="{active: isActive, canTarget: canTarget, prevTarget: prevTarget}"> -->
-  <div class="wind justify-center align-center q-gutter-xs"
+  <div class="wind justify-center align-center q-gutter-xs content-around items-center col"
     :class="[bgColorClass, windClass, selectableClass]">
     <!-- :class="{active: isActive, canTarget: canTarget, prevTarget: prevTarget}"> -->
     <div class="row">
@@ -27,11 +27,11 @@
       <resbar :resource="unit.baseStats.HP"></resbar>
     </div>
     <div v-if="hasHealthOverTime" class="col-12 row">
-      <div class="col-2">{{ Math.floor(healthOverTime.amount * healthOverTime.virulence * 3) }} / round</div>
+      <div class="col-2" style="font-size: 10px"><span v-if="healthOverTime.amount > 0">+</span>{{ Math.floor(healthOverTime.amount * healthOverTime.virulence * 3) }} / round</div>
       <div class="col-7">
         <q-linear-progress
         class="q-mt-sm"
-        rounded style="height: 10px"
+        rounded style="height: 8px"
         :value="(Math.abs(healthOverTime.amount)) / unit.effectiveStatValues.HP"
         color="green"
         />
@@ -40,10 +40,22 @@
     </div>
     <div class="row namebox justify-center align-center">
       <!-- <q-chip color="deep-orange"> -->
-      <q-chip square color="teal" text-color="white">
-        <q-avatar @click.stop="rest">
-          <!-- <img src="statics/icons/action-both.png"> -->
-          <img :src="actStatusImg">
+      <q-chip color="teal" text-color="white">
+        <q-avatar>
+          <q-tooltip anchor="center left" self="center right" :offset="[10, 10]" content-class="bg-teal" max-width="20vw">
+              <span style="font-size: 14px" v-if="unit.hasAction.minor || unit.hasAction.major">
+                <h6>
+                  <span v-if="unit.hasAction.minor">Minor Rest</span><span v-else-if="unit.hasAction.major">Major Rest</span><span v-else>No actions left...</span>
+                </h6>
+                <div>
+                  Regenerate 5% of max HP <span v-if="unit.hasAction.minor">over time.</span><span v-else-if="unit.hasAction.major">instantly.</span>
+                </div>
+              </span>
+          </q-tooltip>
+          <q-btn round size="9px" color="grey-5" @click.stop="rest">
+            <!-- <img src="statics/icons/action-both.png"> -->
+            <img :src="actStatusImg">
+          </q-btn>
         </q-avatar>
         <h6>{{ unit.name }}</h6>
       </q-chip>
@@ -169,13 +181,13 @@ export default {
   },
   methods: {
     rest () {
-      if (this.unit.hasAction.minor && this.unit.side === 'player') {
+      if (this.unit.hasAction.minor && this.unit.side === 'player' && this.selector.turnState === 'player') {
         this.selector.stateData.activeUnit = this.unit
         this.selector.stateData.activeSkill = clone(this.unit.actions.filter((action) => action.NAME === 'RESTMINOR')[0])
         // this.selector.stateData.activeSkill.prevTargs.push(this.unit)
         // this.selector.stateData.activeSkill.targetRules.shift()
         this.selector.onClicks.execute(this.selector, this.unit)
-      } else if (this.unit.hasAction.major && this.unit.side === 'player') {
+      } else if (this.unit.hasAction.major && this.unit.side === 'player' && this.selector.turnState === 'player') {
         this.selector.stateData.activeUnit = this.unit
         this.selector.stateData.activeSkill = clone(this.unit.actions.filter((action) => action.NAME === 'RESTMAJOR')[0])
         // this.selector.stateData.activeSkill.prevTargs.push(this.unit)
@@ -193,7 +205,7 @@ export default {
     margin: 5px 0px 5px 0px;
     /* margin: 0 5px 10px 5px; */
     text-align: center;
-    font-size: 16px;
+    font-size: 14px;
   }
   .col-3 {
     /* width: 25%; */
@@ -202,6 +214,7 @@ export default {
   .wind {
     /* background-color: #ddd; */
     border-radius: 10px;
+    /* height: 24vh; */
     /* margin: 5px; */
     /* height: 22vh; */
     /* display: flex; */
@@ -223,6 +236,12 @@ export default {
     text-align: center;
     justify-content: center;
     border-radius: 5px;
+  }
+  .q-btn {
+    /* border-width: 2px;
+    border-color: black;
+    border-style: solid; */
+    box-shadow: 2px 2px 1px 1px #555;
   }
   /* .active {
     background-color: #4cd;

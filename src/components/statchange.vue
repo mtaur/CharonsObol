@@ -5,7 +5,7 @@
       <!-- <div class="col-9 statname">{{ stat.name }}: {{ stat.value }}</div> -->
       <div class="col-9 statname">{{ stat.name }}: {{ val(stat) }}</div>
       <div class="col-3">
-        <q-btn round glossy color="amber" text-color="black" size="10px" @click="increase" >
+        <q-btn round glossy :color="btnColor" text-color="black" size="10px" @click="increase" >
           <span class="btxt">+</span>
           <statTooltip :stat="stat" :unit="unit"></statTooltip>
           <q-badge color="purple" floating>{{ stat.cost }}</q-badge>
@@ -22,6 +22,23 @@ export default {
   props: ['stat', 'unit'],
   data () {
     return { }
+  },
+  computed: {
+    btnColor () {
+      // function raise (unit) {
+      //   unit.baseStats[statName].increase()
+      // }
+      // let stat = this.baseStats[statName]
+      //
+      // if (this.playerTeam.SP >= stat.cost) {
+      //   this.playerTeam.SP -= stat.cost
+      //   this.applyChange(raise)
+      // }
+      if (this.unit.playerTeam.SP >= this.stat.cost) {
+        return 'amber'
+      }
+      return 'grey-5'
+    }
   },
   components: { statTooltip },
   methods: {

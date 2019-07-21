@@ -61,6 +61,9 @@
       <q-btn size='md' color="green" @click="newRound">New Round</q-btn>
     </div> -->
 
+    <!-- Change this to allow a persistent 'inspected' unit to
+    become the 'activeUnit' when your turn starts, if playerTeam unit -->
+    <span v-if="selector.turnState !== 'player'" @click.stop=''>
     <unitdetail v-for="unit in activeUnit"
       :unit="unit"
       :cpuTeam = "cpuTeam"
@@ -68,6 +71,16 @@
       :selector = "selector"
       :key="unit.name">
     </unitdetail>
+    </span>
+    <span v-else>
+    <unitdetail v-for="unit in activeUnit"
+      :unit="unit"
+      :cpuTeam = "cpuTeam"
+      :playerTeam = "playerTeam"
+      :selector = "selector"
+      :key="unit.name">
+    </unitdetail>
+    </span>
   </q-drawer>
 </template>
 
