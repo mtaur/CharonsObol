@@ -42,7 +42,7 @@
       <!-- <q-chip color="deep-orange"> -->
       <q-chip color="teal" text-color="white">
         <q-avatar>
-          <q-tooltip anchor="center left" self="center right" :offset="[10, 10]" content-class="bg-teal" max-width="20vw">
+          <q-tooltip v-if="unit.side==='player'" anchor="center left" self="center right" :offset="[10, 10]" content-class="bg-teal" max-width="20vw">
               <span style="font-size: 14px" v-if="unit.hasAction.minor || unit.hasAction.major">
                 <h6>
                   <span v-if="unit.hasAction.minor">Minor Rest</span><span v-else-if="unit.hasAction.major">Major Rest</span><span v-else>No actions left...</span>
