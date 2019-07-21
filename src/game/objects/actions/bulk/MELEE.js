@@ -11,7 +11,9 @@ class MELEE {
       // filename: 'MELEE',
       name: 'Melee',
       type: 'major',
-      desc: 'Basic melee attack. Must target front row if possible. Move to front row if not already there.',
+      desc: `Basic melee attack. Targets an enemy in the FRONT-MOST NON-EMPTY ` +
+        `ROW. Must target a unit which is Guarding if possible. Move to front ` +
+        `row if not already there.`,
       targetRules: ['MELEE'],
       prereqs: ['FRONTNOTFULL'],
       after: [{

@@ -11,7 +11,8 @@ class RANGED {
       // filename: 'RANGED',
       name: 'Ranged',
       type: 'major',
-      desc: 'Basic ranged attack. Can target back row UNLESS a unit in the front row has GUARD activated.',
+      desc: `Basic ranged attack. Any unit who is GUARDING prevents enemy ` +
+        `Ranged attacks from targetting any ally in the SAME ROW OR BEHIND.`,
       targetRules: ['RANGED'],
       effects: [
         {
