@@ -11,7 +11,7 @@ class Ninja {
       NAME: 'NINJA',
       desc: `A generic placeholder ninja archetype.`,
       bonus: {
-        INIT: 5
+        INIT: 4
       },
       converts: [
         {

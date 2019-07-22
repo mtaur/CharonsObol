@@ -3,7 +3,7 @@
   :class="marginColorClass">
   <!-- :class="{active: isActive, canTarget: canTarget, prevTarget: prevTarget}"> -->
   <div class="wind justify-center align-center q-gutter-xs content-around items-center col"
-    :class="[bgColorClass, windClass, selectableClass]">
+    :class="[bgColorClass, windClass]">
     <!-- :class="{active: isActive, canTarget: canTarget, prevTarget: prevTarget}"> -->
     <div class="row">
       <div class="col-4 placebox justify-center align-center">
@@ -42,7 +42,7 @@
       <!-- <q-chip color="deep-orange"> -->
       <q-chip color="teal" text-color="white">
         <q-avatar>
-          <q-tooltip v-if="unit.side==='player'" anchor="center left" self="center right" :offset="[10, 10]" content-class="bg-teal" max-width="20vw">
+          <q-tooltip v-if="unit.side==='player' && (unit.hasAction.minor || unit.hasAction.major)" anchor="center left" self="center right" :offset="[10, 10]" content-class="bg-teal" max-width="20vw">
               <span style="font-size: 14px" v-if="unit.hasAction.minor || unit.hasAction.major">
                 <h6>
                   <span v-if="unit.hasAction.minor">Minor Rest</span><span v-else-if="unit.hasAction.major">Major Rest</span><span v-else>No actions left...</span>

@@ -214,7 +214,7 @@ blueRing.equipTo(pen)
 magicStaff.equipTo(pen)
 // pen.items.push(spellsword)
 
-playerTeam.bench.push(pen)
+playerTeam.back.push(pen)
 pen.actions.push(new Action.LIB.FLAMEFIST(pen))
 pen.actions.push(new Action.LIB.CHAINLGT(pen))
 pen.actions.push(new Action.LIB.HOMING(pen))
@@ -232,7 +232,7 @@ var lynn = new Unit(gameObj, {
   pos: Unit.POS.BACK,
   items: []
 })
-playerTeam.bench.push(lynn)
+playerTeam.back.push(lynn)
 
 let spikeyShield = new Item.LIB.SPIKEYSHIELD()
 let bronzeRing = new Item.LIB.BRONZERING()
@@ -254,15 +254,15 @@ var bro = new Unit(gameObj, {
   items: []
 })
 let divineBarrier = new Item.LIB.DIVINEBARRIER()
-// let yoloMace = new Item.LIB.YOLOMACE()
-// let martyrStaff = new Item.LIB.MARTYRSTAFF()
+let yoloMace = new Item.LIB.YOLOMACE()
+let martyrStaff = new Item.LIB.MARTYRSTAFF()
 divineBarrier.equipTo(bro)
-// yoloMace.equipTo(bro)
-// martyrStaff.equipTo(bro)
+yoloMace.equipTo(bro)
+martyrStaff.equipTo(bro)
 bro.actions.push(new Action.LIB.INSPIRE(bro))
 bro.actions.push(new Action.LIB.HEAL(bro))
 
-playerTeam.bench.push(bro)
+playerTeam.front.push(bro)
 console.log(bro)
 
 var primsoul = new Soul.LIB.PRIMORDAEA()
@@ -285,7 +285,7 @@ prim.actions.push(new Action.LIB.NATLOG(prim))
 let blueRing2 = new Item.LIB.BLUERING()
 blueRing2.equipTo(prim)
 
-playerTeam.bench.push(prim)
+playerTeam.back.push(prim)
 console.log(prim)
 
 var ninjasoul = new Soul.LIB.NINJA()
@@ -304,7 +304,7 @@ parry.equipTo(ninja)
 ninja.actions.push(new Action.LIB.VENOMSTRIKE(ninja))
 ninja.actions.push(new Action.LIB.NIGHTSTRIKE(ninja))
 
-playerTeam.bench.push(ninja)
+playerTeam.front.push(ninja)
 console.log(ninja)
 
 var baronsoul = new Soul.LIB.BARON()
@@ -322,104 +322,11 @@ baron.actions.push(new Action.LIB.REBUKE(baron))
 // baron.actions.push(new Action.LIB.HOMING(baron))
 // baron.actions.push(new Action.LIB.NIGHTSTRIKE(baron))
 
-playerTeam.bench.push(baron)
+playerTeam.front.push(baron)
 console.log(baron)
 // console.log('Clone JSON of Baron von Sentry:', baron.cloneJSON)
 console.log('Clone JSON of CPU team:', cpuTeam.cloneJSON)
 console.log('Clone JSON of player team:', playerTeam.cloneJSON)
-
-var geraldsoul = new Soul.LIB.GERALD()
-var gerald = new Unit(gameObj, { name: geraldsoul.name,
-  hero: true,
-  souls: [geraldsoul],
-  side: Unit.SIDE.PLAYER,
-  pos: Unit.POS.BACK,
-  items: []
-})
-
-// let spellsword = new Item.LIB.SPELLSWORD()
-let blueRing3 = new Item.LIB.BLUERING()
-let magicStaff3 = new Item.LIB.MAGICSTAFF()
-
-// spellsword.equipTo(pen)
-blueRing3.equipTo(gerald)
-magicStaff3.equipTo(gerald)
-// pen.items.push(spellsword)
-
-playerTeam.bench.push(gerald)
-gerald.actions.push(new Action.LIB.STORMCLOUD(gerald))
-// gerald.actions.push(new Action.LIB.CHAINLGT(gerald))
-// gerald.actions.push(new Action.LIB.HOMING(gerald))
-
-var thwipsoul = new Soul.LIB.THWIP()
-var thwip = new Unit(gameObj, { name: thwipsoul.name,
-  hero: true,
-  souls: [thwipsoul],
-  side: Unit.SIDE.PLAYER,
-  pos: Unit.POS.BACK,
-  items: []
-})
-
-// let spellsword = new Item.LIB.SPELLSWORD()
-// let blueRing3 = new Item.LIB.BLUERING()
-let parryknife2 = new Item.LIB.PARRYKNIFE()
-
-// spellsword.equipTo(pen)
-parryknife2.equipTo(thwip)
-// pen.items.push(spellsword)
-
-playerTeam.bench.push(thwip)
-thwip.actions.push(new Action.LIB.ALERT(thwip))
-thwip.actions.push(new Action.LIB.SNIPE(thwip))
-// gerald.actions.push(new Action.LIB.CHAINLGT(gerald))
-// gerald.actions.push(new Action.LIB.HOMING(gerald))
-
-var minotaursoul = new Soul.LIB.MINOTAUR()
-var minotaur = new Unit(gameObj, { name: minotaursoul.name,
-  hero: true,
-  souls: [minotaursoul],
-  side: Unit.SIDE.PLAYER,
-  pos: Unit.POS.FRONT,
-  items: []
-})
-
-// let spellsword = new Item.LIB.SPELLSWORD()
-// let blueRing3 = new Item.LIB.BLUERING()
-// let magicStaff3 = new Item.LIB.MAGICSTAFF()
-let tauraxe = new Item.LIB.BERSERKERAXE()
-
-// spellsword.equipTo(pen)
-tauraxe.equipTo(minotaur)
-// magicStaff3.equipTo(minotaur)
-// pen.items.push(spellsword)
-
-playerTeam.bench.push(minotaur)
-minotaur.actions.push(new Action.LIB.BERSERK(minotaur))
-minotaur.actions.push(new Action.LIB.AXETHROW(minotaur))
-// minotaur.actions.push(new Action.LIB.HOMING(minotaur))
-
-let shuffle = function (array) {
-  let currentIndex = array.length
-  let temporaryValue, randomIndex
-  // While there remain elements to shuffle...
-  while (currentIndex !== 0) {
-    // Pick a remaining element...
-    randomIndex = Math.floor(Math.random() * currentIndex)
-    currentIndex -= 1
-    // And swap it with the current element.
-    temporaryValue = array[currentIndex]
-    array[currentIndex] = array[randomIndex]
-    array[randomIndex] = temporaryValue
-  }
-  return array
-}
-
-let front = playerTeam.bench.filter((unit) => unit.pos === 'front')
-let back = playerTeam.bench.filter((unit) => unit.pos === 'back')
-shuffle(front)
-shuffle(back)
-playerTeam.front = front.slice(0, 3)
-playerTeam.back = back.slice(0, 3)
 
 playerTeam.all.forEach((unit) => {
   unit.actions.push(new Action.LIB.RESTMAJOR(unit))

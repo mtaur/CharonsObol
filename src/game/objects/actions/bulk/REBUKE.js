@@ -11,8 +11,10 @@ class REBUKE {
       // filename: 'MELEE',
       name: 'Rebuke',
       type: 'both',
-      desc: 'Basic melee attack which also must target front row. Knocks the target to the back row. Deals MELEE + DRED + DREF damage to the target.',
-      targetRules: ['REBUKE', 'SAME'],
+      desc: `Basic melee attack which also must target front row. Knocks the ` +
+        `target to the back row. Deals MELEE + DRED + DREF damage to the ` +
+        `target and delays enemy turn by half a turn guage.`,
+      targetRules: ['REBUKE', 'SAME', 'SAME'],
       prereqs: ['FRONTNOTFULL'],
       after: [{
         NAME: 'CASTERFRONT'
@@ -32,6 +34,11 @@ class REBUKE {
         {
           NAME: 'ROWBACK',
           name: 'rowBack'
+        },
+        {
+          NAME: 'DAZE',
+          name: 'daze',
+          delayFrac: 0.5
         }
       ]
     })

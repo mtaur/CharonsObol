@@ -11,15 +11,23 @@ class INSPIRE {
       // filename: 'INSPIRE',
       name: 'Inspire',
       type: 'major',
-      desc: 'Restores a friendly unit\'s major action.',
+      desc: 'Restores a friendly unit\'s major action. Gain TWO gauges worth ' +
+        'of Turn Points.',
       cost: 1,
-      targetRules: ['INSPIRE'],
-      effects: [{
-        NAME: 'INSPIRE',
-        name: 'inspire',
-        major: true,
-        minor: false
-      }],
+      targetRules: ['INSPIRE', 'SELF'],
+      effects: [
+        {
+          NAME: 'INSPIRE',
+          name: 'inspire',
+          major: true,
+          minor: false
+        },
+        {
+          NAME: 'ALERT',
+          name: 'alert',
+          alertFrac: 2
+        }
+      ],
       useInitPoints: false
     })
   }
