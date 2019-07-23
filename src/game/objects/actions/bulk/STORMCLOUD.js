@@ -1,36 +1,18 @@
 import { TargetRule } from '../targetRules/TargetRule.js'
-import { EffectRule } from '../effectRules/EffectRule.js'
+// import { EffectRule } from '../effectRules/EffectRule.js'
 import { Action } from '../Action.js'
 // import { Unit } from '../../units/Unit.js'
 
 class STORMCLOUD {
   static NAME = 'STORMCLOUD'
   static filename = 'STORMCLOUD'
-  // static effectFind = function (unit = null) {
-  //   let length = unit.side === Unit.SIDE.PLAYER ? unit.cpuTeam.field.length : unit.playerTeam.field.length
-  //   let targRules = []
-  //   let effects = []
-  //   for (let j = 0; j < length; j++) {
-  //     targRules.push('NATLOG')
-  //     effects.push({
-  //       NAME: 'DAMAGE',
-  //       name: 'damage',
-  //       scale: {
-  //         MAGIC: 1 / (j + 1)
-  //       },
-  //       DREDScale: 1 / (j + 1),
-  //       DREFScale: 1 / (j + 1)
-  //     })
-  //   }
-  //   return { effects: effects, targRules: targRules }
-  // }
 
   constructor (unit = null) {
     let computeProps = function (input) {
       let length = 1 + input.statuses.filter((status) => status.NAME === 'STORMCLOUDBUFF').length
       // input.side === Unit.SIDE.PLAYER ? input.cpuTeam.field.length : input.playerTeam.field.length
       let targRules = ['SELF']
-      console.log(EffectRule.LIB.STORMCLOUDBUFF)
+      // console.log(EffectRule.LIB.STORMCLOUDBUFF)
       let effects = [
         {
           NAME: 'STORMCLOUDBUFF',

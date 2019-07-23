@@ -25,6 +25,11 @@ class Thwip {
           from: 'RANGED',
           to: 'RANGED',
           value: 0.15
+        },
+        {
+          from: 'INIT',
+          to: 'DRED',
+          value: 0.5
         }
       ],
       skills: []

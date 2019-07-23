@@ -139,6 +139,12 @@ class TargetRule {
     },
     enemyotherrowfull: function (unit) {
       return unit.pos === Unit.POS.FRONT ? unit.enemies.back.length >= 4 : unit.enemies.front.length >= 4
+    },
+    hasMana1: function (unit) {
+      return unit.baseStats.MP.current > 0
+    },
+    fullmp: function (unit) {
+      return unit.baseStats.MP.current >= unit.baseStats.MP.max
     }
   }
 

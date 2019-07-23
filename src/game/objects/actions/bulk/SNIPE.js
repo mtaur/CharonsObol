@@ -19,9 +19,9 @@ class SNIPE {
           name: 'damage',
           scale: {
             RANGED: 1
-          } // ,
-          // DREDScale: 1,
-          // DREFScale: 1
+          },
+          DREDScale: 0,
+          DREFScale: 0
         }
       ]
     })

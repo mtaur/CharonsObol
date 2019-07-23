@@ -15,6 +15,11 @@ class Ninja {
       },
       converts: [
         {
+          from: 'HP',
+          to: 'HP',
+          value: -0.1
+        },
+        {
           from: 'INIT',
           to: 'RANGED',
           value: 1

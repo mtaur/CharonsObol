@@ -37,7 +37,7 @@ class Gerald {
         {
           from: 'MELEE',
           to: 'MELEE',
-          value: -0.3
+          value: -0.25
         },
         {
           from: 'INIT',
@@ -52,7 +52,7 @@ class Gerald {
         {
           from: 'HP',
           to: 'MP',
-          value: 0.03
+          value: 0.025
         }
       ],
       skills: []
