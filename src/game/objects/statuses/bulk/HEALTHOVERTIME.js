@@ -42,12 +42,14 @@ class HEALTHOVERTIME {
       virulence = effectObj.virulence
     }
 
-    let poisontick = function (unit, trigger, actionType, effect) {
+    // let poisontick = function (unit, trigger, actionType, effect) {
+    let poisontick = function (unit, trigger, action, effect) {
       // let effect = status.effects[0]
       let sign = effect.amount >= 0 ? 1 : -1
       let amt = Math.abs(effect.amount)
       let tick = amt * effect.virulence
-      tick *= actionType === 'minor' ? 1 : actionType === 'major' ? 2 : actionType === 'both' ? 3 : 0
+      // tick *= actionType === 'minor' ? 1 : actionType === 'major' ? 2 : actionType === 'both' ? 3 : 0
+      tick *= action.type === 'minor' ? 1 : action.type === 'major' ? 2 : action.type === 'both' ? 3 : 0
       tick = Math.ceil(tick)
       unit.baseStats.HP.current += tick * sign
       unit.baseStats.HP.current = unit.baseStats.HP.current >= 0 ? unit.baseStats.HP.current : 0

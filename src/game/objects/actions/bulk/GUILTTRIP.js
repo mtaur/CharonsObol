@@ -19,9 +19,9 @@ class GUILTTRIP {
       // after: [{
       //   NAME: 'ROWFRONT'
       // }],
-      after: [{
-        // NAME: 'CASTERBACK'
-      }],
+      // after: [{
+      //   // NAME: 'CASTERBACK'
+      // }],
       effects: [
         {
           NAME: 'HEALTHOVERTIME',

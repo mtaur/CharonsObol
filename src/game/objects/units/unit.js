@@ -46,7 +46,7 @@ class Team {
     // this.field.forEach((unit) => { if (unit.hasAction.major || unit.hasAction.minor) { retVal = true } })
     return retVal
   }
-  maxTurnPoints = 1000
+  maxTurnPoints = 100
   waitTime = 200 // 250
   initArr = []
   initReset () {

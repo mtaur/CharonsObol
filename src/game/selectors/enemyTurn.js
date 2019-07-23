@@ -70,7 +70,8 @@ var enemyTurn = function () {
         caster.allies.initArr.shift()
       }
     }
-    caster.statuses.forEach((status) => status.triggerCheck(caster, 'ENDTURN', skill.type, selector))
+    caster.statuses.forEach((status) => status.triggerCheck(caster, 'ENDTURN', skill, selector))
+    // caster.statuses.forEach((status) => status.triggerCheck(caster, 'ENDTURN', skill.type, selector))
 
     selector.stateData.activeUnit = {}
     selector.stateData.activeSkill = {}

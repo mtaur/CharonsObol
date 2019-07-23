@@ -11,12 +11,36 @@ class DAMAGETOPOISONOUT {
     // let amount = 0
     let virulence = 0.1
     if (hasProp(effectObj, 'virulence')) {
-      this.effects[0].virulence = effectObj.virulence
+      // this.effects[0].virulence = effectObj.virulence
+      virulence = effectObj.virulence
     }
 
-    // let converttopoison = function (unit, trigger, actionType, effect) {
-    // let logItem = this.effects[effectIndx].getLogItem(unit, trigger, data)
-    // this.effects[effectIndx].update(unit, trigger, data)
+    let findCopies = function (unit) {
+      return unit.statuses.filter((status) => status.NAME === 'HEALTHOVERTIME')
+    }
+
+    let merge = function (statuses) {
+      let arr = []
+      statuses.map((status) => {
+        arr.push({
+          amount: status.effects[0].amount,
+          virulence: status.effects[0].virulence
+        })
+      })
+      let amt = 0
+      let amtAbs = 0
+      let tickSum = 0
+      arr.map((data) => {
+        amt += data.amount
+        amtAbs += Math.abs(data.amount)
+        tickSum += data.virulence * Math.abs(data.amount)
+      })
+      if (amtAbs > 0) {
+        let virl = tickSum / amtAbs
+        return { amount: Math.floor(amt), virulence: virl }
+      } else return { amount: 0, virulence: 0.04 }
+    }
+
     let converttopoison = function (unit, trigger, data) {
       let amount = data.amount
       let target = data.target
@@ -24,10 +48,34 @@ class DAMAGETOPOISONOUT {
 
       target.baseStats.HP.current += amount
       // apply -1 * amount as HEALTHOVERTIME...
-      let poison = new Status.LIB.HEALTHOVERTIME({ flat: -1 * amount, virulence: this.virulence }, target, caster)
+      // let poison = new Status.LIB.HEALTHOVERTIME({ flat: -1 * amount, virulence: this.virulence }, target, caster)
+      let poison = new Status.LIB.HEALTHOVERTIME(
+        {
+          NAME: 'HEALTHOVERTIME',
+          name: 'healthovertime',
+          scale: {},
+          flat: -1 * amount,
+          virulence: this.virulence
+        },
+        target,
+        caster
+      )
       // console.log(this)
       // let poison = new Status.LIB.HEALTHOVERTIME({ amount: -1 * amount, virulence: this.virulence }, target, caster)
       target.statuses.push(poison)
+      // target.statuses.push(new Status.LIB.HEALTHOVERTIME(effectObj, target, caster))
+      let newDat = merge(findCopies(target))
+      if (findCopies(target).length > 1) {
+        target.statuses = target.statuses.filter((status) => status.NAME !== 'HEALTHOVERTIME')
+        let mergeObj = {
+          NAME: 'HEALTHOVERTIME',
+          name: 'healthovertime',
+          scale: {},
+          flat: newDat.amount,
+          virulence: newDat.virulence
+        }
+        target.statuses.push(new Status.LIB.HEALTHOVERTIME(mergeObj, target, caster))
+      }
       // unit.baseStats.HP.current = unit.baseStats.HP.current >= 0 ? unit.baseStats.HP.current : 0
       // unit.baseStats.HP.current = unit.baseStats.HP.current <= unit.baseStats.HP.max ? unit.baseStats.HP.current : unit.baseStats.HP.max
       // unit.checkAlive()
