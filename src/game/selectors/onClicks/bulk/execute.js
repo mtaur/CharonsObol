@@ -72,7 +72,24 @@ var execute = function (selector, unit) {
       selector.stateData.activeUnit.allies.initArr.shift()
     }
   }
-  caster.statuses.forEach((status) => status.triggerCheck(caster, 'ENDTURN', skill.type, selector))
+  // caster.statuses.forEach((status) => status.triggerCheck(caster, 'ENDTURN', skill.type, selector))
+  // let target = skill.prevTargs[index]
+
+  // let didDamage = false
+  // for (let index in skill.effects) {
+  //   if (skill.effects[index].NAME === 'DAMAGE') { didDamage = true }
+  // }
+  // if (didDamage) {
+  //   caster.statuses.forEach((status) => status.triggerCheck(caster, 'DAMAGE', skill, selector))
+  //   let targIDs = []
+  //   for (let index in skill.prevTargs) {
+  //     let target = skill.prevTargs[index]
+  //     if (targIDs.indexOf(target.id) === -1) {
+  //       target.statuses.forEach((status) => status.triggerCheck(caster, 'TAKEDAMAGE', skill, selector))
+  //     }
+  //   }
+  // }
+  caster.statuses.forEach((status) => status.triggerCheck(caster, 'ENDTURN', skill, selector))
 
   selector.stateData.activeUnit = {}
   selector.stateData.activeSkill = {}

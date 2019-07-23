@@ -34,6 +34,7 @@ function DAMAGE (effectObj = {}, target = {}, caster = {}) {
     let rawFloat = amount
     amount -= target.effectiveStatValues.DRED * effectObj.DREDScale
     amount = Math.floor(amount)
+    amount = Math.max(amount, 0)
     let dred = Math.floor(rawFloat) - amount
     let dref = Math.floor(effectObj.DREFScale * target.effectiveStatValues.DREF)
     let data = {
@@ -124,6 +125,9 @@ function DAMAGE (effectObj = {}, target = {}, caster = {}) {
 
     target.statuses.forEach((status) => status.clearCheck(target, 'TAKEDAMAGE'))
     caster.statuses.forEach((status) => status.clearCheck(caster, 'DAMAGE'))
+    target.statuses.forEach((status) => status.triggerCheckEffect(target, 'TAKEDAMAGE', data))
+    caster.statuses.forEach((status) => status.triggerCheckEffect(caster, 'DAMAGE', data))
+    // triggerCheck = function (unit, trigger, action = {}, selector = {})
 
     target.checkAlive()
     caster.checkAlive()

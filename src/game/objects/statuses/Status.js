@@ -64,7 +64,8 @@ class Status {
       }
     }
   }
-  triggerCheck = function (unit, trigger, actionType = '', selector = {}) {
+  // triggerCheck = function (unit, trigger, actionType = '', selector = {}) {
+  triggerCheck = function (unit, trigger, action = {}, selector = {}) {
     // console.log('this:', this)
     // console.log('trigger:', trigger)
     console.log('triggerCheck', this)
@@ -76,20 +77,41 @@ class Status {
         if (cond === trigger) {
           console.log('Should fire status update...', this)
           // console.log('should clear something...')
-          let logItem = this.effects[effectIndx].getLogItem(unit, trigger, actionType, this, selector)
+          // let logItem = this.effects[effectIndx].getLogItem(unit, trigger, actionType, this, selector)
+          let logItem = this.effects[effectIndx].getLogItem(unit, trigger, action, this, selector)
+          console.log(selector.log)
           selector.log.push(logItem)
-          this.effects[effectIndx].update(unit, trigger, actionType, this.effects[effectIndx])
+          console.log('logItem', logItem)
+          console.log('cond', cond)
+          // this.effects[effectIndx].update(unit, trigger, actionType, this.effects[effectIndx])
+          this.effects[effectIndx].update(unit, trigger, action, this.effects[effectIndx])
         } // return true
       }
     }
     // return false
   }
-  // trigger = function (unit) {
-  //   //
-  //   // construct from the particular status?
-  //   //
-  // }
-  // caster.statuses.forEach((status) => status.triggerCheck(target, 'ENDTURN', skill.type))
+
+  // triggerCheckEffect = function function (unit, trigger, effect = {}, selector = {}) {
+  triggerCheckEffect = function (unit, trigger, data) {
+    console.log('Check for effect-level trigger (not complete actions)')
+    console.log('triggerCheckEffect', this)
+    // loop over STATUS's effect
+    for (let effectIndx in this.effects) {
+      for (let index in this.effects[effectIndx].trigger) {
+        let cond = this.effects[effectIndx].trigger[index]
+        if (cond === trigger) {
+          console.log('Should fire status update...', this)
+          // let logItem = this.effects[effectIndx].getLogItem(unit, trigger, data)
+          this.effects[effectIndx].update(unit, trigger, data)
+          // console.log(selector.log)
+          // selector.log.push(logItem)
+          // console.log('logItem', logItem)
+          // console.log('cond', cond)
+          // this.effects[effectIndx].update(unit, trigger, action, this.effects[effectIndx])
+        }
+      }
+    }
+  }
 
   constructor (obj) {
     for (let propName in obj) {

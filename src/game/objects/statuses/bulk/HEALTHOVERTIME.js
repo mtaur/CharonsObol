@@ -62,14 +62,16 @@ class HEALTHOVERTIME {
       }
     }
 
-    let getLogItem = function (unit, trigger, actionType, status, selector) {
+    // let getLogItem = function (unit, trigger, actionType, status, selector) {
+    let getLogItem = function (unit, trigger, action, status, selector, effectIndx = 0) {
       // let summary = {}
       // summary.id = selector.logID
       let effect = status.effects[0]
 
       let amt = Math.abs(effect.amount)
       let tick = Math.ceil(amt * effect.virulence)
-      tick *= actionType === 'minor' ? 1 : actionType === 'major' ? 2 : actionType === 'both' ? 3 : 0
+      // tick *= actionType === 'minor' ? 1 : actionType === 'major' ? 2 : actionType === 'both' ? 3 : 0
+      tick *= action.type === 'minor' ? 1 : action.type === 'major' ? 2 : action.type === 'both' ? 3 : 0
       tick = Math.ceil(tick)
       let gainlose = tick >= 0 ? 'gained' : 'lost'
 

@@ -4,6 +4,7 @@ import { Soul } from './objects/souls/Soul.js'
 import { CPUUnit } from './objects/units/CPUUnit.js'
 import { Item } from './objects/items/Item.js'
 import { Action } from './objects/actions/Action.js'
+import { Status } from './objects/statuses/Status.js'
 
 // function uniqClone (unit) {
 //   let copy = clone(unit)
@@ -424,6 +425,8 @@ shuffle(front)
 shuffle(back)
 playerTeam.front = front.slice(0, 3)
 playerTeam.back = back.slice(0, 3)
+playerTeam.front.forEach((unit) => { unit.statuses.push(new Status.LIB.DAMAGETOPOISONIN()) })
+playerTeam.front.forEach((unit) => { unit.statuses.push(new Status.LIB.DAMAGETOPOISONOUT()) })
 
 playerTeam.all.forEach((unit) => {
   unit.actions.push(new Action.LIB.RESTMAJOR(unit))
