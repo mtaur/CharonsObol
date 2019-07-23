@@ -68,13 +68,13 @@ for (let i = 1; i < 5; i++) {
   if (i < 2) {
     let unit = new CPUUnit(gameObj, caenenTemplate())
     unit.statWeights = {
-      HP: 6,
+      HP: 4, // 6,
       MP: 0,
       INIT: 1,
-      MELEE: 5,
+      MELEE: 3, // 5,
       RANGED: 0,
-      DRED: 3,
-      DREF: 3
+      DRED: 2, // 3,
+      DREF: 2 // 3
     }
     unit.name = 'Knight of Caenenfoeder'
     unit.raiseAll()
@@ -112,11 +112,11 @@ for (let i = 1; i < 5; i++) {
     let unit = new CPUUnit(gameObj, caenenTemplate())
     unit.statWeights = {
       HP: 2,
-      MP: 4,
+      MP: 3, // 4,
       INIT: 1,
       MELEE: 0,
-      MAGIC: 6,
-      RANGED: 6,
+      MAGIC: 4, // 6,
+      RANGED: 3, // 6,
       DRED: 1,
       DREF: 1
     }

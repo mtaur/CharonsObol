@@ -10,7 +10,8 @@ class BERSERKERAXE {
       NAME: 'BERSERKERAXE',
       name: 'Berserker Axe',
       cost: 8,
-      desc: 'Lose 50% of DRED. Gain up to 10% of current health as MELEE, up to twice the lost DRED amount.',
+      desc: 'Lose 25% of base DRED. Gain up to 10% of current health as MELEE, ' +
+        'up to twice the remaining DRED amount.',
       tier: 'common',
       // replacements[0] = { statName: 'MELEE', value: 0.5*(MELEE + MAGIC) }
       replacements: [
@@ -18,12 +19,12 @@ class BERSERKERAXE {
           statName: 'MELEE',
           value: function (unit) {
             // return unit.convertedStatValues.MELEE + 0.1 * unit.baseStats.HP.current
-            return unit.convertedStatValues.MELEE + Math.min(0.1 * unit.baseStats.HP.current, unit.convertedStatValues.DRED)
+            return unit.convertedStatValues.MELEE + Math.min(0.1 * unit.baseStats.HP.current, 2 * unit.convertedStatValues.DRED)
           }
         }
       ],
       converts: [
-        { from: 'DRED', to: 'DRED', value: -0.5 }
+        { from: 'DRED', to: 'DRED', value: -0.25 }
       ]
     })
   }

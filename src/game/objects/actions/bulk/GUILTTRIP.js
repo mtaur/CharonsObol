@@ -28,7 +28,8 @@ class GUILTTRIP {
           name: 'healthovertime',
           scale: {
             HP: -0.2
-          }
+          },
+          virulence: 0.1
         },
         {
           NAME: 'MANASTEAL',
@@ -40,7 +41,8 @@ class GUILTTRIP {
           name: 'healthovertime',
           scale: {
             HP: 0.2
-          }
+          },
+          virulence: 0.1
         } // ,
         // {
         //   NAME: 'ROWBACK',

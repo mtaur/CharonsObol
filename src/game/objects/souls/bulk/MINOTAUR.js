@@ -24,6 +24,11 @@ class Minotaur {
           value: 0.1
         },
         {
+          from: 'MELEE',
+          to: 'DREF',
+          value: 0.1
+        },
+        {
           from: 'HP',
           to: 'HP',
           value: 0.1
@@ -31,12 +36,12 @@ class Minotaur {
         {
           from: 'DRED',
           to: 'DREF',
-          value: 0.5
+          value: 0.25
         },
         {
           from: 'DRED',
           to: 'DRED',
-          value: -0.5
+          value: -0.25
         },
         {
           from: 'RANGED',

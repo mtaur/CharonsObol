@@ -9,7 +9,8 @@ class GUARD {
     return new Status({
       NAME: 'GUARD',
       name: 'guard',
-      desc: 'Increased DRED stat.  Interrupts targeting of melee or ranged skills.',
+      desc: 'Increased DRED and DREF stats by 100% base value.' +
+        'Interrupts targeting of melee or ranged skills.',
       remove: [
         'TAKEDAMAGE',
         'DAMAGE',
@@ -24,6 +25,11 @@ class GUARD {
         {
           from: 'DRED',
           to: 'DRED',
+          value: 1
+        },
+        {
+          from: 'DREF',
+          to: 'DREF',
           value: 1
         }
       ]
