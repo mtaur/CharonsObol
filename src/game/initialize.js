@@ -197,211 +197,298 @@ cpuTeam.bench.push(benchGuy)
 // console.log('Outside of constructor...')
 console.log(benchGuy)
 
-let front = []
-let back = []
+// let front = []
+// let back = []
 
-var pensoul = new Soul.LIB.PENELOPE()
-var pen = new Unit(gameObj, { name: pensoul.name,
-  hero: true,
-  souls: [pensoul],
-  side: Unit.SIDE.PLAYER,
-  pos: Unit.POS.BACK,
-  items: []
-})
+// function heroAdd = (soulstr, POS, actionArr, itemArr) {
+let heroAdd = function (obj) {
+  let soulStr = obj.soulStr
+  let POS = obj.POS
+  let actionArr = obj.actionArr
+  let itemArr = obj.itemArr
+  console.log(soulStr)
+  let soul = new Soul.LIB[soulStr]()
+  let unit = new Unit(gameObj, {
+    name: soul.name,
+    hero: true,
+    souls: [soul],
+    side: Unit.SIDE.PLAYER,
+    pos: Unit.POS[POS],
+    items: []
+  })
+  itemArr.forEach((itemStr) => {
+    let item = new Item.LIB[itemStr]()
+    item.equipTo(unit)
+  })
+  actionArr.forEach((actionStr) => {
+    unit.actions.push(new Action.LIB[actionStr](unit))
+  })
+  if (unit.pos === Unit.POS.FRONT) {
+    playerTeam.front.push(unit)
+  } else if (unit.pos === Unit.POS.BACK) {
+    playerTeam.back.push(unit)
+  }
+}
 
-let spellsword = new Item.LIB.SPELLSWORD()
-let blueRing = new Item.LIB.BLUERING()
-let magicStaff = new Item.LIB.MAGICSTAFF()
+let heroDat = [
+  {
+    soulStr: 'PENELOPE',
+    POS: 'BACK',
+    actionArr: [
+      'FLAMEFIST', 'CHAINLGT', 'HOMING'
+    ],
+    itemArr: [
+      'SPELLSWORD', 'BLUERING', 'MAGICSTAFF'
+    ]
+  },
+  {
+    soulStr: 'LYNN',
+    POS: 'BACK',
+    actionArr: [
+      'HARRY', 'LUNGE'
+    ],
+    itemArr: [
+      'BRONZE RING'
+    ]
+  },
+  {
+    soulStr: 'BROCANTRIP',
+    POS: 'FRONT',
+    actionArr: [
+      'INSPIRE', 'HEAL'
+    ],
+    itemArr: [
+      'DIVINEBARRIER'
+    ]
+  },
+  {
+    soulStr: 'PRIMORDAEA',
+    POS: 'BACK',
+    actionArr: [
+      'DRYAD', 'FERAL', 'BASEFORM', 'REGEN', 'NATLOG'
+    ],
+    itemArr: [
+      'BLUERING'
+    ]
+  },
+  {
+    soulStr: 'NINJA',
+    POS: 'FRONT',
+    actionArr: [
+      'VENOMSTRIKE', 'NIGHTSTRIKE'
+    ],
+    itemArr: [
+      'PARRYKNIFE'
+    ]
+  },
+  {
+    soulStr: 'BARON',
+    POS: 'FRONT',
+    actionArr: [
+      'REBUKE'
+    ],
+    itemArr: [
+      'SPIKEYSHIELD'
+    ]
+  },
+  {
+    soulStr: 'GERALD',
+    POS: 'BACK',
+    actionArr: [
+      'STORMCLOUD', 'GUILTTRIP'
+    ],
+    itemArr: [
+      'MAGICSTAFF'
+    ]
+  },
+  {
+    soulStr: 'THWIP',
+    POS: 'BACK',
+    actionArr: [
+      'ALERT', 'SNIPE'
+    ],
+    itemArr: [
+      'PARRYKNIFE'
+    ]
+  },
+  {
+    soulStr: 'MINOTAUR',
+    POS: 'FRONT',
+    actionArr: [
+      'BERSERK', 'AXETHROW'
+    ],
+    itemArr: [
+      // 'BERSERKERAXE'
+    ]
+  }
+]
 
-spellsword.equipTo(pen)
-blueRing.equipTo(pen)
-magicStaff.equipTo(pen)
-// pen.items.push(spellsword)
-
-pen.actions.push(new Action.LIB.FLAMEFIST(pen))
-pen.actions.push(new Action.LIB.CHAINLGT(pen))
-pen.actions.push(new Action.LIB.HOMING(pen))
-// pen.souls = [pensoul]
-// console.log('Outside of constructor...')
-
-back.push(pen)
-console.log(pen)
-
-var lynnsoul = new Soul.LIB.LYNN()
-var lynn = new Unit(gameObj, {
-  name: lynnsoul.name,
-  souls: [lynnsoul],
-  hero: true,
-  side: Unit.SIDE.PLAYER,
-  pos: Unit.POS.BACK,
-  items: []
-})
-
-let bronzeRing = new Item.LIB.BRONZERING()
-
-bronzeRing.equipTo(lynn)
-lynn.actions.push(new Action.LIB.LUNGE(lynn)) // = ['melee', 'ranged', 'lunge', 'block']
-lynn.actions.push(new Action.LIB.HARRY(lynn)) // = ['melee', 'ranged', 'lunge', 'block']
-
-back.push(lynn)
-console.log(lynn)
-
-var brosoul = new Soul.LIB.BROCANTRIP()
-var bro = new Unit(gameObj, {
-  name: brosoul.name,
-  hero: true,
-  souls: [brosoul],
-  side: Unit.SIDE.PLAYER,
-  pos: Unit.POS.FRONT,
-  items: []
-})
-let divineBarrier = new Item.LIB.DIVINEBARRIER()
-// let yoloMace = new Item.LIB.YOLOMACE()
-// let martyrStaff = new Item.LIB.MARTYRSTAFF()
-divineBarrier.equipTo(bro)
-// yoloMace.equipTo(bro)
-// martyrStaff.equipTo(bro)
-bro.actions.push(new Action.LIB.INSPIRE(bro))
-bro.actions.push(new Action.LIB.HEAL(bro))
-
-front.push(bro)
-console.log(bro)
-
-var primsoul = new Soul.LIB.PRIMORDAEA()
-var prim = new Unit(gameObj, {
-  name: primsoul.name,
-  hero: true,
-  souls: [primsoul],
-  side: Unit.SIDE.PLAYER,
-  pos: Unit.POS.BACK,
-  items: []
-})
-// let balsym = new Item.LIB.BALANCESYM()
-// balsym.equipTo(prim)
-prim.actions.push(new Action.LIB.DRYAD(prim))
-prim.actions.push(new Action.LIB.FERAL(prim))
-prim.actions.push(new Action.LIB.BASEFORM(prim))
-// prim.actions.push(new Action.LIB.HEAL(prim))
-prim.actions.push(new Action.LIB.REGEN(prim))
-prim.actions.push(new Action.LIB.NATLOG(prim))
-let blueRing2 = new Item.LIB.BLUERING()
-blueRing2.equipTo(prim)
-
-back.push(prim)
-console.log(prim)
-
-var ninjasoul = new Soul.LIB.NINJA()
-var ninja = new Unit(gameObj, {
-  name: ninjasoul.name,
-  hero: true,
-  souls: [ninjasoul],
-  side: Unit.SIDE.PLAYER,
-  pos: Unit.POS.FRONT,
-  items: []
-})
-let parry = new Item.LIB.PARRYKNIFE()
-parry.equipTo(ninja)
-// ninja.actions.push(new Action.LIB.HEAL(ninja))
-// ninja.actions.push(new Action.LIB.HOMING(ninja))
-ninja.actions.push(new Action.LIB.VENOMSTRIKE(ninja))
-ninja.actions.push(new Action.LIB.NIGHTSTRIKE(ninja))
-
-front.push(ninja)
-console.log(ninja)
-
-var baronsoul = new Soul.LIB.BARON()
-var baron = new Unit(gameObj, {
-  name: baronsoul.name,
-  hero: true,
-  souls: [baronsoul],
-  side: Unit.SIDE.PLAYER,
-  pos: Unit.POS.FRONT,
-  items: []
-})
-let spikeyShield = new Item.LIB.SPIKEYSHIELD()
-spikeyShield.equipTo(baron)
-// let axe = new Item.LIB.BERSERKERAXE()
-// axe.equipTo(baron)
-baron.actions.push(new Action.LIB.REBUKE(baron))
-// baron.actions.push(new Action.LIB.HOMING(baron))
-// baron.actions.push(new Action.LIB.NIGHTSTRIKE(baron))
-
-front.push(baron)
-console.log(baron)
-// console.log('Clone JSON of Baron von Sentry:', baron.cloneJSON)
-console.log('Clone JSON of CPU team:', cpuTeam.cloneJSON)
-console.log('Clone JSON of player team:', playerTeam.cloneJSON)
-
-var geraldsoul = new Soul.LIB.GERALD()
-var gerald = new Unit(gameObj, { name: geraldsoul.name,
-  hero: true,
-  souls: [geraldsoul],
-  side: Unit.SIDE.PLAYER,
-  pos: Unit.POS.BACK,
-  items: []
-})
-
+// var pensoul = new Soul.LIB.PENELOPE()
+// var pen = new Unit(gameObj, { name: pensoul.name,
+//   hero: true,
+//   souls: [pensoul],
+//   side: Unit.SIDE.PLAYER,
+//   pos: Unit.POS.BACK,
+//   items: []
+// })
+//
 // let spellsword = new Item.LIB.SPELLSWORD()
-let blueRing3 = new Item.LIB.BLUERING()
-let magicStaff3 = new Item.LIB.MAGICSTAFF()
-
+// let blueRing = new Item.LIB.BLUERING()
+// let magicStaff = new Item.LIB.MAGICSTAFF()
+//
 // spellsword.equipTo(pen)
-blueRing3.equipTo(gerald)
-magicStaff3.equipTo(gerald)
-// pen.items.push(spellsword)
+// blueRing.equipTo(pen)
+// magicStaff.equipTo(pen)
+//
+// pen.actions.push(new Action.LIB.FLAMEFIST(pen))
+// pen.actions.push(new Action.LIB.CHAINLGT(pen))
+// pen.actions.push(new Action.LIB.HOMING(pen))
+//
+// back.push(pen)
+// console.log(pen)
 
-back.push(gerald)
-gerald.actions.push(new Action.LIB.STORMCLOUD(gerald))
-gerald.actions.push(new Action.LIB.GUILTTRIP(gerald))
-// gerald.actions.push(new Action.LIB.CHAINLGT(gerald))
-// gerald.actions.push(new Action.LIB.HOMING(gerald))
+// var lynnsoul = new Soul.LIB.LYNN()
+// var lynn = new Unit(gameObj, {
+//   name: lynnsoul.name,
+//   souls: [lynnsoul],
+//   hero: true,
+//   side: Unit.SIDE.PLAYER,
+//   pos: Unit.POS.BACK,
+//   items: []
+// })
+//
+// let bronzeRing = new Item.LIB.BRONZERING()
+//
+// bronzeRing.equipTo(lynn)
+// lynn.actions.push(new Action.LIB.LUNGE(lynn)) // = ['melee', 'ranged', 'lunge', 'block']
+// lynn.actions.push(new Action.LIB.HARRY(lynn)) // = ['melee', 'ranged', 'lunge', 'block']
+//
+// back.push(lynn)
+// console.log(lynn)
 
-var thwipsoul = new Soul.LIB.THWIP()
-var thwip = new Unit(gameObj, { name: thwipsoul.name,
-  hero: true,
-  souls: [thwipsoul],
-  side: Unit.SIDE.PLAYER,
-  pos: Unit.POS.BACK,
-  items: []
-})
+// var brosoul = new Soul.LIB.BROCANTRIP()
+// var bro = new Unit(gameObj, {
+//   name: brosoul.name,
+//   hero: true,
+//   souls: [brosoul],
+//   side: Unit.SIDE.PLAYER,
+//   pos: Unit.POS.FRONT,
+//   items: []
+// })
+// let divineBarrier = new Item.LIB.DIVINEBARRIER()
+// divineBarrier.equipTo(bro)
+// bro.actions.push(new Action.LIB.INSPIRE(bro))
+// bro.actions.push(new Action.LIB.HEAL(bro))
+//
+// front.push(bro)
+// console.log(bro)
 
-// let spellsword = new Item.LIB.SPELLSWORD()
-// let blueRing3 = new Item.LIB.BLUERING()
-let parryknife2 = new Item.LIB.PARRYKNIFE()
+// var primsoul = new Soul.LIB.PRIMORDAEA()
+// var prim = new Unit(gameObj, {
+//   name: primsoul.name,
+//   hero: true,
+//   souls: [primsoul],
+//   side: Unit.SIDE.PLAYER,
+//   pos: Unit.POS.BACK,
+//   items: []
+// })
+// prim.actions.push(new Action.LIB.DRYAD(prim))
+// prim.actions.push(new Action.LIB.FERAL(prim))
+// prim.actions.push(new Action.LIB.BASEFORM(prim))
+// //
+// prim.actions.push(new Action.LIB.REGEN(prim))
+// prim.actions.push(new Action.LIB.NATLOG(prim))
+// let blueRing2 = new Item.LIB.BLUERING()
+// blueRing2.equipTo(prim)
+//
+// back.push(prim)
+// console.log(prim)
 
-// spellsword.equipTo(pen)
-parryknife2.equipTo(thwip)
-// pen.items.push(spellsword)
+// var ninjasoul = new Soul.LIB.NINJA()
+// var ninja = new Unit(gameObj, {
+//   name: ninjasoul.name,
+//   hero: true,
+//   souls: [ninjasoul],
+//   side: Unit.SIDE.PLAYER,
+//   pos: Unit.POS.FRONT,
+//   items: []
+// })
+// let parry = new Item.LIB.PARRYKNIFE()
+// parry.equipTo(ninja)
+// // ninja.actions.push(new Action.LIB.HEAL(ninja))
+// // ninja.actions.push(new Action.LIB.HOMING(ninja))
+// ninja.actions.push(new Action.LIB.VENOMSTRIKE(ninja))
+// ninja.actions.push(new Action.LIB.NIGHTSTRIKE(ninja))
+//
+// front.push(ninja)
+// console.log(ninja)
 
-thwip.actions.push(new Action.LIB.ALERT(thwip))
-thwip.actions.push(new Action.LIB.SNIPE(thwip))
-// gerald.actions.push(new Action.LIB.CHAINLGT(gerald))
-// gerald.actions.push(new Action.LIB.HOMING(gerald))
-back.push(thwip)
+// var baronsoul = new Soul.LIB.BARON()
+// var baron = new Unit(gameObj, {
+//   name: baronsoul.name,
+//   hero: true,
+//   souls: [baronsoul],
+//   side: Unit.SIDE.PLAYER,
+//   pos: Unit.POS.FRONT,
+//   items: []
+// })
+// let spikeyShield = new Item.LIB.SPIKEYSHIELD()
+// spikeyShield.equipTo(baron)
+// baron.actions.push(new Action.LIB.REBUKE(baron))
+//
+// front.push(baron)
+// console.log(baron)
 
-var minotaursoul = new Soul.LIB.MINOTAUR()
-var minotaur = new Unit(gameObj, { name: minotaursoul.name,
-  hero: true,
-  souls: [minotaursoul],
-  side: Unit.SIDE.PLAYER,
-  pos: Unit.POS.FRONT,
-  items: []
-})
-
-// let spellsword = new Item.LIB.SPELLSWORD()
+// var geraldsoul = new Soul.LIB.GERALD()
+// var gerald = new Unit(gameObj, { name: geraldsoul.name,
+//   hero: true,
+//   souls: [geraldsoul],
+//   side: Unit.SIDE.PLAYER,
+//   pos: Unit.POS.BACK,
+//   items: []
+// })
+//
 // let blueRing3 = new Item.LIB.BLUERING()
 // let magicStaff3 = new Item.LIB.MAGICSTAFF()
-let tauraxe = new Item.LIB.BERSERKERAXE()
+//
+// blueRing3.equipTo(gerald)
+// magicStaff3.equipTo(gerald)
+//
+// back.push(gerald)
+// gerald.actions.push(new Action.LIB.STORMCLOUD(gerald))
+// gerald.actions.push(new Action.LIB.GUILTTRIP(gerald))
 
-// spellsword.equipTo(pen)
-tauraxe.equipTo(minotaur)
-// magicStaff3.equipTo(minotaur)
-// pen.items.push(spellsword)
+// var thwipsoul = new Soul.LIB.THWIP()
+// var thwip = new Unit(gameObj, { name: thwipsoul.name,
+//   hero: true,
+//   souls: [thwipsoul],
+//   side: Unit.SIDE.PLAYER,
+//   pos: Unit.POS.BACK,
+//   items: []
+// })
+//
+// let parryknife2 = new Item.LIB.PARRYKNIFE()
+// parryknife2.equipTo(thwip)
+//
+// thwip.actions.push(new Action.LIB.ALERT(thwip))
+// thwip.actions.push(new Action.LIB.SNIPE(thwip))
+// back.push(thwip)
 
-front.push(minotaur)
-minotaur.actions.push(new Action.LIB.BERSERK(minotaur))
-minotaur.actions.push(new Action.LIB.AXETHROW(minotaur))
-// minotaur.actions.push(new Action.LIB.HOMING(minotaur))
+// var minotaursoul = new Soul.LIB.MINOTAUR()
+// var minotaur = new Unit(gameObj, { name: minotaursoul.name,
+//   hero: true,
+//   souls: [minotaursoul],
+//   side: Unit.SIDE.PLAYER,
+//   pos: Unit.POS.FRONT,
+//   items: []
+// })
+//
+// let tauraxe = new Item.LIB.BERSERKERAXE()
+//
+// tauraxe.equipTo(minotaur)
+// front.push(minotaur)
+// minotaur.actions.push(new Action.LIB.BERSERK(minotaur))
+// minotaur.actions.push(new Action.LIB.AXETHROW(minotaur))
 
 let shuffle = function (array) {
   let currentIndex = array.length
@@ -421,10 +508,14 @@ let shuffle = function (array) {
 
 // let front = playerTeam.bench.filter((unit) => unit.pos === 'front')
 // let back = playerTeam.bench.filter((unit) => unit.pos === 'back')
-shuffle(front)
-shuffle(back)
-playerTeam.front = front.slice(0, 3)
-playerTeam.back = back.slice(0, 3)
+// shuffle(front)
+// shuffle(back)
+shuffle(heroDat)
+heroDat.filter((obj) => obj.POS === 'FRONT').slice(0, 3).forEach((obj) => heroAdd(obj))
+heroDat.filter((obj) => obj.POS === 'BACK').slice(0, 3).forEach((obj) => heroAdd(obj))
+
+// playerTeam.front = front.slice(0, 3)
+// playerTeam.back = back.slice(0, 3)
 playerTeam.front.forEach((unit) => { unit.statuses.push(new Status.LIB.DAMAGETOPOISONIN()) })
 playerTeam.front.forEach((unit) => { unit.statuses.push(new Status.LIB.DAMAGETOPOISONOUT()) })
 
@@ -432,5 +523,8 @@ playerTeam.all.forEach((unit) => {
   unit.actions.push(new Action.LIB.RESTMAJOR(unit))
   unit.actions.push(new Action.LIB.RESTMINOR(unit))
 })
+
+console.log('Clone JSON of CPU team:', cpuTeam.cloneJSON)
+console.log('Clone JSON of player team:', playerTeam.cloneJSON)
 
 export { cpuTeam, playerTeam }
