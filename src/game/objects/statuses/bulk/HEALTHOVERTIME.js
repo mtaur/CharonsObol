@@ -42,6 +42,23 @@ class HEALTHOVERTIME {
       virulence = effectObj.virulence
     }
 
+    if (hasProp(effectObj, 'poisonScale')) {
+      let val = 0
+      // console.log('Getter fired? This ===', this)
+      for (let index in caster.statuses) {
+        if (caster.statuses[index].NAME === 'HEALTHOVERTIME') {
+          let poison = caster.statuses[index].effects[0]
+          // console.log('Getter fired?', poison)
+          // console.log(poison.amount)
+          if (poison.amount < 0) {
+            val -= effectObj.poisonScale * poison.amount
+          }
+        }
+      }
+      console.log('Regen val=', val, '?')
+      amount += val
+    }
+
     // let poisontick = function (unit, trigger, actionType, effect) {
     let poisontick = function (unit, trigger, action, effect) {
       // let effect = status.effects[0]

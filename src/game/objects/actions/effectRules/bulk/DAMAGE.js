@@ -4,8 +4,25 @@ import { Stat } from '../../../units/Stat.js'
 
 function DAMAGE (effectObj = {}, target = {}, caster = {}) {
   let summarize = function () {
+    console.log('effectObj!!!!', effectObj)
     // summary = { data: ..., log: ... }
     let amount = 0
+    if (hasProp(effectObj, 'poisonScale')) {
+      let val = 0
+      // console.log('Getter fired? This ===', this)
+      for (let index in caster.statuses) {
+        if (caster.statuses[index].NAME === 'HEALTHOVERTIME') {
+          let poison = caster.statuses[index].effects[0]
+          // console.log('Getter fired?', poison)
+          // console.log(poison.amount)
+          if (poison.amount < 0) {
+            val -= effectObj.poisonScale * poison.amount
+          }
+        }
+      }
+      amount += val
+    }
+
     for (let statName in Stat.LIB) {
       if (hasProp(effectObj.scale, statName)) {
         console.log('effectObj:', effectObj)

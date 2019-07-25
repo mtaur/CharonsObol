@@ -145,6 +145,17 @@ class TargetRule {
     },
     fullmp: function (unit) {
       return unit.baseStats.MP.current >= unit.baseStats.MP.max
+    },
+    losinghp: function (unit) {
+      for (let index in unit.statuses) {
+        if (unit.statuses[index].NAME === 'HEALTHOVERTIME') {
+          let poison = unit.statuses[index].effects[0]
+          if (poison.amount < 0) {
+            return true
+          }
+        }
+      }
+      return false
     }
   }
 

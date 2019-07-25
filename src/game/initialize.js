@@ -248,7 +248,7 @@ let heroDat = [
       'HARRY', 'LUNGE'
     ],
     itemArr: [
-      'BRONZE RING'
+      'BRONZERING', 'BRONZERING'
     ]
   },
   {
@@ -518,6 +518,18 @@ heroDat.filter((obj) => obj.POS === 'BACK').slice(0, 3).forEach((obj) => heroAdd
 // playerTeam.back = back.slice(0, 3)
 playerTeam.front.forEach((unit) => { unit.statuses.push(new Status.LIB.DAMAGETOPOISONIN()) })
 playerTeam.front.forEach((unit) => { unit.statuses.push(new Status.LIB.DAMAGETOPOISONOUT()) })
+// playerTeam.front.forEach((unit) => {
+//   let mergeObj = {
+//     NAME: 'HEALTHOVERTIME',
+//     name: 'healthovertime',
+//     scale: {},
+//     flat: -100,
+//     virulence: 0.05
+//   }
+//   unit.statuses.push(new Status.LIB.HEALTHOVERTIME(mergeObj, unit, unit))
+//   // unit.statuses.push(new Status.LIB.HEALTHOVERTIME({ flat: -50, virulence: 0.05 }))
+// })
+playerTeam.front.forEach((unit) => { unit.actions.push(new Action.LIB.CONTAGION(unit)) })
 
 playerTeam.all.forEach((unit) => {
   unit.actions.push(new Action.LIB.RESTMAJOR(unit))
