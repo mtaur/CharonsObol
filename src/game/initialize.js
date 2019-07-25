@@ -312,6 +312,15 @@ let heroDat = [
     ]
   },
   {
+    soulStr: 'MOZART',
+    POS: 'FRONT',
+    actionArr: [
+      'BRAINS', 'CONTAGION'
+    ],
+    itemArr: [
+    ]
+  },
+  {
     soulStr: 'MINOTAUR',
     POS: 'FRONT',
     actionArr: [
@@ -516,8 +525,6 @@ heroDat.filter((obj) => obj.POS === 'BACK').slice(0, 3).forEach((obj) => heroAdd
 
 // playerTeam.front = front.slice(0, 3)
 // playerTeam.back = back.slice(0, 3)
-playerTeam.front.forEach((unit) => { unit.statuses.push(new Status.LIB.DAMAGETOPOISONIN()) })
-playerTeam.front.forEach((unit) => { unit.statuses.push(new Status.LIB.DAMAGETOPOISONOUT()) })
 // playerTeam.front.forEach((unit) => {
 //   let mergeObj = {
 //     NAME: 'HEALTHOVERTIME',
@@ -529,7 +536,16 @@ playerTeam.front.forEach((unit) => { unit.statuses.push(new Status.LIB.DAMAGETOP
 //   unit.statuses.push(new Status.LIB.HEALTHOVERTIME(mergeObj, unit, unit))
 //   // unit.statuses.push(new Status.LIB.HEALTHOVERTIME({ flat: -50, virulence: 0.05 }))
 // })
-playerTeam.front.forEach((unit) => { unit.actions.push(new Action.LIB.CONTAGION(unit)) })
+
+playerTeam.front.forEach((unit) => {
+  if (unit.souls[0].NAME === 'MOZART') {
+    unit.statuses.push(new Status.LIB.DAMAGETOPOISONIN())
+    unit.statuses.push(new Status.LIB.DAMAGETOPOISONOUT())
+  }
+})
+// playerTeam.front.forEach((unit) => { unit.statuses.push(new Status.LIB.DAMAGETOPOISONOUT()) })
+// playerTeam.front.forEach((unit) => { unit.statuses.push(new Status.LIB.DAMAGETOPOISONIN()) })
+// playerTeam.front.forEach((unit) => { unit.actions.push(new Action.LIB.CONTAGION(unit)) })
 
 playerTeam.all.forEach((unit) => {
   unit.actions.push(new Action.LIB.RESTMAJOR(unit))
