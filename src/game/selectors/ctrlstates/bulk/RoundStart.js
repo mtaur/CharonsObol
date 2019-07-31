@@ -29,6 +29,13 @@ class RoundStart extends CtrlState {
     super(selector, obj)
     selector.roundNum++
     selector.currentLogPage = selector.roundNum
+    // selector.log.push({
+    //   round: selector.roundNum,
+    //   type: 'actionStart',
+    //   text: `Start of Round ${selector.roundNum}`,
+    //   caster: { name: 'system' },
+    //   skill: { name: 'system' }
+    // })
     selector.turnState = 'idle'
     selector.getClickJSON = this.getClickJSON
     selector.resetData()

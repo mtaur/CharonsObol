@@ -13,6 +13,7 @@ var execute = function (selector, unit) {
   selector.log.push(
     {
       text: `${selector.stateData.activeUnit.name} used ${selector.stateData.activeSkill.name}.`,
+      type: 'actionStart',
       round: selector.roundNum,
       caster: caster,
       skill: skill

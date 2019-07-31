@@ -4,51 +4,47 @@
     v-model="visible"
     bordered
     content-class="bg-grey-2"
-    :width="400"
+    :width="350"
     :breakpoint="0"
   >
 
     <h4 class="row justify-center">Battle log</h4>
     <div class="row justify-center">
-      <div class="row justify-center">
+      <div class="justify-center">
         <q-btn @click="toggleVerbose" color="blue">Verbose</q-btn>
       </div>
-      <div class="q-pa-lg flex flex-center">
+    </div>
+    <div class="justify-center">
+      <div class="q-pa-md flex flex-center">
         <q-pagination
-          v-model="selector.currentLogPage"
-          :max="pages"
-          :maxPages="5"
-          :direction-links="true"
-          :boundary-numbers="true"
-          :boundary-links="true"
+        v-model="selector.currentLogPage"
+        :max="pages"
+        :maxPages="5"
+        :direction-links="true"
+        :boundary-numbers="true"
+        :boundary-links="true"
         >
         </q-pagination>
       </div>
-      <div class="row justify-center">
-        <span class="row justify-center"
-        v-for="item in thisRound" :key="item.id">
-        <!-- <span class="row justify-center"
-        v-for="item in selector.log" :key="item.id"> -->
-          <div class="col-1"></div>
-          <div class="col-10">
-            <div v-if="show(item.type)" :style="actionStyle(item.type)">
-              {{ item.text }}
-            </div>
-          </div>
-          <div class="col-1"></div>
-        </span>
-        <!-- <span class="row justify-center">
-          <div class="col-1"></div>
-          <div class="col-10">
-            <span v-if="selector.log.length > 0">
-              {{ selector.log[current - 1].text }}
-            </span>
-          </div>
-          <div class="col-1"></div>
-        </span> -->
+    </div>
+    <div class="row text-h4 q-pa-sm justify-center items-center">
+      <div class="text-amber-9">
+        Round {{ selector.currentLogPage }}
       </div>
     </div>
-
+    <q-separator inset></q-separator>
+    <div class="row justify-center items-center"
+    v-for="item in thisRound" :key="item.id">
+    <!-- <span class="row justify-center"
+    v-for="item in selector.log" :key="item.id"> -->
+      <div class="col-1"></div>
+      <div class="col-10">
+        <div v-if="show(item.type)" :style="actionStyle(item.type)">
+          {{ item.text }}
+        </div>
+      </div>
+      <div class="col-1"></div>
+    </div>
     <!-- <unitdetail v-for="unit in activeUnit"
       :unit="unit"
       :key="unit.name">
@@ -99,9 +95,14 @@ export default {
         return {
           fontSize: '12px'
         }
+      } else if (type === 'actionStart') {
+        return {
+          fontSize: '18px',
+          fontWeight: 'bold'
+        }
       } else {
         return {
-          fontSize: '14px'
+          fontSize: '16px'
         }
       }
     },

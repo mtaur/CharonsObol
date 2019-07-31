@@ -113,6 +113,7 @@ var enemyTurn = function () {
     selector.log.push(
       {
         round: selector.roundNum,
+        type: 'actionStart',
         text: `${caster.name} used ${skill.name}.`,
         caster: caster,
         skill: skill

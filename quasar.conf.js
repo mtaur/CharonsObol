@@ -42,7 +42,8 @@ module.exports = function (ctx) {
         'QAvatar',
         'QLinearProgress',
         'QTooltip',
-        'QPagination'
+        'QPagination',
+        'QSeparator'
       ],
 
       directives: [
