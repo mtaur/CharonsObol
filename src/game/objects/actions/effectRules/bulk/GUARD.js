@@ -14,11 +14,11 @@ function GUARD (effectObj = {}, target = {}, caster = {}) {
     let log =
     [
       {
-        text: `${caster.name} guarded.`,
+        text: `${target.name} guarded.`,
         type: 'guard',
         // value: Math.floor(this.summary.reflected),
-        caster: caster // ,
-        // target: target
+        caster: caster,
+        target: target
       }
     ]
     let summary = {

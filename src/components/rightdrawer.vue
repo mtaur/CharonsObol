@@ -4,7 +4,7 @@
     v-model="visible"
     bordered
     content-class="bg-grey-2"
-    :width="250"
+    :width="400"
     :breakpoint="0"
   >
 
@@ -13,17 +13,39 @@
       <div class="row justify-center">
         <q-btn @click="toggleVerbose" color="blue">Verbose</q-btn>
       </div>
+      <div class="q-pa-lg flex flex-center">
+        <q-pagination
+          v-model="selector.currentLogPage"
+          :max="pages"
+          :maxPages="5"
+          :direction-links="true"
+          :boundary-numbers="true"
+          :boundary-links="true"
+        >
+        </q-pagination>
+      </div>
       <div class="row justify-center">
         <span class="row justify-center"
-        v-for="item in selector.log" :key="item.id">
+        v-for="item in thisRound" :key="item.id">
+        <!-- <span class="row justify-center"
+        v-for="item in selector.log" :key="item.id"> -->
           <div class="col-1"></div>
           <div class="col-10">
-            <span v-if="show(item.type)" :style="actionStyle(item.type)">
+            <div v-if="show(item.type)" :style="actionStyle(item.type)">
               {{ item.text }}
-            </span>
+            </div>
           </div>
           <div class="col-1"></div>
         </span>
+        <!-- <span class="row justify-center">
+          <div class="col-1"></div>
+          <div class="col-10">
+            <span v-if="selector.log.length > 0">
+              {{ selector.log[current - 1].text }}
+            </span>
+          </div>
+          <div class="col-1"></div>
+        </span> -->
       </div>
     </div>
 
@@ -44,7 +66,20 @@ export default {
   data () {
     return {
       verbose: false
+      // current: 1
       // leftDrawerOpen: this.$q.platform.is.desktop
+    }
+  },
+  computed: {
+    // current () {
+    //   return this.selector.currentLogPage
+    // },
+    pages () {
+      return this.selector.roundNum
+      // return this.selector.log.length > 0 ? this.selector.log.length : 1
+    },
+    thisRound () {
+      return this.selector.log.filter((item) => item.round === this.selector.currentLogPage)
     }
   },
   methods: {

@@ -27,6 +27,8 @@ class RoundStart extends CtrlState {
 
   constructor (selector, obj) {
     super(selector, obj)
+    selector.roundNum++
+    selector.currentLogPage = selector.roundNum
     selector.turnState = 'idle'
     selector.getClickJSON = this.getClickJSON
     selector.resetData()

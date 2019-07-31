@@ -8,9 +8,15 @@ var execute = function (selector, unit) {
   //   // (skill will have info about valid click targets and number of steps)
   //   // targets[i] = target clicked at step i
   // }
-  selector.log.push({ text: `${selector.stateData.activeUnit.name} used ${selector.stateData.activeSkill.name}.` })
   let skill = selector.stateData.activeSkill
   let caster = selector.stateData.activeUnit
+  selector.log.push(
+    {
+      text: `${selector.stateData.activeUnit.name} used ${selector.stateData.activeSkill.name}.`,
+      round: selector.roundNum,
+      caster: caster,
+      skill: skill
+    })
   skill.prevTargs.push(unit)
   skill.targetRules.shift()
   // console.log('LIB:', EffectRule.LIB)
@@ -31,6 +37,7 @@ var execute = function (selector, unit) {
     // this.summary = effectObj.summary
     effect.summary.log.forEach(
       (item) => {
+        item.round = selector.roundNum
         selector.logID++
         item.id = selector.logID
         selector.log.push(item)
@@ -50,6 +57,7 @@ var execute = function (selector, unit) {
     // unit.statuses.forEach((status) => { status.clearCheck(unit, 'USETURN') })
     after.summary.log.forEach(
       (item) => {
+        item.round = selector.roundNum
         selector.logID++
         item.id = selector.logID
         selector.log.push(item)

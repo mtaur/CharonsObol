@@ -29,6 +29,7 @@ var enemyTurn = function () {
       // this.summary = effectObj.summary
       effect.summary.log.forEach(
         (item) => {
+          item.round = selector.roundNum
           selector.logID++
           item.id = selector.logID
           selector.log.push(item)
@@ -48,6 +49,7 @@ var enemyTurn = function () {
       // unit.statuses.forEach((status) => { status.clearCheck(unit, 'USETURN') })
       after.summary.log.forEach(
         (item) => {
+          item.round = selector.roundNum
           selector.logID++
           item.id = selector.logID
           selector.log.push(item)
@@ -108,7 +110,13 @@ var enemyTurn = function () {
     skill.prevTargs = skill.prevTargs.map(unclone)
     // console.log('skill.prevTargs', skill.prevTargs)
     skill.targRules = []
-    selector.log.push({ text: `${caster.name} used ${skill.name}.` })
+    selector.log.push(
+      {
+        round: selector.roundNum,
+        text: `${caster.name} used ${skill.name}.`,
+        caster: caster,
+        skill: skill
+      })
     execute()
   }
 }

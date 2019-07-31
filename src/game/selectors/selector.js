@@ -13,6 +13,9 @@ class Selector {
   // click handler object, stored by name
   onClicks = onClicks
   turnState = 'idle'
+  gameState = 'battle'
+  roundNum = 0
+  currentLogPage = 0
 
   // Which player, if any, is highlighted as active?
   // activeUnit = {}

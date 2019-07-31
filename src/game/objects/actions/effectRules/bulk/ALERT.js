@@ -4,7 +4,7 @@
 
 function ALERT (effectObj = {}, target = {}, caster = {}) {
   let summarize = function () {
-    let amount = effectObj.alertFrac * target.maxTurnPoints
+    let amount = effectObj.alertFrac * target.allies.maxTurnPoints
     let data = {
       type: 'alert',
       amount: amount,

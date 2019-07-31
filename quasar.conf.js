@@ -41,7 +41,8 @@ module.exports = function (ctx) {
         'QChip',
         'QAvatar',
         'QLinearProgress',
-        'QTooltip'
+        'QTooltip',
+        'QPagination'
       ],
 
       directives: [
