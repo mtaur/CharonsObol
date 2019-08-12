@@ -285,7 +285,7 @@ let heroDat = [
     soulStr: 'BARON',
     POS: 'FRONT',
     actionArr: [
-      'REBUKE'
+      'REBUKE', 'ADVANCE'
     ],
     itemArr: [
       'SPIKEYSHIELD'
@@ -318,7 +318,7 @@ let heroDat = [
       'DISILLUSION', 'NIRVANA'
     ],
     itemArr: [
-      'PARRYKNIFE'
+      'PARRYKNIFE', 'BLUERING'
     ]
   },
   {

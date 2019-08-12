@@ -6,7 +6,15 @@
         <q-toolbar-title>
           Charon's Obol
         </q-toolbar-title>
-
+        <q-btn
+        flat
+        dense
+        round
+        @click="rightDrawerOpen = !rightDrawerOpen"
+        aria-label="Menu"
+        >
+          <q-icon name="accessibility_new" />
+        </q-btn>
         <!-- Toggle drawer??? -->
         <q-btn
         flat
@@ -15,10 +23,10 @@
         @click="rightDrawerOpen = !rightDrawerOpen"
         aria-label="Menu"
         >
-          <q-icon name="menu" />
+          <q-icon name="fas fa-book" />
+          <!-- <q-icon name="menu" /> -->
         </q-btn>
-
-        <div>Built in Quasar v{{ $q.version }}</div>
+        <!-- <div>Built in Quasar v{{ $q.version }}</div> -->
       </q-toolbar>
     </q-header>
 

@@ -13,7 +13,7 @@ class REBUKE {
       type: 'both',
       desc: `Basic melee attack which also must target front row. Knocks the ` +
         `target to the back row. Deals MELEE + DRED + DREF damage to the ` +
-        `target and delays enemy turn by half a turn guage.`,
+        `target and delays enemy turn by one turn guage.`,
       targetRules: ['REBUKE', 'SAME', 'SAME'],
       prereqs: ['FRONTNOTFULL'],
       after: [{
@@ -38,7 +38,7 @@ class REBUKE {
         {
           NAME: 'DAZE',
           name: 'daze',
-          delayFrac: 0.5
+          delayFrac: 1
         }
       ]
     })
