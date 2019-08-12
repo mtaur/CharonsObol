@@ -312,6 +312,16 @@ let heroDat = [
     ]
   },
   {
+    soulStr: 'AHNWEI',
+    POS: 'BACK',
+    actionArr: [
+      'DISILLUSION', 'NIRVANA'
+    ],
+    itemArr: [
+      'PARRYKNIFE'
+    ]
+  },
+  {
     soulStr: 'MOZART',
     POS: 'FRONT',
     actionArr: [

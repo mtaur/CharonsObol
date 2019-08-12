@@ -14,7 +14,7 @@ function MANASTEAL (effectObj = {}, target = {}, caster = {}) {
     [
       {
         text: `${caster.name} stole ${effectObj.value} MP from ${target.name}!`,
-        type: 'inspire',
+        type: 'manasteal',
         // value: Math.floor(this.summary.reflected),
         caster: caster,
         target: target
