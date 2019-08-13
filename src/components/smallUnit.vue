@@ -6,8 +6,8 @@
       :ratio="1"
       >
         <template v-slot:error>
-          <div class="absolute-full flex flex-center bg-pink-9 text-white items-center justify-center">
-            Cannot load image
+          <div class="text-caption absolute-full flex flex-center bg-pink-9 text-white items-center justify-center">
+            (unit image)
           </div>
         </template>
       </q-img>
