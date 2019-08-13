@@ -6,7 +6,11 @@
     :selector="selector"
     class="non-selectable">
   </drawer>
-  <rightdrawer :visible="rightDrawerOpen" :selector="selector"></rightdrawer>
+  <rightdrawer
+  :visible="rightDrawerOpen"
+  :page="rightDrawerPage"
+  :selector="selector">
+  </rightdrawer>
   <q-page class="qpage non-selectable">
     <div class="column">
       <div class="row justify-center items-stretch unitrow">
@@ -126,7 +130,7 @@ export default {
       // rightDrawerOpen: true // this.$q.platform.is.desktop
     }
   },
-  props: ['rightDrawerOpen'],
+  props: ['rightDrawerOpen', 'rightDrawerPage'],
   methods: {
     // makeActive: function (unit, event) {
     //   this.activeUnit = [unit]

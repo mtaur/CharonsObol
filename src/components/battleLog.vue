@@ -1,15 +1,6 @@
 <template>
-  <q-drawer
-    side="right"
-    v-model="visible"
-    bordered
-    content-class="bg-grey-2"
-    :width="350"
-    :breakpoint="0"
-  >
-    <battleLog v-if="page==='log'" :selector="selector"></battleLog>
-    <charInfo v-if="page==='charInfo'" :selector="selector"></charInfo>
-    <!-- <h4 class="row justify-center">Battle log</h4>
+  <div>
+    <h4 class="row justify-center">Battle log</h4>
     <div class="row justify-center">
       <div class="justify-center">
         <q-btn @click="toggleVerbose" color="blue">Verbose</q-btn>
@@ -36,6 +27,8 @@
     <q-separator inset></q-separator>
     <div class="row justify-center items-center"
     v-for="item in thisRound" :key="item.id">
+    <!-- <span class="row justify-center"
+    v-for="item in selector.log" :key="item.id"> -->
       <div class="col-1"></div>
       <div class="col-10">
         <div v-if="show(item.type)" :style="actionStyle(item.type)">
@@ -43,23 +36,21 @@
         </div>
       </div>
       <div class="col-1"></div>
-    </div> -->
+    </div>
     <!-- <unitdetail v-for="unit in activeUnit"
       :unit="unit"
       :key="unit.name">
     </unitdetail> -->
-  </q-drawer>
+  </div>
 </template>
 
 <script>
 // import { openURL } from 'quasar'
 // import unitdetail from 'src/components/unitdetail'
-import battleLog from './battleLog'
-import charInfo from './charInfo'
 
 export default {
-  name: 'rightDrawer',
-  props: ['visible', 'selector', 'page'], // , 'activeUnit', 'playerTeam'],
+  name: 'battleLog',
+  props: ['selector'], // , 'activeUnit', 'playerTeam'],
   data () {
     return {
       verbose: false
@@ -113,8 +104,6 @@ export default {
     // openURL
   },
   components: {
-    battleLog,
-    charInfo
     // unitdetail
   }
 }

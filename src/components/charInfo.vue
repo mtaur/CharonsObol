@@ -1,21 +1,12 @@
 <template>
-  <q-drawer
-    side="right"
-    v-model="visible"
-    bordered
-    content-class="bg-grey-2"
-    :width="350"
-    :breakpoint="0"
-  >
-    <battleLog v-if="page==='log'" :selector="selector"></battleLog>
-    <charInfo v-if="page==='charInfo'" :selector="selector"></charInfo>
-    <!-- <h4 class="row justify-center">Battle log</h4>
-    <div class="row justify-center">
+  <div>
+    <h4 class="row justify-center">Unit info</h4>
+    <!-- <div class="row justify-center">
       <div class="justify-center">
         <q-btn @click="toggleVerbose" color="blue">Verbose</q-btn>
       </div>
-    </div>
-    <div class="justify-center">
+    </div> -->
+    <!-- <div class="justify-center">
       <div class="q-pa-md flex flex-center">
         <q-pagination
         v-model="selector.currentLogPage"
@@ -27,39 +18,49 @@
         >
         </q-pagination>
       </div>
-    </div>
+    </div> -->
     <div class="row text-h4 q-pa-sm justify-center items-center">
       <div class="text-amber-9">
-        Round {{ selector.currentLogPage }}
+        CPU
+      </div>
+    </div>
+    <div class="row text-caption">
+      <div class="col-3 bg-teal-4" v-for="unit in selector.game.cpuTeam.back" :key="unit.id">
+        {{ unit.name }}
+      </div>
+    </div>
+    <div class="row text-caption">
+      <div class="col-3 bg-teal-4" v-for="unit in selector.game.cpuTeam.front" :key="unit.id">
+        {{ unit.name }}
       </div>
     </div>
     <q-separator inset></q-separator>
-    <div class="row justify-center items-center"
-    v-for="item in thisRound" :key="item.id">
-      <div class="col-1"></div>
-      <div class="col-10">
-        <div v-if="show(item.type)" :style="actionStyle(item.type)">
-          {{ item.text }}
-        </div>
+    <div class="row text-h4 q-pa-sm justify-center items-center">
+      <div class="text-amber-9">
+        Player
       </div>
-      <div class="col-1"></div>
-    </div> -->
-    <!-- <unitdetail v-for="unit in activeUnit"
-      :unit="unit"
-      :key="unit.name">
-    </unitdetail> -->
-  </q-drawer>
+    </div>
+    <div class="row text-caption">
+      <div class="col-3 bg-teal-4" v-for="unit in selector.game.playerTeam.front" :key="unit.id">
+        {{ unit.name }}
+      </div>
+    </div>
+    <div class="row text-caption">
+      <div class="col-3 bg-teal-4" v-for="unit in selector.game.playerTeam.back" :key="unit.id">
+        {{ unit.name }}
+      </div>
+    </div>
+    <q-separator inset></q-separator>
+  </div>
 </template>
 
 <script>
 // import { openURL } from 'quasar'
 // import unitdetail from 'src/components/unitdetail'
-import battleLog from './battleLog'
-import charInfo from './charInfo'
 
 export default {
-  name: 'rightDrawer',
-  props: ['visible', 'selector', 'page'], // , 'activeUnit', 'playerTeam'],
+  name: 'battleLog',
+  props: ['selector'], // , 'activeUnit', 'playerTeam'],
   data () {
     return {
       verbose: false
@@ -113,8 +114,6 @@ export default {
     // openURL
   },
   components: {
-    battleLog,
-    charInfo
     // unitdetail
   }
 }
