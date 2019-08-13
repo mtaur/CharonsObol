@@ -44,7 +44,10 @@ module.exports = function (ctx) {
         'QLinearProgress',
         'QTooltip',
         'QPagination',
-        'QSeparator'
+        'QSeparator',
+        'QImg',
+        'QCard',
+        'QCardSection'
       ],
 
       directives: [
@@ -53,7 +56,8 @@ module.exports = function (ctx) {
 
       // Quasar plugins
       plugins: [
-        'Notify'
+        'Notify',
+        'Meta'
       ]
 
       // iconSet: 'ionicons-v4'
@@ -96,7 +100,7 @@ module.exports = function (ctx) {
       // workboxPluginMode: 'InjectManifest',
       // workboxOptions: {},
       manifest: {
-        // name: 'Quasar App',
+        name: `Charon's Obol (pre-alpha build)`,
         // short_name: 'Quasar-PWA',
         // description: 'Best PWA App in town!',
         display: 'standalone',

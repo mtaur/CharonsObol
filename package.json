@@ -1,8 +1,8 @@
 {
-  "name": "quasar-test",
+  "name": "charons-obol",
   "version": "0.0.1",
-  "description": "A Quasar Framework app",
-  "productName": "Quasar App",
+  "description": "Charon's Obol (pre-alpha build)",
+  "productName": "Charon's Obol",
   "cordovaId": "org.cordova.quasar.app",
   "author": "MTaur",
   "private": true,

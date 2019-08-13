@@ -46,7 +46,7 @@
 // import rightdrawer from '../components/rightdrawer.vue'
 
 export default {
-  name: 'MyLayout',
+  name: 'BattleLayout',
   data () {
     return {
       rightDrawerPage: 'log',

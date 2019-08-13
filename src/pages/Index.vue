@@ -9,7 +9,8 @@
   <rightdrawer
   :visible="rightDrawerOpen"
   :page="rightDrawerPage"
-  :selector="selector">
+  :selector="selector"
+  class="non-selectable">
   </rightdrawer>
   <q-page class="qpage non-selectable">
     <div class="column">

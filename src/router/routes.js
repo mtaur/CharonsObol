@@ -5,7 +5,10 @@ const routes = [
     component: () => import('layouts/BattleLayout.vue'),
     children: [
       { path: '', component: () => import('pages/Index.vue') }
-    ]
+    ],
+    meta: {
+      title: `Charon's Obol`
+    }
   }
 ]
 
