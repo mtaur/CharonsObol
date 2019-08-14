@@ -47,7 +47,8 @@ module.exports = function (ctx) {
         'QSeparator',
         'QImg',
         'QCard',
-        'QCardSection'
+        'QCardSection',
+        'QBtnGroup'
       ],
 
       directives: [

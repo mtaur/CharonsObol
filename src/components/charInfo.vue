@@ -71,9 +71,9 @@
       </div>
       <div class="col-1"></div>
     </div>
-    <div class="justify-center text-center q-pa-md">
-      {{ selector.stateData.inspectUnit.name }}
-    </div>
+    <unitInfo v-if="selector.stateData.inspectUnit.name"
+    :selector="selector"
+    :unit="selector.stateData.inspectUnit"></unitInfo>
   </div>
 </template>
 
@@ -81,64 +81,22 @@
 // import { openURL } from 'quasar'
 // import unitdetail from 'src/components/unitdetail'
 import smallUnit from './smallUnit'
+import unitInfo from './unitInfo'
 
 export default {
-  name: 'battleLog',
+  name: 'charInfo',
   props: ['selector'], // , 'activeUnit', 'playerTeam'],
   data () {
     return {
-      verbose: false
-      // current: 1
-      // leftDrawerOpen: this.$q.platform.is.desktop
     }
   },
   computed: {
-    // current () {
-    //   return this.selector.currentLogPage
-    // },
-    pages () {
-      return this.selector.roundNum
-      // return this.selector.log.length > 0 ? this.selector.log.length : 1
-    },
-    thisRound () {
-      return this.selector.log.filter((item) => item.round === this.selector.currentLogPage)
-    }
   },
   methods: {
-    show (type) {
-      if (this.verbose) return true
-      if (type === 'dred' || type === 'dref') {
-        return false
-      }
-      return true
-    },
-    primary (type) {
-      if (type !== 'dred' && type !== 'dref') return true
-      return false
-    },
-    actionStyle (type) {
-      if (type === 'dred' || type === 'dref') {
-        return {
-          fontSize: '12px'
-        }
-      } else if (type === 'actionStart') {
-        return {
-          fontSize: '18px',
-          fontWeight: 'bold'
-        }
-      } else {
-        return {
-          fontSize: '16px'
-        }
-      }
-    },
-    toggleVerbose () {
-      this.verbose = !this.verbose
-    }
-    // openURL
   },
   components: {
-    smallUnit
+    smallUnit,
+    unitInfo
     // unitdetail
   }
 }
