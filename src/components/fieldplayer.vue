@@ -54,7 +54,7 @@
           </q-tooltip>
           <q-btn round size="9px" color="grey-5" @click.stop="rest">
             <!-- <img src="statics/icons/action-both.png"> -->
-            <img :src="actStatusImg">
+            <q-img :src="actStatusImg" />
           </q-btn>
         </q-avatar>
         <h6>{{ unit.name }}</h6>
