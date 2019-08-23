@@ -339,6 +339,16 @@ let heroDat = [
     itemArr: [
       // 'BERSERKERAXE'
     ]
+  },
+  {
+    soulStr: 'MANATAUR',
+    POS: 'FRONT',
+    actionArr: [
+      'TAURBLAST', 'TAURVESTLIFE', 'TAURVESTMANA'
+    ],
+    itemArr: [
+      'BLUERING'
+    ]
   }
 ]
 

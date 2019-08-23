@@ -122,6 +122,11 @@ class TargetRule {
       }
       return retVal
     },
+    repeat: function (unit) {
+      if (this.prevTargs.length === 0) { return false }
+      if (unit.id === this.prevTargs[this.prevTargs.length - 1].id) { return true }
+      return false
+    },
     frontfull: function (unit) {
       return (unit.allies.front.length >= 4 && unit.pos === Unit.POS.BACK)
     },

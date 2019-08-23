@@ -8,8 +8,8 @@ class SAME {
   constructor (obj) {
     return new TargetRule({
       caster: obj.caster,
-      reqs: [],
-      nots: ['different'],
+      reqs: ['repeat'],
+      nots: [], // ['different'],
       prefs: [],
       playerTeam: obj.playerTeam,
       prevTargs: obj.prevTargs,
