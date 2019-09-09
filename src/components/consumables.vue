@@ -1,5 +1,6 @@
 <template>
-<div class="col-3 wind justify-center align-center">
+<!-- <div class="col-3 wind justify-center align-center"> -->
+<div class="col-3 justify-center align-center">
   <div class="row items-center justify-center">
     <div v-for="action in sortedActions" :key="action.name" class="justify-center">
     <!-- <div v-for="action in unit.actions" :key="action.name" class="justify-center"> -->
@@ -8,12 +9,10 @@
       :style="actionStyle(action)"
       clickable @click="targSelect(action)"
       :color="buttonColor(action)" text-color="white">
-      <!-- clickable @click="targLog(action)" -->
-      <!-- clickable @click="skillClick(action)" -->
         <q-avatar>
           <img :src="getIcon(action)">
         </q-avatar>
-        {{ action.name }}
+        {{ action.name }} ({{ playerTeam.inventory[action.NAME] }})
         <q-tooltip anchor="center right" self="center left" :offset="[10, 10]" content-class="bg-teal" max-width="20vw">
             <span style="font-size: 14px">
               <h6>
@@ -32,7 +31,7 @@
         <q-avatar>
           <img :src="getIcon(action)">
         </q-avatar>
-        {{ action.name }} {{ playerTeam.inventory[action.NAME] }})
+        {{ action.name }} ({{ playerTeam.inventory[action.NAME] }})
         <q-tooltip anchor="center right" self="center left" :offset="[10, 10]" content-class="bg-teal" max-width="20vw">
             <span style="font-size: 14px">
               <h6>
@@ -171,7 +170,7 @@ export default {
     sortedActions () {
       let val = (action) => { return action.type === 'minor' ? 1 : action.type === 'major' ? 2 : action.type === 'both' ? 3 : 9001 }
       let sortBy = (act1, act2) => { return val(act1) - val(act2) }
-      let filt = (action) => action.NAME !== 'RESTMINOR' && action.NAME !== 'RESTMAJOR' && action.isConsumable === true
+      let filt = (action) => action.NAME !== 'RESTMINOR' && action.NAME !== 'RESTMAJOR' && action.isConsumable === true && this.playerTeam.inventory[action.NAME] > 0
       return this.unit.actions.slice().sort(sortBy).filter(filt)
       // return this.unit.actions.slice().sort(sortBy).filter((action) => action.NAME !== 'RESTMINOR' && action.NAME !== 'RESTMAJOR')
     }

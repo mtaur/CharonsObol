@@ -16,6 +16,9 @@ class Selector {
   gameState = 'battle'
   roundNum = 0
   currentLogPage = 0
+  showConsumables = false
+  showStats = false
+  showAbilities = true
 
   // Which player, if any, is highlighted as active?
   // activeUnit = {}

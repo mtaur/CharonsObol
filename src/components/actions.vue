@@ -1,5 +1,6 @@
 <template>
-<div class="col-3 wind justify-center align-center">
+<div class="col-3 justify-center align-center">
+<!-- <div class="col-3 wind justify-center align-center"> -->
   <div class="row items-center justify-center">
     <div v-for="action in sortedActions" :key="action.name" class="justify-center">
     <!-- <div v-for="action in unit.actions" :key="action.name" class="justify-center"> -->
@@ -186,7 +187,7 @@ export default {
     /* height: auto; */
   }
   .wind {
-    background-color: #ddd;
+    /* background-color: #ddd; */
     /* height: 320px */
   }
   /* .namebox {  } */

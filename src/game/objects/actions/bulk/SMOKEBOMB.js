@@ -10,7 +10,7 @@ class SMOKEBOMB {
       unit: unit,
       NAME: 'SMOKEBOMB',
       name: 'Smoke Bomb',
-      type: 'major',
+      type: 'both',
       desc: `Perform ranged attack against one enemy with no DREF, dealing damage ` +
         `equal to the LARGEST of: MELEE, RANGED, MAGIC, 5x INIT. Then the ` +
         `caster or an ally escapes the battle. Delays enemy turn by 100% of a ` +

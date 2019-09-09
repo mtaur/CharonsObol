@@ -81,6 +81,9 @@ var execute = function (selector, unit) {
       selector.stateData.activeUnit.allies.initArr.shift()
     }
   }
+  if (skill.isConsumable) {
+    selector.game.playerTeam.inventory[skill.NAME]--
+  }
   // caster.statuses.forEach((status) => status.triggerCheck(caster, 'ENDTURN', skill.type, selector))
   // let target = skill.prevTargs[index]
 

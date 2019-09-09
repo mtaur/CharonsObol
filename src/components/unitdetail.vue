@@ -9,19 +9,18 @@
   <div class="row items-center justify-center">
     <div class="q-pa-sm">
       <q-btn color="amber" glossy label="Show/hide stat points"
-      @click="showStats = !showStats"></q-btn>
+      @click="selector.showStats = !selector.showStats"></q-btn>
     </div>
   </div>
   <div
-  v-show="showStats"
+  v-show="selector.showStats"
   class="row statline align-center">
     <statrow v-for="stat in unit.baseStats" :unit="unit" :stat="stat" :key="stat.name"></statrow>
-    <!-- <statrow v-for="stat in basicStats" :unit="unit" :stat="unit.baseStats[stat]" :key="stat"></statrow> -->
   </div>
   <div class="row items-center justify-center">
     <div class="q-pa-sm">
-      <q-btn color="teal" glossy label="Show/hide consumables"
-      @click="showConsumables = !showConsumables"></q-btn>
+      <q-btn color="orange-10" glossy label="Show/hide consumables"
+      @click="selector.showConsumables = !selector.showConsumables"></q-btn>
     </div>
     <!-- <div class="col-8">
       <div v-for="item in unit.items" :key="item.name" class="row justify-center">
@@ -34,8 +33,40 @@
       @click="showConsumables = !showConsumables"></q-btn>
     </div> -->
   </div>
-  <consumables v-show="showConsumables" :unit="unit" :playerTeam="playerTeam" :cpuTeam="cpuTeam" :selector="selector"></consumables>
-  <actions :unit="unit" :playerTeam="playerTeam" :cpuTeam="cpuTeam" :selector="selector"></actions>
+  <q-card
+    v-show="selector.showConsumables"
+    class="my-card text-white"
+    style="background: radial-gradient(circle, #ff9036 0%, #882501 100%)"
+  >
+  <!-- style="background: radial-gradient(circle, #ac36ff 0%, #550188 100%)" -->
+  <!-- style="background: radial-gradient(circle, #35a2ff 0%, #014a88 100%)" -->
+    <q-card-section class="text-h6 text-center">
+      Consumables
+    </q-card-section>
+    <q-card-section>
+      <consumables :unit="unit" :playerTeam="playerTeam" :cpuTeam="cpuTeam" :selector="selector"></consumables>
+    </q-card-section>
+  </q-card>
+  <div class="row items-center justify-center">
+    <div class="q-pa-sm">
+      <q-btn color="light-green-8" glossy label="Show/hide abilities"
+      @click="selector.showAbilities = !selector.showAbilities"></q-btn>
+    </div>
+  </div>
+  <q-card
+    v-show="selector.showAbilities"
+    class="my-card text-white"
+    style="background: radial-gradient(circle, #36ffaa 0%, #01884f 100%)"
+  >
+  <!-- style="background: radial-gradient(circle, #ac36ff 0%, #550188 100%)" -->
+  <!-- style="background: radial-gradient(circle, #35a2ff 0%, #014a88 100%)" -->
+    <q-card-section class="text-h6 text-center">
+      Abilities
+    </q-card-section>
+    <q-card-section>
+      <actions :unit="unit" :playerTeam="playerTeam" :cpuTeam="cpuTeam" :selector="selector"></actions>
+    </q-card-section>
+  </q-card>
 </div>
 </template>
 
@@ -51,8 +82,9 @@ export default {
   // components: { statrow, itemTooltip, actions, consumables },
   data () {
     return {
-      showConsumables: false,
-      showStats: false
+      // showConsumables: false,
+      // showStats: false,
+      // showAbilities: true
       // basicStats: ['INIT', 'MELEE', 'RANGED', 'MAGIC', 'DR']
     }
   }

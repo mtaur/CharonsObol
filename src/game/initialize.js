@@ -572,7 +572,7 @@ playerTeam.all.forEach((unit) => {
   unit.actions.push(new Action.LIB.RESTMINOR(unit))
 })
 
-playerTeam.inventory.SMOKEBOMB = 3
+playerTeam.inventory.SMOKEBOMB = 1
 
 console.log('Clone JSON of CPU team:', cpuTeam.cloneJSON)
 console.log('Clone JSON of player team:', playerTeam.cloneJSON)
