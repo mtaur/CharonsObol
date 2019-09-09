@@ -32,7 +32,7 @@
         <q-avatar>
           <img :src="getIcon(action)">
         </q-avatar>
-        {{ action.name }}
+        {{ action.name }} {{ playerTeam.inventory[action.NAME] }})
         <q-tooltip anchor="center right" self="center left" :offset="[10, 10]" content-class="bg-teal" max-width="20vw">
             <span style="font-size: 14px">
               <h6>
@@ -104,9 +104,10 @@ export default {
       }
     },
     buttonColor (action) {
-      if (this.selector.stateData.activeSkill.name === action.name) return 'amber'
-      else if (this.canUse(action)) return 'indigo'
-      else return 'blue-grey'
+      if (this.selector.stateData.activeSkill.name === action.name) return 'orange'
+      else if (this.canUse(action)) return 'teal'
+      // else if (this.canUse(action)) return 'indigo'
+      else return 'grey'
     },
     buttonSize (action) {
       if (this.selector.stateData.activeSkill.name === action.name) return '40px'
@@ -170,8 +171,9 @@ export default {
     sortedActions () {
       let val = (action) => { return action.type === 'minor' ? 1 : action.type === 'major' ? 2 : action.type === 'both' ? 3 : 9001 }
       let sortBy = (act1, act2) => { return val(act1) - val(act2) }
-      let filt = (action) => action.NAME !== 'RESTMINOR' && action.NAME !== 'RESTMAJOR' && action.isConsumable === false
+      let filt = (action) => action.NAME !== 'RESTMINOR' && action.NAME !== 'RESTMAJOR' && action.isConsumable === true
       return this.unit.actions.slice().sort(sortBy).filter(filt)
+      // return this.unit.actions.slice().sort(sortBy).filter((action) => action.NAME !== 'RESTMINOR' && action.NAME !== 'RESTMAJOR')
     }
   }
 }

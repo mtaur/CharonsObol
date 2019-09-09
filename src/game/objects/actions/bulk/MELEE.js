@@ -15,6 +15,7 @@ class MELEE {
         `ROW. Must target a unit which is Guarding if possible. Move to front ` +
         `row if not already there.`,
       targetRules: ['MELEE'],
+      // isConsumable: true,
       prereqs: ['FRONTNOTFULL'],
       after: [{
         NAME: 'CASTERFRONT'

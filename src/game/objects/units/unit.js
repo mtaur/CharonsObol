@@ -74,6 +74,8 @@ class Team {
     this.dead = []
   }
 
+  inventory = {} // { SMOKEBOMB: 3, HEALTHPOT: 3, ... }
+
   get cloneJSON () { return StatSmart.teamJSON.call(this, this) }
 
   constructor (side) {
@@ -247,7 +249,8 @@ class Unit {
         new Action.LIB.RANGED(thisUnit),
         new Action.LIB.MOVE(thisUnit),
         new Action.LIB.GUARD(thisUnit),
-        new Action.LIB.RUN(thisUnit)
+        new Action.LIB.RUN(thisUnit),
+        new Action.LIB.SMOKEBOMB(thisUnit)
         // new Action.LIB.DERP(thisUnit)
         // { name: 'melee', type: 'major', desc: 'Basic malee attack. Must target front row if possible.' },
         // { name: 'ranged', type: 'major', desc: 'Basic ranged attack. Can target back row UNLESS a unit in the front row has GUARD activated.' },

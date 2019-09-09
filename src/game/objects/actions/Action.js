@@ -18,6 +18,8 @@ class Action {
   cost = 0
   after = []
   prereqs = []
+  isConsumable = false
+  SPCost = 0
   // Must encode general data object for all targeting schemes...
   targetRules = ['SELF'] // target1, target2.......
   // stage 0 { casterCond: , }
@@ -32,6 +34,7 @@ class Action {
       let rule = new TargetRule.LIB[prereq](obj)
       if (rule.canFind(this.unit) === false) { retVal = false }
     })
+    if (this.isConsumable === true && this.unit.playerTeam.inventory[this.NAME] <= 0) { retVal = false }
     if (this.cost > this.unit.baseStats.MP.current) { retVal = false }
     if (this.type === 'both' && !(this.unit.hasAction.major && this.unit.hasAction.minor)) { retVal = false }
     if (this.type === 'major' && !this.unit.hasAction.major) { retVal = false }

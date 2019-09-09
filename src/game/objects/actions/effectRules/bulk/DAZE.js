@@ -4,7 +4,7 @@
 
 function DAZE (effectObj = {}, target = {}, caster = {}) {
   let summarize = function () {
-    let amount = effectObj.delayFrac * target.maxTurnPoints
+    let amount = effectObj.delayFrac * target.allies.maxTurnPoints
     let data = {
       type: 'daze',
       amount: amount,
