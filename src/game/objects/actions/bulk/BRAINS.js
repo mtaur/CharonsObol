@@ -13,7 +13,7 @@ class BRAINS {
       type: 'both',
       cost: 1,
       desc: `Nothing hits the spot quite like brains.  Recover health equal to ` +
-        `50% of your total poison amount, but increase poison level by 25%.`,
+        `100% of your total poison amount, but increase poison level by 50%.`,
       targetRules: ['SELF', 'SELF'],
       prereqs: ['LOSINGHP'],
       // after: [{
@@ -26,7 +26,7 @@ class BRAINS {
           scale: {
             // MELEE: 0.5
           },
-          poisonScale: 0.5
+          poisonScale: 1.0 // 0.5
         },
         {
           NAME: 'HEALTHOVERTIME',
@@ -34,7 +34,7 @@ class BRAINS {
           scale: {
             // MAGIC: 2
           },
-          poisonScale: -0.25,
+          poisonScale: -0.5, // -0.25,
           virulence: 0.1
         }
       ]
