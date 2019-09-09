@@ -11,7 +11,8 @@ class REGEN {
       // filename: 'MELEE',
       name: 'Regenerate',
       type: 'both',
-      desc: 'Gradually restores health to a taget. Stacks with other regeneration or poison effects.',
+      desc: `Gradually restores 2x MAGIC health to a friendly taget. Stacks with ` +
+        `other regeneration or poison effects.`,
       cost: 1,
       targetRules: ['ALLY'],
       // prereqs: ['OTHERROWNOTFULL'],

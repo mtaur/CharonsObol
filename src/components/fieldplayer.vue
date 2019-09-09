@@ -33,8 +33,9 @@
         class="q-mt-sm"
         rounded style="height: 8px"
         :value="(Math.abs(healthOverTime.amount)) / unit.effectiveStatValues.HP"
-        color="green"
+        :color="healthOverTime.amount > 0 ? 'cyan' : 'green-10'"
         />
+        <!-- color="green" -->
       </div>
       <div class="col-3">{{ healthOverTime.amount }} total</div>
     </div>
