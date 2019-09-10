@@ -87,6 +87,7 @@ for (let i = 1; i < 5; i++) {
     removeByNAME(unit.actions, 'RUN')
     removeByNAME(unit.actions, 'MOVE')
     console.log(unit)
+  // } else if (i < 3) {
   } else if (i < 4) {
     let unit = new CPUUnit(gameObj, caenenTemplate())
     unit.statWeights = {
@@ -148,17 +149,11 @@ jaq.raiseAll()
 removeByNAME(jaq.actions, 'RUN')
 removeByNAME(jaq.actions, 'MELEE')
 removeByNAME(jaq.actions, 'GUARD')
-// removeByNAME(jaq.actions, 'MOVE')
-// jaq.actions.push(new Action.LIB.CHAINLGT(jaq))
-// jaq.actions.push(new Action.LIB.FLAMEFIST(jaq))
 jaq.actions.push(new Action.LIB.REGEN(jaq))
-// jaq.actions.push(new Action.LIB.HEAL(jaq))
 jaq.actions.push(new Action.LIB.VENOMSTRIKE(jaq))
-// jaq.actions.push(new Action.LIB.LUNGE(jaq))
-cpuTeam.front.push(jaq)
 //
-// jaq.hasAction.major = false
-// jaq.hasAction.minor = false
+// Include for larger battle
+cpuTeam.front.push(jaq)
 //
 
 let deadGuy = new CPUUnit(gameObj, caenenTemplate())
@@ -540,8 +535,8 @@ let shuffle = function (array) {
 // shuffle(front)
 // shuffle(back)
 shuffle(heroDat)
-heroDat.filter((obj) => obj.POS === 'FRONT').slice(0, 3).forEach((obj) => heroAdd(obj))
-heroDat.filter((obj) => obj.POS === 'BACK').slice(0, 3).forEach((obj) => heroAdd(obj))
+heroDat.filter((obj) => obj.POS === 'FRONT').slice(0, 2).forEach((obj) => heroAdd(obj))
+heroDat.filter((obj) => obj.POS === 'BACK').slice(0, 2).forEach((obj) => heroAdd(obj))
 
 // playerTeam.front = front.slice(0, 3)
 // playerTeam.back = back.slice(0, 3)
@@ -573,7 +568,7 @@ playerTeam.all.forEach((unit) => {
 })
 
 playerTeam.inventory.SMOKEBOMB = 1
-playerTeam.inventory.HEALTHPOT = 1
+playerTeam.inventory.HEALTHPOT = 2
 playerTeam.inventory.LIZARDTAIL = 1
 playerTeam.inventory.MANAPOT = 2
 
