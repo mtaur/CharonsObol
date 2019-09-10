@@ -3,6 +3,7 @@ import { Action } from '../Action.js'
 class SMOKEBOMB {
   static NAME = 'SMOKEBOMB'
   static filename = 'SMOKEBOMB'
+  static isConsumable = true
 
   // { name: 'lunge', type: 'both', desc: 'Lunge FROM the back row TO the front row, doing 2x the SMALLER of MELEE and RANGED as damage to a target with a melee attack.' }
   constructor (unit = null) {
@@ -11,9 +12,9 @@ class SMOKEBOMB {
       NAME: 'SMOKEBOMB',
       name: 'Smoke Bomb',
       type: 'both',
-      desc: `Perform ranged attack against one enemy with no DREF, dealing damage ` +
+      desc: `Perform a ranged attack against one enemy, bypassing DREF and dealing damage ` +
         `equal to the LARGEST of: MELEE, RANGED, MAGIC, 5x INIT. Then the ` +
-        `caster or an ally escapes the battle. Delays enemy turn by 100% of a ` +
+        `caster or an ally escapes the battle. Delay enemy turn by 100% of a ` +
         `turn gauge.`,
       isConsumable: true,
       SPCost: 4,

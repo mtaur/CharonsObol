@@ -573,6 +573,9 @@ playerTeam.all.forEach((unit) => {
 })
 
 playerTeam.inventory.SMOKEBOMB = 1
+playerTeam.inventory.HEALTHPOT = 1
+playerTeam.inventory.LIZARDTAIL = 1
+playerTeam.inventory.MANAPOT = 2
 
 console.log('Clone JSON of CPU team:', cpuTeam.cloneJSON)
 console.log('Clone JSON of player team:', playerTeam.cloneJSON)

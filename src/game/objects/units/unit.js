@@ -84,12 +84,12 @@ class Team {
     // Player spends SP between player units.
     if (side === Unit.SIDE.PLAYER) {
       // this.SP = 100
-      this.SP = 60
+      this.SP = 100 // 60
     }
 
     // CPU units all receive CPU SP separately in full.
     if (side === Unit.SIDE.CPU) {
-      this.SP = 90 // 100 // 120
+      this.SP = 200 // 90 // 100 // 120
       // this.SP = 100 // 50
     }
   }
@@ -249,8 +249,10 @@ class Unit {
         new Action.LIB.RANGED(thisUnit),
         new Action.LIB.MOVE(thisUnit),
         new Action.LIB.GUARD(thisUnit),
-        new Action.LIB.RUN(thisUnit),
-        new Action.LIB.SMOKEBOMB(thisUnit)
+        new Action.LIB.RUN(thisUnit) // ,
+        // new Action.LIB.SMOKEBOMB(thisUnit),
+        // new Action.LIB.MANAPOT(thisUnit),
+        // new Action.LIB.HEALTHPOT(thisUnit)
         // new Action.LIB.DERP(thisUnit)
         // { name: 'melee', type: 'major', desc: 'Basic malee attack. Must target front row if possible.' },
         // { name: 'ranged', type: 'major', desc: 'Basic ranged attack. Can target back row UNLESS a unit in the front row has GUARD activated.' },
@@ -264,6 +266,13 @@ class Unit {
     for (let key in template) {
       // this[key] = obj[key] ? obj[key] : template[key]
       this[key] = hasProp(obj, key) ? obj[key] : template[key]
+    }
+    if (obj.side === Unit.SIDE.PLAYER) {
+      for (let key in Action.LIB) {
+        if (Action.LIB[key].isConsumable === true) {
+          template.actions.push(new Action.LIB[key](thisUnit))
+        }
+      }
     }
     this.id = Unit.id
     this.resourceManager = new ResourceManager(this)
