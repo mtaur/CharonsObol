@@ -7,16 +7,17 @@ function RUN (effectObj = {}, target = {}, caster = {}) {
   let summarize = function () {
     let data = {
       type: 'run',
-      caster: caster
+      caster: caster,
+      target: target
     }
     let log =
     [
       {
-        text: `${caster.name} ran away!`,
+        text: `${target.name} ran away!`,
         type: 'run',
         // value: Math.floor(this.summary.reflected),
-        caster: caster // ,
-        // target: target
+        caster: caster,
+        target: target
       }
     ]
     let summary = {
@@ -29,54 +30,41 @@ function RUN (effectObj = {}, target = {}, caster = {}) {
   let apply = function () {
     this.summary = this.summarize()
 
-    if (caster.pos === Unit.POS.FRONT) {
-      caster.pos = Unit.POS.BENCH
-      if (caster.side === Unit.SIDE.PLAYER) {
-        for (let index in caster.playerTeam.front) {
-          if (caster.playerTeam.front[index].id === caster.id) {
-            caster.playerTeam.front.splice(index, 1)
-            caster.playerTeam.bench.push(caster)
+    if (target.pos === Unit.POS.FRONT) {
+      target.pos = Unit.POS.BENCH
+      if (target.side === Unit.SIDE.PLAYER) {
+        for (let index in target.playerTeam.front) {
+          if (target.playerTeam.front[index].id === target.id) {
+            target.playerTeam.front.splice(index, 1)
+            target.playerTeam.bench.push(target)
           }
         }
-      } else if (caster.side === Unit.SIDE.CPU) {
-        for (let index in caster.cpuTeam.front) {
-          if (caster.cpuTeam.front[index].id === caster.id) {
-            caster.cpuTeam.front.splice(index, 1)
-            caster.cpuTeam.bench.push(caster)
+      } else if (target.side === Unit.SIDE.CPU) {
+        for (let index in target.cpuTeam.front) {
+          if (target.cpuTeam.front[index].id === target.id) {
+            target.cpuTeam.front.splice(index, 1)
+            target.cpuTeam.bench.push(target)
           }
         }
       }
-    } else if (caster.pos === Unit.POS.BACK) {
-      caster.pos = Unit.POS.FRONT
-      if (caster.side === Unit.SIDE.PLAYER) {
-        for (let index in caster.playerTeam.back) {
-          if (caster.playerTeam.back[index].id === caster.id) {
-            caster.playerTeam.back.splice(index, 1)
-            caster.playerTeam.bench.push(caster)
+    } else if (target.pos === Unit.POS.BACK) {
+      target.pos = Unit.POS.FRONT
+      if (target.side === Unit.SIDE.PLAYER) {
+        for (let index in target.playerTeam.back) {
+          if (target.playerTeam.back[index].id === target.id) {
+            target.playerTeam.back.splice(index, 1)
+            target.playerTeam.bench.push(target)
           }
         }
-      } else if (caster.side === Unit.SIDE.CPU) {
-        for (let index in caster.cpuTeam.back) {
-          if (caster.cpuTeam.back[index].id === caster.id) {
-            caster.cpuTeam.back.splice(index, 1)
-            caster.cpuTeam.bench.push(caster)
+      } else if (target.side === Unit.SIDE.CPU) {
+        for (let index in target.cpuTeam.back) {
+          if (target.cpuTeam.back[index].id === target.id) {
+            target.cpuTeam.back.splice(index, 1)
+            target.cpuTeam.bench.push(target)
           }
         }
       }
     }
-    // this.summary =
-    // [
-    //   {
-    //     text: `${caster.name} ran away!`,
-    //     type: 'run',
-    //     // value: Math.floor(this.summary.reflected),
-    //     caster: caster // ,
-    //     // target: target
-    //   }
-    // ]
-    // this.summary.text =
-    // console.log(effectObj.summary.text)
-    // console.log('Unit moved?', caster)
   }
   return { apply: apply, summarize: summarize }
   // return apply
