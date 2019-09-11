@@ -12,17 +12,17 @@ class HEALTHPOT {
       // filename: 'HEAL',
       name: 'Health Potion',
       type: 'minor',
-      desc: 'Heal self for 30% max HP.',
+      desc: 'Heal self for 50% max HP.',
       // cost: 1,
       isConsumable: true,
-      SPCost: 2,
+      SPCost: 3,
       targetRules: ['SELF'],
       effects: [
         {
           NAME: 'HEAL',
           name: 'heal',
           scale: {
-            HP: 0.3
+            HP: 0.5
           }
         }
       ]

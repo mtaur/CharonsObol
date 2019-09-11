@@ -113,12 +113,12 @@ for (let i = 1; i < 5; i++) {
   } else {
     let unit = new CPUUnit(gameObj, caenenTemplate())
     unit.statWeights = {
-      HP: 2,
-      MP: 3, // 4,
+      HP: 1,
+      MP: 1, // 3, // 4,
       INIT: 1,
       MELEE: 0,
-      MAGIC: 4, // 6,
-      RANGED: 3, // 6,
+      MAGIC: 3, // 6,
+      RANGED: 2, // 6,
       DRED: 1,
       DREF: 1
     }
@@ -129,6 +129,10 @@ for (let i = 1; i < 5; i++) {
     cpuTeam.back.push(unit)
     //
     // console.log('Outside of constructor...')
+    // for (let j = 0; j < 2; j++) {
+    //   let item = new Item.LIB.BLUERING()
+    //   item.equipTo(unit)
+    // }
     removeByNAME(unit.actions, 'MELEE')
     removeByNAME(unit.actions, 'RANGED')
     removeByNAME(unit.actions, 'MOVE')
@@ -150,7 +154,10 @@ removeByNAME(jaq.actions, 'RUN')
 removeByNAME(jaq.actions, 'MELEE')
 removeByNAME(jaq.actions, 'GUARD')
 jaq.actions.push(new Action.LIB.REGEN(jaq))
+jaq.actions.push(new Action.LIB.HEAL(jaq))
 jaq.actions.push(new Action.LIB.VENOMSTRIKE(jaq))
+jaq.actions.push(new Action.LIB.NIGHTSTRIKE(jaq))
+jaq.actions.push(new Action.LIB.INSPIRE(jaq))
 //
 // Include for larger battle
 cpuTeam.front.push(jaq)
@@ -568,9 +575,13 @@ playerTeam.all.forEach((unit) => {
 })
 
 playerTeam.inventory.SMOKEBOMB = 1
-playerTeam.inventory.HEALTHPOT = 2
+playerTeam.inventory.HEALTHPOT = 1
 playerTeam.inventory.LIZARDTAIL = 1
-playerTeam.inventory.MANAPOT = 2
+playerTeam.inventory.MANAPOT = 1
+playerTeam.inventory.WRATHSCROLL = 1
+playerTeam.inventory.FLAMEFISTSCROLL = 1
+playerTeam.inventory.HEALSCROLL = 1
+playerTeam.inventory.ENLIGHTENSCROLL = 1
 
 console.log('Clone JSON of CPU team:', cpuTeam.cloneJSON)
 console.log('Clone JSON of player team:', playerTeam.cloneJSON)
