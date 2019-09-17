@@ -161,6 +161,29 @@ class TargetRule {
         }
       }
       return false
+    },
+    feral: function (unit) {
+      for (let index in unit.statuses) {
+        if (unit.statuses[index].NAME === 'FERAL') {
+          return true
+        }
+      }
+    },
+    dryad: function (unit) {
+      for (let index in unit.statuses) {
+        if (unit.statuses[index].NAME === 'DRYAD') {
+          return true
+        }
+      }
+      return false
+    },
+    shapeshifted: function (unit) {
+      for (let index in unit.statuses) {
+        if (unit.statuses[index].NAME === 'DRYAD' || unit.statuses[index].NAME === 'FERAL') {
+          return true
+        }
+      }
+      return false
     }
   }
 

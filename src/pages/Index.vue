@@ -13,7 +13,7 @@
   class="non-selectable">
   </rightdrawer>
   <q-page class="qpage non-selectable">
-    <div class="column">
+    <div class="column unitrow">
       <div class="row justify-center items-stretch unitrow">
         <fieldplayer
           v-for="unit in cpuTeam.back"
@@ -187,6 +187,7 @@ export default {
     /* height: 85vh; */
     display: flex;
     position: relative;
+    flex: 1 1;
   }
   .unitrow {
     /* flex-basis: 20vh; */

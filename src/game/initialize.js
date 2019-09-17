@@ -66,6 +66,7 @@ function removeByNAME (arr, str) {
 // Knight of Caenenfoeder
 for (let i = 1; i < 5; i++) {
 // for (let i = 1; i < 4; i++) {
+// for (let i = 4; i < 5; i++) {
   if (i < 2) {
     let unit = new CPUUnit(gameObj, caenenTemplate())
     unit.statWeights = {

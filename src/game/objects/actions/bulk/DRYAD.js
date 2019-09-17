@@ -13,6 +13,7 @@ class DRYAD {
       name: 'Dryad Form',
       type: 'minor',
       desc: 'Increase MAGIC at the cost of MELEE and DRED',
+      prereqs: ['NOTDRYAD'],
       targetRules: ['SELF'],
       effects: [
         {

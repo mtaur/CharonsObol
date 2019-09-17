@@ -13,6 +13,7 @@ class FERAL {
       name: 'Feral Form',
       type: 'minor',
       desc: 'Increase MELEE and DREF, at the cost of MAGIC and RANGED.',
+      prereqs: ['NOTFERAL'],
       targetRules: ['SELF'],
       effects: [
         {

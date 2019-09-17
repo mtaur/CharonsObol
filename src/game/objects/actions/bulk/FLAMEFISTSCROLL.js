@@ -13,7 +13,7 @@ class FLAMEFISTSCROLL {
       // filename: 'FLAMEFIST',
       name: 'Fiery Verdict',
       type: 'major',
-      desc: 'Deal (MELEE + MAGIC + RANGED + 2x INIT) damage with a melee attack. ' +
+      desc: 'Deal (MELEE + MAGIC + RANGED + 4x INIT) damage with a melee attack. ' +
         'DRED and DREF scaling are both 2.',
       isConsumable: true,
       SPCost: 4,
@@ -31,7 +31,7 @@ class FLAMEFISTSCROLL {
             MAGIC: 1,
             MELEE: 1,
             RANGED: 1,
-            INIT: 2
+            INIT: 4
           },
           DREDScale: 2,
           DREFScale: 2

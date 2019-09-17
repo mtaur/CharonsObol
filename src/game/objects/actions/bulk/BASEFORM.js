@@ -13,6 +13,7 @@ class BASEFORM {
       name: 'Base Form',
       type: 'minor',
       desc: 'Revert back to boring old Human form.',
+      prereqs: ['SHAPESHIFTED'],
       targetRules: ['SELF'],
       effects: [
         {
