@@ -101,7 +101,18 @@ class Status {
         let cond = this.effects[effectIndx].trigger[index]
         if (cond === trigger) {
           console.log('Should fire status update...', this)
-          // let logItem = this.effects[effectIndx].getLogItem(unit, trigger, data)
+          let logItems = this.effects[effectIndx].getLogItem(unit, trigger, data)
+          console.log(logItems)
+          let selector = unit.playerTeam.getSelector()
+          for (let logIndx in logItems.log) {
+            let logItem = logItems.log[logIndx]
+            logItem.round = selector.roundNum
+            selector.logID++
+            logItem.id = selector.logID
+            selector.log.push(logItem)
+            console.log('logItem!!!!', logItem)
+          }
+          // let logItem = this.effects[effectIndx].getLogItem(unit, trigger, data).log
           this.effects[effectIndx].update(unit, trigger, data)
           // console.log(selector.log)
           // selector.log.push(logItem)

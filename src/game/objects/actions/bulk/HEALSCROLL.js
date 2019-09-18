@@ -12,7 +12,7 @@ class HEALSCROLL {
       // filename: 'HEAL',
       name: 'Heal Scroll',
       type: 'major',
-      desc: 'Heal one ally for 1.5x LARGEST between MELEE, RANGED, MAGIC, 5x INIT',
+      desc: 'Heal one ally for 1.5x LARGEST between MELEE, RANGED, MAGIC, 4x INIT',
       isConsumable: true,
       SPCost: 3,
       targetRules: ['HEAL'],
@@ -25,7 +25,7 @@ class HEALSCROLL {
               MELEE: 1.5,
               RANGED: 1.5,
               MAGIC: 1.5,
-              INIT: 7.5
+              INIT: 6.0
             }
           }
         }

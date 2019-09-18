@@ -101,7 +101,8 @@ class DAMAGETOPOISONOUT {
           text: `${newData.target.name} converted ${newData.amount} damage to poison.`,
           type: 'damagetopoison',
           amount: newData.amount,
-          virulence: this.effects[0].virulence,
+          virulence: virulence,
+          // virulence: this.effects[0].virulence,
           caster: caster,
           target: target
         }

@@ -73,17 +73,17 @@ export default {
   methods: {
     show (type) {
       if (this.verbose) return true
-      if (type === 'dred' || type === 'dref') {
+      if (type === 'dred' || type === 'dref' || type === 'lifesteal' || type === 'damagetopoison') {
         return false
       }
       return true
     },
     primary (type) {
-      if (type !== 'dred' && type !== 'dref') return true
-      return false
+      if (type === 'dred' || type === 'dref' || type === 'lifesteal' || type === 'damagetopoison') return false
+      return true
     },
     actionStyle (type) {
-      if (type === 'dred' || type === 'dref') {
+      if (type === 'dred' || type === 'dref' || type === 'lifesteal' || type === 'damagetopoison') {
         return {
           fontSize: '12px'
         }

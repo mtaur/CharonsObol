@@ -150,6 +150,8 @@ class Selector {
   constructor (gameObj = {}) {
     this.game = gameObj
     this.log = gameObj.log
+    let select = this
+    this.game.playerTeam.getSelector = function () { return select }
   }
 }
 

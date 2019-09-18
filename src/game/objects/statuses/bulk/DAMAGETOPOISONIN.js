@@ -85,6 +85,7 @@ class DAMAGETOPOISONIN {
       // summary.id = selector.logID
       let caster = data.caster
       let target = data.target
+      // let thisObj = this
       // let oldData = data
 
       let newData = {
@@ -98,7 +99,9 @@ class DAMAGETOPOISONIN {
           text: `${newData.target.name} converted ${newData.amount} damage to poison.`,
           type: 'damagetopoison',
           amount: newData.amount,
-          virulence: this.effects[0].virulence,
+          // virulence: this.effects[0].virulence,
+          // virulence: thisObj.effects[0].virulence,
+          virulence: virulence,
           caster: caster,
           target: target
         }

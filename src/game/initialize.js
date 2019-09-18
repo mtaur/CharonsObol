@@ -352,6 +352,16 @@ let heroDat = [
     itemArr: [
       'BLUERING'
     ]
+  },
+  {
+    soulStr: 'JACO',
+    POS: 'FRONT',
+    actionArr: [
+      'FRENZY'
+    ],
+    itemArr: [
+      'SPELLSWORD'
+    ]
   }
 ]
 
@@ -565,7 +575,12 @@ playerTeam.front.forEach((unit) => {
     unit.statuses.push(new Status.LIB.DAMAGETOPOISONIN())
     unit.statuses.push(new Status.LIB.DAMAGETOPOISONOUT())
   }
+  if (unit.souls[0].NAME === 'JACO') {
+    unit.statuses.push(new Status.LIB.LIFESTEAL())
+  }
 })
+// playerTeam.front.forEach((unit) => {
+// })
 // playerTeam.front.forEach((unit) => { unit.statuses.push(new Status.LIB.DAMAGETOPOISONOUT()) })
 // playerTeam.front.forEach((unit) => { unit.statuses.push(new Status.LIB.DAMAGETOPOISONIN()) })
 // playerTeam.front.forEach((unit) => { unit.actions.push(new Action.LIB.CONTAGION(unit)) })
