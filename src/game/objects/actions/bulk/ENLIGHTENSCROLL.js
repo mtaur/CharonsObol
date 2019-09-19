@@ -14,16 +14,15 @@ class ENLIGHTENSCROLL {
       name: 'Enlighten',
       type: 'both',
       desc: `Take 1 MP from an ally who is not guarding. Heal it for ` +
-        `1x MAGIC immediately and 3x MAGIC over time. Set Guard status on target.` +
-        `Refund your action points.`,
-      // targetRules: ['HOMING', 'ALLYNOTGUARDINGNOTSELF', 'SELF'],
+        `1x MAGIC immediately and 3x MAGIC over time. Set Guard status on target.`, // +
+      // `Refund your action points.`,
       isConsumable: true,
       SPCost: 3,
       targetRules: ['ENLIGHTEN', 'SAME', 'SAME', 'SAME'],
       prereqs: ['MANANOTFULL'], // TargetRules.LIB.BACK ...
-      useInitPoints: false,
+      // useInitPoints: false,
       after: [{
-        NAME: 'REFUNDBOTH'
+        // NAME: 'REFUNDBOTH'
       }],
       // after: [{
       //   // NAME: 'CASTERBACK'

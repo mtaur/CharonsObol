@@ -45,11 +45,13 @@ var execute = function (selector, unit) {
       }
     )
   }
-  if (skill.type === 'major' || skill.type === 'both') {
-    caster.hasAction.major = false
-  }
-  if (skill.type === 'minor' || skill.type === 'both') {
-    caster.hasAction.minor = false
+  if (skill.useActionPoints === true) {
+    if (skill.type === 'major' || skill.type === 'both') {
+      caster.hasAction.major = false
+    }
+    if (skill.type === 'minor' || skill.type === 'both') {
+      caster.hasAction.minor = false
+    }
   }
   for (let index in skill.after) {
     let after = new EffectRule(skill.after[index], {}, caster)

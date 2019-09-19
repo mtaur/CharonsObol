@@ -18,7 +18,8 @@ class FRENZY {
       // targetRules: ['HOMING', 'ALLYNOTGUARDINGNOTSELF', 'SELF'],
       targetRules: ['MELEE', 'ALLYNOTSELFHASACTMAJOR', 'ALLYNOTSELFHASACTMINOR', 'SELF'],
       prereqs: ['FRONTNOTFULL'], // TargetRules.LIB.BACK ...
-      useInitPoints: false,
+      useInitPoints: false, // Spends init points by stealing actions
+      useActionPoints: false,
       // after: [{
       //   NAME: 'ROWFRONT'
       // }],
@@ -43,13 +44,13 @@ class FRENZY {
         {
           NAME: 'LOSEACTMINOR',
           name: 'loseactminor'
-        },
-        {
-          NAME: 'INSPIRE',
-          name: 'inspire',
-          major: true,
-          minor: true
-        }
+        } // ,
+        // {
+        //   NAME: 'INSPIRE',
+        //   name: 'inspire',
+        //   major: true,
+        //   minor: true
+        // }
         // {
         //   NAME: 'ROWBACK',
         //   name: 'rowback'

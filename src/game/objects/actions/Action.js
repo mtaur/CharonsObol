@@ -25,6 +25,7 @@ class Action {
   // stage 0 { casterCond: , }
   prevTargs = []
   useInitPoints = true // Default behavior, rare exceptions like Inspire refund turns and Init chunks.
+  useActionPoints = true // Default behavior, rare exceptions like FRENZY do not consume your action points.
   effects = [] // match effect to target by index
   rebuild = false // NATLOG needs to re-compute the number of targets each time
   canUse = function () {

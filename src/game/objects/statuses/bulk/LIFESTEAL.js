@@ -123,7 +123,8 @@ class LIFESTEAL {
     return new Status({
       NAME: 'LIFESTEAL',
       name: 'lifesteal',
-      desc: 'Portion of outgoing damage gained by caster as HP.',
+      desc: lifestealfrac * 100 + `% of damage dealt by this unit is gained as HP.`,
+      // desc: '20% of damage dealt by this unit is gained as HP.',
       remove: [
         //
       ],

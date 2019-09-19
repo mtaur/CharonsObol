@@ -553,7 +553,7 @@ let shuffle = function (array) {
 // shuffle(front)
 // shuffle(back)
 shuffle(heroDat)
-heroDat.filter((obj) => obj.POS === 'FRONT').slice(0, 2).forEach((obj) => heroAdd(obj))
+heroDat.filter((obj) => obj.POS === 'FRONT').slice(0, 3).forEach((obj) => heroAdd(obj))
 heroDat.filter((obj) => obj.POS === 'BACK').slice(0, 2).forEach((obj) => heroAdd(obj))
 
 // playerTeam.front = front.slice(0, 3)
