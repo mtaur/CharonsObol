@@ -39,7 +39,7 @@
       </div>
       <div class="col-3">{{ healthOverTime.amount }} total</div>
     </div>
-    <div class="row namebox justify-center align-center">
+    <div class="row namebox justify-center align-center items-center q-gutter-xs">
       <!-- <q-chip color="deep-orange"> -->
       <q-chip color="teal" text-color="white">
         <q-avatar>
@@ -58,8 +58,24 @@
             <q-img :src="actStatusImg" />
           </q-btn>
         </q-avatar>
-        <h6>{{ unit.name }}</h6>
+        <h7>{{ unit.name }}</h7>
       </q-chip>
+      <q-avatar v-for="soul in unit.souls" :key="soul.NAME">
+        <q-img :src="getImg(soul)" />
+        <q-tooltip anchor="center left" self="center right" :offset="[10, 10]" content-class="bg-teal" max-width="20vw">
+            <span style="font-size: 14px" >
+              <h6>
+                <span>{{ soul.name }}</span>
+              </h6>
+              <div>
+                {{ soul.desc }}
+              </div>
+              <!-- <div>
+                Regenerate 5% of max HP <span v-if="unit.hasAction.minor">over time.</span><span v-else-if="unit.hasAction.major">instantly.</span>
+              </div> -->
+            </span>
+        </q-tooltip>
+      </q-avatar>
       <!-- <h6>{{ unit.name }}</h6> -->
     </div>
   </div>
@@ -196,6 +212,11 @@ export default {
         this.selector.onClicks.execute(this.selector, this.unit)
       }
       // alert(this.unit.name)
+    },
+
+    getImg (soul) {
+      // statics/icons/action-star.png
+      return 'statics/icons/souls/' + soul.NAME + '.png'
     }
   }
 }
