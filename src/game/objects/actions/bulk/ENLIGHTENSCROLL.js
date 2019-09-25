@@ -22,7 +22,7 @@ class ENLIGHTENSCROLL {
       prereqs: ['MANANOTFULL'], // TargetRules.LIB.BACK ...
       // useInitPoints: false,
       // after: [{
-        // NAME: 'REFUNDBOTH'
+      //   NAME: 'REFUNDBOTH'
       // }],
       // after: [{
       //   // NAME: 'CASTERBACK'
