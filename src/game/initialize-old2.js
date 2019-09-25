@@ -1,6 +1,5 @@
 import { Unit, Team } from './objects/units/Unit.js'
 // import { cloneDeep as clone } from 'lodash'
-import { hasIn as hasProp } from 'lodash'
 import { Soul } from './objects/souls/Soul.js'
 import { CPUUnit } from './objects/units/CPUUnit.js'
 import { Item } from './objects/items/Item.js'
@@ -232,37 +231,6 @@ let heroAdd = function (obj) {
   } else if (unit.pos === Unit.POS.BACK) {
     playerTeam.back.push(unit)
   }
-  for (let soulIndx in unit.souls) {
-    let soul = unit.souls[soulIndx]
-    if (hasProp(soul, 'passives')) {
-      soul.passives.forEach((status) => unit.statuses.push(new Status.LIB[status.NAME]()))
-    }
-  }
-}
-
-let heroMerge = function (unit, obj) {
-  let soulStr = obj.soulStr
-  let actionArr = obj.actionArr
-  let itemArr = obj.itemArr
-  console.log(soulStr, 'added?')
-  let soul = new Soul.LIB[soulStr]()
-  unit.souls.push(soul)
-
-  itemArr.forEach((itemStr) => {
-    let item = new Item.LIB[itemStr]()
-    item.equipTo(unit)
-  })
-
-  actionArr.forEach((actionStr) => {
-    unit.actions.push(new Action.LIB[actionStr](unit))
-  })
-
-  if (hasProp(soul, 'passives')) {
-    soul.passives.forEach((status) => unit.statuses.push(new Status.LIB[status.NAME]()))
-  }
-
-  unit.baseStats.HP.current = unit.baseStats.HP.max
-  unit.baseStats.MP.current = unit.baseStats.MP.max
 }
 
 let heroDat = [
@@ -585,20 +553,8 @@ let shuffle = function (array) {
 // shuffle(front)
 // shuffle(back)
 shuffle(heroDat)
-
-heroDat.filter((obj) => obj.POS === 'FRONT').slice(0, 2).forEach((obj) => heroAdd(obj))
+heroDat.filter((obj) => obj.POS === 'FRONT').slice(0, 3).forEach((obj) => heroAdd(obj))
 heroDat.filter((obj) => obj.POS === 'BACK').slice(0, 2).forEach((obj) => heroAdd(obj))
-
-let extraFront = heroDat.filter((obj) => obj.POS === 'FRONT').slice(2)
-let extraBack = heroDat.filter((obj) => obj.POS === 'BACK').slice(2)
-let extras = extraFront.concat(extraBack)
-let extraIndx = 0
-playerTeam.field.forEach(
-  (unit) => {
-    heroMerge(unit, extras[extraIndx])
-    extraIndx++
-  }
-)
 
 // playerTeam.front = front.slice(0, 3)
 // playerTeam.back = back.slice(0, 3)
@@ -614,16 +570,15 @@ playerTeam.field.forEach(
 //   // unit.statuses.push(new Status.LIB.HEALTHOVERTIME({ flat: -50, virulence: 0.05 }))
 // })
 
-// playerTeam.front.forEach((unit) => {
-//   if (unit.souls[0].NAME === 'MOZART') {
-//     unit.statuses.push(new Status.LIB.DAMAGETOPOISONIN())
-//     unit.statuses.push(new Status.LIB.DAMAGETOPOISONOUT())
-//   }
-//   if (unit.souls[0].NAME === 'JACO') {
-//     unit.statuses.push(new Status.LIB.LIFESTEAL())
-//   }
-// })
-
+playerTeam.front.forEach((unit) => {
+  if (unit.souls[0].NAME === 'MOZART') {
+    unit.statuses.push(new Status.LIB.DAMAGETOPOISONIN())
+    unit.statuses.push(new Status.LIB.DAMAGETOPOISONOUT())
+  }
+  if (unit.souls[0].NAME === 'JACO') {
+    unit.statuses.push(new Status.LIB.LIFESTEAL())
+  }
+})
 // playerTeam.front.forEach((unit) => {
 // })
 // playerTeam.front.forEach((unit) => { unit.statuses.push(new Status.LIB.DAMAGETOPOISONOUT()) })

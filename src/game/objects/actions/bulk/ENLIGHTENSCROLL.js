@@ -21,9 +21,9 @@ class ENLIGHTENSCROLL {
       targetRules: ['ENLIGHTEN', 'SAME', 'SAME', 'SAME'],
       prereqs: ['MANANOTFULL'], // TargetRules.LIB.BACK ...
       // useInitPoints: false,
-      after: [{
+      // after: [{
         // NAME: 'REFUNDBOTH'
-      }],
+      // }],
       // after: [{
       //   // NAME: 'CASTERBACK'
       // }],

@@ -50,7 +50,19 @@ class Mozart {
           value: -0.5
         }
       ],
-      skills: []
+      skills: [],
+      passives: [
+        {
+          name: 'damagetopoisonin',
+          NAME: 'DAMAGETOPOISONIN',
+          params: {}
+        },
+        {
+          name: 'damagetopoisonout',
+          NAME: 'DAMAGETOPOISONOUT',
+          params: {}
+        }
+      ]
     })
   }
 }

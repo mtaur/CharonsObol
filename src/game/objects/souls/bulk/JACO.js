@@ -47,7 +47,14 @@ class Jaco {
           value: 0.5
         }
       ],
-      skills: []
+      skills: [],
+      passives: [
+        {
+          name: 'lifesteal',
+          NAME: 'LIFESTEAL',
+          params: {}
+        }
+      ]
     })
   }
 }

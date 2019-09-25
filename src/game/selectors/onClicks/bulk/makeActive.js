@@ -8,6 +8,7 @@ var makeActive = function (selector, unit) {
   //   // targets[i] = target clicked at step i
   // }
   selector.stateData.activeUnit = unit
+  selector.stateData.inspectUnit = unit
   selector.stateData.activeSkill = {}
   selector.changeState('ChooseAction')
 }
