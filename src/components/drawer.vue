@@ -17,18 +17,18 @@
       <div>CPU: {{ cpuTeam.turnPoints }} / {{ cpuTeam.maxTurnPoints }}</div>
     </div> -->
     <span v-if="selector.turnState === 'player'">
-    <div v-if="selector.turnState === 'player'" class="col-12 row">
-      <div class="col-2">Player:</div>
-      <div class="col-7">
-        <q-linear-progress
-        class="q-mt-sm"
-        rounded style="height: 15px"
-        :value="1" color="green"
-        />
+      <div v-if="selector.turnState === 'player'" class="col-12 row">
+        <div class="col-2">Player:</div>
+        <div class="col-7">
+          <q-linear-progress
+          class="q-mt-sm"
+          rounded style="height: 15px"
+          :value="1" color="green"
+          />
+        </div>
+        <div class="col-3">READY</div>
       </div>
-      <div class="col-3">READY</div>
-    </div>
-    <div>{{ playerTeam.initTotal }} initiave points remaining (turn gauge refill rate)</div>
+      <div>{{ playerTeam.initTotal }} initiave points remaining (turn gauge refill rate)</div>
     </span>
     <span v-else>
     <div class="col-12 row">

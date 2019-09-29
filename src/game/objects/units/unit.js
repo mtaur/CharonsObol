@@ -36,15 +36,17 @@ class Team {
   // let hasTurn = cpuTeam.field.filter(canMove)
   get hasTurn () {
     let canMove = function (unit) {
-      let retVal = false
-      unit.actions.forEach((action) => { if (action.canUseTree()) { retVal = true } })
-      return retVal
+      // let retVal = false
+      return unit.actions.some((action) => { return action.betaCanUseTree() })
+      // unit.actions.forEach((action) => { if (action.canUseTree()) { retVal = true } })
+      // return retVal
     }
-    let retVal = false
+    // let retVal = false
     if (this.initTotal === 0) { return false }
-    this.field.forEach((unit) => { if (canMove(unit)) { retVal = true } })
+    // this.field.forEach((unit) => { if (canMove(unit)) { retVal = true } })
+    return this.field.some(canMove)
     // this.field.forEach((unit) => { if (unit.hasAction.major || unit.hasAction.minor) { retVal = true } })
-    return retVal
+    // return retVal
   }
   maxTurnPoints = 100
   waitTime = 200 // 250

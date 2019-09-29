@@ -20,7 +20,8 @@ class WRATHSCROLL {
         `damage. Refunds your turn, but delays your team's next action by an additional turn gauge. ` +
         `DRED and DREF scaling are both 2.`,
       // targetRules: ['HOMING', 'ALLYNOTGUARDINGNOTSELF', 'SELF'],
-      targetRules: ['ENEMYHASACTBOTH', 'SELF', 'SELF'],
+      // targetRules: ['ENEMYHASACTBOTH', 'SELF', 'SELF'],
+      targetRules: ['ENEMYHASACTBOTH', 'SELF'],
       prereqs: [], // TargetRules.LIB.BACK ...
       // after: [{
       //   NAME: 'ROWFRONT'
@@ -29,6 +30,7 @@ class WRATHSCROLL {
       //   // NAME: 'CASTERBACK'
       // }],
       useInitPoints: false,
+      useActionPoints: false,
       effects: [
         {
           NAME: 'DAMAGE',
@@ -42,12 +44,12 @@ class WRATHSCROLL {
           DREDScale: 2,
           DREFScale: 2
         },
-        {
-          NAME: 'INSPIRE',
-          name: 'inspire',
-          major: true,
-          minor: true
-        },
+        // {
+        //   NAME: 'INSPIRE',
+        //   name: 'inspire',
+        //   major: true,
+        //   minor: true
+        // },
         {
           NAME: 'ALERT',
           name: 'alert',

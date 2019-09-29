@@ -36,11 +36,13 @@ var enemyTurn = function () {
         }
       )
     }
-    if (skill.type === 'major' || skill.type === 'both') {
-      caster.hasAction.major = false
-    }
-    if (skill.type === 'minor' || skill.type === 'both') {
-      caster.hasAction.minor = false
+    if (skill.useActionPoints) {
+      if (skill.type === 'major' || skill.type === 'both') {
+        caster.hasAction.major = false
+      }
+      if (skill.type === 'minor' || skill.type === 'both') {
+        caster.hasAction.minor = false
+      }
     }
     for (let index in skill.after) {
       let after = new EffectRule(skill.after[index], {}, caster)
@@ -93,16 +95,18 @@ var enemyTurn = function () {
   }
 
   let canMove = function (unit) {
-    let retVal = false
-    unit.actions.forEach((action) => { if (action.canUseTree()) { retVal = true } })
-    return retVal
+    // let retVal = false
+    return unit.actions.some((action) => { return action.betaCanUseTree() })
+    // unit.actions.forEach((action) => { if (action.canUseTree()) { retVal = true } })
+    // return retVal
   }
   // let hasTurn = cpuTeam.field.filter((unit) => unit.baseStats.HP.current > 0 && (unit.hasAction.major || unit.hasAction.minor))
   let hasTurn = cpuTeam.field.filter(canMove)
   if (hasTurn.length > 0) {
     caster = choose(hasTurn)
     // console.log('unit:', caster.name, caster)
-    let canUse = caster.actions.filter((action) => action.canUseTree())
+    let canUse = caster.actions.filter((action) => action.betaCanUseTree())
+    // let canUse = caster.actions.filter((action) => action.canUseTree())
     // console.log('canUse:', canUse)
     skill = clone(choose(canUse))
     // console.log('skill:', skill)

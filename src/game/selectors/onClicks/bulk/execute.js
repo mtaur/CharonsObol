@@ -45,7 +45,8 @@ var execute = function (selector, unit) {
       }
     )
   }
-  if (skill.useActionPoints === true) {
+  // if (skill.useActionPoints === true) {
+  if (skill.useActionPoints) {
     if (skill.type === 'major' || skill.type === 'both') {
       caster.hasAction.major = false
     }

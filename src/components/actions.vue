@@ -80,7 +80,8 @@ export default {
       // if (action.type === 'major') { return this.unit.hasAction.major }
       // if (action.type === 'minor') { return this.unit.hasAction.minor }
       // return true
-      return action.canUseTree()
+      return action.betaCanUseTree()
+      // return action.canUseTree()
       // return action.canUse()
     },
     actionStyle (action) {

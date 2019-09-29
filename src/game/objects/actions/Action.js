@@ -29,19 +29,40 @@ class Action {
   effects = [] // match effect to target by index
   rebuild = false // NATLOG needs to re-compute the number of targets each time
   canUse = function () {
-    let retVal = true
+    if (this.isConsumable === true && this.unit.playerTeam.inventory[this.NAME] <= 0) { return false }
+    if (this.cost > this.unit.baseStats.MP.current) { return false }
+    if (this.type === 'both' && !(this.unit.hasAction.major && this.unit.hasAction.minor)) { return false }
+    if (this.type === 'major' && !this.unit.hasAction.major) { return false }
+    if (this.type === 'minor' && !this.unit.hasAction.minor) { return false }
+
+    // let retVal = true
     let obj = { playerTeam: this.unit.playerTeam, cpuTeam: this.unit.cpuTeam, caster: this.unit }
-    this.prereqs.forEach((prereq) => {
+    return this.prereqs.every((prereq) => {
       let rule = new TargetRule.LIB[prereq](obj)
-      if (rule.canFind(this.unit) === false) { retVal = false }
+      return rule.canFind(this.unit)
+      // if (rule.canFind(this.unit) === false) { retVal = false }
     })
-    if (this.isConsumable === true && this.unit.playerTeam.inventory[this.NAME] <= 0) { retVal = false }
-    if (this.cost > this.unit.baseStats.MP.current) { retVal = false }
-    if (this.type === 'both' && !(this.unit.hasAction.major && this.unit.hasAction.minor)) { retVal = false }
-    if (this.type === 'major' && !this.unit.hasAction.major) { retVal = false }
-    if (this.type === 'minor' && !this.unit.hasAction.minor) { retVal = false }
-    return retVal
+    // this.prereqs.forEach((prereq) => {
+    //   let rule = new TargetRule.LIB[prereq](obj)
+    //   if (rule.canFind(this.unit) === false) { retVal = false }
+    // })
+    // return retVal
   }
+  // old!!!
+  // canUse = function () {
+  //   let retVal = true
+  //   let obj = { playerTeam: this.unit.playerTeam, cpuTeam: this.unit.cpuTeam, caster: this.unit }
+  //   this.prereqs.forEach((prereq) => {
+  //     let rule = new TargetRule.LIB[prereq](obj)
+  //     if (rule.canFind(this.unit) === false) { retVal = false }
+  //   })
+  //   if (this.isConsumable === true && this.unit.playerTeam.inventory[this.NAME] <= 0) { retVal = false }
+  //   if (this.cost > this.unit.baseStats.MP.current) { retVal = false }
+  //   if (this.type === 'both' && !(this.unit.hasAction.major && this.unit.hasAction.minor)) { retVal = false }
+  //   if (this.type === 'major' && !this.unit.hasAction.major) { retVal = false }
+  //   if (this.type === 'minor' && !this.unit.hasAction.minor) { retVal = false }
+  //   return retVal
+  // }
 
   unit = null
   // function (unit, validSlotArrayForItem)
@@ -78,6 +99,49 @@ class Action {
     //     next.targLog(currTargLog)
     //   }
     // })
+  }
+
+  betaCanUseTree = function () {
+    if (!this.canUse()) { return false }
+    return this.betaCanUseRecursion([])
+    // return betaCanUseRecursion([], [])
+    // let testPaths = []
+    // this.betaCanUseRecursion([], testPaths)
+    // if (validPaths.length > 0) {
+    //   return true
+    // }
+    // return false
+  }
+
+  // betaCanUseRecursion = function (prevTargs = [], testPaths = []) {
+  betaCanUseRecursion = function (prevTargs = []) {
+    let rule = new this.targetRules[0]({
+      caster: this.unit,
+      playerTeam: this.unit.playerTeam,
+      cpuTeam: this.unit.cpuTeam,
+      prevTargs: prevTargs
+    })
+    // if (rule.find().length === 0) {
+    //   console.log('No targets for', this.name)
+    //   return false
+    // }
+
+    // rule.find().forEach((item, index) => {
+    return rule.find().some((item, index) => {
+      // console.log(item.name + ' is a possible target of ' + this.name)
+      // clone & repeat?
+      let currTargLog = clone(prevTargs, (prop) => { return typeof prop === 'function' ? undefined : prop })
+      currTargLog.push(item)
+      if (this.targetRules.length > 1) {
+        let next = clone(this)
+        next.targetRules.shift()
+        // next.canUseRecursion(currTargLog, validPaths)
+        return next.betaCanUseRecursion(currTargLog)
+      } else if (this.targetRules.length === 1) {
+        // validPaths.push(currTargLog)
+        return true
+      } else { return false }
+    })
   }
 
   canUseTree = function () {

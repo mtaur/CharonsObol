@@ -18,7 +18,7 @@ class FRENZY {
       // targetRules: ['HOMING', 'ALLYNOTGUARDINGNOTSELF', 'SELF'],
       targetRules: ['MELEE', 'ALLYNOTSELFHASACTMAJOR', 'ALLYNOTSELFHASACTMINOR', 'SELF'],
       prereqs: ['FRONTNOTFULL'], // TargetRules.LIB.BACK ...
-      useInitPoints: false, // Spends init points by stealing actions
+      useInitPoints: false, // Spends init points by stealing actions!!
       useActionPoints: false,
       // after: [{
       //   NAME: 'ROWFRONT'
