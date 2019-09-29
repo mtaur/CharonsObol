@@ -26,7 +26,12 @@ class InitCycle extends CtrlState {
   }
 
   tick (selector, playerTeam, cpuTeam) {
-    let benchmarks = [0, 0.25, 0.5, 0.75, 1, 9001]
+    // let benchmarks = [0, 0.25, 0.5, 0.75, 1, 9001]
+    let benchmarks = [] // [0, 0.25, 0.5, 0.75, 1, 9001]
+    for (let j = 0; j <= playerTeam.numBenchmarks + 1; j++) {
+      benchmarks.push(j / playerTeam.numBenchmarks)
+      // benchmarks.push(j)
+    }
     let prog = () => { return Math.max(playerTeam.turnPoints / playerTeam.maxTurnPoints, cpuTeam.turnPoints / cpuTeam.maxTurnPoints) }
     // console.log('initial prog???', prog())
     let progIndex = 0
