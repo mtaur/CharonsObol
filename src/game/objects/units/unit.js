@@ -81,18 +81,46 @@ class Team {
   inventory = {} // { SMOKEBOMB: 3, HEALTHPOT: 3, ... }
 
   get cloneJSON () { return StatSmart.teamJSON.call(this, this) }
+  RSP = 0
+  SPSpent = 0
+  // SPAvail = ...
+  // SPSpent = ...
+  // SPTotal = ...
+  static SPEff = 0.25
+  static SPCap = 300
+  SPEff = 0.25
+  static rawToTotal (raw) {
+    return Math.floor(raw / ((1 / Team.SPEff) + (raw / Team.SPCap)))
+  }
+  static totalToRaw (total) {
+    return (total / Team.SPEff) / (1 - (total / Team.SPCap))
+  }
+  showSPGain (raw) {
+    return Team.rawToTotal(this.RSP + raw) - Team.rawToTotal(this.RSP)
+  }
+  get SPTotal () {
+    return Team.rawToTotal(this.RSP)
+  }
+  // get SPSpent () {
+  //   return
+  // }
+  // SP is available SP for spending.
+  set SP (val) { this.SPSpent = this.SPTotal - val }
+  get SP () { return this.SPTotal - this.SPSpent }
 
   constructor (side) {
     this.side = side
 
     // Player spends SP between player units.
     if (side === Unit.SIDE.PLAYER) {
-      this.SP = 100 // 80 // 100 // 60
+      this.RSP = 600
+      // this.SP = 100 // 80 // 100 // 60
     }
 
     // CPU units all receive CPU SP separately in full.
     if (side === Unit.SIDE.CPU) {
-      this.SP = 200 // 140 // 160 // 240 // 90 // 100 // 120
+      this.RSP = 1200 // 140 // 160 // 240 // 90 // 100 // 120
+      // this.SP = 200 // 140 // 160 // 240 // 90 // 100 // 120
     }
   }
 }

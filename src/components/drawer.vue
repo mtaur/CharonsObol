@@ -8,7 +8,10 @@
   >
     <div class="sp">
       <div>
-        <h4 key='SP'>SP: {{ playerTeam.SP }}</h4>
+        <h4 key='SP'>SP: {{ playerTeam.SP }} / {{ playerTeam.SPTotal }}</h4>
+      </div>
+      <div>
+        Raw SP total: {{ playerTeam.RSP }} (RSP converts to total SP with diminishing returns, starting from {{ playerTeam.SPEff * 100 }}% efficiency.)
       </div>
     </div>
     <!-- <div>

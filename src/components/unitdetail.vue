@@ -37,6 +37,7 @@
       <span class="absolute-center">Spend SP</span>
     </q-card-section>
     <q-card-section>
+      <div class="row text-h4 justify-center text-purple">{{ playerTeam.SP }} SP</div>
       <div class="row statline align-center">
         <statrow v-for="stat in unit.baseStats" :unit="unit" :stat="stat" :key="stat.name"></statrow>
       </div>
