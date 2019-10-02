@@ -43,7 +43,16 @@
         </fieldplayer>
       </div>
       <!-- Divider -->
-      <div><hr /></div>
+      <div class="q-pa-sm">
+        <q-separator class="row" inset></q-separator>
+        <div class="row justify-center text-h4">
+          {{ selector.prompt }}
+        </div>
+        <q-separator class="row" inset></q-separator>
+      </div>
+      <!-- <q-separator inset></q-separator> -->
+      <!-- <div><hr /></div>
+      <div><hr /></div> -->
       <!-- Player -->
       <div class="row justify-center items-stretch unitrow">
         <fieldplayer

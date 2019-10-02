@@ -6,7 +6,29 @@
   <div class="row namebox justify-center align-center">
     <h6>{{ unit.name }}</h6>
   </div>
-  <div class="row items-center justify-center">
+  <div class="q-pa-md q-gutter-y-md column items-center">
+    <q-btn-group outline>
+      <q-btn
+      :color="buttonColor('showStats')"
+      :textColor="selector.showStats ? 'white' : 'black'"
+      label="Stats"
+      @click="selector.showStats = !selector.showStats">
+      </q-btn>
+      <q-btn
+      :color="buttonColor('showConsumables')"
+      :textColor="selector.showConsumables ? 'white' : 'black'"
+      label="Items"
+      @click="selector.showConsumables = !selector.showConsumables">
+      </q-btn>
+      <q-btn
+      :color="buttonColor('showAbilities')"
+      :textColor="selector.showAbilities ? 'white' : 'black'"
+      label="Skills"
+      @click="selector.showAbilities = !selector.showAbilities">
+      </q-btn>
+    </q-btn-group>
+  </div>
+  <!-- <div class="row items-center justify-center">
     <div class="q-pa-sm">
       <q-btn color="amber" glossy label="Toggle stat points"
       @click="selector.showStats = !selector.showStats"></q-btn>
@@ -23,7 +45,7 @@
       <q-btn color="light-green-8" glossy label="Toggle abilities"
       @click="selector.showAbilities = !selector.showAbilities"></q-btn>
     </div>
-  </div>
+  </div> -->
   <q-card
     v-show="selector.showStats"
     class="my-card text-white"
@@ -94,6 +116,20 @@ export default {
       // showStats: false,
       // showAbilities: true
       // basicStats: ['INIT', 'MELEE', 'RANGED', 'MAGIC', 'DR']
+    }
+  },
+  methods: {
+    buttonColor (btnName) {
+      let btnVal = this.selector[btnName]
+      if (btnVal) {
+        if (btnName === 'showStats') { return 'amber' }
+        if (btnName === 'showConsumables') { return 'orange-10' }
+        if (btnName === 'showAbilities') { return 'light-green' }
+      } else {
+        if (btnName === 'showStats') { return 'amber-2' }
+        if (btnName === 'showConsumables') { return 'orange-2' }
+        if (btnName === 'showAbilities') { return 'light-green-2' }
+      }
     }
   }
 }

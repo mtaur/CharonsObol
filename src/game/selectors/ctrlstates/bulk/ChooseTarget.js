@@ -1,4 +1,5 @@
 import { CtrlState } from '../CtrlState.js'
+// import { hasIn as hasProp } from 'lodash'
 
 // A unit is selected, but no target has been chosen.
 class ChooseTarget extends CtrlState {
@@ -42,6 +43,18 @@ class ChooseTarget extends CtrlState {
       cpuTeam: selector.stateData.activeUnit.cpuTeam,
       prevTargs: selector.stateData.activeSkill.prevTargs
     })
+    let currentStep = selector.stateData.activeSkill.prevTargs.length
+    let nextEffect = selector.stateData.activeSkill.effects[currentStep]
+    selector.prompt = selector.stateData.activeUnit.name + ` is preparing the ability: ${selector.stateData.activeSkill.name}` +
+    `. Choose a target for the effect: ${nextEffect.NAME}` +
+    // ` ${selector.stateData.activeSkill.targetRules.length} targets left to pick.` +
+    `. Legal targets are green. Otherwise, targets of previous effects are PURPLE.` +
+    `CANCEL the ability by clicking its button, or begin casting a different ability by clicking its button, ` +
+    `or by clicking any allied unit who is not a legal target for the next effect.`
+    // if (selector.stateData.activeSkill.targetRules.length > 0) { selector.prompt += ' targets left to pick.' }
+    // if (hasProp(nextEffect, 'tooltip')) {
+    //   console.log('yay!')
+    // }
     console.log(rule)
     if (rule.auto) {
       let legalTargs = rule.find()

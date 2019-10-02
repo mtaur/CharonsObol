@@ -3,87 +3,97 @@
     v-model="visible"
     bordered
     content-class="bg-grey-2"
-    :width="250"
+    :width="300"
     :breakpoint="0"
   >
-    <div class="sp">
-      <div>
-        <h4 key='SP'>SP: {{ playerTeam.SP }} / {{ playerTeam.SPTotal }}</h4>
+    <q-scroll-area class="fit">
+      <div class="row justify-center q-pa-xs">
+        <q-btn color="teal" @click="turnPoints = !turnPoints">{{ turnPoints ? 'Hide' : 'Show' }} initiative bars</q-btn>
       </div>
-      <div>
-        Raw SP total: {{ playerTeam.RSP }} (RSP converts to total SP with diminishing returns, starting from {{ playerTeam.SPEff * 100 }}% efficiency.)
-      </div>
-    </div>
-    <!-- <div>
-      <h6>Turn points</h6>
-      <div>Player: {{ playerTeam.turnPoints }} / {{ playerTeam.maxTurnPoints }}</div>
-      <div>CPU: {{ cpuTeam.turnPoints }} / {{ cpuTeam.maxTurnPoints }}</div>
-    </div> -->
-    <span v-if="selector.turnState === 'player'">
-      <div v-if="selector.turnState === 'player'" class="col-12 row">
-        <div class="col-2">Player:</div>
-        <div class="col-7">
-          <q-linear-progress
-          class="q-mt-sm"
-          rounded style="height: 15px"
-          :value="1" color="green"
-          />
+      <div v-if="turnPoints">
+        <div class="sp">
+          <div>
+            <h5 key='SP'>SP: {{ playerTeam.SP }} / {{ playerTeam.SPTotal }}</h5>
+          </div>
+          <div>
+            Raw SP total: {{ playerTeam.RSP }}
+          </div>
+          <div class="text-caption">
+            (RSP converts to total SP with diminishing returns, starting from {{ playerTeam.SPEff * 100 }}% efficiency.)
+          </div>
         </div>
-        <div class="col-3">READY</div>
+        <!-- <div>
+          <h6>Turn points</h6>
+          <div>Player: {{ playerTeam.turnPoints }} / {{ playerTeam.maxTurnPoints }}</div>
+          <div>CPU: {{ cpuTeam.turnPoints }} / {{ cpuTeam.maxTurnPoints }}</div>
+        </div> -->
+        <span v-if="selector.turnState === 'player'">
+          <div v-if="selector.turnState === 'player'" class="col-12 row items-center">
+            <div class="col-2">Player:</div>
+            <div class="col-7">
+              <q-linear-progress
+              class="q-mt-sm"
+              rounded style="height: 30px"
+              :value="1" color="green"
+              />
+            </div>
+            <div class="col-3">READY</div>
+          </div>
+          <div>{{ playerTeam.initTotal }} initiave points remaining (turn gauge refill rate)</div>
+        </span>
+        <span v-else>
+          <div class="col-12 row items-center">
+            <div class="col-2">Player:</div>
+            <div class="col-7">
+              <q-linear-progress
+              class="q-mt-sm"
+              rounded style="height: 30px"
+              :value="playerTeam.turnPoints / playerTeam.maxTurnPoints" color="yellow"
+              />
+            </div>
+            <div class="col-3">{{ playerTeam.turnPoints }}/{{ playerTeam.maxTurnPoints }}</div>
+          </div>
+          <div>{{ playerTeam.initTotal }} initiave points remaining (turn gauge refill rate)</div>
+        </span>
+        <div class="col-12 row items-center">
+          <div class="col-2">CPU:</div>
+          <div class="col-7">
+            <q-linear-progress
+            class="q-mt-sm"
+            rounded style="height: 30px"
+            :value="cpuTeam.turnPoints / cpuTeam.maxTurnPoints" color="yellow"
+            />
+          </div>
+          <div class="col-3">{{ cpuTeam.turnPoints }}/{{ cpuTeam.maxTurnPoints }}</div>
+          <div>{{ cpuTeam.initTotal }} initiave points remaining (turn gauge refill rate)</div>
+        </div>
       </div>
-      <div>{{ playerTeam.initTotal }} initiave points remaining (turn gauge refill rate)</div>
-    </span>
-    <span v-else>
-    <div class="col-12 row">
-      <div class="col-2">Player:</div>
-      <div class="col-7">
-        <q-linear-progress
-        class="q-mt-sm"
-        rounded style="height: 15px"
-        :value="playerTeam.turnPoints / playerTeam.maxTurnPoints" color="yellow"
-        />
-      </div>
-      <div class="col-3">{{ playerTeam.turnPoints }}/{{ playerTeam.maxTurnPoints }}</div>
-    </div>
-    <div>{{ playerTeam.initTotal }} initiave points remaining (turn gauge refill rate)</div>
-    </span>
-    <div class="col-12 row">
-      <div class="col-2">CPU:</div>
-      <div class="col-7">
-        <q-linear-progress
-        class="q-mt-sm"
-        rounded style="height: 15px"
-        :value="cpuTeam.turnPoints / cpuTeam.maxTurnPoints" color="yellow"
-        />
-      </div>
-      <div class="col-3">{{ cpuTeam.turnPoints }}/{{ cpuTeam.maxTurnPoints }}</div>
-      <div>{{ cpuTeam.initTotal }} initiave points remaining (turn gauge refill rate)</div>
-    </div>
-      <!-- <div class="justify-center">
-      <q-btn size='md' color="red" @click="enemyTurn">Enemy Turn</q-btn>
-      <q-btn size='md' color="green" @click="newRound">New Round</q-btn>
-    </div> -->
+        <!-- <div class="justify-center">
+        <q-btn size='md' color="red" @click="enemyTurn">Enemy Turn</q-btn>
+        <q-btn size='md' color="green" @click="newRound">New Round</q-btn>
+      </div> -->
 
-    <!-- Change this to allow a persistent 'inspected' unit to
-    become the 'activeUnit' when your turn starts, if playerTeam unit -->
-    <span v-if="selector.turnState !== 'player'" @click.stop=''>
-    <unitdetail v-for="unit in activeUnit"
-      :unit="unit"
-      :cpuTeam = "cpuTeam"
-      :playerTeam = "playerTeam"
-      :selector = "selector"
-      :key="unit.name">
-    </unitdetail>
-    </span>
-    <span v-else>
-    <unitdetail v-for="unit in activeUnit"
-      :unit="unit"
-      :cpuTeam = "cpuTeam"
-      :playerTeam = "playerTeam"
-      :selector = "selector"
-      :key="unit.name">
-    </unitdetail>
-    </span>
+      <!-- Change this to allow a persistent 'inspected' unit to
+      become the 'activeUnit' when your turn starts, if playerTeam unit -->
+      <span v-if="selector.turnState !== 'player'" @click.stop=''>
+      <unitdetail v-for="unit in activeUnit"
+        :unit="unit"
+        :cpuTeam = "cpuTeam"
+        :playerTeam = "playerTeam"
+        :selector = "selector"
+        :key="unit.name">
+      </unitdetail>
+      </span>
+      <span v-else>
+      <unitdetail v-for="unit in activeUnit"
+        :unit="unit"
+        :cpuTeam = "cpuTeam"
+        :playerTeam = "playerTeam"
+        :selector = "selector"
+        :key="unit.name">
+      </unitdetail>
+      </span>
+    </q-scroll-area>
   </q-drawer>
 </template>
 
@@ -96,6 +106,7 @@ export default {
   props: ['visible', 'activeUnit', 'playerTeam', 'cpuTeam', 'selector'],
   data () {
     return {
+      turnPoints: true
       // leftDrawerOpen: this.$q.platform.is.desktop
     }
   },

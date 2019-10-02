@@ -31,6 +31,7 @@ class ChooseAction extends CtrlState {
     super(selector, obj)
     selector.getClickJSON = this.getClickJSON
     selector.turnState = 'player'
+    selector.prompt = selector.stateData.activeUnit.name + ' selected! Use left panel to choose a skill or item ability. Some skills (like Guard) are auto-targetted and will execute immediately upon selection. You may spend SP to enhance stats on the fly without using a turn!'
     selector.resetSkill()
   }
   // constructor (selector, unit) {

@@ -19,6 +19,7 @@ class Selector {
   showConsumables = false
   showStats = false
   showAbilities = true
+  prompt = 'Click some things! This prompt will be fully supported later.'
 
   // Which player, if any, is highlighted as active?
   // activeUnit = {}

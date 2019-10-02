@@ -29,6 +29,7 @@ class EnemyTurn extends CtrlState {
     super(selector, obj)
     selector.turnState = 'cpu'
     selector.getClickJSON = this.getClickJSON
+    selector.prompt = 'Enemy is choosing an action...'
     selector.resetData()
     selector.enemyTurn()
   }
