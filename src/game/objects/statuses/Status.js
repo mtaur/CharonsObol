@@ -33,6 +33,7 @@ class Status {
   remove = []
   effects = [{ trigger: [], effects: {} }]
   bonus = []
+  statBonus = []
   converts = [] // [{ from: 'DRED', to: 'DREF', value: 1 }, ...]
   replacements = [] // [{ statName: 'MAGIC', value: function (unit) { return 27.18 } }, ...]
   //

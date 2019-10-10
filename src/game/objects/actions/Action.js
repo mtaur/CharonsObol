@@ -160,6 +160,61 @@ class Action {
     return false
   }
 
+  betaChosenPath = function (prevTargs = []) {
+    if (this.targetRules.length === 0) {
+      return prevTargs
+    }
+
+    let rule = new this.targetRules[0]({
+      caster: this.unit,
+      playerTeam: this.unit.playerTeam,
+      cpuTeam: this.unit.cpuTeam,
+      prevTargs: prevTargs
+    })
+    console.log('betaChosenPath new this.targetRules[0](obj)', rule)
+
+    let shuffle = (arr) => {
+      var j, x, i
+      for (i = arr.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1))
+        x = arr[i]
+        arr[i] = arr[j]
+        arr[j] = x
+      }
+      return arr
+    }
+    let currTargLog = clone(prevTargs, (prop) => { return typeof prop === 'function' ? undefined : prop })
+
+    let isValidTarg = (unit) => {
+      if (this.targetRules.length === 1) return true
+      let next = clone(this)
+      next.targetRules.shift()
+      // next.canUseRecursion(currTargLog, validPaths)
+      console.log('next currTargLog', currTargLog.concat([unit]))
+      console.log('Can use on:', unit, next.betaCanUseRecursion(currTargLog.concat([unit])))
+      return next.betaCanUseRecursion(currTargLog.concat([unit]))
+    }
+
+    let nextTarg = shuffle(rule.find()).find(isValidTarg)
+    // prevTargs.push(nextTarg)
+    currTargLog.push(nextTarg)
+    let next = clone(this)
+    next.targetRules.shift()
+    return next.betaChosenPath(currTargLog)
+
+    // return rule.find().some((item, index) => {
+    //   let currTargLog = clone(prevTargs, (prop) => { return typeof prop === 'function' ? undefined : prop })
+    //   currTargLog.push(item)
+    //   if (this.targetRules.length > 1) {
+    //     let next = clone(this)
+    //     next.targetRules.shift()
+    //     return next.betaCanUseRecursion(currTargLog)
+    //   } else if (this.targetRules.length === 1) {
+    //     return true
+    //   } else { return false }
+    // })
+  }
+
   validPathArr = function () {
     if (!this.canUse()) { return false }
     let validPaths = []

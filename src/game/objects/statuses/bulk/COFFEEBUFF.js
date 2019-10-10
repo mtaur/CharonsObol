@@ -18,7 +18,7 @@ class COFFEEBUFF {
       effects: [
         // { trigger: , effect: }
       ],
-      bonus: { INIT: 2 },
+      statBonus: { INIT: 2 },
       converts: []
     })
   }

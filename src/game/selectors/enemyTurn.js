@@ -110,7 +110,8 @@ var enemyTurn = function () {
     // console.log('canUse:', canUse)
     skill = clone(choose(canUse))
     // console.log('skill:', skill)
-    skill.prevTargs = choose(skill.validPathArr())
+    // skill.prevTargs = choose(skill.validPathArr())
+    skill.prevTargs = skill.betaChosenPath()
     skill.prevTargs = skill.prevTargs.map(unclone)
     // console.log('skill.prevTargs', skill.prevTargs)
     skill.targRules = []

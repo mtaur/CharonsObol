@@ -144,7 +144,8 @@ class StatMods {
       modHolders.push(item)
       // console.log(item)
     }
-    for (let status in statuses) {
+    for (let index in statuses) {
+      let status = statuses[index]
       modHolders.push(status)
     }
     // for (let soul in souls) {

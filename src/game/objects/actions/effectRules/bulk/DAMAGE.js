@@ -143,6 +143,7 @@ function DAMAGE (effectObj = {}, target = {}, caster = {}) {
     let reverseForEach = (arr, fcn) => {
       for (let index = arr.length - 1; index >= 0; index--) {
         fcn(arr[index])
+        index = Math.min(index, arr.length)
       }
     }
     reverseForEach(target.statuses, (status) => status.clearCheck(target, 'TAKEDAMAGE')) // target.statuses.forEach((status) => status.clearCheck(target, 'TAKEDAMAGE'))

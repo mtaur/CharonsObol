@@ -50,7 +50,7 @@ class Team {
   }
   // maxTurnPoints = 100
   maxTurnPoints = 1000
-  waitTime = 100 // 250
+  waitTime = 200 // 100 // 250
   numBenchmarks = 10 // 10
   initArr = []
   initReset () {
