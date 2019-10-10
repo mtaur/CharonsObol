@@ -45,7 +45,7 @@
       <!-- Divider -->
       <div class="q-pa-sm">
         <q-separator class="row" inset></q-separator>
-        <div class="row items-center justify-center">
+        <div class="row text-center items-center justify-center">
           <div class="col-2">
             <q-btn
             @click="selector.promptIsVerbose = !selector.promptIsVerbose"
@@ -54,7 +54,7 @@
             label="Verbose">
             </q-btn>
           </div>
-          <div class="col-10 justify-center text-h4">
+          <div class="col-10 text-center items-center justify-center text-h4">
             {{ prompt }}<!-- {{ selector.promptIsVerbose ? selector.promptVerbose : selector.prompt }} -->
           </div>
         </div>
