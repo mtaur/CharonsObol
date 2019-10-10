@@ -95,6 +95,7 @@ class InitCycle extends CtrlState {
     selector.turnState = 'idle'
     selector.getClickJSON = this.getClickJSON
     selector.prompt = 'Cycling the initiative bars...'
+    selector.promptVerbose = 'Cycling the initiative bars. Whose turn will it be next?'
     selector.resetData()
     this.runTimers(selector)
     // selector.game.playerTeam.initCycle()

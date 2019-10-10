@@ -46,13 +46,13 @@ function ROWSWAP (effectObj = {}, target = {}, caster = {}) {
           }
         }
       }
-    } else if (caster.pos === Unit.POS.BACK) {
-      caster.pos = Unit.POS.FRONT
-      if (caster.side === Unit.SIDE.PLAYER) {
+    } else if (target.pos === Unit.POS.BACK) {
+      target.pos = Unit.POS.FRONT
+      if (target.side === Unit.SIDE.PLAYER) {
         for (let index in caster.playerTeam.back) {
-          if (caster.playerTeam.back[index].id === caster.id) {
-            caster.playerTeam.back.splice(index, 1)
-            caster.playerTeam.front.push(caster)
+          if (target.playerTeam.back[index].id === target.id) {
+            target.playerTeam.back.splice(index, 1)
+            target.playerTeam.front.push(target)
           }
         }
       } else if (target.side === Unit.SIDE.CPU) {

@@ -3,7 +3,10 @@
     <h4 class="row justify-center">Battle log</h4>
     <div class="row justify-center">
       <div class="justify-center">
-        <q-btn @click="toggleVerbose" color="blue">Verbose</q-btn>
+        <q-btn @click="toggleVerbose"
+        :color="verboseButtonColor"
+        :textColor="verbose ? 'white' : 'black'"
+        label="Verbose on/off"></q-btn>
       </div>
     </div>
     <div class="justify-center">
@@ -68,6 +71,9 @@ export default {
     },
     thisRound () {
       return this.selector.log.filter((item) => item.round === this.selector.currentLogPage)
+    },
+    verboseButtonColor: function () {
+      return this.verbose ? 'blue' : 'blue-2'
     }
   },
   methods: {

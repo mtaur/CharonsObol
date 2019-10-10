@@ -16,7 +16,7 @@ class FRENZY {
       desc: `Attack an enemy for 1x (MELEE + MAGIC) damage. Steal major and minor ` +
         `action point from ally or allies. Attack bypasses DREF.`,
       // targetRules: ['HOMING', 'ALLYNOTGUARDINGNOTSELF', 'SELF'],
-      targetRules: ['MELEE', 'ALLYNOTSELFHASACTMAJOR', 'ALLYNOTSELFHASACTMINOR', 'SELF'],
+      targetRules: ['MELEE', 'ALLYNOTSELFHASACTMAJOR', 'ALLYNOTSELFHASACTMINOR'],
       prereqs: ['FRONTNOTFULL'], // TargetRules.LIB.BACK ...
       useInitPoints: false, // Spends init points by stealing actions!!
       useActionPoints: false,

@@ -19,14 +19,19 @@ class TargetRule {
   find = function () { return [] }
   // Is the given unit a valid target?
   canFind = function (unit) {
-    let found = false
-    this.find().forEach((validTarg) => {
-      if (validTarg.id === unit.id) {
-        found = true
-      }
-    })
-    return found
+    // let found = false
+    return this.find().some((validTarg) => validTarg.id === unit.id)
+    // return found
   }
+  // canFind = function (unit) {
+  //   let found = false
+  //   this.find().forEach((validTarg) => {
+  //     if (validTarg.id === unit.id) {
+  //       found = true
+  //     }
+  //   })
+  //   return found
+  // }
 
   // Functions are "this" bound in the constructor
   basics = {

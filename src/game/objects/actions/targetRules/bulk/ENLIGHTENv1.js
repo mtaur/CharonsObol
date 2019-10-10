@@ -1,14 +1,14 @@
 import { TargetRule } from '../TargetRule.js'
 
-class ENLIGHTEN {
-  static NAME = 'ENLIGHTEN'
-  static filename = 'ENLIGHTEN'
+class ENLIGHTENv1 {
+  static NAME = 'ENLIGHTENv1'
+  static filename = 'ENLIGHTENv1'
 
   // { name: 'lunge', type: 'both', desc: 'Lunge FROM the back row TO the front row, doing 2x the SMALLER of MELEE and RANGED as damage to a target with a melee attack.' }
   constructor (obj) {
     return new TargetRule({
       caster: obj.caster,
-      reqs: ['ally'],
+      reqs: ['ally', 'hasMana1'],
       nots: ['caster', 'guarding'],
       prefs: [],
       playerTeam: obj.playerTeam,
@@ -23,4 +23,4 @@ class ENLIGHTEN {
   }
 }
 
-export default ENLIGHTEN
+export default ENLIGHTENv1

@@ -57,7 +57,8 @@ class Status {
   clear = function (unit) {
     // console.log('Clear this:', this)
     // console.log('unit:', unit)
-    for (let index in unit.statuses) {
+    // for (let index in unit.statuses) {
+    for (let index = unit.statuses.length - 1; index >= 0; index--) {
       if (unit.statuses[index].NAME === this.NAME) {
         // console.log('splice!!!!')
         unit.statuses.splice(index, 1)

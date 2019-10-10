@@ -15,6 +15,7 @@ class INSPIRE {
         'of Turn Points.',
       cost: 1,
       targetRules: ['INSPIRE', 'SELF'],
+      useInitPoints: false,
       effects: [
         {
           NAME: 'INSPIRE',
@@ -27,8 +28,7 @@ class INSPIRE {
           name: 'alert',
           alertFrac: 2
         }
-      ],
-      useInitPoints: false
+      ]
     })
   }
 }

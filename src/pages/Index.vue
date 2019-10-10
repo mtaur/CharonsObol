@@ -45,8 +45,18 @@
       <!-- Divider -->
       <div class="q-pa-sm">
         <q-separator class="row" inset></q-separator>
-        <div class="row justify-center text-h4">
-          {{ selector.prompt }}
+        <div class="row items-center justify-center">
+          <div class="col-2">
+            <q-btn
+            @click="selector.promptIsVerbose = !selector.promptIsVerbose"
+            :color="verboseButtonColor"
+            :textColor="selector.promptIsVerbose ? 'white' : 'black'"
+            label="Verbose">
+            </q-btn>
+          </div>
+          <div class="col-10 justify-center text-h4">
+            {{ prompt }}<!-- {{ selector.promptIsVerbose ? selector.promptVerbose : selector.prompt }} -->
+          </div>
         </div>
         <q-separator class="row" inset></q-separator>
       </div>
@@ -176,6 +186,15 @@ export default {
       return selector.stateData.activeUnit.id
         ? [selector.stateData.activeUnit]
         : []
+    },
+    // isVerbose: function () {
+    //   return this.selector.promptIsVerbose
+    // },
+    prompt: function () {
+      return this.selector.promptIsVerbose ? this.selector.promptVerbose : this.selector.prompt
+    },
+    verboseButtonColor: function () {
+      return this.selector.promptIsVerbose ? 'light-green' : 'light-green-2'
     }
   },
   name: 'PageIndex',

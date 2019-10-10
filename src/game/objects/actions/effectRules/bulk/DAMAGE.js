@@ -140,10 +140,20 @@ function DAMAGE (effectObj = {}, target = {}, caster = {}) {
     caster.baseStats.HP.current -= data.dref
     caster.baseStats.HP.current = caster.baseStats.HP.current > 0 ? Math.floor(caster.baseStats.HP.current) : 0
 
-    target.statuses.forEach((status) => status.clearCheck(target, 'TAKEDAMAGE'))
-    caster.statuses.forEach((status) => status.clearCheck(caster, 'DAMAGE'))
-    target.statuses.forEach((status) => status.triggerCheckEffect(target, 'TAKEDAMAGE', data))
-    caster.statuses.forEach((status) => status.triggerCheckEffect(caster, 'DAMAGE', data))
+    let reverseForEach = (arr, fcn) => {
+      for (let index = arr.length - 1; index >= 0; index--) {
+        fcn(arr[index])
+      }
+    }
+    reverseForEach(target.statuses, (status) => status.clearCheck(target, 'TAKEDAMAGE')) // target.statuses.forEach((status) => status.clearCheck(target, 'TAKEDAMAGE'))
+    reverseForEach(caster.statuses, (status) => status.clearCheck(caster, 'DAMAGE')) // target.statuses.forEach((status) => status.clearCheck(target, 'TAKEDAMAGE'))
+    reverseForEach(target.statuses, (status) => status.triggerCheckEffect(target, 'TAKEDAMAGE', data)) // target.statuses.forEach((status) => status.clearCheck(target, 'TAKEDAMAGE'))
+    reverseForEach(caster.statuses, (status) => status.triggerCheckEffect(caster, 'DAMAGE', data)) // target.statuses.forEach((status) => status.clearCheck(target, 'TAKEDAMAGE'))
+
+    // target.statuses.forEach((status) => status.clearCheck(target, 'TAKEDAMAGE'))
+    // caster.statuses.forEach((status) => status.clearCheck(caster, 'DAMAGE'))
+    // target.statuses.forEach((status) => status.triggerCheckEffect(target, 'TAKEDAMAGE', data))
+    // caster.statuses.forEach((status) => status.triggerCheckEffect(caster, 'DAMAGE', data))
     // triggerCheck = function (unit, trigger, action = {}, selector = {})
 
     target.checkAlive()

@@ -28,6 +28,7 @@ class Action {
   useActionPoints = true // Default behavior, rare exceptions like FRENZY do not consume your action points.
   effects = [] // match effect to target by index
   rebuild = false // NATLOG needs to re-compute the number of targets each time
+  // checks costs and prereqs only.  See betaCanUseTree for checking target availability.
   canUse = function () {
     if (this.isConsumable === true && this.unit.playerTeam.inventory[this.NAME] <= 0) { return false }
     if (this.cost > this.unit.baseStats.MP.current) { return false }
@@ -127,6 +128,7 @@ class Action {
     // }
 
     // rule.find().forEach((item, index) => {
+    // This returns FALSE if rule.find() === []
     return rule.find().some((item, index) => {
       // console.log(item.name + ' is a possible target of ' + this.name)
       // clone & repeat?

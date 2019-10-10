@@ -12,7 +12,7 @@ class DISILLUSION {
       // filename: 'LUNGE',
       name: 'Disillusion',
       type: 'both',
-      desc: `Steal 1 MP from an ally. Deal 1x MAGIC damage to an enemy, bypassing ` +
+      desc: `Deplete 1 MP from an ally. Deal 1x MAGIC damage to an enemy, bypassing ` +
         `DRED and DREF. That enemy loses their minor action point.`,
       // targetRules: ['HOMING', 'ALLYNOTGUARDINGNOTSELF', 'SELF'],
       targetRules: ['ALLYNOTSELFHASMANA1', 'ENEMYHASACTMINOR', 'SAME'],

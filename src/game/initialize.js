@@ -376,6 +376,17 @@ let heroDat = [
     ]
   },
   {
+    soulStr: 'MINOBISON',
+    POS: 'FRONT',
+    actionArr: [
+      'COFFEE', 'REPRISAL'
+    ],
+    itemArr: [
+      'BALANCESYM'
+      // 'BERSERKERAXE'
+    ]
+  },
+  {
     soulStr: 'MANATAUR',
     POS: 'FRONT',
     actionArr: [
@@ -389,7 +400,7 @@ let heroDat = [
     soulStr: 'JACO',
     POS: 'FRONT',
     actionArr: [
-      'FRENZY'
+      'FRENZY', 'RESPITE'
     ],
     itemArr: [
       'SPELLSWORD'
