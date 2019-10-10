@@ -8,7 +8,13 @@
     <div class="row">
       <div class="col-4 placebox justify-center align-center">
         <div class="placeholder"
-        :style="guardStyle">(Unit)</div>
+        :style="guardStyle">
+          <q-avatar square
+          style="width: 100%; height: 100%">
+            <q-img v-if="unit.souls.length > 0" :src="getImg(unit.souls[0])"/>
+            <q-img v-else :src="'statics/icons/souls/CAENEN.png'"/>
+          </q-avatar>
+        </div>
       </div>
       <div class="align-center col-8 row">
         <div class = "col-6"
@@ -60,7 +66,8 @@
         </q-avatar>
         <h7>{{ unit.name }}</h7>
       </q-chip>
-      <q-avatar v-for="soul in unit.souls" :key="soul.NAME">
+      <!-- <q-avatar v-for="soul in unit.souls" :key="soul.NAME"> -->
+      <q-avatar v-for="soul in otherSouls" :key="soul.NAME">
         <q-img :src="getImg(soul)" />
         <q-tooltip anchor="center left" self="center right" :offset="[10, 10]" content-class="bg-teal" max-width="20vw">
             <span style="font-size: 14px" >
@@ -100,6 +107,9 @@ export default {
     }
   },
   computed: {
+    otherSouls () {
+      return this.unit.souls.slice(1)
+    },
     actStatusImg () {
       if (this.unit.hasAction.major) {
         if (this.unit.hasAction.minor) {
