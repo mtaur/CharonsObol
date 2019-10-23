@@ -47,7 +47,9 @@ class Jaco {
           value: 0.5
         }
       ],
-      skills: [],
+      skills: ['FRENZY', 'RESPITE'],
+      AIskills: ['FRENZY', 'RESPITE', 'MELEE', 'GUARD'],
+      AIRow: 'back',
       passives: [
         {
           name: 'lifesteal',

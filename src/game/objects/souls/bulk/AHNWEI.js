@@ -45,7 +45,9 @@ class Ahnwei {
           value: -0.3 // -0.5
         }
       ],
-      skills: []
+      skills: ['NIRVANA', 'DISILLUSION'],
+      AIskills: ['RANGED', 'NIRVANA', 'DISILLUSION', 'MOVEBACK', 'GUARD'],
+      AIRow: 'back'
     })
   }
 }

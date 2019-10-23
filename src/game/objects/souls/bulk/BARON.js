@@ -43,7 +43,9 @@ class Baron {
           value: -0.15
         }
       ],
-      skills: []
+      skills: ['ADVANCE', 'REBUKE'],
+      AISkills: ['ADVANCE', 'REBUKE', 'MELEE', 'GUARD'],
+      AIRow: 'front'
     })
   }
 }

@@ -43,7 +43,9 @@ class Penelope {
           value: 0.1
         }
       ],
-      skills: []
+      skills: ['HOMINGBOLT', 'CHAINLGT', 'FLAMEFIST'],
+      AIskills: ['HOMINGBOLT', 'CHAINLGT', 'FLAMEFIST', 'GUARD', 'HOMINGBOLT', 'MOVEBACK'],
+      AIRow: 'back'
     })
   }
 }

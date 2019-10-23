@@ -49,7 +49,9 @@ class Manataur {
           value: -0.25 // -0.35
         }
       ],
-      skills: []
+      skills: ['FASTING', 'TAURVEST', 'TAURBLAST', 'HOMINGBOLT'],
+      AIskills: ['TAURVEST', 'TAURBLAST', 'MOVEFRONT', 'GUARD', 'HOMINGBOLT'],
+      AIRow: 'front'
     })
   }
 }

@@ -50,7 +50,9 @@ class Mozart {
           value: -0.3 // -0.5
         }
       ],
-      skills: [],
+      skills: ['CONTAGION', 'BRAINS'],
+      AIskills: ['CONTAGION', 'BRAINS', 'MELEE', 'GUARD'],
+      AIRow: 'front',
       passives: [
         {
           name: 'damagetopoisonin',

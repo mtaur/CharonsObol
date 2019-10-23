@@ -45,9 +45,9 @@ class ChooseTarget extends CtrlState {
     })
     let currentStep = selector.stateData.activeSkill.prevTargs.length
     let nextEffect = selector.stateData.activeSkill.effects[currentStep]
-    selector.promptVerbose = selector.stateData.activeUnit.name + ` is preparing the ability: ${selector.stateData.activeSkill.name}` +
-    `. Choose a target for the effect: ${nextEffect.NAME}`
     selector.prompt = selector.stateData.activeUnit.name + ` is preparing the ability: ${selector.stateData.activeSkill.name}` +
+    `. Choose a target for the effect: ${nextEffect.NAME}`
+    selector.promptVerbose = selector.stateData.activeUnit.name + ` is preparing the ability: ${selector.stateData.activeSkill.name}` +
     `. Choose a target for the effect: ${nextEffect.NAME}` +
     // ` ${selector.stateData.activeSkill.targetRules.length} targets left to pick.` +
     `. Legal targets are green. Otherwise, targets of previous effects are PURPLE.` +

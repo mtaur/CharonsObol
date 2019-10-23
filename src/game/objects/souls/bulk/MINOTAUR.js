@@ -54,7 +54,9 @@ class Minotaur {
           value: -0.15
         }
       ],
-      skills: []
+      skills: ['BERSERK', 'AXETHROW'],
+      AIskills: ['BERSERK', 'AXETHROW', 'MELEE', 'GUARD'],
+      AIRow: 'front'
     })
   }
 }

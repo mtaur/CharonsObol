@@ -38,7 +38,9 @@ class Brocantrip {
           value: -0.3 // -0.5
         }
       ],
-      skills: []
+      skills: ['HEAL', 'INSPIRE'],
+      AISkills: ['HEAL', 'INSPIRE', 'MELEE', 'GUARD'],
+      AIRow: 'front'
     })
   }
 }

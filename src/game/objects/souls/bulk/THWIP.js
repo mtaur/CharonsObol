@@ -32,7 +32,9 @@ class Thwip {
           value: 0.5
         }
       ],
-      skills: []
+      skills: ['ALERT', 'SNIPE'],
+      AIskills: ['ALERT', 'SNIPE', 'RANGED', 'MOVEBACK'],
+      AIRow: 'front'
     })
   }
 }

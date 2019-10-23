@@ -33,7 +33,9 @@ class Lynn {
           value: -0.15
         }
       ],
-      skills: []
+      skills: ['LUNGE', 'HARRY'],
+      AIskills: ['LUNGE', 'HARRY', 'RANGED', 'GUARD', 'MOVEBACK'],
+      AIRow: 'back'
     })
   }
 }

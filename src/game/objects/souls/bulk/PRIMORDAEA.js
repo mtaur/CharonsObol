@@ -34,7 +34,9 @@ class Primordaea {
         //   value: -0.2
         // }
       ],
-      skills: []
+      skills: ['REGEN', 'DRYAD', 'FERAL', 'BASEFORM', 'NATLOG'],
+      AIskills: ['REGEN', 'DRYAD', 'FERAL', 'NATLOG', 'MELEE'],
+      AIRow: 'back'
     })
   }
 }
