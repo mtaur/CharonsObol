@@ -25,7 +25,7 @@ class Minobison {
         {
           from: `INIT`,
           to: 'INIT',
-          value: -0.5
+          value: -0.3 // -0.5
         },
         {
           from: 'INIT',

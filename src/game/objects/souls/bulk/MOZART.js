@@ -26,13 +26,13 @@ class Mozart {
           from: 'DRED',
           to: 'DRED',
           // value: -0.25
-          value: -0.5
+          value: -0.3 // -0.5
         },
         {
           from: 'DRED',
           to: 'DREF',
           // value: 0.25
-          value: 0.5
+          value: 0.3 // 0.5
         },
         {
           from: 'RANGED',
@@ -47,7 +47,7 @@ class Mozart {
         {
           from: 'INIT',
           to: 'INIT',
-          value: -0.5
+          value: -0.3 // -0.5
         }
       ],
       skills: [],

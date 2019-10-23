@@ -46,7 +46,7 @@ class Minotaur {
         {
           from: 'RANGED',
           to: 'RANGED',
-          value: -0.1
+          value: -0.15
         },
         {
           from: 'MAGIC',

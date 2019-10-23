@@ -11,8 +11,12 @@ class Primordaea {
       NAME: 'PRIMORDAEA',
       desc: `They are something, nothing, many things... idk...`,
       bonus: {
+        HP: 10,
         MP: 1,
-        RANGED: 8
+        INIT: 1,
+        RANGED: 5,
+        MELEE: 5,
+        MAGIC: 5
         // MP: 1,
         // RANGED: 4,
         // MELEE: 4,

@@ -46,7 +46,7 @@ class Manataur {
         {
           from: 'MP',
           to: 'MP',
-          value: -0.35
+          value: -0.25 // -0.35
         }
       ],
       skills: []

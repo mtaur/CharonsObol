@@ -17,8 +17,9 @@ class Penelope {
         // HP: -18,
         // MP: 3,
         // MP: 2,
-        RANGED: 6,
-        MAGIC: 6
+        MELEE: 5,
+        RANGED: 5,
+        MAGIC: 5
       },
       converts: [
         {
@@ -30,6 +31,16 @@ class Penelope {
           from: 'HP',
           to: 'HP',
           value: -0.2
+        },
+        {
+          from: 'MELEE',
+          to: 'MAGIC',
+          value: 0.1
+        },
+        {
+          from: 'RANGED',
+          to: 'MAGIC',
+          value: 0.1
         }
       ],
       skills: []

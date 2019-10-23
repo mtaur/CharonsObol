@@ -24,7 +24,7 @@ class Jaco {
         {
           from: 'DRED',
           to: 'DRED',
-          value: -0.5
+          value: -0.3 // -0.5
         },
         {
           from: 'MAGIC',
@@ -34,12 +34,12 @@ class Jaco {
         {
           from: 'MELEE',
           to: 'MAGIC',
-          value: 0.25
+          value: 0.2 // 0.25
         },
         {
           from: 'RANGED',
           to: 'RANGED',
-          value: -0.25
+          value: -0.2 // -0.25
         },
         {
           from: 'INIT',

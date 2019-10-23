@@ -20,12 +20,12 @@ class Lynn {
         {
           from: 'MELEE',
           to: 'RANGED',
-          value: 0.1
+          value: 0.15 // 0.1
         },
         {
           from: 'RANGED',
           to: 'MELEE',
-          value: 0.1
+          value: 0.15 // 0.1
         },
         {
           from: 'MAGIC',

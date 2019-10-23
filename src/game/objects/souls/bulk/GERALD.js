@@ -27,7 +27,7 @@ class Gerald {
         {
           from: 'INIT',
           to: 'INIT',
-          value: -0.5
+          value: -0.3 // -0.5
         },
         {
           from: 'MELEE',
@@ -47,7 +47,7 @@ class Gerald {
         {
           from: 'HP',
           to: 'HP',
-          value: -0.25
+          value: -0.2 // -0.25
         },
         {
           from: 'HP',

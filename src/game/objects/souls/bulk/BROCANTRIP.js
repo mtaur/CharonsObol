@@ -30,12 +30,12 @@ class Brocantrip {
         {
           from: 'DREF',
           to: 'DREF',
-          value: -0.5
+          value: -0.3 // -0.5
         },
         {
           from: 'DRED',
           to: 'DRED',
-          value: -0.5
+          value: -0.3 // -0.5
         }
       ],
       skills: []
