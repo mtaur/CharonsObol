@@ -39,6 +39,9 @@ class Action {
     // let retVal = true
     let obj = { playerTeam: this.unit.playerTeam, cpuTeam: this.unit.cpuTeam, caster: this.unit }
     return this.prereqs.every((prereq) => {
+      console.log('prereq:', prereq)
+      // console.log('obj', obj)
+      // console.log(TargetRule.LIB[prereq])
       let rule = new TargetRule.LIB[prereq](obj)
       return rule.canFind(this.unit)
       // if (rule.canFind(this.unit) === false) { retVal = false }
