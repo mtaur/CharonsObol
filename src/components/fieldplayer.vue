@@ -64,7 +64,8 @@
             <q-img :src="actStatusImg" />
           </q-btn>
         </q-avatar>
-        <h7>{{ unit.name }}</h7>
+        <span class="text-subtitle2">{{ unit.name }}</span>
+        <!-- <h7>{{ unit.name }}</h7> -->
       </q-chip>
       <!-- <q-avatar v-for="soul in unit.souls" :key="soul.NAME"> -->
       <q-avatar v-for="soul in otherSouls" :key="soul.NAME">

@@ -28,8 +28,8 @@ class Action {
   useActionPoints = true // Default behavior, rare exceptions like FRENZY do not consume your action points.
   effects = [] // match effect to target by index
   rebuild = false // NATLOG needs to re-compute the number of targets each time
-  // checks costs and prereqs only.  See betaCanUseTree for checking target availability.
   canUse = function () {
+    // checks costs and prereqs only.  See betaCanUseTree for checking target availability.
     if (this.isConsumable === true && this.unit.playerTeam.inventory[this.NAME] <= 0) { return false }
     if (this.cost > this.unit.baseStats.MP.current) { return false }
     if (this.type === 'both' && !(this.unit.hasAction.major && this.unit.hasAction.minor)) { return false }
@@ -38,10 +38,12 @@ class Action {
 
     // let retVal = true
     let obj = { playerTeam: this.unit.playerTeam, cpuTeam: this.unit.cpuTeam, caster: this.unit }
+    // console.log('unit.name', this.unit.name)
+    // console.log('action.NAME:', this.NAME)
+    // console.log('prereqs:', this.prereqs)
     return this.prereqs.every((prereq) => {
-      console.log('prereq:', prereq)
+      // console.log('prereq:', prereq)
       // console.log('obj', obj)
-      // console.log(TargetRule.LIB[prereq])
       let rule = new TargetRule.LIB[prereq](obj)
       return rule.canFind(this.unit)
       // if (rule.canFind(this.unit) === false) { retVal = false }
