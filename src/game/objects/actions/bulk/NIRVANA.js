@@ -13,16 +13,10 @@ class NIRVANA {
       name: 'Nirvana',
       type: 'both',
       cost: 2,
-      desc: `Target enemy takes 2x MAGIC damage and loses Major action point.`,
-      // targetRules: ['HOMING', 'ALLYNOTGUARDINGNOTSELF', 'SELF'],
+      desc: `Target enemy takes 1.5x MAGIC damage and loses Major action point. ` +
+        `Bypasses DRED and DREF.`,
       targetRules: ['ENEMYHASACTMAJOR', 'SAME'],
       prereqs: [], // TargetRules.LIB.BACK ...
-      // after: [{
-      //   NAME: 'ROWFRONT'
-      // }],
-      // after: [{
-      //   // NAME: 'CASTERBACK'
-      // }],
       effects: [
         {
           NAME: 'LOSEACTMAJOR',
@@ -32,10 +26,10 @@ class NIRVANA {
           NAME: 'DAMAGE',
           name: 'damage',
           scale: {
-            MAGIC: 2
+            MAGIC: 1.5
           },
-          DREDScale: 2,
-          DREFScale: 2
+          DREDScale: 0, // 1.5,
+          DREFScale: 0 // 1.5
         } // ,
         // {
         //   NAME: 'ROWBACK',

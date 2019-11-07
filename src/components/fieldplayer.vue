@@ -11,9 +11,18 @@
         :style="guardStyle">
           <q-avatar square
           style="width: 100%; height: 100%">
+            <q-tooltip anchor="center left" self="center right" :offset="[10, 10]" content-class="bg-teal" max-width="20vw">
+                <span style="font-size: 14px" >
+                  <h6>
+                    <span>{{ unit.souls[0].name }}</span>
+                  </h6>
+                  <div>
+                    {{ unit.souls[0].desc }}
+                  </div>
+                </span>
+            </q-tooltip>
             <q-img v-if="unit.souls.length > 0" :src="getImg(unit.souls[0])"/>
             <q-img v-else :src="'statics/gameIcons/souls/CAENEN.png'"/>
-            <!-- <q-img v-else :src="'statics/icons/souls/CAENEN.png'"/> -->
           </q-avatar>
         </div>
       </div>

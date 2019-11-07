@@ -15,7 +15,7 @@ class HEALTHOVERTIME {
     // let flat = 0
     // let targ = target
     let amount = 0
-    let virulence = 0.04
+    let virulence = 0.05
     for (let statName in Stat.LIB) {
       // console.log('Looking for amount scaling:')
       if (hasProp(effectObj.scale, statName)) {
