@@ -148,6 +148,7 @@ module.exports = function (ctx) {
       extendWebpack (cfg) {
         // do something with Electron process Webpack cfg
       },
+      bundler: 'packager',
       packager: {
         // https://github.com/electron-userland/electron-packager/blob/master/docs/api.md#options
 

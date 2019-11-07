@@ -49,8 +49,9 @@ class Minobison {
         }
       ],
       skills: ['COFFEE', 'REPRISAL'],
-      AIskills: ['COFFEE', 'REPRISAL', 'RANGED', 'GUARD', 'MOVEFRONT'],
-      AIRow: 'front'
+      AISkills: ['COFFEE', 'REPRISAL', 'RANGED', 'GUARD', 'MOVEFRONT'],
+      AIRow: 'front',
+      AIRoles: ['KNIGHT', 'ARCHER', 'MAGE']
     })
   }
 }

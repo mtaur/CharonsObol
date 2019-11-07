@@ -35,8 +35,10 @@ class Primordaea {
         // }
       ],
       skills: ['REGEN', 'DRYAD', 'FERAL', 'BASEFORM', 'NATLOG'],
-      AIskills: ['REGEN', 'DRYAD', 'FERAL', 'NATLOG', 'MELEE'],
-      AIRow: 'back'
+      AISkills: ['REGEN', 'DRYAD', 'NATLOG'],
+      // AISkills: ['REGEN', 'DRYAD', 'FERAL', 'NATLOG', 'MELEE'],
+      AIRow: 'back',
+      AIRoles: ['MAGE']
     })
   }
 }

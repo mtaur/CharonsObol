@@ -55,8 +55,9 @@ class Minotaur {
         }
       ],
       skills: ['BERSERK', 'AXETHROW'],
-      AIskills: ['BERSERK', 'AXETHROW', 'MELEE', 'GUARD'],
-      AIRow: 'front'
+      AISkills: ['BERSERK', 'AXETHROW', 'MELEE', 'GUARD'],
+      AIRow: 'front',
+      AIRoles: ['KNIGHT']
     })
   }
 }

@@ -12,7 +12,8 @@
           <q-avatar square
           style="width: 100%; height: 100%">
             <q-img v-if="unit.souls.length > 0" :src="getImg(unit.souls[0])"/>
-            <q-img v-else :src="'statics/icons/souls/CAENEN.png'"/>
+            <q-img v-else :src="'statics/gameIcons/souls/CAENEN.png'"/>
+            <!-- <q-img v-else :src="'statics/icons/souls/CAENEN.png'"/> -->
           </q-avatar>
         </div>
       </div>
@@ -114,12 +115,16 @@ export default {
     actStatusImg () {
       if (this.unit.hasAction.major) {
         if (this.unit.hasAction.minor) {
-          return 'statics/icons/action-both.png'
-        } else { return 'statics/icons/action-star.png' }
+          return 'statics/gameIcons/action-both.png'
+        } else { return 'statics/gameIcons/action-star.png' }
+        //   return 'statics/icons/action-both.png'
+        // } else { return 'statics/icons/action-star.png' }
       } else {
         if (this.unit.hasAction.minor) {
-          return 'statics/icons/action-dot.png'
-        } else { return 'statics/icons/action-none.png' }
+          return 'statics/gameIcons/action-dot.png'
+        } else { return 'statics/gameIcons/action-none.png' }
+        //   return 'statics/icons/action-dot.png'
+        // } else { return 'statics/icons/action-none.png' }
       }
       // if (this.unit.name === 'Lynneth Javelle') { return 'statics/icons/action-dot.png' }
       // return 'statics/icons/action-both.png'
@@ -227,7 +232,8 @@ export default {
 
     getImg (soul) {
       // statics/icons/action-star.png
-      return 'statics/icons/souls/' + soul.NAME + '.png'
+      return 'statics/gameIcons/souls/' + soul.NAME + '.png'
+      // return 'statics/icons/souls/' + soul.NAME + '.png'
     }
   }
 }

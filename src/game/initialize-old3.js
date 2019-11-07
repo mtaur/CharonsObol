@@ -7,9 +7,32 @@ import { Item } from './objects/items/Item.js'
 import { Action } from './objects/actions/Action.js'
 import { Status } from './objects/statuses/Status.js'
 
+// function uniqClone (unit) {
+//   let copy = clone(unit)
+//   copy.id = Unit.id
+//   return copy
+// }
+
 var playerTeam = new Team(Unit.SIDE.PLAYER)
 var cpuTeam = new Team(Unit.SIDE.CPU)
 var gameObj = { playerTeam: playerTeam, cpuTeam: cpuTeam }
+// playerTeam.front.push(jaq)
+
+// // console.log('SP', jaq.SP)
+// // console.log('HP', jaq.baseStats.HP.value)
+// jaq.raise('HP')
+// jaq.raise('HP')
+// jaq.raise('HP')
+// // console.log('SP', jaq.SP)
+// // console.log('HP', jaq.baseStats.HP.value)
+//
+// // console.log('MELEE', jaq.baseStats.MELEE.value)
+// jaq.raise('MELEE')
+// jaq.raise('MELEE')
+// jaq.raise('MELEE')
+// jaq.raise('MELEE')
+// // console.log('MELEE', jaq.baseStats.MELEE.value)
+// // console.log('SP', jaq.SP)
 
 function caenenTemplate () {
   let templ = {
@@ -32,43 +55,20 @@ function caenenTemplate () {
   return templ
 }
 
-function removeByNAME (arr, str, propName = 'NAME') {
+function removeByNAME (arr, str) {
   // let found = -1
-  // let PROPNAME = propName
-  console.log('searching', arr, str, propName)
-  for (let i = arr.length - 1; i > -1; i--) {
-    if (arr[i][propName] === str) {
-      arr.splice(i, 1)
-    }
-  }
-}
-
-// function removeByLiteral (arr, str) {
-//   // let found = -1
-//   for (let i = arr.length - 1; i > -1; i--) {
-//     if (arr[i] === str) {
-//       arr.splice(i, 1)
-//     }
-//   }
-// }
-
-function removeDuplicates (arr, propName = 'NAME') {
-  console.log(arr)
-  // let PROPNAME = propName
-  for (let i = arr.length - 1; i > -1; i--) {
-    let str = arr[i][propName]
-    for (let j = i - 1; j > -1; j--) {
-      if (arr[j][propName] === str) {
-        arr.splice(j, 1)
-        i--
-      }
+  for (let index in arr) {
+    if (arr[index].NAME === str) {
+      arr.splice(index, 1)
     }
   }
 }
 
 // Knight of Caenenfoeder
-for (let i = 1; i < 6; i++) {
-  if (i < 3) {
+for (let i = 1; i < 5; i++) {
+// for (let i = 1; i < 4; i++) {
+// for (let i = 4; i < 5; i++) {
+  if (i < 2) {
     let unit = new CPUUnit(gameObj, caenenTemplate())
     unit.statWeights = {
       HP: 4, // 6,
@@ -80,7 +80,6 @@ for (let i = 1; i < 6; i++) {
       DREF: 2 // 3
     }
     unit.name = 'Knight of Caenenfoeder'
-    unit.roles = ['KNIGHT']
     unit.raiseAll()
     //
     cpuTeam.front.push(unit)
@@ -91,7 +90,7 @@ for (let i = 1; i < 6; i++) {
     removeByNAME(unit.actions, 'MOVE')
     console.log(unit)
   // } else if (i < 3) {
-  } else if (i < 5) {
+  } else if (i < 4) {
     let unit = new CPUUnit(gameObj, caenenTemplate())
     unit.statWeights = {
       HP: 3,
@@ -104,7 +103,6 @@ for (let i = 1; i < 6; i++) {
     }
     unit.pos = Unit.POS.BACK
     unit.name = 'Archer of Caenenfoeder ' + (i - 1)
-    unit.roles = ['ARCHER']
     unit.raiseAll()
     //
     cpuTeam.back.push(unit)
@@ -128,10 +126,15 @@ for (let i = 1; i < 6; i++) {
     }
     unit.pos = Unit.POS.BACK
     unit.name = 'Mage of Caenenfoeder'
-    unit.roles = ['MAGE']
     unit.raiseAll()
-
+    //
     cpuTeam.back.push(unit)
+    //
+    // console.log('Outside of constructor...')
+    // for (let j = 0; j < 2; j++) {
+    //   let item = new Item.LIB.BLUERING()
+    //   item.equipTo(unit)
+    // }
     removeByNAME(unit.actions, 'MELEE')
     removeByNAME(unit.actions, 'RANGED')
     removeByNAME(unit.actions, 'MOVE')
@@ -144,19 +147,23 @@ for (let i = 1; i < 6; i++) {
   }
 }
 
-// // // New demo uses souls...
-// var jaq = new CPUUnit(gameObj)
-// console.log(jaq)
-// jaq.raiseAll()
-// removeByNAME(jaq.actions, 'RUN')
-// removeByNAME(jaq.actions, 'MELEE')
-// removeByNAME(jaq.actions, 'GUARD')
-// jaq.actions.push(new Action.LIB.REGEN(jaq))
-// jaq.actions.push(new Action.LIB.HEAL(jaq))
-// jaq.actions.push(new Action.LIB.VENOMSTRIKE(jaq))
-// jaq.actions.push(new Action.LIB.NIGHTSTRIKE(jaq))
-// jaq.actions.push(new Action.LIB.INSPIRE(jaq))
-// cpuTeam.front.push(jaq)
+var jaq = new CPUUnit(gameObj)
+// console.log('Outside of constructor...')
+console.log(jaq)
+jaq.raiseAll()
+//
+removeByNAME(jaq.actions, 'RUN')
+removeByNAME(jaq.actions, 'MELEE')
+removeByNAME(jaq.actions, 'GUARD')
+jaq.actions.push(new Action.LIB.REGEN(jaq))
+jaq.actions.push(new Action.LIB.HEAL(jaq))
+jaq.actions.push(new Action.LIB.VENOMSTRIKE(jaq))
+jaq.actions.push(new Action.LIB.NIGHTSTRIKE(jaq))
+jaq.actions.push(new Action.LIB.INSPIRE(jaq))
+//
+// Include for larger battle
+cpuTeam.front.push(jaq)
+//
 
 let deadGuy = new CPUUnit(gameObj, caenenTemplate())
 deadGuy.statWeights = {
@@ -225,7 +232,6 @@ let heroAdd = function (obj) {
     console.log(actionStr)
     unit.actions.push(new Action.LIB[actionStr](unit))
   })
-  removeDuplicates(unit.actions)
   // actionArr.forEach((actionStr) => {
   //   unit.actions.push(new Action.LIB[actionStr](unit))
   // })
@@ -240,42 +246,6 @@ let heroAdd = function (obj) {
       soul.passives.forEach((status) => unit.statuses.push(new Status.LIB[status.NAME]()))
     }
   }
-}
-
-let cpuMerge = function (unit, obj) {
-  let soulStr = obj.soulStr
-  // let actionArr = obj.actionArr
-  let actionArr = [] // obj.actionArr
-  let itemArr = obj.itemArr
-  console.log(soulStr, 'added?')
-  let soul = new Soul.LIB[soulStr]()
-  unit.souls.push(soul)
-  unit.name = soul.name
-
-  itemArr.forEach((itemStr) => {
-    let item = new Item.LIB[itemStr]()
-    item.equipTo(unit)
-  })
-
-  if (hasProp(soul, 'AISkills')) {
-    actionArr = soul.AISkills
-    console.log(soul.AISkills)
-  }
-  actionArr.forEach((actionStr) => {
-    console.log(actionStr)
-    unit.actions.push(new Action.LIB[actionStr](unit))
-  })
-  removeDuplicates(unit.actions)
-  // actionArr.forEach((actionStr) => {
-  //   unit.actions.push(new Action.LIB[actionStr](unit))
-  // })
-
-  if (hasProp(soul, 'passives')) {
-    soul.passives.forEach((status) => unit.statuses.push(new Status.LIB[status.NAME]()))
-  }
-
-  unit.baseStats.HP.current = unit.baseStats.HP.max
-  unit.baseStats.MP.current = unit.baseStats.MP.max
 }
 
 let heroMerge = function (unit, obj) {
@@ -300,7 +270,6 @@ let heroMerge = function (unit, obj) {
     console.log(actionStr)
     unit.actions.push(new Action.LIB[actionStr](unit))
   })
-  removeDuplicates(unit.actions)
   // actionArr.forEach((actionStr) => {
   //   unit.actions.push(new Action.LIB[actionStr](unit))
   // })
@@ -315,14 +284,110 @@ let heroMerge = function (unit, obj) {
 
 let heroDat = [
   {
+    soulStr: 'PENELOPE',
+    POS: 'BACK',
+    actionArr: [
+      'FLAMEFIST', 'CHAINLGT', 'HOMING'
+    ],
+    itemArr: [
+      'SPELLSWORD', 'BLUERING', 'MAGICSTAFF'
+    ]
+  },
+  {
+    soulStr: 'LYNN',
+    POS: 'BACK',
+    actionArr: [
+      'HARRY', 'LUNGE'
+    ],
+    itemArr: [
+      'BRONZERING', 'BRONZERING'
+    ]
+  },
+  {
+    soulStr: 'BROCANTRIP',
+    POS: 'FRONT',
+    actionArr: [
+      'INSPIRE', 'HEAL'
+    ],
+    itemArr: [
+      'DIVINEBARRIER'
+    ]
+  },
+  {
+    soulStr: 'PRIMORDAEA',
+    POS: 'BACK',
+    actionArr: [
+      'DRYAD', 'FERAL', 'BASEFORM', 'REGEN', 'NATLOG'
+    ],
+    itemArr: [
+      'BLUERING'
+    ]
+  },
+  {
+    soulStr: 'NINJA',
+    POS: 'FRONT',
+    actionArr: [
+      'VENOMSTRIKE', 'NIGHTSTRIKE'
+    ],
+    itemArr: [
+      'PARRYKNIFE'
+    ]
+  },
+  {
+    soulStr: 'BARON',
+    POS: 'FRONT',
+    actionArr: [
+      'REBUKE', 'ADVANCE'
+    ],
+    itemArr: [
+      'SPIKEYSHIELD'
+    ]
+  },
+  {
+    soulStr: 'GERALD',
+    POS: 'BACK',
+    actionArr: [
+      'STORMCLOUD', 'GUILTTRIP'
+    ],
+    itemArr: [
+      'MAGICSTAFF'
+    ]
+  },
+  {
+    soulStr: 'THWIP',
+    POS: 'BACK',
+    actionArr: [
+      'ALERT', 'SNIPE'
+    ],
+    itemArr: [
+      'PARRYKNIFE'
+    ]
+  },
+  {
+    soulStr: 'AHNWEI',
+    POS: 'BACK',
+    actionArr: [
+      'DISILLUSION', 'NIRVANA'
+    ],
+    itemArr: [
+      'PARRYKNIFE', 'BLUERING'
+    ]
+  },
+  {
     soulStr: 'MOZART',
     POS: 'FRONT',
+    actionArr: [
+      'BRAINS', 'CONTAGION'
+    ],
     itemArr: [
     ]
   },
   {
     soulStr: 'MINOTAUR',
     POS: 'FRONT',
+    actionArr: [
+      'BERSERK', 'AXETHROW'
+    ],
     itemArr: [
       // 'BERSERKERAXE'
     ]
@@ -330,6 +395,9 @@ let heroDat = [
   {
     soulStr: 'MINOBISON',
     POS: 'FRONT',
+    actionArr: [
+      'COFFEE', 'REPRISAL'
+    ],
     itemArr: [
       'BALANCESYM'
       // 'BERSERKERAXE'
@@ -338,6 +406,9 @@ let heroDat = [
   {
     soulStr: 'MANATAUR',
     POS: 'FRONT',
+    actionArr: [
+      'TAURBLAST', 'TAURVESTLIFE', 'TAURVESTMANA'
+    ],
     itemArr: [
       'BLUERING'
     ]
@@ -345,71 +416,11 @@ let heroDat = [
   {
     soulStr: 'JACO',
     POS: 'FRONT',
+    actionArr: [
+      'FRENZY', 'RESPITE'
+    ],
     itemArr: [
       'SPELLSWORD'
-    ]
-  },
-  {
-    soulStr: 'BROCANTRIP',
-    POS: 'FRONT',
-    itemArr: [
-      'DIVINEBARRIER'
-    ]
-  },
-  {
-    soulStr: 'NINJA',
-    POS: 'FRONT',
-    itemArr: [
-      'PARRYKNIFE'
-    ]
-  },
-  {
-    soulStr: 'BARON',
-    POS: 'FRONT',
-    itemArr: [
-      'SPIKEYSHIELD'
-    ]
-  },
-  {
-    soulStr: 'PENELOPE',
-    POS: 'BACK',
-    itemArr: [
-      'SPELLSWORD', 'BLUERING', 'MAGICSTAFF'
-    ]
-  },
-  {
-    soulStr: 'LYNN',
-    POS: 'BACK',
-    itemArr: [
-      'BRONZERING', 'BRONZERING'
-    ]
-  },
-  {
-    soulStr: 'PRIMORDAEA',
-    POS: 'BACK',
-    itemArr: [
-      'BLUERING'
-    ]
-  },
-  {
-    soulStr: 'GERALD',
-    POS: 'BACK',
-    itemArr: [
-      'MAGICSTAFF'
-    ]
-  },
-  {
-    soulStr: 'THWIP',
-    POS: 'BACK',
-    itemArr: [
-      'PARRYKNIFE'
-    ]
-  },
-  {
-    soulStr: 'AHNWEI',
-    POS: 'BACK',
-    itemArr: [
-      'PARRYKNIFE', 'BLUERING'
     ]
   }
 ]
@@ -438,52 +449,43 @@ heroDat.filter((obj) => obj.POS === 'BACK').slice(0, 2).forEach((obj) => heroAdd
 let extraFront = heroDat.filter((obj) => obj.POS === 'FRONT').slice(2)
 let extraBack = heroDat.filter((obj) => obj.POS === 'BACK').slice(2)
 let extras = extraFront.concat(extraBack)
-// let extraIndx = 0
-
-let hasMatch = (arr1, arr2) => {
-  // for (let index1 in arr1) {
-  //   for (let index2 in arr2) {
-  //     if (arr1[item1] === arr1[item2]) {
-  //       console.log('Has match:', arr1, arr2)
-  //       return true
-  //     }
-  //   }
-  // }
-  // return false
-  return arr1.some((str1) => arr2.some((str2) => str1 === str2))
-}
-
-cpuTeam.field.forEach((unit) => {
-  console.log(unit.name)
-  let roleFiltered = extras.filter((obj) => {
-    let soul = new Soul.LIB[obj.soulStr]()
-    return hasMatch(unit.roles, soul.AIRoles)
-  })
-  console.log('roleFiltered:', roleFiltered, unit.roles)
-  if (roleFiltered.length > 0) {
-    cpuMerge(unit, roleFiltered[0])
-    removeByNAME(extras, roleFiltered[0].soulStr, 'soulStr')
-    removeByNAME(extraFront, roleFiltered[0].soulStr, 'soulStr')
-    removeByNAME(extraBack, roleFiltered[0].soulStr, 'soulStr')
-  } else {
-    cpuMerge(unit, extras[0])
-    removeByNAME(extraFront, extras[0].soulStr, 'soulStr')
-    removeByNAME(extraBack, extras[0].soulStr, 'soulStr')
-    extras.shift()
-  }
-  console.log(unit.name)
-  // extraIndx++
-})
-
+let extraIndx = 0
 playerTeam.field.forEach(
   (unit) => {
-    heroMerge(unit, extras[0])
-    extras.shift()
-    // extraIndx++
-    // heroMerge(unit, extras[extraIndx])
-    // extraIndx++
+    heroMerge(unit, extras[extraIndx])
+    extraIndx++
   }
 )
+
+// playerTeam.front = front.slice(0, 3)
+// playerTeam.back = back.slice(0, 3)
+// playerTeam.front.forEach((unit) => {
+//   let mergeObj = {
+//     NAME: 'HEALTHOVERTIME',
+//     name: 'healthovertime',
+//     scale: {},
+//     flat: -100,
+//     virulence: 0.05
+//   }
+//   unit.statuses.push(new Status.LIB.HEALTHOVERTIME(mergeObj, unit, unit))
+//   // unit.statuses.push(new Status.LIB.HEALTHOVERTIME({ flat: -50, virulence: 0.05 }))
+// })
+
+// playerTeam.front.forEach((unit) => {
+//   if (unit.souls[0].NAME === 'MOZART') {
+//     unit.statuses.push(new Status.LIB.DAMAGETOPOISONIN())
+//     unit.statuses.push(new Status.LIB.DAMAGETOPOISONOUT())
+//   }
+//   if (unit.souls[0].NAME === 'JACO') {
+//     unit.statuses.push(new Status.LIB.LIFESTEAL())
+//   }
+// })
+
+// playerTeam.front.forEach((unit) => {
+// })
+// playerTeam.front.forEach((unit) => { unit.statuses.push(new Status.LIB.DAMAGETOPOISONOUT()) })
+// playerTeam.front.forEach((unit) => { unit.statuses.push(new Status.LIB.DAMAGETOPOISONIN()) })
+// playerTeam.front.forEach((unit) => { unit.actions.push(new Action.LIB.CONTAGION(unit)) })
 
 playerTeam.all.forEach((unit) => {
   unit.actions.push(new Action.LIB.RESTMAJOR(unit))

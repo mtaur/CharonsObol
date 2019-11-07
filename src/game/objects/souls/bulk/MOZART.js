@@ -51,8 +51,9 @@ class Mozart {
         }
       ],
       skills: ['CONTAGION', 'BRAINS'],
-      AIskills: ['CONTAGION', 'BRAINS', 'MELEE', 'GUARD'],
+      AISkills: ['CONTAGION', 'BRAINS', 'MELEE', 'GUARD'],
       AIRow: 'front',
+      AIRoles: ['KNIGHT'],
       passives: [
         {
           name: 'damagetopoisonin',

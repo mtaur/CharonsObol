@@ -11,9 +11,10 @@ class FASTING {
       // filename: 'HEAL',
       name: 'Fasting',
       type: 'both',
-      desc: 'Gain 1 MP and damage self for 0.25 x(MAGIC + MELEE + RANGED) HP.' +
+      desc: 'Gain 1 MP and damage self for 0.25 x(MAGIC + MELEE + RANGED) HP. ' +
         'Refunds turn guage.',
       // cost: 1,
+      prereqs: ['MANANOTFULL'],
       targetRules: ['SELF', 'SELF', 'SELF'],
       effects: [
         {
@@ -35,7 +36,7 @@ class FASTING {
         {
           NAME: 'ALERT',
           name: 'alert',
-          alertFrac: 2
+          alertFrac: 1
         }
       ]
     })

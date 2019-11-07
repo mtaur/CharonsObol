@@ -44,8 +44,9 @@ class Penelope {
         }
       ],
       skills: ['HOMINGBOLT', 'CHAINLGT', 'FLAMEFIST'],
-      AIskills: ['HOMINGBOLT', 'CHAINLGT', 'FLAMEFIST', 'GUARD', 'HOMINGBOLT', 'MOVEBACK'],
-      AIRow: 'back'
+      AISkills: ['HOMINGBOLT', 'CHAINLGT', 'FLAMEFIST', 'GUARD', 'HOMINGBOLT', 'MOVEBACK'],
+      AIRow: 'back',
+      AIRoles: ['MAGE']
     })
   }
 }

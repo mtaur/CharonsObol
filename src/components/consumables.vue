@@ -68,10 +68,14 @@ export default {
   },
   methods: {
     getIcon (action) {
-      if (action.type === 'both') { return 'statics/icons/action-both.png' }
-      if (action.type === 'major') { return 'statics/icons/action-star.png' }
-      if (action.type === 'minor') { return 'statics/icons/action-dot.png' }
-      return 'statics/icons/action-none.png'
+      if (action.type === 'both') { return 'statics/gameIcons/action-both.png' }
+      if (action.type === 'major') { return 'statics/gameIcons/action-star.png' }
+      if (action.type === 'minor') { return 'statics/gameIcons/action-dot.png' }
+      return 'statics/gameIcons/action-none.png'
+      // if (action.type === 'both') { return 'statics/icons/action-both.png' }
+      // if (action.type === 'major') { return 'statics/icons/action-star.png' }
+      // if (action.type === 'minor') { return 'statics/icons/action-dot.png' }
+      // return 'statics/icons/action-none.png'
     },
     canUse (action) {
       // if (action.type === 'both') { return this.unit.hasAction.major && this.unit.hasAction.minor }

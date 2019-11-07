@@ -40,7 +40,8 @@ class Brocantrip {
       ],
       skills: ['HEAL', 'INSPIRE'],
       AISkills: ['HEAL', 'INSPIRE', 'MELEE', 'GUARD'],
-      AIRow: 'front'
+      AIRow: 'front',
+      AIRoles: ['MAGE', 'KNIGHT']
     })
   }
 }

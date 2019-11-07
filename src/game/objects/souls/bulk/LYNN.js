@@ -34,8 +34,9 @@ class Lynn {
         }
       ],
       skills: ['LUNGE', 'HARRY'],
-      AIskills: ['LUNGE', 'HARRY', 'RANGED', 'GUARD', 'MOVEBACK'],
-      AIRow: 'back'
+      AISkills: ['LUNGE', 'HARRY', 'RANGED', 'GUARD', 'MOVEBACK'],
+      AIRow: 'back',
+      AIRoles: ['KNIGHT', 'ARCHER']
     })
   }
 }

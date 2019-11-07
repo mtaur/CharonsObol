@@ -71,8 +71,9 @@ class Ninja {
         }
       ],
       skills: ['NIGHTSTRIKE', 'VENOMSTRIKE'],
-      AIskills: ['NIGHTSTRIKE', 'VENOMSTRIKE', 'RANGED', 'GUARD'],
-      AIRow: 'front'
+      AISkills: ['NIGHTSTRIKE', 'VENOMSTRIKE', 'RANGED', 'GUARD'],
+      AIRow: 'front',
+      AIRoles: ['KNIGHT', 'ARCHER']
     })
   }
 }

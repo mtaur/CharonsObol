@@ -46,8 +46,9 @@ class Ahnwei {
         }
       ],
       skills: ['NIRVANA', 'DISILLUSION'],
-      AIskills: ['RANGED', 'NIRVANA', 'DISILLUSION', 'MOVEBACK', 'GUARD'],
-      AIRow: 'back'
+      AISkills: ['RANGED', 'NIRVANA', 'DISILLUSION', 'MOVEBACK', 'GUARD'],
+      AIRow: 'back',
+      AIRoles: ['MAGE']
     })
   }
 }
