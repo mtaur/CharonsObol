@@ -11,9 +11,10 @@ class HOMINGBOLT {
       NAME: 'HOMINGBOLT',
       // filename: 'LUNGE',
       name: 'Homing Bolt',
-      type: 'major',
-      desc: 'Fire a magic bolt that deals damage equal to the lesser of MAGIC ' +
-        'and RANGED. HALF the usual amount of DRED and DREF apply.',
+      type: 'both', // major
+      desc: 'Fire a magic bolt that deals damage equal to the AVERAGE of MAGIC ' +
+        'and RANGED damage to any enemy (not restricted by GUARD). HALF the ' +
+        'usual amount of DRED and DREF apply.',
       targetRules: ['HOMING'],
       // prereqs: [],
       // after: [{
@@ -24,10 +25,8 @@ class HOMINGBOLT {
           NAME: 'DAMAGE',
           name: 'damage',
           scale: {
-            min: {
-              MAGIC: 1,
-              RANGED: 1
-            }
+            MAGIC: 0.5,
+            RANGED: 0.5
           },
           DREDScale: 0.5,
           DREFScale: 0.5

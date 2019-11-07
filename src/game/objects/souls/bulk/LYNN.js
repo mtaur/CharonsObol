@@ -33,8 +33,8 @@ class Lynn {
           value: -0.15
         }
       ],
-      skills: ['LUNGE', 'HARRY'],
-      AISkills: ['LUNGE', 'HARRY', 'RANGED', 'GUARD', 'MOVEBACK'],
+      skills: ['LUNGE', 'HARRY', 'YOLOSTRIKE', 'LONGSHOT'],
+      AISkills: ['LUNGE', 'HARRY', 'RANGED', 'GUARD', 'MOVEBACK', 'YOLOSTRIKE', 'LONGSHOT'],
       AIRow: 'back',
       AIRoles: ['KNIGHT', 'ARCHER']
     })

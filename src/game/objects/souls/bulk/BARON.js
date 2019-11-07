@@ -43,8 +43,8 @@ class Baron {
           value: -0.15
         }
       ],
-      skills: ['ADVANCE', 'REBUKE'],
-      AISkills: ['ADVANCE', 'REBUKE', 'MELEE', 'GUARD'],
+      skills: ['ADVANCE', 'REBUKE', 'YOLOSTRIKE'],
+      AISkills: ['ADVANCE', 'REBUKE', 'MELEE', 'GUARD', 'YOLOSTRIKE'],
       AIRow: 'front',
       AIRoles: ['KNIGHT']
     })

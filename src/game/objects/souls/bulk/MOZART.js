@@ -50,8 +50,8 @@ class Mozart {
           value: -0.3 // -0.5
         }
       ],
-      skills: ['CONTAGION', 'BRAINS'],
-      AISkills: ['CONTAGION', 'BRAINS', 'MELEE', 'GUARD'],
+      skills: ['CONTAGION', 'BRAINS', 'YOLOSTRIKE'],
+      AISkills: ['CONTAGION', 'BRAINS', 'MELEE', 'GUARD', 'YOLOSTRIKE'],
       AIRow: 'front',
       AIRoles: ['KNIGHT'],
       passives: [

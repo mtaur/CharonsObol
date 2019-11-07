@@ -34,8 +34,8 @@ class Primordaea {
         //   value: -0.2
         // }
       ],
-      skills: ['REGEN', 'DRYAD', 'FERAL', 'BASEFORM', 'NATLOG'],
-      AISkills: ['REGEN', 'DRYAD', 'NATLOG'],
+      skills: ['REGEN', 'DRYAD', 'FERAL', 'BASEFORM', 'NATLOG', 'HOMINGBOLT', 'YOLOSTRIKE', 'LONGSHOT'],
+      AISkills: ['REGEN', 'DRYAD', 'NATLOG', 'HOMINGBOLT'],
       // AISkills: ['REGEN', 'DRYAD', 'FERAL', 'NATLOG', 'MELEE'],
       AIRow: 'back',
       AIRoles: ['MAGE']

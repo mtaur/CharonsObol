@@ -48,8 +48,8 @@ class Minobison {
           value: 0.1
         }
       ],
-      skills: ['COFFEE', 'REPRISAL'],
-      AISkills: ['COFFEE', 'REPRISAL', 'RANGED', 'GUARD', 'MOVEFRONT'],
+      skills: ['COFFEE', 'REPRISAL', 'YOLOSTRIKE', 'LONGSHOT', 'HOMINGBOLT'],
+      AISkills: ['COFFEE', 'REPRISAL', 'RANGED', 'GUARD', 'MOVEFRONT', 'YOLOSTRIKE', 'LONGSHOT', 'HOMINGBOLT'],
       AIRow: 'front',
       AIRoles: ['KNIGHT', 'ARCHER', 'MAGE']
     })

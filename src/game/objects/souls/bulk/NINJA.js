@@ -70,8 +70,8 @@ class Ninja {
           value: -0.25
         }
       ],
-      skills: ['NIGHTSTRIKE', 'VENOMSTRIKE'],
-      AISkills: ['NIGHTSTRIKE', 'VENOMSTRIKE', 'RANGED', 'GUARD'],
+      skills: ['NIGHTSTRIKE', 'VENOMSTRIKE', 'YOLOSTRIKE', 'LONGSHOT'],
+      AISkills: ['NIGHTSTRIKE', 'VENOMSTRIKE', 'RANGED', 'GUARD', 'YOLOSTRIKE', 'LONGSHOT'],
       AIRow: 'front',
       AIRoles: ['KNIGHT', 'ARCHER']
     })

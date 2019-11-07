@@ -11,18 +11,6 @@ class InitCycle extends CtrlState {
       viewState: 'idle',
       onClick: 'inspect'
     }
-    // if (selector.game.playerTeam.field.indexOf(unit) > -1) {
-    //   return {
-    //     viewState: 'idle',
-    //     onClick: 'inspect'
-    //   }
-    // }
-    // if (selector.game.cpuTeam.field.indexOf(unit) > -1) {
-    //   return {
-    //     viewState: 'idle',
-    //     onClick: 'inspect'
-    //   }
-    // }
   }
 
   tick (selector, playerTeam, cpuTeam) {
@@ -30,23 +18,22 @@ class InitCycle extends CtrlState {
     let benchmarks = [] // [0, 0.25, 0.5, 0.75, 1, 9001]
     for (let j = 0; j <= playerTeam.numBenchmarks + 1; j++) {
       benchmarks.push(j / playerTeam.numBenchmarks)
-      // benchmarks.push(j)
     }
     let prog = () => { return Math.max(playerTeam.turnPoints / playerTeam.maxTurnPoints, cpuTeam.turnPoints / cpuTeam.maxTurnPoints) }
-    // console.log('initial prog???', prog())
     let progIndex = 0
     benchmarks.forEach((item, index) => { if (prog() >= item) { progIndex = index } })
-    // console.log('progIndex???', progIndex)
     let progress = prog()
-    // console.log(typeof progIndex, 'type...')
-    // console.log(progIndex + 1, 'progIndex + 1')
     while (progress < benchmarks[progIndex + 1] && progress < 1) {
       if (playerTeam.hasTurn) { playerTeam.initTick() }
       if (cpuTeam.hasTurn) { cpuTeam.initTick() }
       progress = prog()
-      // console.log('Increased prog???', progress)
     }
-    if (playerTeam.turnPoints < playerTeam.maxTurnPoints && cpuTeam.turnPoints < cpuTeam.maxTurnPoints) {
+    let notReady = (team) => {
+      return team.turnPoints < team.maxTurnPoints || !team.hasTurn
+    }
+    // if (playerTeam.turnPoints < playerTeam.maxTurnPoints && cpuTeam.turnPoints < cpuTeam.maxTurnPoints) {
+    // Above logic fails if team has full turn gauge but no action points (due to Inspire or whatever)
+    if (notReady(playerTeam) && notReady(cpuTeam)) {
       setTimeout(() => { this.tick(selector, playerTeam, cpuTeam) }, playerTeam.waitTime)
     } else {
       this.runTimers(selector)
@@ -67,12 +54,7 @@ class InitCycle extends CtrlState {
       console.log('No turns possible!  Actions used and/or initTotal === 0')
       selector.changeState('RoundStart')
     } else if (this.shouldRunClock(playerTeam, cpuTeam)) {
-    // } else if (playerTeam.turnPoints < playerTeam.maxTurnPoints && cpuTeam.turnPoints < cpuTeam.maxTurnPoints) {
-      // playerTeam.initTick()
-      // cpuTeam.initTick()
       this.tick(selector, playerTeam, cpuTeam)
-      // setTimeout(() => { this.runTimers(selector) }, playerTeam.waitTime)
-    // } else if (playerTeam.turnPoints - playerTeam.maxTurnPoints >= cpuTeam.turnPoints - cpuTeam.maxTurnPoints) {
     } else if (playerTeam.hasTurn && playerTeam.turnPoints >= playerTeam.maxTurnPoints) {
       console.log('Player turn...')
       playerTeam.turnPoints -= playerTeam.maxTurnPoints

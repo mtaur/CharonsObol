@@ -47,8 +47,8 @@ class Jaco {
           value: 0.5
         }
       ],
-      skills: ['FRENZY', 'RESPITE'],
-      AISkills: ['FRENZY', 'RESPITE', 'MELEE', 'GUARD'],
+      skills: ['FRENZY', 'RESPITE', 'HOMINGBOLT', 'YOLOSTRIKE'],
+      AISkills: ['FRENZY', 'RESPITE', 'MELEE', 'GUARD', 'HOMINGBOLT', 'YOLOSTRIKE'],
       AIRow: 'back',
       AIRoles: ['MAGE', 'KNIGHT'],
       passives: [
