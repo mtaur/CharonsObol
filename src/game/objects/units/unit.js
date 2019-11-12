@@ -43,7 +43,7 @@ class Team {
   }
   // maxTurnPoints = 100
   maxTurnPoints = 1000
-  waitTime = 300 // 200 // 100 // 250
+  waitTime = 100 // 300 // 200 // 100 // 250
   numBenchmarks = 10 // 10
   initArr = []
   initReset () {
@@ -106,13 +106,13 @@ class Team {
 
     // Player spends SP between player units.
     if (side === Unit.SIDE.PLAYER) {
-      this.RSP = 600
+      this.RSP = 300 // 600
       // this.SP = 100 // 80 // 100 // 60
     }
 
     // CPU units all receive CPU SP separately in full.
     if (side === Unit.SIDE.CPU) {
-      this.RSP = 1200 // 140 // 160 // 240 // 90 // 100 // 120
+      this.RSP = 200 // 1200 // 140 // 160 // 240 // 90 // 100 // 120
       // this.SP = 200 // 140 // 160 // 240 // 90 // 100 // 120
     }
   }

@@ -15,11 +15,28 @@ class InitCycle extends CtrlState {
 
   tick (selector, playerTeam, cpuTeam) {
     // let benchmarks = [0, 0.25, 0.5, 0.75, 1, 9001]
+    let waiting = (team) => {
+      // return team.turnPoints < team.maxTurnPoints || !team.hasTurn
+      return team.turnPoints < team.maxTurnPoints && team.hasTurn
+    }
+    let ready = (team) => {
+      return team.turnPoints >= team.maxTurnPoints && team.hasTurn
+    }
+    let needToRunClock = () => {
+      return (waiting(playerTeam) || waiting(cpuTeam)) && (!ready(playerTeam) && !ready(cpuTeam))
+    }
     let benchmarks = [] // [0, 0.25, 0.5, 0.75, 1, 9001]
     for (let j = 0; j <= playerTeam.numBenchmarks + 1; j++) {
       benchmarks.push(j / playerTeam.numBenchmarks)
     }
-    let prog = () => { return Math.max(playerTeam.turnPoints / playerTeam.maxTurnPoints, cpuTeam.turnPoints / cpuTeam.maxTurnPoints) }
+    let prog = () => {
+      // return Math.max(playerTeam.turnPoints / playerTeam.maxTurnPoints, cpuTeam.turnPoints / cpuTeam.maxTurnPoints)
+      let prog1 = 0
+      let prog2 = 0
+      if (playerTeam.hasTurn) { prog1 = playerTeam.turnPoints / playerTeam.maxTurnPoints }
+      if (cpuTeam.hasTurn) { prog2 = cpuTeam.turnPoints / cpuTeam.maxTurnPoints }
+      return Math.max(prog1, prog2)
+    }
     let progIndex = 0
     benchmarks.forEach((item, index) => { if (prog() >= item) { progIndex = index } })
     let progress = prog()
@@ -28,12 +45,10 @@ class InitCycle extends CtrlState {
       if (cpuTeam.hasTurn) { cpuTeam.initTick() }
       progress = prog()
     }
-    let notReady = (team) => {
-      return team.turnPoints < team.maxTurnPoints || !team.hasTurn
-    }
     // if (playerTeam.turnPoints < playerTeam.maxTurnPoints && cpuTeam.turnPoints < cpuTeam.maxTurnPoints) {
     // Above logic fails if team has full turn gauge but no action points (due to Inspire or whatever)
-    if (notReady(playerTeam) && notReady(cpuTeam)) {
+    // if (waiting(playerTeam) || waiting(cpuTeam)) {
+    if (needToRunClock()) {
       setTimeout(() => { this.tick(selector, playerTeam, cpuTeam) }, playerTeam.waitTime)
     } else {
       this.runTimers(selector)
