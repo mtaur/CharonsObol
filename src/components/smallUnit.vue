@@ -1,7 +1,9 @@
 <template>
   <div @click="unitClick()">
     <div class="q-pa-xs">
-      <q-img
+      <q-img v-if="unit.souls.length > 0" :src="getImg(unit.souls[0])"/>
+      <q-img v-else :src="'statics/gameIcons/souls/CAENEN.png'"/>
+      <!-- <q-img
       src="wharrgarbl"
       :ratio="1"
       >
@@ -10,7 +12,7 @@
             (unit image)
           </div>
         </template>
-      </q-img>
+      </q-img> -->
       <q-tooltip anchor="center left" self="center right" content-class="bg-teal-6" max-width="20vw">
           <span style="font-size: 14px">
             <div class="text-h6">
@@ -36,6 +38,11 @@ export default {
   computed: {
   },
   methods: {
+    getImg (soul) {
+      // statics/icons/action-star.png
+      return 'statics/gameIcons/souls/' + soul.NAME + '.png'
+      // return 'statics/icons/souls/' + soul.NAME + '.png'
+    },
     unitClick () {
       if (this.selector.stateData.inspectUnit.id === this.unit.id) {
         this.selector.stateData.inspectUnit = {}

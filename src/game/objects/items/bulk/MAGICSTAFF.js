@@ -11,8 +11,8 @@ class MAGICSTAFF {
       name: 'Magic Staff',
       cost: 4,
       tier: 'common',
-      desc: '+5 MAGIC',
-      statBonus: { MAGIC: 5 }
+      desc: '+6 MAGIC',
+      statBonus: { MAGIC: 6 }
     })
   }
 }

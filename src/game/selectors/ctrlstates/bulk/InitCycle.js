@@ -40,9 +40,13 @@ class InitCycle extends CtrlState {
     let progIndex = 0
     benchmarks.forEach((item, index) => { if (prog() >= item) { progIndex = index } })
     let progress = prog()
+    let tickPlayer = playerTeam.hasTurn
+    let tickCPU = cpuTeam.hasTurn
     while (progress < benchmarks[progIndex + 1] && progress < 1) {
-      if (playerTeam.hasTurn) { playerTeam.initTick() }
-      if (cpuTeam.hasTurn) { cpuTeam.initTick() }
+      if (tickPlayer) { playerTeam.initTick() }
+      if (tickCPU) { cpuTeam.initTick() }
+      // if (playerTeam.hasTurn) { playerTeam.initTick() }
+      // if (cpuTeam.hasTurn) { cpuTeam.initTick() }
       progress = prog()
     }
     // if (playerTeam.turnPoints < playerTeam.maxTurnPoints && cpuTeam.turnPoints < cpuTeam.maxTurnPoints) {

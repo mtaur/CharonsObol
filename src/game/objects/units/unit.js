@@ -106,13 +106,13 @@ class Team {
 
     // Player spends SP between player units.
     if (side === Unit.SIDE.PLAYER) {
-      this.RSP = 300 // 600
+      this.RSP = 200 // 600
       // this.SP = 100 // 80 // 100 // 60
     }
 
     // CPU units all receive CPU SP separately in full.
     if (side === Unit.SIDE.CPU) {
-      this.RSP = 200 // 1200 // 140 // 160 // 240 // 90 // 100 // 120
+      this.RSP = 100 // 1200 // 140 // 160 // 240 // 90 // 100 // 120
       // this.SP = 200 // 140 // 160 // 240 // 90 // 100 // 120
     }
   }

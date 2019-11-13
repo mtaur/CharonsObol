@@ -11,7 +11,7 @@
         :style="guardStyle">
           <q-avatar square
           style="width: 100%; height: 100%">
-            <q-tooltip anchor="center left" self="center right" :offset="[10, 10]" content-class="bg-teal" max-width="20vw">
+            <q-tooltip v-if="unit.souls.length > 0" anchor="center left" self="center right" :offset="[10, 10]" content-class="bg-teal" max-width="20vw">
                 <span style="font-size: 14px" >
                   <h6>
                     <span>{{ unit.souls[0].name }}</span>
@@ -51,7 +51,6 @@
         :value="(Math.abs(healthOverTime.amount)) / unit.effectiveStatValues.HP"
         :color="healthOverTime.amount > 0 ? 'cyan' : 'green-10'"
         />
-        <!-- color="green" -->
       </div>
       <div class="col-3">{{ healthOverTime.amount }} total</div>
     </div>

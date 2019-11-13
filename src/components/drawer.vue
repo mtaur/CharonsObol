@@ -41,7 +41,7 @@
           </div>
           <div>{{ playerTeam.initTotal }} initiave points remaining (turn gauge refill rate)</div>
         </span>
-        <span v-else>
+        <span v-else-if="playerTeam.hasTurn && playerTeam.initTotal > 0">
           <div class="col-12 row items-center">
             <div class="col-2">Player:</div>
             <div class="col-7">
@@ -55,7 +55,22 @@
           </div>
           <div>{{ playerTeam.initTotal }} initiave points remaining (turn gauge refill rate)</div>
         </span>
-        <div class="col-12 row items-center">
+        <span v-else>
+          <div class="col-12 row items-center">
+            <div class="col-2">Player:</div>
+            <div class="col-7">
+              <q-linear-progress
+              class="q-mt-sm"
+              rounded style="height: 30px"
+              :value="playerTeam.turnPoints / playerTeam.maxTurnPoints" color="grey"
+              />
+            </div>
+            <div class="col-3">{{ playerTeam.turnPoints }}/{{ playerTeam.maxTurnPoints }}</div>
+          </div>
+          <div>{{ playerTeam.initTotal }} initiave points remaining (turn gauge refill rate)</div>
+          <div>0 team initiative point total and/or no usable actions.</div>
+        </span>
+        <div v-if="cpuTeam.hasTurn && cpuTeam.initTotal > 0" class="col-12 row items-center">
           <div class="col-2">CPU:</div>
           <div class="col-7">
             <q-linear-progress
@@ -66,6 +81,19 @@
           </div>
           <div class="col-3">{{ cpuTeam.turnPoints }}/{{ cpuTeam.maxTurnPoints }}</div>
           <div>{{ cpuTeam.initTotal }} initiave points remaining (turn gauge refill rate)</div>
+        </div>
+        <div v-else class="col-12 row items-center">
+          <div class="col-2">CPU:</div>
+          <div class="col-7">
+            <q-linear-progress
+            class="q-mt-sm"
+            rounded style="height: 30px"
+            :value="cpuTeam.turnPoints / cpuTeam.maxTurnPoints" color="grey"
+            />
+          </div>
+          <div class="col-3">{{ cpuTeam.turnPoints }}/{{ cpuTeam.maxTurnPoints }}</div>
+          <div>{{ cpuTeam.initTotal }} initiave points remaining</div>
+          <div>0 team initiative point total and/or no usable actions.</div>
         </div>
       </div>
         <!-- <div class="justify-center">

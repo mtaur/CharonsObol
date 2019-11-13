@@ -50,7 +50,7 @@ class Jaco {
       skills: ['FRENZY', 'RESPITE', 'HOMINGBOLT', 'YOLOSTRIKE'],
       AISkills: ['FRENZY', 'RESPITE', 'MELEE', 'GUARD', 'HOMINGBOLT', 'YOLOSTRIKE'],
       AIRow: 'back',
-      AIRoles: ['MAGE', 'KNIGHT'],
+      AIRoles: ['MAGE', 'KNIGHT', 'BERSERK'],
       passives: [
         {
           name: 'lifesteal',

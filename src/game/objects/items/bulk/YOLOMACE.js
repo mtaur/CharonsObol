@@ -10,11 +10,12 @@ class YOLOMACE {
       NAME: 'YOLOMACE',
       name: 'YOLO Mace',
       cost: 6,
-      desc: 'Nullifies base 100% DRED, converting each point to 3 MELEE.\nYOLO!!!',
+      desc: 'Nullifies base 35% DRED, converting each point to 1 DREF and 3 MELEE.\nYOLO!!!',
       tier: 'fine',
       converts: [
-        { from: 'DRED', to: 'MELEE', value: 3 },
-        { from: 'DRED', to: 'DRED', value: -1 }
+        { from: 'DRED', to: 'DREF', value: 0.35 },
+        { from: 'DRED', to: 'MELEE', value: 1.05 },
+        { from: 'DRED', to: 'DRED', value: -0.35 }
       ]
     })
   }

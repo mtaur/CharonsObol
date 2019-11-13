@@ -9,10 +9,10 @@ class BRONZERING {
     return new Item({
       NAME: 'BRONZERING',
       name: 'Bronze Ring',
-      cost: 2,
+      cost: 3,
       tier: 'cheap',
-      desc: '+1 DRED',
-      statBonus: { DRED: 1 }
+      desc: '+2 DRED',
+      statBonus: { DRED: 2 }
     })
   }
 }
