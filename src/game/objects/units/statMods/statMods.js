@@ -134,19 +134,32 @@ class StatMods {
 
     let scalingMatrix = []
     let scalingMatrixFinal = []
+    let scalingMatrixWeighted = []
+    let scalingMatrixWeightedFinal = []
+
     for (let fromStatName in Stat.LIB) {
+      let fromBenScale = new Stat.LIB[fromStatName]().benScale
       for (let toStatName in Stat.LIB) {
+        let toBenScale = new Stat.LIB[toStatName]().benScale
         let val = fromStatName === toStatName ? 1 : 0
         convertTo[toStatName].forEach((entry) => {
           if (entry.from === fromStatName) { val += entry.value }
         })
         scalingMatrix.push({ from: fromStatName, to: toStatName, value: val })
         scalingMatrixFinal.push({ from: fromStatName, to: toStatName, value: val * alpha })
+        scalingMatrixWeighted.push({ from: fromStatName, to: toStatName, value: val * (fromBenScale / toBenScale) })
+        scalingMatrixWeightedFinal.push({ from: fromStatName, to: toStatName, value: val * alpha * (fromBenScale / toBenScale) })
       }
     }
 
     // console.log('alpha:', alpha)
-    return { scalingMatrix: scalingMatrix, scalingMatrixFinal: scalingMatrixFinal, alpha: alpha }
+    return {
+      scalingMatrix: scalingMatrix,
+      scalingMatrixFinal: scalingMatrixFinal,
+      scalingMatrixWeighted: scalingMatrixWeighted,
+      scalingMatrixWeightedFinal: scalingMatrixWeightedFinal,
+      alpha: alpha
+    }
   }
 
   static getEffectiveStatValues () {

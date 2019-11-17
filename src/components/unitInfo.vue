@@ -34,7 +34,7 @@
               v-for="col in props.cols"
               :key="col.name"
               :props="props"
-              style="font-size: 8px"
+              style="font-size: 11px"
               class="q-pa-none q-gutter-xs"
             >
               {{ col.label }}
@@ -167,6 +167,7 @@ export default {
         row.name = fromStatName
         for (let toStatName in Stat.LIB) {
           let matrix = this.unit.getScalingMatrix.scalingMatrixFinal
+          // let matrix = this.unit.getScalingMatrix.scalingMatrixWeightedFinal
           let val = matrix.filter((item) => item.from === fromStatName && item.to === toStatName)[0].value
           row[toStatName] = Math.round(val * 100) / 100
         }
@@ -178,8 +179,16 @@ export default {
   methods: {
     getEntryStyle (props) {
       let style = {}
+      let stylingMatrix = this.unit.getScalingMatrix.scalingMatrixWeightedFinal
+      let compareVal = props.col.name === 'name' || props.row.name === 'name' ? 0 : stylingMatrix.filter(
+        (entry) => {
+          return entry.from === props.row.name && entry.to === props.col.name
+        })[0].value
+
       style.fontWeight = 'bold'
-      style.fontSize = props.col.name === props.row.name ? '12px' : '8px'
+      style.fontSize = '11px' // props.col.name === props.row.name ? '12px' : '8px'
+      style.backgroundColor = props.col.name === props.row.name ? '#cef' : '#abc'
+      if (props.col.name === 'name') { style.backgroundColor = 'white' }
       if (props.col.name === props.row.name) {
         if (props.value >= 1.1) { style.color = 'green' }
         if (props.value < 1 && props.value >= 0.8) { style.color = 'orange' }
@@ -188,12 +197,15 @@ export default {
           style.fontSize = '12px'
         }
       } else {
-        if (props.value >= 0.1) {
+        // if (props.value >= 0.1) {
+        if (compareVal >= 0.1) {
           style.color = 'green'
           style.fontSize = '12px'
         }
-        if (props.value < -0.1 && props.value >= -0.25) { style.color = 'orange' }
-        if (props.value < -0.25) {
+        // if (props.value < -0.1 && props.value >= -0.25) { style.color = 'orange' }
+        // if (props.value < -0.25) {
+        if (compareVal < -0.1 && compareVal >= -0.25) { style.color = 'orange' }
+        if (compareVal < -0.25) {
           style.color = 'red'
           style.fontSize = '12px'
         }

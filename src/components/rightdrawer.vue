@@ -4,7 +4,7 @@
     v-model="visible"
     bordered
     content-class="bg-grey-2"
-    :width="450"
+    :width="page === 'charInfo' ? 500 : 350"
     :breakpoint="0"
   >
     <battleLog v-if="page==='log'" :selector="selector"></battleLog>

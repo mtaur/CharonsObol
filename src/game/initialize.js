@@ -97,9 +97,9 @@ let heroMerge = function (unit, obj) {
   //   unit.actions.push(new Action.LIB[actionStr](unit))
   // })
   //
-  // if (hasProp(soul, 'passives')) {
-  //   soul.passives.forEach((status) => unit.statuses.push(new Status.LIB[status.NAME]()))
-  // }
+  if (hasProp(soul, 'passives')) {
+    soul.passives.forEach((status) => unit.statuses.push(new Status.LIB[status.NAME]()))
+  }
   unit.baseStats.HP.current = unit.baseStats.HP.max
   unit.baseStats.MP.current = unit.baseStats.MP.max
 }
