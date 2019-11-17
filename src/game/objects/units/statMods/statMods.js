@@ -86,14 +86,6 @@ class StatMods {
         // console.log(toStatName, 'was negative:', alphaSum(alpha, toStatName))
         alpha = -bonusStatValues[toStatName] / weightSum(convertTo[toStatName])
       }
-      // let weights = convertTo[toStatName]
-      // // convertedStatValues[toStatName] === this.bonusStatValues[toStatName]
-      // convertedStatValues[toStatName] += weightSum(weights)
-      // convertedStatValues[toStatName] = Math.floor(convertedStatValues[toStatName])
-      // if (convertedStatValues[toStatName] < 0) {
-      //   alpha = -this.bonusStatValues[toStatName] / weightSum(weights)
-      //   convertedStatValues[toStatName] = this.bonusStatValues[toStatName] + alpha*weightSum(weights)
-      // }
     }
     for (let toStatName in Stat.LIB) {
       convertedStatValues[toStatName] = Math.floor(alphaSum(alpha, toStatName))
@@ -101,6 +93,60 @@ class StatMods {
 
     // console.log('alpha:', alpha)
     return convertedStatValues
+  }
+
+  static getScalingMatrix () {
+    let converts = clone(this.statConversions)
+    let convertTo = {} // filter: convertTo.RANGED = [{ ..., to: 'RANGED', ... }, {...}]
+    let bonusStatValues = clone(this.bonusStatValues)
+
+    let convertedStatValues = clone(this.bonusStatValues) // = []
+    // console.log('converts', converts)
+
+    for (let statName in Stat.LIB) {
+      convertTo[statName] = converts.filter(item => item.to === statName)
+    }
+
+    let weightSum = function (weights) {
+      let sum = 0
+      for (let weightIndex in weights) {
+        let weight = weights[weightIndex]
+        sum += weight.value * bonusStatValues[weight.from]
+      }
+      return sum
+    }
+
+    let alphaSum = function (alphaI, toStatName) {
+      let sum = bonusStatValues[toStatName] + alphaI * weightSum(convertTo[toStatName])
+      return sum
+    }
+
+    let alpha = 1
+
+    for (let toStatName in Stat.LIB) {
+      if (alphaSum(alpha, toStatName) < 0) {
+        alpha = -bonusStatValues[toStatName] / weightSum(convertTo[toStatName])
+      }
+    }
+    for (let toStatName in Stat.LIB) {
+      convertedStatValues[toStatName] = Math.floor(alphaSum(alpha, toStatName))
+    }
+
+    let scalingMatrix = []
+    let scalingMatrixFinal = []
+    for (let fromStatName in Stat.LIB) {
+      for (let toStatName in Stat.LIB) {
+        let val = fromStatName === toStatName ? 1 : 0
+        convertTo[toStatName].forEach((entry) => {
+          if (entry.from === fromStatName) { val += entry.value }
+        })
+        scalingMatrix.push({ from: fromStatName, to: toStatName, value: val })
+        scalingMatrixFinal.push({ from: fromStatName, to: toStatName, value: val * alpha })
+      }
+    }
+
+    // console.log('alpha:', alpha)
+    return { scalingMatrix: scalingMatrix, scalingMatrixFinal: scalingMatrixFinal, alpha: alpha }
   }
 
   static getEffectiveStatValues () {

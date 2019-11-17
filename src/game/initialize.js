@@ -29,37 +29,39 @@ function removeDuplicates (arr, propName = 'NAME') {
 // function heroAdd = (soulstr, POS, actionArr, itemArr) {
 let heroAdd = function (obj) {
   let soulStr = obj.soulStr
-  let POS = obj.POS
-  let actionArr = [] // obj.actionArr
+  // let POS = obj.POS
+  // let actionArr = [] // obj.actionArr
   let itemArr = obj.itemArr
   console.log(soulStr)
-  let soul = new Soul.LIB[soulStr]()
-  let unit = new Unit(gameObj, {
-    name: soul.name,
-    hero: true,
-    souls: [soul],
-    side: Unit.SIDE.PLAYER,
-    pos: Unit.POS[POS],
-    items: []
-  })
-  itemArr.forEach((itemStr) => {
-    let item = new Item.LIB[itemStr]()
-    item.equipTo(unit)
-  })
-  if (hasProp(soul, 'skills')) {
-    actionArr = soul.skills
-    console.log(soul.skills)
-  }
-  actionArr.forEach((actionStr) => {
-    console.log(actionStr)
-    unit.actions.push(new Action.LIB[actionStr](unit))
-  })
+  // let soul = new Soul.LIB[soulStr]()
+  // let unit = new Unit(gameObj, {
+  //   name: soul.name,
+  //   hero: true,
+  //   souls: [soul],
+  //   side: Unit.SIDE.PLAYER,
+  //   pos: Unit.POS[POS],
+  //   items: []
+  // })
+  // itemArr.forEach((itemStr) => {
+  //   let item = new Item.LIB[itemStr]()
+  //   item.equipTo(unit)
+  // })
+  // if (hasProp(soul, 'skills')) {
+  //   actionArr = soul.skills
+  //   console.log(soul.skills)
+  // }
+  // actionArr.forEach((actionStr) => {
+  //   console.log(actionStr)
+  //   unit.actions.push(new Action.LIB[actionStr](unit))
+  // })
+  let unit = new UnitTemplate.LIB.HERO({ soulsArr: [soulStr], itemsArr: itemArr, side: Unit.SIDE.PLAYER }, gameObj)
   removeDuplicates(unit.actions)
-  if (unit.pos === Unit.POS.FRONT) {
-    playerTeam.front.push(unit)
-  } else if (unit.pos === Unit.POS.BACK) {
-    playerTeam.back.push(unit)
-  }
+  playerTeam.deploy(unit)
+  // if (unit.pos === Unit.POS.FRONT) {
+  //   playerTeam.front.push(unit)
+  // } else if (unit.pos === Unit.POS.BACK) {
+  //   playerTeam.back.push(unit)
+  // }
   for (let soulIndx in unit.souls) {
     let soul = unit.souls[soulIndx]
     if (hasProp(soul, 'passives')) {
@@ -94,11 +96,10 @@ let heroMerge = function (unit, obj) {
   // actionArr.forEach((actionStr) => {
   //   unit.actions.push(new Action.LIB[actionStr](unit))
   // })
-
-  if (hasProp(soul, 'passives')) {
-    soul.passives.forEach((status) => unit.statuses.push(new Status.LIB[status.NAME]()))
-  }
-
+  //
+  // if (hasProp(soul, 'passives')) {
+  //   soul.passives.forEach((status) => unit.statuses.push(new Status.LIB[status.NAME]()))
+  // }
   unit.baseStats.HP.current = unit.baseStats.HP.max
   unit.baseStats.MP.current = unit.baseStats.MP.max
 }
@@ -253,12 +254,17 @@ playerTeam.inventory.ENLIGHTENSCROLL = 1
 console.log('Clone JSON of CPU team:', cpuTeam.cloneJSON)
 console.log('Clone JSON of player team:', playerTeam.cloneJSON)
 
-let knight = new UnitTemplate.LIB.KNIGHT(gameObj)
-cpuTeam.front.push(knight)
-let archer = new UnitTemplate.LIB.ARCHER(gameObj)
-cpuTeam.back.push(archer)
-let mage = new UnitTemplate.LIB.MAGE(gameObj)
-cpuTeam.back.push(mage)
+let caenenArr = ['KNIGHT', 'ARCHER', 'MAGE']
+caenenArr.forEach((str) => {
+  console.log(str)
+  cpuTeam.deploy(new UnitTemplate.LIB[str](gameObj))
+})
+// let knight = new UnitTemplate.LIB.KNIGHT(gameObj)
+// cpuTeam.front.push(knight)
+// let archer = new UnitTemplate.LIB.ARCHER(gameObj)
+// cpuTeam.back.push(archer)
+// let mage = new UnitTemplate.LIB.MAGE(gameObj)
+// cpuTeam.back.push(mage)
 // let zom = new UnitTemplate.LIB.HERO({ soulsArr: ['MOZART', 'JACO'], itemsArr: ['SPELLSWORD', 'PARRYKNIFE', 'BALANCESYM'] }, gameObj)
 // cpuTeam.front.push(zom)
 let crazyObj = { soulsArr: [], itemsArr: [] }
@@ -272,7 +278,9 @@ shuffle(itemList)
 crazyObj.itemsArr = itemList.slice(0, 6)
 let crazy = new UnitTemplate.LIB.HERO(crazyObj, gameObj)
 if (crazy.pos !== Unit.POS.FRONT) { crazy.pos = Unit.POS.BACK }
-crazy.pos === Unit.POS.FRONT ? cpuTeam.front.push(crazy) : cpuTeam.back.push(crazy)
+cpuTeam.deploy(crazy)
+console.log(crazy.getScalingMatrix)
+// crazy.pos === Unit.POS.FRONT ? cpuTeam.front.push(crazy) : cpuTeam.back.push(crazy)
 // cpuTeam.front.push(crazy)
 
 export { cpuTeam, playerTeam }

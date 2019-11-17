@@ -101,6 +101,23 @@ class Team {
   set SP (val) { this.SPSpent = this.SPTotal - val }
   get SP () { return this.SPTotal - this.SPSpent }
 
+  deploy = function (unit) {
+    let deployed = this.all.some((deployedUnit) => deployedUnit.id === unit.id)
+
+    if (!deployed) {
+      this[unit.pos].push(unit)
+    //   if (unit.pos === Unit.POS.FRONT) {
+    //     this.front.push(unit)
+    //   } else if (unit.pos === Unit.POS.BACK) {
+    //     this.back.push(unit)
+    //   } else if (unit.pos === Unit.POS.DEAD) {
+    //     this.dead.push(unit)
+    //   } else {
+    //     this.bench.push(unit)
+    //   }
+    }
+  }
+
   constructor (side) {
     this.side = side
 
@@ -186,6 +203,7 @@ class Unit {
   get statBonuses () { return StatMods.getStatBonuses.call(this) }
   get statConversions () { return StatMods.getStatConversions.call(this) }
   get statReplacements () { return StatMods.getStatReplacements.call(this) }
+  get getScalingMatrix () { return StatMods.getScalingMatrix.call(this) }
 
   applyChange (...params) { StatSmart.applyChange.call(this, ...params) }
   //
@@ -272,15 +290,7 @@ class Unit {
         new Action.LIB.RANGED(thisUnit),
         new Action.LIB.MOVE(thisUnit),
         new Action.LIB.GUARD(thisUnit),
-        new Action.LIB.RUN(thisUnit) // ,
-        // new Action.LIB.SMOKEBOMB(thisUnit),
-        // new Action.LIB.MANAPOT(thisUnit),
-        // new Action.LIB.HEALTHPOT(thisUnit)
-        // new Action.LIB.DERP(thisUnit)
-        // { name: 'melee', type: 'major', desc: 'Basic malee attack. Must target front row if possible.' },
-        // { name: 'ranged', type: 'major', desc: 'Basic ranged attack. Can target back row UNLESS a unit in the front row has GUARD activated.' },
-        // { name: 'guard', type: 'minor', desc: 'Doubles DRED, and prevents back row from being attacked by ranged attacks.  Deactived upon taking a hit or performing another action.' },
-        // { name: 'run', type: 'minor', desc: 'Run away!' }
+        new Action.LIB.RUN(thisUnit)
       ],
       statuses: [],
       hasAction: { major: true, minor: true },
@@ -299,9 +309,6 @@ class Unit {
     }
     this.id = Unit.id
     this.resourceManager = new ResourceManager(this)
-    // if (this.side === Unit.SIDE.PLAYER) {
-    //   playerTeam.front.push(this)
-    // } else { cpuTeam.front.push(this) }
   }
 }
 /// ^ end of class ^ ///

@@ -72,11 +72,6 @@ class UnitTemplate {
 
   constructor (objPassed = {}, gameObj = {}) {
     let obj = objPassed
-    //
-    // passed.templ = {
-    //  baseStats: { HP: { ... }, MP: { ... }, ... },
-    //  statWeights: { HP, MP, ... }
-    // }
 
     let templ = UnitTemplate.jaq(gameObj)
     if (!hasProp(templ, 'passives')) { templ.passives = [] }
@@ -93,37 +88,25 @@ class UnitTemplate {
     templ.name = obj.name
     templ.NAME = obj.NAME
     templ.desc = obj.desc
-    //   if (hasProp(templ, propName)) {
-    //     templ[propName] = obj.templ[propName]
-    //   } else { alert('Item constructor: Missing prop', propName) }
-    // }
+    templ.pos = obj.templ.pos
+    templ.side = hasProp(obj, 'templ.side') ? obj.templ.side : Unit.SIDE.CPU
 
-    let unit = new CPUUnit(gameObj, templ)
+    // let unit = new CPUUnit(gameObj, templ)
+    let unit = templ.side === Unit.SIDE.PLAYER ? new Unit(gameObj, templ) : new CPUUnit(gameObj, templ)
 
     unit.statWeights = templ.statWeights
-    // UnitTemplate.removeByNAME(unit.actions, 'RANGED')
-    // UnitTemplate.removeByNAME(unit.actions, 'RUN')
-    // UnitTemplate.removeByNAME(unit.actions, 'MOVE')
-    unit.actions = []
-    // if (hasProp(templ, 'actions')) {
-    //   templ.actions.forEach((actionStr) => unit.actions.push(new Action.LIB[actionStr](unit)))
-    // }
+    if (unit.side === Unit.SIDE.CPU) { unit.actions = [] }
     obj.templ.actions.forEach((actionStr) => unit.actions.push(new Action.LIB[actionStr](unit)))
     obj.templ.passives.forEach((status) => unit.statuses.push(new Status.LIB[status.NAME]()))
     obj.templ.souls.forEach((soulStr) => unit.souls.push(new Soul.LIB[soulStr]()))
     obj.templ.items.forEach((itemStr) => {
       let item = new Item.LIB[itemStr]()
       item.equipTo(unit)
-      // unit.items.push(new Item.LIB[itemStr](unit))
     })
+    UnitTemplate.removeDuplicates(unit.actions)
 
-    unit.pos = obj.pos
-    // unit.pos = hasProp(obj, 'pos') ? obj.pos : ['BACK']
     unit.roles = hasProp(obj, 'roles') ? obj.roles : ['KNIGHT']
-    unit.raiseAll()
-    //
-    // cpuTeam.front.push(unit)
-    //
+    if (unit.side === Unit.SIDE.CPU) { unit.raiseAll() }
     unit.baseStats.HP.current = unit.baseStats.HP.max
     unit.baseStats.MP.current = unit.baseStats.MP.max
     console.log(unit)

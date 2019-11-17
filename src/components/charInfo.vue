@@ -1,27 +1,9 @@
 <template>
   <div>
     <h4 class="row justify-center">Unit info</h4>
-    <!-- <div class="row justify-center">
-      <div class="justify-center">
-        <q-btn @click="toggleVerbose" color="blue">Verbose</q-btn>
-      </div>
-    </div> -->
-    <!-- <div class="justify-center">
-      <div class="q-pa-md flex flex-center">
-        <q-pagination
-        v-model="selector.currentLogPage"
-        :max="pages"
-        :maxPages="5"
-        :direction-links="true"
-        :boundary-numbers="true"
-        :boundary-links="true"
-        >
-        </q-pagination>
-      </div>
-    </div> -->
     <div class="row">
-      <div class="col-1"></div>
-      <div class="col-10">
+      <div class="col-2"></div>
+      <div class="col-8">
         <q-card class="q-gutter-md bg-blue-grey-8">
           <q-card-section>
             <div class="row text-h4 q-pa-sm justify-center items-center">
@@ -42,11 +24,11 @@
           </q-card-section>
         </q-card>
       </div>
-      <div class="col-1"></div>
+      <div class="col-2"></div>
     </div>
     <div class="row">
-      <div class="col-1"></div>
-      <div class="col-10">
+      <div class="col-2"></div>
+      <div class="col-8">
         <!-- <q-separator inset></q-separator> -->
         <q-card class="q-gutter-md bg-teal-9">
           <q-card-section>
@@ -69,7 +51,7 @@
           </q-card-section>
         </q-card>
       </div>
-      <div class="col-1"></div>
+      <div class="col-2"></div>
     </div>
     <unitInfo v-if="selector.stateData.inspectUnit.name"
     :selector="selector"

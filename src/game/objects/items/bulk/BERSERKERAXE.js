@@ -25,7 +25,7 @@ class BERSERKERAXE {
         {
           statName: 'DREF',
           value: function (unit) {
-            return unit.convertedStatValues.MELEE + 0.05 * unit.baseStats.HP.current
+            return unit.convertedStatValues.DREF + 0.05 * unit.baseStats.HP.current
             // return unit.convertedStatValues.MELEE + Math.min(0.1 * unit.baseStats.HP.current, 2 * unit.convertedStatValues.DRED)
           }
         }

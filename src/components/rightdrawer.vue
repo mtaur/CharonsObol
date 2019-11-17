@@ -4,50 +4,11 @@
     v-model="visible"
     bordered
     content-class="bg-grey-2"
-    :width="350"
+    :width="450"
     :breakpoint="0"
   >
     <battleLog v-if="page==='log'" :selector="selector"></battleLog>
     <charInfo v-if="page==='charInfo'" :selector="selector"></charInfo>
-    <!-- <h4 class="row justify-center">Battle log</h4>
-    <div class="row justify-center">
-      <div class="justify-center">
-        <q-btn @click="toggleVerbose" color="blue">Verbose</q-btn>
-      </div>
-    </div>
-    <div class="justify-center">
-      <div class="q-pa-md flex flex-center">
-        <q-pagination
-        v-model="selector.currentLogPage"
-        :max="pages"
-        :maxPages="5"
-        :direction-links="true"
-        :boundary-numbers="true"
-        :boundary-links="true"
-        >
-        </q-pagination>
-      </div>
-    </div>
-    <div class="row text-h4 q-pa-sm justify-center items-center">
-      <div class="text-amber-9">
-        Round {{ selector.currentLogPage }}
-      </div>
-    </div>
-    <q-separator inset></q-separator>
-    <div class="row justify-center items-center"
-    v-for="item in thisRound" :key="item.id">
-      <div class="col-1"></div>
-      <div class="col-10">
-        <div v-if="show(item.type)" :style="actionStyle(item.type)">
-          {{ item.text }}
-        </div>
-      </div>
-      <div class="col-1"></div>
-    </div> -->
-    <!-- <unitdetail v-for="unit in activeUnit"
-      :unit="unit"
-      :key="unit.name">
-    </unitdetail> -->
   </q-drawer>
 </template>
 

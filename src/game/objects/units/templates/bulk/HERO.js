@@ -8,9 +8,10 @@ class HERO {
   static NAME = 'HERO'
   static filename = 'HERO'
 
-  constructor (unitObj = { soulsArr: [], itemsArr: [] }, gameObj) {
+  constructor (unitObj = { soulsArr: [], itemsArr: [], side: Unit.SIDE.CPU }, gameObj) {
     let soulsArr = hasProp(unitObj, 'soulsArr') ? unitObj.soulsArr : []
     let itemsArr = hasProp(unitObj, 'itemsArr') ? unitObj.itemsArr : []
+    let side = hasProp(unitObj, 'side') ? unitObj.side : Unit.SIDE.CPU
     // from Stat.js:
     // static template = {
     //   name: '',
@@ -98,7 +99,11 @@ class HERO {
     let actions = []
     let passives = []
     souls.forEach((soul) => {
-      soul.AISkills.forEach((skillName) => actions.push(skillName))
+      if (side === Unit.SIDE.CPU) {
+        soul.AISkills.forEach((skillName) => actions.push(skillName))
+      } else {
+        soul.skills.forEach((skillName) => actions.push(skillName))
+      }
       if (hasProp(soul, 'passives')) {
         soul.passives.forEach((passiveStr) => { passives.push(passiveStr) })
       }
@@ -131,6 +136,7 @@ class HERO {
         passives: passives,
         roles: roles,
         souls: soulsArr,
+        side: side,
         pos: souls[0].AIRow === 'front' ? Unit.POS.FRONT : Unit.POS.BACK,
         items: itemsArr
       }

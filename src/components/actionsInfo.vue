@@ -133,7 +133,9 @@ export default {
     sortedActions () {
       let val = (action) => { return action.type === 'minor' ? 1 : action.type === 'major' ? 2 : action.type === 'both' ? 3 : 9001 }
       let sortBy = (act1, act2) => { return val(act1) - val(act2) }
-      return this.unit.actions.slice().sort(sortBy).filter((action) => action.NAME !== 'RESTMINOR' && action.NAME !== 'RESTMAJOR')
+      return this.unit.actions.slice().sort(sortBy)
+        .filter((action) => action.NAME !== 'RESTMINOR' && action.NAME !== 'RESTMAJOR')
+        .filter((action) => !action.isConsumable)
     }
   }
 }

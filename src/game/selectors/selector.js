@@ -35,6 +35,7 @@ class Selector {
   // Targetting details?
   stateData = {
     inspectUnit: {},
+    infoPage: 'souls',
     activeUnit: {},
     activeSkill: {}
     // skill = {}
@@ -44,7 +45,11 @@ class Selector {
 
   resetData () {
     this.stateData = {
-      inspectUnit: {},
+      // do not reset infoPage or inspection.  Persist between turns.
+      inspectUnit: this.stateData.inspectUnit,
+      infoPage: this.stateData.infoPage,
+      // inspectUnit: {},
+      // infoPage: 'souls',
       activeUnit: {},
       activeSkill: {}
     }

@@ -3,16 +3,6 @@
     <div class="q-pa-xs">
       <q-img v-if="unit.souls.length > 0" :src="getImg(unit.souls[0])"/>
       <q-img v-else :src="'statics/gameIcons/souls/CAENEN.png'"/>
-      <!-- <q-img
-      src="wharrgarbl"
-      :ratio="1"
-      >
-        <template v-slot:error>
-          <div class="text-caption absolute-full flex flex-center bg-pink-9 text-white items-center justify-center">
-            (unit image)
-          </div>
-        </template>
-      </q-img> -->
       <q-tooltip anchor="center left" self="center right" content-class="bg-teal-6" max-width="20vw">
           <span style="font-size: 14px">
             <div class="text-h6">
@@ -25,8 +15,6 @@
 </template>
 
 <script>
-// import { openURL } from 'quasar'
-// import unitdetail from 'src/components/unitdetail'
 
 export default {
   name: 'battleLog',
