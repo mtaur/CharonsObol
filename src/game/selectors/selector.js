@@ -19,7 +19,7 @@ class Selector {
   showConsumables = false
   showStats = false
   showAbilities = true
-  promptIsVerbose = true
+  promptIsVerbose = false // true
   // verbosePrompt = true
   prompt = 'Click some things!'
   promptVerbose = 'Click some things! Prompt is in verbose mode.'

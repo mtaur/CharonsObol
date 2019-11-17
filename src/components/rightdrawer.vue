@@ -7,8 +7,10 @@
     :width="page === 'charInfo' ? 500 : 350"
     :breakpoint="0"
   >
-    <battleLog v-if="page==='log'" :selector="selector"></battleLog>
-    <charInfo v-if="page==='charInfo'" :selector="selector"></charInfo>
+    <q-scroll-area class="fit">
+      <battleLog v-if="page==='log'" :selector="selector"></battleLog>
+      <charInfo v-if="page==='charInfo'" :selector="selector"></charInfo>
+    </q-scroll-area>
   </q-drawer>
 </template>
 

@@ -18,44 +18,7 @@
       {{ unit.name }}
     </div>
     <div v-if="page === 'souls'">
-      <div class="q-pa-xs">
-        <q-table
-          title="Stat multipliers"
-          dense
-          :data="statMulData"
-          :columns="statMulColumns"
-          row-key="name"
-          table-style="max-height: 400px"
-          :pagination.sync="pagination"
-          :rows-per-page-options="[0]"
-          hide-bottom>
-          <template v-slot:header="props">
-            <q-th
-              v-for="col in props.cols"
-              :key="col.name"
-              :props="props"
-              style="font-size: 11px"
-              class="q-pa-none q-gutter-xs"
-            >
-              {{ col.label }}
-            </q-th>
-          </template>
-          <template v-slot:body-cell="props">
-            <q-td :props='props' class="q-pa-none q-gutter-xs" :style="getEntryStyle(props)">
-              {{ props.value }}
-            </q-td>
-          </template>
-        </q-table>
-      </div>
-      <!-- <div class="q-pa-md">
-        <q-table
-          title="Treats"
-          dense
-          :data="data"
-          :columns="columns"
-          row-key="name"
-        />
-      </div> -->
+      <soulTable :unit="unit" :selector="selector"></soulTable>
       <div class="justify-center text-center text-h5 q-pa-sm">
         Souls
       </div>
@@ -68,22 +31,21 @@
           <div class="text-h5 ">
             {{ soul.name }}
           </div>
-          <!-- <div class="text-body1"> -->
-          <!-- <div class="text-caption"> -->
           <div class="text-body2">
             {{ soul.desc }}
           </div>
-          <div class="text-h6">
+          <!-- <div class="text-h6">
             Stat multipliers:
-          </div>
-          <div class="text-body1" v-for="mult in soul.converts" :key="mult.from + mult.to">
+          </div> -->
+          <soulTable :unit="virtualHero(soul)"></soulTable>
+          <!-- <div class="text-body1" v-for="mult in soul.converts" :key="mult.from + mult.to">
             <div v-if="mult.from === mult.to">
               <span class="text-color-amber-4">{{ mult.value * 100 }}%</span> base {{ mult.from }} modifier
             </div>
             <div v-else>
               <span class="text-color-amber-4">{{ mult.value * 100 }}%</span> of {{ mult.from }} added to {{ mult.to }}
             </div>
-          </div>
+          </div> -->
         </q-card>
         <!-- <q-separator inset></q-separator> -->
       </div>
@@ -106,9 +68,6 @@
           {{ item.desc }}
         </div>
       </div>
-      <!-- <div class="col-4">
-        <q-btn color="teal" glossy label="Items"></q-btn>
-      </div> -->
     </div>
     <div v-if="page === 'actions'">
       <actionsInfo :unit="unit" :selector="selector"></actionsInfo>
@@ -119,8 +78,10 @@
 <script>
 // import { openURL } from 'quasar'
 // import unitdetail from 'src/components/unitdetail'
-import { Stat } from 'src/game/objects/units/Stat.js'
+// import { Stat } from 'src/game/objects/units/Stat.js'
+import { UnitTemplate } from 'src/game/objects/units/templates/UnitTemplate.js'
 import actionsInfo from './actionsInfo'
+import soulTable from './soulTable'
 
 export default {
   name: 'unitInfo',
@@ -135,92 +96,91 @@ export default {
   computed: {
     page () {
       return this.selector.stateData.infoPage
-    },
-    statMulColumns () {
-      let cols = [
-        {
-          name: 'name',
-          required: true,
-          label: 'from/to',
-          align: 'left',
-          field: row => row.name,
-          format: val => `${val}`,
-          sortable: false // true
-        }
-      ]
-      for (let toStatName in Stat.LIB) {
-        let entry = {
-          name: toStatName,
-          align: 'center',
-          label: toStatName,
-          field: toStatName,
-          sortable: false // true
-        }
-        cols.push(entry)
-      }
-      return cols
-    },
-    statMulData () {
-      let rows = []
-      for (let fromStatName in Stat.LIB) {
-        let row = {}
-        row.name = fromStatName
-        for (let toStatName in Stat.LIB) {
-          let matrix = this.unit.getScalingMatrix.scalingMatrixFinal
-          // let matrix = this.unit.getScalingMatrix.scalingMatrixWeightedFinal
-          let val = matrix.filter((item) => item.from === fromStatName && item.to === toStatName)[0].value
-          row[toStatName] = Math.round(val * 100) / 100
-        }
-        rows.push(row)
-      }
-      return rows
     }
+    // statMulColumns () {
+    //   let cols = [
+    //     {
+    //       name: 'name',
+    //       required: true,
+    //       label: 'from/to',
+    //       align: 'left',
+    //       field: row => row.name,
+    //       format: val => `${val}`,
+    //       sortable: false // true
+    //     }
+    //   ]
+    //   for (let toStatName in Stat.LIB) {
+    //     let entry = {
+    //       name: toStatName,
+    //       align: 'center',
+    //       label: toStatName,
+    //       field: toStatName,
+    //       sortable: false // true
+    //     }
+    //     cols.push(entry)
+    //   }
+    //   return cols
+    // },
+    // statMulData () {
+    //   let rows = []
+    //   for (let fromStatName in Stat.LIB) {
+    //     let row = {}
+    //     row.name = fromStatName
+    //     for (let toStatName in Stat.LIB) {
+    //       let matrix = this.unit.getScalingMatrix.scalingMatrixFinal
+    //       // let matrix = this.unit.getScalingMatrix.scalingMatrixWeightedFinal
+    //       let val = matrix.filter((item) => item.from === fromStatName && item.to === toStatName)[0].value
+    //       row[toStatName] = Math.round(val * 100) / 100
+    //     }
+    //     rows.push(row)
+    //   }
+    //   return rows
+    // }
   },
   methods: {
-    getEntryStyle (props) {
-      let style = {}
-      let stylingMatrix = this.unit.getScalingMatrix.scalingMatrixWeightedFinal
-      let compareVal = props.col.name === 'name' || props.row.name === 'name' ? 0 : stylingMatrix.filter(
-        (entry) => {
-          return entry.from === props.row.name && entry.to === props.col.name
-        })[0].value
-
-      style.fontWeight = 'bold'
-      style.fontSize = '11px' // props.col.name === props.row.name ? '12px' : '8px'
-      style.backgroundColor = props.col.name === props.row.name ? '#cef' : '#abc'
-      if (props.col.name === 'name') { style.backgroundColor = 'white' }
-      if (props.col.name === props.row.name) {
-        if (props.value >= 1.1) { style.color = 'green' }
-        if (props.value < 1 && props.value >= 0.8) { style.color = 'orange' }
-        if (props.value < 0.8) {
-          style.color = 'red'
-          style.fontSize = '12px'
-        }
-      } else {
-        // if (props.value >= 0.1) {
-        if (compareVal >= 0.1) {
-          style.color = 'green'
-          style.fontSize = '12px'
-        }
-        // if (props.value < -0.1 && props.value >= -0.25) { style.color = 'orange' }
-        // if (props.value < -0.25) {
-        if (compareVal < -0.1 && compareVal >= -0.25) { style.color = 'orange' }
-        if (compareVal < -0.25) {
-          style.color = 'red'
-          style.fontSize = '12px'
-        }
-      }
-      return style
-      // if (props.col.name === props.row.name) {
-      // if (props.col.name === props.row.name) {
-      //   return { fontSize: '10px', fontWeight: 'bold' }
-      // } else {
-      //   return { fontSize: '8px', fontWeight: 'bold' }
-      // }
+    virtualHero (soul) {
+      console.log([soul])
+      return new UnitTemplate.LIB.HERO({ soulsArr: [soul.NAME] }, this.selector.game)
     }
+    // getEntryStyle (props) {
+    //   let style = {}
+    //   let stylingMatrix = this.unit.getScalingMatrix.scalingMatrixWeightedFinal
+    //   let compareVal = props.col.name === 'name' || props.row.name === 'name' ? 0 : stylingMatrix.filter(
+    //     (entry) => {
+    //       return entry.from === props.row.name && entry.to === props.col.name
+    //     })[0].value
+    //
+    //   style.fontWeight = 'bold'
+    //   style.fontSize = '11px' // props.col.name === props.row.name ? '12px' : '8px'
+    //   style.backgroundColor = props.col.name === props.row.name ? '#cef' : '#abc'
+    //   if (props.col.name === 'name') { style.backgroundColor = 'white' }
+    //   if (props.col.name === props.row.name) {
+    //     if (props.value >= 1.1) { style.color = 'green' }
+    //     if (props.value < 1 && props.value >= 0.8) { style.color = 'orange' }
+    //     if (props.value < 0.8) {
+    //       style.color = 'red'
+    //       style.fontSize = '12px'
+    //     }
+    //   } else {
+    //     // if (props.value >= 0.1) {
+    //     if (compareVal >= 0.1) {
+    //       style.color = 'green'
+    //       style.fontSize = '12px'
+    //     }
+    //     // if (props.value < -0.1 && props.value >= -0.25) { style.color = 'orange' }
+    //     // if (props.value < -0.25) {
+    //     if (compareVal < -0.1 && compareVal >= -0.25) { style.color = 'orange' }
+    //     if (compareVal < -0.25) {
+    //       style.color = 'red'
+    //       style.fontSize = '12px'
+    //     }
+    //   }
+    //   return style
+    // }
   },
   components: {
-    actionsInfo
+    actionsInfo,
+    soulTable
     // smallUnit
     // unitdetail
   }
