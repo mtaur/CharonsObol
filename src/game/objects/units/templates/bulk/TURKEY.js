@@ -2,9 +2,9 @@
 import { UnitTemplate } from '../UnitTemplate.js'
 import { Unit } from '../../Unit.js'
 
-class KNIGHT {
-  static NAME = 'KNIGHT'
-  static filename = 'KNIGHT'
+class TURKEY {
+  static NAME = 'TURKEY'
+  static filename = 'TURKEY'
 
   constructor (gameObj) {
     // from Stat.js:
@@ -25,24 +25,43 @@ class KNIGHT {
     // templ.baseStats.MAGIC.benScale = 3 // 4
 
     return new UnitTemplate({
-      NAME: 'KNIGHT',
-      name: 'Knight of Caenenfoeder',
+      NAME: 'TURKEY',
+      name: 'Chaos Turkey',
       // cost: 8,
-      desc: 'Take those hits!',
+      desc: 'This bird has a death wish.',
       templ: {
         baseStats: {
           HP: {
-            benScale: 15, // 10,
-            start: 60 // 40
+            benScale: 0, // 15, // 10,
+            start: 100 // 40
+          },
+          MP: {
+            benScale: 0,
+            start: 6
           },
           MELEE: {
-            benScale: 4 // 3
+            benScale: 0, // 3
+            start: 30
           },
           RANGED: {
-            benScale: 4 // 3
+            benScale: 0, // 3
+            start: 15
           },
           MAGIC: {
-            benScale: 4 // 3
+            benScale: 0, // 3
+            start: 15
+          },
+          INIT: {
+            benScale: 0,
+            start: 8
+          },
+          DRED: {
+            benScale: 0,
+            start: 0
+          },
+          DREF: {
+            benScale: 0,
+            start: 8
           }
         },
         statWeights: {
@@ -55,19 +74,19 @@ class KNIGHT {
           DRED: 2, // 3,
           DREF: 2 // 3
         },
-        actions: ['MELEE', 'GUARD', 'MOVEFRONT', 'YOLOSTRIKE'],
+        actions: ['PECK', 'SCRATCH', 'WARBLE'],
         passives: [],
         roles: ['KNIGHT'],
         souls: [],
         pos: Unit.POS.FRONT,
-        items: ['GLADIUS']
+        items: []
       }
     }, gameObj)
   }
 }
 
 var obj = {
-  filename: 'KNIGHT',
-  exprt: KNIGHT
+  filename: 'TURKEY',
+  exprt: TURKEY
 }
 export default obj

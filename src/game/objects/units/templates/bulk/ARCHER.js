@@ -50,6 +50,7 @@ class ARCHER {
           MP: 1,
           INIT: 2,
           MELEE: 0,
+          MAGIC: 0,
           RANGED: 8,
           DRED: 2,
           DREF: 0
@@ -59,7 +60,7 @@ class ARCHER {
         roles: ['ARCHER'],
         souls: [],
         pos: Unit.POS.BACK,
-        items: []
+        items: ['BOW']
       }
     }, gameObj)
   }

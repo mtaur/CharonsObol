@@ -155,7 +155,10 @@ export default {
         }
       }
       arr = arr.filter((entry) => { return entry.value !== 0 })
-      arr[arr.length - 1].isLast = true
+      // console.log(arr.length)
+      if (arr.length > 0) {
+        arr[arr.length - 1].isLast = true
+      }
       return arr
     }
   },

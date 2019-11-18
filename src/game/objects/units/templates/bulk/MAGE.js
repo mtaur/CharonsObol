@@ -35,6 +35,9 @@ class MAGE {
             benScale: 15, // 10,
             start: 60 // 40
           },
+          MP: {
+            start: 2
+          },
           MELEE: {
             benScale: 4 // 3
           },
@@ -60,7 +63,7 @@ class MAGE {
         roles: ['MAGE'],
         souls: [],
         pos: Unit.POS.BACK,
-        items: []
+        items: ['BLUERING']
       }
     }, gameObj)
   }
