@@ -12,9 +12,10 @@ class GUARD {
       // filename: 'GUARD',
       name: 'Guard',
       type: 'minor',
-      desc: `Doubles DRED and takes target priority for Ranged and Melee ` +
-        `attacks. Deactived upon dealing or receiving damage. `,
-      targetRules: ['SELF'],
+      desc: `Sets GUARD status for this unit. +100% DRED and DREF base scaling. ` +
+        `Unit takes target priority for Ranged and Melee ` +
+        `attacks. Deactived upon dealing or receiving damage.`,
+      targetRules: ['GUARD'],
       effects: [
         {
           NAME: 'GUARD',

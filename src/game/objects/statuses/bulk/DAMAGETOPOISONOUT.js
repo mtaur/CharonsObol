@@ -43,10 +43,12 @@ class DAMAGETOPOISONOUT {
 
     let converttopoison = function (unit, trigger, data) {
       let amount = data.amount
+      // let amount = data.actualAmount
+      let preventAmount = data.actualAmount
       let target = data.target
       let caster = data.caster
 
-      target.baseStats.HP.current += amount
+      target.baseStats.HP.current += preventAmount
       // apply -1 * amount as HEALTHOVERTIME...
       // let poison = new Status.LIB.HEALTHOVERTIME({ flat: -1 * amount, virulence: this.virulence }, target, caster)
       let poison = new Status.LIB.HEALTHOVERTIME(
@@ -93,6 +95,8 @@ class DAMAGETOPOISONOUT {
       let newData = {
         type: 'damagetopoison',
         amount: data.amount,
+        // amount: data.actualAmount,
+        preventAmount: data.actualAmount,
         caster: data.caster,
         target: data.target
       }

@@ -282,7 +282,8 @@ class StatMods {
       let item = items[index]
       replacementHolders.push(item)
     }
-    for (let status in statuses) {
+    for (let index in statuses) {
+      let status = statuses[index]
       replacementHolders.push(status)
     }
     // for (let soul in souls) {

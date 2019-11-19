@@ -2,9 +2,9 @@
 import { UnitTemplate } from '../UnitTemplate.js'
 import { Unit } from '../../Unit.js'
 
-class ARCHER {
-  static NAME = 'ARCHER'
-  static filename = 'ARCHER'
+class ARBALESTIER {
+  static NAME = 'ARBALESTIER'
+  static filename = 'ARBALESTIER'
 
   constructor (gameObj) {
     // from Stat.js:
@@ -25,10 +25,10 @@ class ARCHER {
     // templ.baseStats.MAGIC.benScale = 3 // 4
 
     return new UnitTemplate({
-      NAME: 'ARCHER',
-      name: 'Archer of Caenenfoeder',
+      NAME: 'ARBALESTIER',
+      name: 'Arbalestier of Caenenfoeder',
       // cost: 8,
-      desc: 'Pew pew pew!',
+      desc: 'Crank, crank, PCHOW!!!',
       templ: {
         baseStats: {
           HP: {
@@ -60,15 +60,15 @@ class ARCHER {
         roles: ['ARCHER'],
         souls: [],
         pos: Unit.POS.BACK,
-        items: ['BOW']
-        // items: ['ARBALEST']
+        // items: ['BOW']
+        items: ['ARBALEST']
       }
     }, gameObj)
   }
 }
 
 var obj = {
-  filename: 'ARCHER',
-  exprt: ARCHER
+  filename: 'ARBALESTIER',
+  exprt: ARBALESTIER
 }
 export default obj

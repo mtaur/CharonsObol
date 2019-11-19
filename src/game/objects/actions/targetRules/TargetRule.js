@@ -88,6 +88,26 @@ class TargetRule {
       return false
       // return unit.statuses.indexOf('guard') > -1
     },
+    arcaneSight: function (unit) {
+      for (let index in unit.statuses) {
+        let status = unit.statuses[index]
+        if (status.name === 'arcaneSight') {
+          return true
+        }
+      }
+      return false
+      // return unit.statuses.indexOf('guard') > -1
+    },
+    crank: function (unit) {
+      for (let index in unit.statuses) {
+        let status = unit.statuses[index]
+        if (status.name === 'crank') {
+          return true
+        }
+      }
+      return false
+      // return unit.statuses.indexOf('guard') > -1
+    },
     hasSecondCover: function (unit) {
       if (unit.pos === Unit.POS.FRONT) { return false }
       for (let index in unit.statuses) {

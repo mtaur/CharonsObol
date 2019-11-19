@@ -80,10 +80,27 @@ class Status {
           console.log('Should fire status update...', this)
           // console.log('should clear something...')
           // let logItem = this.effects[effectIndx].getLogItem(unit, trigger, actionType, this, selector)
-          let logItem = this.effects[effectIndx].getLogItem(unit, trigger, action, this, selector)
+          //
+          // old!
+          // let logItem = this.effects[effectIndx].getLogItem(unit, trigger, action, this, selector)
+          // console.log(selector.log)
+          // selector.log.push(logItem)
+          // console.log('logItem', logItem)
+          // console.log('cond', cond)
+          // // this.effects[effectIndx].update(unit, trigger, actionType, this.effects[effectIndx])
+          // this.effects[effectIndx].update(unit, trigger, action, this.effects[effectIndx])
+          //
+          //
+          let logItems = this.effects[effectIndx].getLogItem(unit, trigger, action, this, selector)
+          for (let index in logItems.log) {
+            let logItem = logItems.log[index]
+            logItem.round = selector.roundNum
+            selector.logID++
+            logItem.id = selector.logID
+            selector.log.push(logItem)
+            console.log('logItem', logItem)
+          }
           console.log(selector.log)
-          selector.log.push(logItem)
-          console.log('logItem', logItem)
           console.log('cond', cond)
           // this.effects[effectIndx].update(unit, trigger, actionType, this.effects[effectIndx])
           this.effects[effectIndx].update(unit, trigger, action, this.effects[effectIndx])

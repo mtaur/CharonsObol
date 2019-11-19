@@ -31,8 +31,8 @@ class STORMCLOUD {
           scale: {
             MAGIC: 0.5 / (j + 1)
           },
-          DREDScale: 0.5 / (j + 1),
-          DREFScale: 0.5 / (j + 1)
+          DREDScale: 0.65 / (j + 1),
+          DREFScale: 0.65 / (j + 1)
         })
       }
       return {
@@ -56,8 +56,8 @@ class STORMCLOUD {
       name: 'Stormcloud',
       type: 'major',
       desc: 'Gathering storm clouds apply stacking 10% base MAGIC buff. Deals damage ' +
-        'to one RANDOM enemy target per stack.  First deals 1x MAGIC/2, then (1/2)x MAGIC/2, then ' +
-        '(1/3)x MAGIC/2, etc.',
+        'to one RANDOM enemy target per stack.  First deals 1x (0.65 x MAGIC), then (1/2)x (0.65 x MAGIC), then ' +
+        '(1/3)x (0.65 x MAGIC), etc.',
       cost: 1,
       targetRules: computeProps(unit).targRules,
       effects: computeProps(unit).effects,

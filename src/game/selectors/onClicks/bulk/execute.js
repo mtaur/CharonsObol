@@ -104,7 +104,16 @@ var execute = function (selector, unit) {
   //     }
   //   }
   // }
+  // caster.statuses.forEach
   caster.statuses.forEach((status) => status.triggerCheck(caster, 'ENDTURN', skill, selector))
+  // after.summary.log.forEach(
+  //   (item) => {
+  //     item.round = selector.roundNum
+  //     selector.logID++
+  //     item.id = selector.logID
+  //     selector.log.push(item)
+  //   }
+  // )
 
   selector.stateData.activeUnit = {}
   selector.stateData.activeSkill = {}

@@ -52,6 +52,7 @@ function DAMAGE (effectObj = {}, target = {}, caster = {}) {
     amount -= target.effectiveStatValues.DRED * effectObj.DREDScale
     amount = Math.floor(amount)
     amount = Math.max(amount, 0)
+    let actualAmount = Math.min(amount, target.baseStats.HP.current)
     let dred = Math.floor(rawFloat) - amount
     let dref = Math.floor(effectObj.DREFScale * target.effectiveStatValues.DREF)
     let data = {
@@ -59,6 +60,7 @@ function DAMAGE (effectObj = {}, target = {}, caster = {}) {
       dred: dred,
       dref: dref,
       amount: amount,
+      actualAmount: actualAmount, // ONLY recover this much health if convert-to-poison!
       caster: caster,
       target: target
     }
@@ -67,6 +69,7 @@ function DAMAGE (effectObj = {}, target = {}, caster = {}) {
         text: `${caster.name} damaged ${target.name} for ${amount} HP.`,
         type: 'damage',
         value: amount,
+        actualAmount: actualAmount,
         caster: caster,
         target: target
       },
@@ -85,14 +88,14 @@ function DAMAGE (effectObj = {}, target = {}, caster = {}) {
         target: target
       }
     ]
-    if (data.amount >= target.HP) {
+    if (data.amount >= target.baseStats.HP.current && !target.statuses.some((status) => { return status.NAME === 'DAMAGETOPOISONIN' }) && !caster.statuses.some((status) => { return status.NAME === 'DAMAGETOPOISONOUT' })) {
       log.push({
         text: `${target.name} died...`,
         type: 'death',
         caster: target
       })
     }
-    if (data.dref >= caster.HP) {
+    if (data.dref >= caster.baseStats.HP.current) {
       log.push({
         text: `${caster.name} died...`,
         type: 'death',

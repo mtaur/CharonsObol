@@ -62,12 +62,12 @@ let heroAdd = function (obj) {
   // } else if (unit.pos === Unit.POS.BACK) {
   //   playerTeam.back.push(unit)
   // }
-  for (let soulIndx in unit.souls) {
-    let soul = unit.souls[soulIndx]
-    if (hasProp(soul, 'passives')) {
-      soul.passives.forEach((status) => unit.statuses.push(new Status.LIB[status.NAME]()))
-    }
-  }
+  // for (let soulIndx in unit.souls) {
+  //   let soul = unit.souls[soulIndx]
+  //   if (hasProp(soul, 'passives')) {
+  //     soul.passives.forEach((status) => unit.statuses.push(new Status.LIB[status.NAME]()))
+  //   }
+  // }
 }
 
 let heroMerge = function (unit, obj) {
@@ -169,6 +169,13 @@ let heroDat = [
     ]
   },
   {
+    soulStr: 'ANIMUS',
+    POS: 'BACK',
+    itemArr: [
+      'BOW', 'BLUERING', 'MAGICSTAFF'
+    ]
+  },
+  {
     soulStr: 'LYNN',
     POS: 'BACK',
     itemArr: [
@@ -193,7 +200,7 @@ let heroDat = [
     soulStr: 'THWIP',
     POS: 'BACK',
     itemArr: [
-      'PARRYKNIFE', 'BOW'
+      'ARBALEST' // 'BOW'
     ]
   },
   {
@@ -259,14 +266,6 @@ caenenArr.forEach((str) => {
   console.log(str)
   cpuTeam.deploy(new UnitTemplate.LIB[str](gameObj))
 })
-// let knight = new UnitTemplate.LIB.KNIGHT(gameObj)
-// cpuTeam.front.push(knight)
-// let archer = new UnitTemplate.LIB.ARCHER(gameObj)
-// cpuTeam.back.push(archer)
-// let mage = new UnitTemplate.LIB.MAGE(gameObj)
-// cpuTeam.back.push(mage)
-// let zom = new UnitTemplate.LIB.HERO({ soulsArr: ['MOZART', 'JACO'], itemsArr: ['SPELLSWORD', 'PARRYKNIFE', 'BALANCESYM'] }, gameObj)
-// cpuTeam.front.push(zom)
 let crazyObj = { soulsArr: [], itemsArr: [] }
 let dataArr = extras.slice(0, 4)
 dataArr.forEach((datum) => { crazyObj.soulsArr.push(datum.soulStr) })
@@ -279,8 +278,6 @@ crazyObj.itemsArr = itemList.slice(0, 6)
 let crazy = new UnitTemplate.LIB.HERO(crazyObj, gameObj)
 if (crazy.pos !== Unit.POS.FRONT) { crazy.pos = Unit.POS.BACK }
 cpuTeam.deploy(crazy)
-console.log(crazy.getScalingMatrix)
-// crazy.pos === Unit.POS.FRONT ? cpuTeam.front.push(crazy) : cpuTeam.back.push(crazy)
-// cpuTeam.front.push(crazy)
+// console.log(crazy.getScalingMatrix)
 
 export { cpuTeam, playerTeam }

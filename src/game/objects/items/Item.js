@@ -14,6 +14,7 @@ class Item {
   cost = 0
   tier = 'CHEAP' // common, fine, ???
   equip = [] // [ ['HEAD'], ['MAINHAND', 'OFFHAND'] ]
+  skills = [] // ['CRANK'] (ARBALEST)
 
   statBonus = { MELEE: 0 }
   converts = [] // [{ from: 'DRED', to: 'DREF', value: 1 }, ...]

@@ -92,7 +92,9 @@ class HEALTHOVERTIME {
       // tick *= actionType === 'minor' ? 1 : actionType === 'major' ? 2 : actionType === 'both' ? 3 : 0
       tick *= action.type === 'minor' ? 1 : action.type === 'major' ? 2 : action.type === 'both' ? 3 : 0
       tick = Math.ceil(tick)
-      let gainlose = tick >= 0 ? 'gained' : 'lost'
+      // let gainlose = tick >= 0 ? 'gained' : 'lost'
+      let gainlose = amount >= 0 ? 'gained' : 'lost'
+      let regentype = amount >= 0 ? 'regeneration' : 'poison'
 
       let data = {
         type: 'healthtick',
@@ -101,14 +103,14 @@ class HEALTHOVERTIME {
       }
       let log = [
         {
-          text: `${unit.name} ${gainlose} ${tick} HP.`,
+          text: `${unit.name} ${gainlose} ${tick} HP due to ${regentype}.`,
           type: 'damage',
           value: amount,
           caster: caster,
           target: target
         }
       ]
-      if (tick >= target.HP && gainlose === 'lost') {
+      if (tick >= target.baseStats.HP.current && gainlose === 'lost') {
         log.push({
           text: `${unit.name} died...`,
           type: 'death',

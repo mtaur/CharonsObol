@@ -1,5 +1,6 @@
 // import { Stat } from '../Stat.js'
 import { cloneDeep as clone } from 'lodash'
+import { Action } from '../../actions/Action.js'
 // import { cloneDeep as clone, hasIn as hasProp } from 'lodash'
 
 class StatSmart {
@@ -38,6 +39,8 @@ class StatSmart {
       item.unit = unit
     }
     this.applyChange(tryOn)
+    item.skills.forEach((actionStr) => { this.actions.push(new Action.LIB[actionStr](this)) })
+    // unit.actions.push(new Action.LIB[actionStr](unit))
   }
 
   static levelUp (statName) {
