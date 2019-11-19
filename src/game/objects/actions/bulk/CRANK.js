@@ -12,7 +12,7 @@ class CRANK {
       // filename: 'GUARD',
       name: 'Crank',
       type: 'both',
-      desc: `Crank the arbalest to get a 30% bonus to TOTAL RANGED stat.`,
+      desc: `Crank the arbalest to get a 75% bonus to TOTAL RANGED stat.`,
       // cost: 1,
       // useInitPoints: false,
       // useActionPoints: false,

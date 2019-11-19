@@ -10,7 +10,7 @@ class ARBALEST {
       NAME: 'ARBALEST',
       name: 'Arbalest',
       cost: 8,
-      desc: 'Crank it for +30% TOTAL RANGED stat! (Seller not liable for 30% initiative loss.)',
+      desc: 'Crank it for +75% TOTAL RANGED stat! (Seller not liable for 30% initiative loss.)',
       tier: 'fine',
       skills: ['CRANK'],
       converts: [

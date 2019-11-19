@@ -261,7 +261,7 @@ playerTeam.inventory.ENLIGHTENSCROLL = 1
 console.log('Clone JSON of CPU team:', cpuTeam.cloneJSON)
 console.log('Clone JSON of player team:', playerTeam.cloneJSON)
 
-let caenenArr = ['KNIGHT', 'ARCHER', 'MAGE', 'TURKEY']
+let caenenArr = ['KNIGHT', 'ARCHER', 'MAGE', 'TURKEY', 'ARBALESTIER']
 caenenArr.forEach((str) => {
   console.log(str)
   cpuTeam.deploy(new UnitTemplate.LIB[str](gameObj))
