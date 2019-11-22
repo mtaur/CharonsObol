@@ -9,7 +9,7 @@ class BALANCESYM {
     return new Item({
       NAME: 'BALANCESYM',
       name: 'Trendy balance symbol',
-      cost: 6,
+      cost: 5,
       desc: 'Use the average of MELEE, RANGED, and MAGIC in place of each stat whenever beneficial',
       tier: 'fine',
       // replacements[0] = { statName: 'MELEE', value: 0.5*(MELEE + MAGIC) }

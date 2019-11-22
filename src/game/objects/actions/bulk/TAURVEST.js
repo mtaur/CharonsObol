@@ -14,7 +14,7 @@ class TAURVEST {
       desc: 'Heal self for 0.5x (MAGIC + MELEE + RANGED) HP, and activate ' +
         `guard.`,
       cost: 1,
-      targetRules: ['SELF', 'SELF'],
+      targetRules: ['TAURVEST', 'TAURVEST'],
       effects: [
         {
           NAME: 'HEAL',

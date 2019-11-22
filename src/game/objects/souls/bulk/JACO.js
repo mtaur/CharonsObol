@@ -29,22 +29,22 @@ class Jaco {
         {
           from: 'MAGIC',
           to: 'MELEE',
-          value: 0.25
+          value: 0.25 // 0.2
         },
         {
           from: 'MELEE',
           to: 'MAGIC',
-          value: 0.2 // 0.25
+          value: 0.25 // 0.2
         },
         {
           from: 'RANGED',
           to: 'RANGED',
-          value: -0.2 // -0.25
+          value: -0.25 // -0.2
         },
         {
           from: 'INIT',
           to: 'INIT',
-          value: 0.5
+          value: 0.35 // 0.5
         }
       ],
       skills: ['FRENZY', 'RESPITE', 'HOMINGBOLT', 'YOLOSTRIKE'],

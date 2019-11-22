@@ -85,6 +85,7 @@ class UnitTemplate {
     if (hasProp(obj, 'templ.hero')) {
       templ.hero = obj.templ.hero
     }
+
     templ.name = obj.name
     templ.NAME = obj.NAME
     templ.desc = obj.desc
@@ -107,6 +108,16 @@ class UnitTemplate {
 
     unit.roles = hasProp(obj, 'roles') ? obj.roles : ['KNIGHT']
     if (unit.side === Unit.SIDE.CPU) { unit.raiseAll() }
+    if (unit.side === Unit.SIDE.PLAYER) {
+      if (hasProp(obj, 'templ.lvlUp')) {
+        let lvlUp = obj.templ.lvlUp
+        for (let statName in lvlUp) {
+          for (let i = 0; i < lvlUp[statName]; i++) {
+            unit.raise(statName)
+          }
+        }
+      }
+    }
     unit.baseStats.HP.current = unit.baseStats.HP.max
     unit.baseStats.MP.current = unit.baseStats.MP.max
     console.log(unit)

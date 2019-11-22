@@ -43,6 +43,11 @@ class Minobison {
           value: 1
         },
         {
+          from: 'INIT',
+          to: 'HP',
+          value: 10
+        },
+        {
           from: 'HP',
           to: 'HP',
           value: 0.1

@@ -9,7 +9,7 @@ class PARRYKNIFE {
     return new Item({
       NAME: 'PARRYKNIFE',
       name: 'Parrying Knife',
-      cost: 4,
+      cost: 5,
       tier: 'common',
       statBonus: { INIT: 2 },
       desc: '+2 INIT'

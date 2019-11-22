@@ -35,10 +35,15 @@ class Penelope {
         {
           from: 'MELEE',
           to: 'MAGIC',
-          value: 0.1
+          value: 0.2 // 0.1
         },
         {
           from: 'RANGED',
+          to: 'MAGIC',
+          value: 0.2 // 0.1
+        },
+        {
+          from: 'MAGIC',
           to: 'MAGIC',
           value: 0.1
         }

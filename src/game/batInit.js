@@ -7,7 +7,7 @@ import { Unit, Team } from './objects/units/Unit.js'
 import { Action } from './objects/actions/Action.js'
 // import { Status } from './objects/statuses/Status.js'
 import { UnitTemplate } from './objects/units/templates/UnitTemplate'
-import { cpuJSON, playerJSON } from './demoObjSetup.js'
+// import { cpuJSON, playerJSON } from './demoObjSetup.js'
 
 var playerTeam = new Team(Unit.SIDE.PLAYER)
 var cpuTeam = new Team(Unit.SIDE.CPU)
@@ -50,21 +50,31 @@ let unitAdd = function (obj, side) {
   removeDuplicates(unit.actions)
 }
 
-cpuJSON.forEach((json) => { unitAdd(json, Unit.SIDE.CPU) })
-playerJSON.forEach((json) => { unitAdd(json, Unit.SIDE.PLAYER) })
+let setup = function (input) {
+  let cpuJSON = input.cpuJSON
+  let playerJSON = input.playerJSON
+  cpuJSON.forEach((json) => { unitAdd(json, Unit.SIDE.CPU) })
+  playerJSON.forEach((json) => { unitAdd(json, Unit.SIDE.PLAYER) })
 
-playerTeam.all.forEach((unit) => {
-  unit.actions.push(new Action.LIB.RESTMAJOR(unit))
-  unit.actions.push(new Action.LIB.RESTMINOR(unit))
-})
+  playerTeam.all.forEach((unit) => {
+    unit.actions.push(new Action.LIB.RESTMAJOR(unit))
+    unit.actions.push(new Action.LIB.RESTMINOR(unit))
+  })
 
-playerTeam.inventory.SMOKEBOMB = 1
-playerTeam.inventory.HEALTHPOT = 1
-playerTeam.inventory.LIZARDTAIL = 1
-playerTeam.inventory.MANAPOT = 1
-playerTeam.inventory.WRATHSCROLL = 1
-playerTeam.inventory.FLAMEFISTSCROLL = 1
-playerTeam.inventory.HEALSCROLL = 1
-playerTeam.inventory.ENLIGHTENSCROLL = 1
+  playerTeam.inventory.SMOKEBOMB = 1
+  playerTeam.inventory.HEALTHPOT = 1
+  playerTeam.inventory.LIZARDTAIL = 1
+  playerTeam.inventory.MANAPOT = 1
+  playerTeam.inventory.WRATHSCROLL = 1
+  playerTeam.inventory.FLAMEFISTSCROLL = 1
+  playerTeam.inventory.HEALSCROLL = 1
+  playerTeam.inventory.ENLIGHTENSCROLL = 1
+  let retObj = {
+    cpuTeam,
+    playerTeam
+  }
 
-export { cpuTeam, playerTeam }
+  return retObj
+}
+
+export { setup }

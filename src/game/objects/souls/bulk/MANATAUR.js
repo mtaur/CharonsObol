@@ -21,22 +21,22 @@ class Manataur {
         {
           from: 'MELEE',
           to: 'MAGIC',
-          value: 0.1
+          value: 0.15
         },
         {
           from: 'MELEE',
           to: 'MELEE',
-          value: -0.1
+          value: -0.15
         },
         {
           from: 'RANGED',
           to: 'MAGIC',
-          value: 0.1
+          value: 0.15
         },
         {
           from: 'RANGED',
           to: 'RANGED',
-          value: -0.1
+          value: -0.15
         },
         {
           from: 'MP',

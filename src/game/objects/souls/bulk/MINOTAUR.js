@@ -21,12 +21,12 @@ class Minotaur {
         {
           from: 'MELEE',
           to: 'MELEE',
-          value: 0.1
+          value: 0.2 // 0.15
         },
         {
           from: 'MELEE',
           to: 'DREF',
-          value: 0.1
+          value: 0.15
         },
         {
           from: 'HP',
@@ -46,12 +46,12 @@ class Minotaur {
         {
           from: 'RANGED',
           to: 'RANGED',
-          value: -0.15
+          value: -0.2
         },
         {
           from: 'MAGIC',
           to: 'MAGIC',
-          value: -0.15
+          value: -0.25
         }
       ],
       skills: ['BERSERK', 'AXETHROW', 'YOLOSTRIKE'],

@@ -12,7 +12,8 @@ class FERAL {
       // filename: 'GUARD',
       name: 'Feral Form',
       type: 'minor',
-      desc: 'Increase MELEE and DREF, at the cost of MAGIC and RANGED.',
+      desc: 'Increase MELEE and DREF, at the cost of MAGIC and RANGED.  Increase base ' +
+        'HP multiplier by 0.15.',
       prereqs: ['NOTFERAL'],
       targetRules: ['SELF'],
       effects: [

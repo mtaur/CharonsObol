@@ -19,17 +19,17 @@ class Thwip {
         {
           from: 'HP',
           to: 'HP',
-          value: -0.25
+          value: -0.2 // -0.25
         },
         {
           from: 'RANGED',
           to: 'RANGED',
-          value: 0.15
+          value: 0.2 // 0.15
         },
         {
           from: 'INIT',
           to: 'DRED',
-          value: 0.5
+          value: 1 // 0.5
         }
       ],
       skills: ['ALERT', 'SNIPE', 'LONGSHOT'],

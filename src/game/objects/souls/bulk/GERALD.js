@@ -22,17 +22,17 @@ class Gerald {
         {
           from: 'INIT',
           to: 'MP',
-          value: 0.25
+          value: 0.35 // 0.25
         },
         {
           from: 'INIT',
           to: 'INIT',
-          value: -0.3 // -0.5
+          value: -0.35 // -0.3 // -0.5
         },
         {
           from: 'MELEE',
           to: 'MAGIC',
-          value: 0.2
+          value: 0.25 // 0.2
         },
         {
           from: 'MELEE',
@@ -42,7 +42,7 @@ class Gerald {
         {
           from: 'INIT',
           to: 'MAGIC',
-          value: 2
+          value: 3 // 2
         },
         {
           from: 'HP',

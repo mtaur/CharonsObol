@@ -7,6 +7,7 @@ import { hasIn as hasProp } from 'lodash'
 class Item {
   // static NAME = 'BROCANTRIP'
   static LIB = {}
+  static itemId = 1
 
   NAME = 'JUNK'
   name = 'Junk'
@@ -56,6 +57,8 @@ class Item {
         this[propName] = obj[propName]
       } else { alert('Item constructor: Missing prop', propName) }
     }
+    this.id = Item.itemId
+    Item.itemId++
     // this.name = obj.name
     // this.statBonus = obj.statBonus
     // this.desc = obj.desc

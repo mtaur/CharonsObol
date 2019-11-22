@@ -9,8 +9,8 @@ class DIVINEBARRIER {
     return new Item({
       NAME: 'DIVINEBARRIER',
       name: 'Divine Barrier',
-      cost: 5,
-      tier: 'common',
+      cost: 7,
+      tier: 'fine',
       desc: 'Lose 20% base MP, gaining 1 DRED per base MP and 0.1 DRED per base MAGIC.',
       converts: [
         { from: 'MAGIC', to: 'DRED', value: 0.1 },

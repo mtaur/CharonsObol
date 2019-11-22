@@ -9,7 +9,7 @@ class SPELLSWORD {
     return new Item({
       NAME: 'SPELLSWORD',
       name: 'Bastard Spellsword',
-      cost: 8,
+      cost: 7,
       desc: 'Use the average of MAGIC and MELEE in place of either stat when beneficial',
       tier: 'fine',
       // replacements[0] = { statName: 'MELEE', value: 0.5*(MELEE + MAGIC) }

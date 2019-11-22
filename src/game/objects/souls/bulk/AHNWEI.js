@@ -22,27 +22,27 @@ class Ahnwei {
         {
           from: 'MP',
           to: 'MP',
-          value: -0.3 // -0.5
+          value: -0.25 // -0.3 // -0.5
         },
         {
           from: 'INIT',
           to: 'MAGIC',
-          value: 4
+          value: 3 // 4
         },
         {
           from: 'INIT',
           to: 'INIT',
-          value: -0.3 // -0.5
+          value: -0.25 // -0.3 // -0.5
         },
         {
           from: 'MAGIC',
           to: 'INIT',
-          value: 0.1 // 0.05
+          value: 0.15 // 0.1 // 0.05
         },
         {
           from: 'MAGIC',
           to: 'MAGIC',
-          value: -0.3 // -0.5
+          value: -0.25 // -0.3 // -0.5
         }
       ],
       skills: ['NIRVANA', 'DISILLUSION', 'HOMINGBOLT'],

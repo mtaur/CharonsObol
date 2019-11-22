@@ -9,7 +9,7 @@ class ARBALEST {
     return new Item({
       NAME: 'ARBALEST',
       name: 'Arbalest',
-      cost: 8,
+      cost: 5,
       desc: 'Crank it for +75% TOTAL RANGED stat! (Seller not liable for 30% initiative loss.)',
       tier: 'fine',
       skills: ['CRANK'],

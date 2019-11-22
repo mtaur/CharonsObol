@@ -37,6 +37,9 @@ class StatSmart {
       // console.log('unit', unit)
       unit.items.push(item)
       item.unit = unit
+      if (unit.side === 'player') {
+        unit.playerTeam.SP -= item.cost
+      }
     }
     this.applyChange(tryOn)
     item.skills.forEach((actionStr) => { this.actions.push(new Action.LIB[actionStr](this)) })

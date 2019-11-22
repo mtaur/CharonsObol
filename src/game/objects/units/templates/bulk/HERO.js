@@ -8,10 +8,11 @@ class HERO {
   static NAME = 'HERO'
   static filename = 'HERO'
 
-  constructor (unitObj = { soulsArr: [], itemsArr: [], side: Unit.SIDE.CPU }, gameObj) {
+  constructor (unitObj = { soulsArr: [], itemsArr: [], side: Unit.SIDE.CPU, lvlUp: {} }, gameObj) {
     let soulsArr = hasProp(unitObj, 'soulsArr') ? unitObj.soulsArr : []
     let itemsArr = hasProp(unitObj, 'itemsArr') ? unitObj.itemsArr : []
     let side = hasProp(unitObj, 'side') ? unitObj.side : Unit.SIDE.CPU
+    let lvlUp = unitObj.lvlUp
     // from Stat.js:
     // static template = {
     //   name: '',
@@ -138,7 +139,8 @@ class HERO {
         souls: soulsArr,
         side: side,
         pos: souls[0].AIRow === 'front' ? Unit.POS.FRONT : Unit.POS.BACK,
-        items: itemsArr
+        items: itemsArr,
+        lvlUp: lvlUp
       }
     }, gameObj)
     return unit

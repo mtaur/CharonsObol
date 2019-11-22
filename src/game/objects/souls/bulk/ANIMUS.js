@@ -22,22 +22,27 @@ class Animus {
         {
           from: 'RANGED',
           to: 'MAGIC',
-          value: 0.1
+          value: 0.15 // 0.1
         },
         {
           from: 'MAGIC',
           to: 'RANGED',
-          value: 0.1
+          value: 0.15 // 0.1
         },
         {
           from: 'MELEE',
           to: 'MELEE',
-          value: -0.15
+          value: -0.25 // -0.25
         },
         {
           from: 'HP',
           to: 'HP',
-          value: -0.1
+          value: -0.15 // -0.1
+        },
+        {
+          from: 'HP',
+          to: 'MP',
+          value: 0.025
         }
       ],
       skills: ['MISSILE', 'ARCANESIGHT', 'HOMINGBOLT'],

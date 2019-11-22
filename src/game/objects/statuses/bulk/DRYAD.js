@@ -22,22 +22,22 @@ class DRYAD {
         {
           from: 'MELEE',
           to: 'MAGIC',
-          value: 0.25
+          value: 0.3 // 0.25
         },
         {
           from: 'MELEE',
           to: 'MELEE',
-          value: -0.25
+          value: -0.3 // -0.25
         },
         {
           from: 'DRED',
           to: 'MAGIC',
-          value: 1
+          value: 1.5 // 1
         },
         {
           from: 'DRED',
           to: 'DRED',
-          value: -0.25
+          value: -0.3 // -0.25
         }
       ]
     })

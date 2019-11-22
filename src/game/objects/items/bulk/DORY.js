@@ -9,7 +9,7 @@ class DORY {
     return new Item({
       NAME: 'DORY',
       name: 'Dory',
-      cost: 5,
+      cost: 4,
       tier: 'common',
       statBonus: { MELEE: 4, RANGED: 4 },
       desc: '+4 MELEE, +4 RANGED.  (I speak Hoplite.)'
