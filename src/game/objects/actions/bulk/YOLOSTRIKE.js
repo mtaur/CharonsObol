@@ -10,14 +10,14 @@ class YOLOSTRIKE {
       NAME: 'YOLOSTRIKE',
       // filename: 'MELEE',
       name: 'YOLO Strike',
-      type: 'both',
+      type: 'major',
       desc: `Basic melee attack dealing 1x MELEE damage with 1.5x DREF scaling ` +
-        `and 0.5x DRED scaling.`,
+        `and 0.5x DRED scaling. Must already be in the front row to use.`,
       targetRules: ['MELEE'],
       prereqs: ['FRONT'],
-      after: [{
-        NAME: 'CASTERFRONT'
-      }],
+      // after: [{
+      //   NAME: 'CASTERFRONT'
+      // }],
       effects: [
         {
           NAME: 'DAMAGE',
