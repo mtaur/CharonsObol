@@ -16,7 +16,7 @@
       <q-btn to="battle" color="green" size="xl">Start!</q-btn>
     </div>
     <div class="text-h6 q-pa-sm" style="width:66%">
-      Notice how the URL changes.  This will make it possible to use the back button in the future. The game state will store some information that should prevent jumping "forward" nonsensically with manual URLs.  When a manual URL is used, it will be scrutinized and the game will roll back or forward to the correct state.
+      Notice how the URL changes when you click the button.  This will make it possible to use the back button in the future. The game state will store some information that should prevent jumping "forward" nonsensically with manual URLs.  When a manual URL is used, it will be scrutinized and the game will roll back or forward to the correct state.
     </div>
     <div class="text-h6 q-pa-sm" style="width:66%">
       In-game interactions will create data points which can be loaded through the proper URLs.

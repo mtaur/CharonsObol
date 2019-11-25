@@ -275,24 +275,24 @@ let cpuJSON = []
 
 heroes.forEach((json) => {
   playerJSON.push({
-    constructor: 'HERO',
+    NAME: 'HERO',
     passedObj: json
   })
 })
 caenenArr.forEach((str) => {
   cpuJSON.push({
-    constructor: str,
+    NAME: str,
     passedObj: false
   })
 })
 cpuJSON.push({
-  constructor: 'HERO',
+  NAME: 'HERO',
   passedObj: crazyObj
 })
 
 // let playerJSON = heroes
 // let cpuJSON = caenenArr.push(crazyObj)
-console.log(playerJSON)
-console.log(cpuJSON, 'cpuJSON === 6???')
+// console.log(playerJSON)
+// console.log(cpuJSON, 'cpuJSON === 6???')
 
 export { cpuJSON, playerJSON }

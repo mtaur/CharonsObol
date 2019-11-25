@@ -34,9 +34,9 @@ let unitAdd = function (obj, side) {
   let unit = {}
 
   if (obj.passedObj === false) {
-    unit = new UnitTemplate.LIB[obj.constructor](gameObj)
+    unit = new UnitTemplate.LIB[obj.NAME](gameObj)
   } else {
-    unit = new UnitTemplate.LIB[obj.constructor](obj.passedObj, gameObj)
+    unit = new UnitTemplate.LIB[obj.NAME](obj.passedObj, gameObj)
     // if (hasProp(obj, 'passedObj.lvlUp')) {
     //   let lvlUp = obj.passedObj.lvlUp
     //   for (let statName in lvlUp) {
