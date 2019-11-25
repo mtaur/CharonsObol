@@ -6,12 +6,12 @@
     :selector="selector"
     class="non-selectable">
   </newUnitDrawer>
-  <!-- <rightdrawer
-  :visible="rightDrawerOpen"
-  :page="rightDrawerPage"
-  :selector="selector"
-  class="non-selectable">
-  </rightdrawer> -->
+  <rightdrawer
+    :visible="rightDrawerOpen"
+    :page="rightDrawerPage"
+    :selector="selector"
+    class="non-selectable">
+  </rightdrawer>
   <!-- <q-page class="qpage column align-center items-center justify-center"> -->
   <q-page class="qpage column non-selectable">
     <div class="align-center column items-center justify-center">
@@ -110,7 +110,7 @@ selector.changeState('ManageTeam')
 // import fieldplayer from 'src/components/fieldplayer'
 import { hasIn as hasProp } from 'lodash'
 import newUnitDrawer from '../components/newUnitDrawer.vue'
-// import rightdrawer from '../components/rightdrawer.vue'
+import rightdrawer from '../components/rightdrawer.vue'
 // import Selector from 'src/game/selectors/Selector.js'
 //
 // selector.changeState('RoundStart')
@@ -126,12 +126,13 @@ export default {
       cpuTeam: cpuTeam,
       // activeUnit: [],
       leftDrawerOpen: true,
-      selector: selector,
-      rightDrawerOpen: true // this.$q.platform.is.desktop
+      selector: selector // ,
+      // rightDrawerOpen: true // this.$q.platform.is.desktop
     }
   },
   // components: ['fieldplayer'],
-  props: [],
+  // props: [],
+  props: ['rightDrawerOpen', 'rightDrawerPage'],
   methods: {
     addJaqen: function (row) {
       playerTeam.deploy(new UnitTemplate.LIB.HERO({ soulsArr: [], itemsArr: [], pos: row, side: 'player', lvlUp: {} }, { playerTeam, cpuTeam }))
@@ -184,8 +185,8 @@ export default {
     // drawer,
     // fieldplayer
     newPlayer,
-    newUnitDrawer
-    // rightdrawer
+    newUnitDrawer,
+    rightdrawer
   }
 }
 </script>

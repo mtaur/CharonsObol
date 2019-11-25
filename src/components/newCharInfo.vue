@@ -53,9 +53,9 @@
       </div>
       <div class="col-2"></div>
     </div>
-    <unitInfo v-if="selector.stateData.inspectUnit.name"
+    <newUnitInfo v-if="selector.stateData.inspectUnit.name"
     :selector="selector"
-    :unit="selector.stateData.inspectUnit"></unitInfo>
+    :unit="selector.stateData.inspectUnit"></newUnitInfo>
   </div>
 </template>
 
@@ -63,7 +63,7 @@
 // import { openURL } from 'quasar'
 // import unitdetail from 'src/components/unitdetail'
 import smallUnit from './smallUnit'
-import unitInfo from './unitInfo'
+import newUnitInfo from './newUnitInfo'
 
 export default {
   name: 'charInfo',
@@ -78,7 +78,7 @@ export default {
   },
   components: {
     smallUnit,
-    unitInfo
+    newUnitInfo
     // unitdetail
   }
 }

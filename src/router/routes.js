@@ -1,16 +1,36 @@
 
 const routes = [
   {
-    path: '/',
+    path: '/battle',
     component: () => import('layouts/BattleLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/Index.vue') },
-      { path: 'battle', component: () => import('pages/Battle.vue') }
+      { path: '', component: () => import('pages/Battle.vue') }
+    ],
+    meta: {
+      title: `Charon's Obol`
+    }
+  },
+  {
+    path: '/',
+    component: () => import('layouts/NewPartyLayout.vue'),
+    children: [
+      { path: '', component: () => import('pages/Index.vue') }
     ],
     meta: {
       title: `Charon's Obol`
     }
   }
+  // {
+  //   path: '/',
+  //   component: () => import('layouts/BattleLayout.vue'),
+  //   children: [
+  //     { path: '', component: () => import('pages/Index.vue') },
+  //     { path: 'battle', component: () => import('pages/Battle.vue') }
+  //   ],
+  //   meta: {
+  //     title: `Charon's Obol`
+  //   }
+  // }
 ]
 
 // Always leave this as last one

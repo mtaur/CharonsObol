@@ -4,12 +4,13 @@
     v-model="visible"
     bordered
     content-class="bg-grey-2"
-    :width="page === 'charInfo' ? 500 : 350"
+    :width="page === 'charInfo' || page === 'newCharInfo' ? 500 : 350"
     :breakpoint="0"
   >
     <q-scroll-area class="fit">
       <battleLog v-if="page==='log'" :selector="selector"></battleLog>
       <charInfo v-if="page==='charInfo'" :selector="selector"></charInfo>
+      <newCharInfo v-if="page==='newCharInfo'" :selector="selector"></newCharInfo>
     </q-scroll-area>
   </q-drawer>
 </template>
@@ -19,6 +20,7 @@
 // import unitdetail from 'src/components/unitdetail'
 import battleLog from './battleLog'
 import charInfo from './charInfo'
+import newCharInfo from './newCharInfo'
 
 export default {
   name: 'rightDrawer',
@@ -77,7 +79,8 @@ export default {
   },
   components: {
     battleLog,
-    charInfo
+    charInfo,
+    newCharInfo
     // unitdetail
   }
 }

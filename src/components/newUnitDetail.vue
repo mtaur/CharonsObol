@@ -67,7 +67,7 @@
       <span class="absolute-center">Consumables</span>
     </q-card-section>
     <q-card-section>
-      <consumables :unit="unit" :playerTeam="playerTeam" :cpuTeam="cpuTeam" :selector="selector"></consumables>
+      <newUnitConsumables :unit="unit" :playerTeam="playerTeam" :cpuTeam="cpuTeam" :selector="selector"></newUnitConsumables>
     </q-card-section>
   </q-card>
   <!-- ABILITIES!!! -->
@@ -94,11 +94,11 @@
 import statrow from './statchange.vue'
 // import itemTooltip from './itemTooltip.vue'
 import newUnitActions from './newUnitActions.vue'
-import consumables from './consumables.vue'
+import newUnitConsumables from './newUnitConsumables.vue'
 
 export default {
   props: ['unit', 'playerTeam', 'cpuTeam', 'selector'],
-  components: { statrow, newUnitActions, consumables },
+  components: { statrow, newUnitActions, newUnitConsumables },
   // components: { statrow, itemTooltip, actions, consumables },
   data () {
     return {

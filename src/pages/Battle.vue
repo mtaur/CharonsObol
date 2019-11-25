@@ -7,10 +7,10 @@
     class="non-selectable">
   </drawer>
   <rightdrawer
-  :visible="rightDrawerOpen"
-  :page="rightDrawerPage"
-  :selector="selector"
-  class="non-selectable">
+    :visible="rightDrawerOpen"
+    :page="rightDrawerPage"
+    :selector="selector"
+    class="non-selectable">
   </rightdrawer>
   <q-page class="qpage non-selectable">
     <div class="column unitrow">
