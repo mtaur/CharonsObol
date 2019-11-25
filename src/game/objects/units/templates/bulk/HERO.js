@@ -111,10 +111,10 @@ class HERO {
     })
 
     let unit = new UnitTemplate({
-      NAME: souls[0].NAME,
-      name: souls[0].name,
+      NAME: souls.length > 0 ? souls[0].NAME : 'NO ONE!!!',
+      name: souls.length > 0 ? souls[0].name : 'No one...',
       // cost: 8,
-      desc: souls[0].desc,
+      desc: souls.length > 0 ? souls[0].desc : 'A mystery...',
       templ: {
         hero: true,
         baseStats: {
@@ -138,7 +138,9 @@ class HERO {
         roles: roles,
         souls: soulsArr,
         side: side,
-        pos: souls[0].AIRow === 'front' ? Unit.POS.FRONT : Unit.POS.BACK,
+        pos: hasProp(unitObj, 'pos') ? unitObj.pos
+          : souls.length > 0 && souls[0].AIRow === 'front' ? Unit.POS.FRONT
+            : Unit.POS.BACK,
         items: itemsArr,
         lvlUp: lvlUp
       }

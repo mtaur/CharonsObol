@@ -1,33 +1,87 @@
 <template>
-  <div class="column align-center items-center justify-center" style="height:90vh">
-    <div class="row items-center">
-      <div class="col-2"></div>
-      <div class="col-8">
-        <h2>Welcome to Charon's Obol!</h2>
-        <div class="text-h4 q-pa-sm">
-          I'm working on the pre-game and page routing.  Click the button below to start.
+  <span>
+  <newUnitDrawer :activeUnit="activeUnit" :visible="leftDrawerOpen"
+    :playerTeam="playerTeam"
+    :cpuTeam="cpuTeam"
+    :selector="selector"
+    class="non-selectable">
+  </newUnitDrawer>
+  <!-- <rightdrawer
+  :visible="rightDrawerOpen"
+  :page="rightDrawerPage"
+  :selector="selector"
+  class="non-selectable">
+  </rightdrawer> -->
+  <!-- <q-page class="qpage column align-center items-center justify-center"> -->
+  <q-page class="qpage column non-selectable">
+    <div class="align-center column items-center justify-center">
+      <div class="row items-center">
+        <div class="col-2"></div>
+        <div class="col-8">
+          <h4>Welcome to Charon's Obol!</h4>
+          <div class="text-h6 q-pa-sm">
+            I'm working on the pre-game and page routing.  Click the button below to start. I've pre-leveled the characters to some extent.  This is to practice passing data into constructors so I can save/load and transition more easily as the game grows.
+          </div>
         </div>
-        <div class="text-h4 q-pa-sm">
-          I've pre-leveled the characters to some extent.  This is to practice passing data into constructors so I can save/load and transition more easily as the game grows.
+        <div class="col-2"></div>
+      </div>
+      <div class="q-pa-lg">
+        <q-btn to="battle" color="green" size="xl">Start battle with random auto party.</q-btn>
+      </div>
+      <q-separator></q-separator>
+      <h4>...or create custom party</h4>
+      <!-- <div class="text-h6 q-pa-sm" style="width:66%">
+        Notice how the URL changes when you click the button.  This will make it possible to use the back button in the future. The game state will store some information that should prevent jumping "forward" nonsensically with manual URLs.  When a manual URL is used, it will be scrutinized and the game will roll back or forward to the correct state.
+      </div>
+      <div class="text-h6 q-pa-sm" style="width:66%">
+        In-game interactions will create data points which can be loaded through the proper URLs.
+      </div>
+      <div class="text-body1 q-pa-sm" style="width:66%">
+        (That's the idea anyway)
+      </div> -->
+    </div>
+    <div class="column unitrow">
+      <div class="row justify-center items-stretch unitrow">
+        <div v-if="playerTeam.front.length < 4" class="col-3 q-pa-lg">
+          <q-btn @click="addJaqen('front')" color="green" size="xl">Add unit!</q-btn>
         </div>
+        <newPlayer v-for="unit in playerTeam.front"
+          :unit="unit"
+          :key="unit.id"
+          :isActive="isActive(selector, unit)"
+          :class="{'active': isActive(selector, unit)}"
+          :selector="selector"
+          @click.native="battlefieldClick(selector, unit)"
+          >
+          <!-- :isActive="isActive(unit)" -->
+          <!-- @click.native="makeActive(unit, $event)" -->
+        </newPlayer>
+        <!-- {{ unit.name }} -->
       </div>
     </div>
-    <div class="q-pa-lg">
-      <q-btn to="battle" color="green" size="xl">Start!</q-btn>
+    <div class="column unitrow">
+      <div class="row justify-center items-stretch unitrow">
+        <div v-if="playerTeam.back.length < 4" class="col-3 q-pa-lg">
+          <q-btn @click="addJaqen('back')" color="green" size="xl">Add unit!</q-btn>
+        </div>
+        <newPlayer v-for="unit in playerTeam.back"
+          :unit="unit"
+          :key="unit.id"
+          :isActive="isActive(selector, unit)"
+          :class="{'active': isActive(selector, unit)}"
+          :selector="selector"
+          @click.native="battlefieldClick(selector, unit)"
+        >
+        <!-- :isActive="isActive(unit)" -->
+        <!-- @click.native="makeActive(unit, $event)" -->
+        </newPlayer>
+      </div>
     </div>
-    <div class="text-h6 q-pa-sm" style="width:66%">
-      Notice how the URL changes when you click the button.  This will make it possible to use the back button in the future. The game state will store some information that should prevent jumping "forward" nonsensically with manual URLs.  When a manual URL is used, it will be scrutinized and the game will roll back or forward to the correct state.
-    </div>
-    <div class="text-h6 q-pa-sm" style="width:66%">
-      In-game interactions will create data points which can be loaded through the proper URLs.
-    </div>
-    <div class="text-body1 q-pa-sm" style="width:66%">
-      (That's the idea anyway)
-    </div>
-  </div>
+  </q-page>
     <!-- <div>
     </div> -->
   <!-- </div> -->
+  </span>
 </template>
 
 <style>
@@ -36,19 +90,29 @@
 
 <script>
 
+import newPlayer from 'src/components/newPlayer'
+import { Unit, Team } from 'src/game/objects/units/Unit.js'
+import { UnitTemplate } from 'src/game/objects/units/templates/UnitTemplate.js'
+import Selector from 'src/game/selectors/Selector.js'
+
+let playerTeam = new Team(Unit.SIDE.PLAYER)
+let cpuTeam = new Team(Unit.SIDE.CPU)
+var selector = new Selector({
+  playerTeam: playerTeam,
+  cpuTeam: cpuTeam,
+  log: [],
+  logID: 0
+})
+selector.changeState('ManageTeam')
+
 // import { playerTeam, cpuTeam } from 'src/game/objects/units/unit.js'
 // import { playerTeam, cpuTeam } from 'src/game/initialize.js'
 // import fieldplayer from 'src/components/fieldplayer'
-// import drawer from '../components/drawer.vue'
+import { hasIn as hasProp } from 'lodash'
+import newUnitDrawer from '../components/newUnitDrawer.vue'
 // import rightdrawer from '../components/rightdrawer.vue'
 // import Selector from 'src/game/selectors/Selector.js'
 //
-// var selector = new Selector({
-//   playerTeam: playerTeam,
-//   cpuTeam: cpuTeam,
-//   log: [],
-//   logID: 0
-// })
 // selector.changeState('RoundStart')
 // console.log('cpuTeam', cpuTeam)
 // console.log('playerTeam', playerTeam)
@@ -58,34 +122,48 @@
 export default {
   data: function () {
     return {
-      // playerTeam: playerTeam,
-      // cpuTeam: cpuTeam,
-      // // activeUnit: [],
-      // leftDrawerOpen: true,
-      // selector
-      // // rightDrawerOpen: true // this.$q.platform.is.desktop
+      playerTeam: playerTeam,
+      cpuTeam: cpuTeam,
+      // activeUnit: [],
+      leftDrawerOpen: true,
+      selector: selector,
+      rightDrawerOpen: true // this.$q.platform.is.desktop
     }
   },
+  // components: ['fieldplayer'],
   props: [],
+  methods: {
+    addJaqen: function (row) {
+      playerTeam.deploy(new UnitTemplate.LIB.HERO({ soulsArr: [], itemsArr: [], pos: row, side: 'player', lvlUp: {} }, { playerTeam, cpuTeam }))
+      // this.playerTeam.front.push(new UnitTemplate.LIB.HERO({ soulsArr: [], itemsArr: [], POS: 'front' }, { playerTeam, cpuTeam }))
+    },
+    isActive: function (selector, unit) {
+      return selector.stateData.activeUnit.id
+        ? unit.id === selector.stateData.activeUnit.id
+        : false
+    },
+    battlefieldClick: function (selector, unit) {
+      selector.getClickMode(unit).onClick(selector, unit)
+    }
+  },
   // props: ['rightDrawerOpen', 'rightDrawerPage'],
   // methods: {
   //   canTarget: function (selector, unit) {
   //     return selector.canTarget(unit)
   //   },
-  //   isActive: function (selector, unit) {
-  //     return selector.stateData.activeUnit.id
-  //       ? unit.id === selector.stateData.activeUnit.id
-  //       : false
-  //   },
   //   prevTarget: function (selector, unit) {
   //     return selector.isPrevTarg(unit)
   //   },
-  //   battlefieldClick: function (selector, unit) {
-  //     selector.getClickMode(unit).onClick(selector, unit)
-  //   },
   //   openURL
   // },
-  // computed: {
+  computed: {
+    activeUnit: function () {
+      // return this.selector.stateData.activeUnit.id
+      return hasProp(this, 'selector.stateData.activeUnit.id')
+        ? [this.selector.stateData.activeUnit]
+        : []
+    }
+  },
   //   SP: function () {
   //     return playerTeam.SP
   //   },
@@ -104,12 +182,24 @@ export default {
   name: 'PageIndex',
   components: { // unitdetail,
     // drawer,
-    // fieldplayer,
+    // fieldplayer
+    newPlayer,
+    newUnitDrawer
     // rightdrawer
   }
 }
 </script>
 
 <style scoped>
-
+  .unitrow {
+    /* flex-basis: 20vh; */
+    flex: 1 1 20vh;
+    /* overflow-y: auto; */
+  }
+  .qpage {
+    /* height: 85vh; */
+    display: flex;
+    position: relative;
+    flex: 1 1;
+  }
 </style>

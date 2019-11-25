@@ -33,24 +33,7 @@
       </q-btn>
     </q-btn-group>
   </div>
-  <!-- <div class="row items-center justify-center">
-    <div class="q-pa-sm">
-      <q-btn color="amber" glossy label="Toggle stat points"
-      @click="selector.showStats = !selector.showStats"></q-btn>
-    </div>
-  </div>
-  <div class="row items-center justify-center">
-    <div class="q-pa-sm">
-      <q-btn color="orange-10" glossy label="Toggle consumables"
-      @click="selector.showConsumables = !selector.showConsumables"></q-btn>
-    </div>
-  </div>
-  <div class="row items-center justify-center">
-    <div class="q-pa-sm">
-      <q-btn color="light-green-8" glossy label="Toggle abilities"
-      @click="selector.showAbilities = !selector.showAbilities"></q-btn>
-    </div>
-  </div> -->
+  <!-- STATS!!! -->
   <q-card
     v-show="selector.showStats"
     class="my-card text-white"
@@ -70,6 +53,7 @@
       </div>
     </q-card-section>
   </q-card>
+  <!-- CONSUMABLES!!! -->
   <q-card
     v-show="selector.showConsumables"
     class="my-card text-white"
@@ -86,6 +70,7 @@
       <consumables :unit="unit" :playerTeam="playerTeam" :cpuTeam="cpuTeam" :selector="selector"></consumables>
     </q-card-section>
   </q-card>
+  <!-- ABILITIES!!! -->
   <q-card
     v-show="selector.showAbilities"
     class="my-card text-white"
@@ -99,7 +84,7 @@
       <span class="absolute-center">Abilities</span>
     </q-card-section>
     <q-card-section>
-      <actions :unit="unit" :playerTeam="playerTeam" :cpuTeam="cpuTeam" :selector="selector"></actions>
+      <newUnitActions :unit="unit" :playerTeam="playerTeam" :cpuTeam="cpuTeam" :selector="selector"></newUnitActions>
     </q-card-section>
   </q-card>
 </div>
@@ -108,12 +93,12 @@
 <script>
 import statrow from './statchange.vue'
 // import itemTooltip from './itemTooltip.vue'
-import actions from './actions.vue'
+import newUnitActions from './newUnitActions.vue'
 import consumables from './consumables.vue'
 
 export default {
   props: ['unit', 'playerTeam', 'cpuTeam', 'selector'],
-  components: { statrow, actions, consumables },
+  components: { statrow, newUnitActions, consumables },
   // components: { statrow, itemTooltip, actions, consumables },
   data () {
     return {

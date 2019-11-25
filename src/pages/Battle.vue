@@ -105,13 +105,14 @@
 
 <script>
 
-// import { playerTeam, cpuTeam } from 'src/game/objects/units/unit.js'
+import { Team, Unit } from 'src/game/objects/units/Unit.js'
 // import { playerTeam, cpuTeam } from 'src/game/initialize.js'
 import { setup } from 'src/game/batInit.js'
 import fieldplayer from 'src/components/fieldplayer'
 import drawer from '../components/drawer.vue'
 import rightdrawer from '../components/rightdrawer.vue'
 import Selector from 'src/game/selectors/Selector.js'
+import { hasIn as hasProp } from 'lodash'
 //  Change this to get different battle setup!
 // import { cpuJSON, playerJSON } from 'src/game/demoObjSetup.js'
 // import { mapState } from 'vuex'
@@ -122,33 +123,55 @@ import { mapGetters } from 'vuex'
 // let playerJSON = this.$store.example.playerJSON
 // let inputs = { cpuJSON: this.cpuJSON, playerJSON: this.playerJSON }
 // let inputs = { cpuJSON: cpuJSON, playerJSON: playerJSON }
+// let gameObj = setup(inputs)
 // let playerTeam = gameObj.playerTeam
 // let cpuTeam = gameObj.cpuTeam
+
+// CREATE DUMMY OBJECTS TO AVOID BREAKING THE VUE TEMPLATE.
+// Placeholder until real objects are generated from Vuex JSON data
+// Selector is idle before the real one is assigned.
+var playerTeam = new Team(Unit.SIDE.PLAYER)
+var cpuTeam = new Team(Unit.SIDE.CPU)
+var selector = new Selector({
+  playerTeam: playerTeam,
+  cpuTeam: cpuTeam,
+  log: [],
+  logID: 0
+})
+// selector.changeState('RoundStart')
 
 import { openURL } from 'quasar'
 
 export default {
   data: function () {
     return {
-      // playerTeam: playerTeam,
-      // cpuTeam: cpuTeam,
+      selector,
+      playerTeam,
+      cpuTeam,
+      // gameObj,
       leftDrawerOpen: true // ,
-      // selector
       // rightDrawerOpen: true // this.$q.platform.is.desktop
     }
   },
   props: ['rightDrawerOpen', 'rightDrawerPage'],
   methods: {
     canTarget: function (selector, unit) {
-      return selector.canTarget(unit)
+      // return selector.canTarget(unit)
+      return hasProp(selector, 'canTarget')
+        ? selector.canTarget(unit)
+        : false
     },
     isActive: function (selector, unit) {
-      return selector.stateData.activeUnit.id
+      // return selector.stateData.activeUnit.id
+      return hasProp(selector, 'stateData.activeUnit.id')
         ? unit.id === selector.stateData.activeUnit.id
         : false
     },
     prevTarget: function (selector, unit) {
-      return selector.isPrevTarg(unit)
+      // return selector.isPrevTarg(unit)
+      return hasProp(selector, 'promptIsVerbose')
+        ? selector.isPrevTarg(unit)
+        : false
     },
     battlefieldClick: function (selector, unit) {
       selector.getClickMode(unit).onClick(selector, unit)
@@ -160,60 +183,39 @@ export default {
       return this.playerTeam.SP
     },
     activeUnit: function () {
-      return this.selector.stateData.activeUnit.id
+      // return this.selector.stateData.activeUnit.id
+      return hasProp(this, 'selector.stateData.activeUnit.id')
         ? [this.selector.stateData.activeUnit]
         : []
     },
     prompt: function () {
       return this.selector.promptIsVerbose ? this.selector.promptVerbose : this.selector.prompt
+      // return hasProp(this, 'selector.promptIsVerbose') ? this.selector.promptVerbose : this.selector.prompt
     },
     verboseButtonColor: function () {
       return this.selector.promptIsVerbose ? 'light-green' : 'light-green-2'
+      // return hasProp(this, 'selector.promptIsVerbose') ? 'light-green' : 'light-green-2'
     },
-    ...mapGetters('example', ['cpuJSON', 'playerJSON']),
-    gameObj: function () {
-      // playerTeam: this.playerTeam,
-      // cpuTeam: this.cpuTeam,
-      return setup({
-        cpuJSON: this.cpuJSON,
-        playerJSON: this.cpuJSON
-      })
-    },
-    playerTeam: function () {
-      return this.gameObj.playerTeam
-    },
-    cpuTeam: function () {
-      return this.gameObj.cpuTeam
-    },
-    selector: function () {
-      let select = new Selector({
-        playerTeam: this.playerTeam,
-        cpuTeam: this.cpuTeam,
-        log: [],
-        logID: 0
-      })
-      select.changeState('RoundStart')
-      return select
-    }
-    // console.log(setup)
-    // let gameObj = setup(inputs)
-    // var selector = new Selector({
-    //   playerTeam: playerTeam,
-    //   cpuTeam: cpuTeam,
-    //   log: [],
-    //   logID: 0
-    // })
-    // selector.changeState('RoundStart')
-    // console.log('cpuTeam', cpuTeam)
-    // console.log('playerTeam', playerTeam)
-    // ...mapGetters({
-    //   cpuJSON: 'cpuJSON',
-    //   playerJSON: 'playerJSON'
-    // })
-    // ...mapState({
-    //   cpuJSON: state => state.demoObj.cpuJSON,
-    //   playerJSON: state => state.demoObj.playerJSON
-    // })
+    ...mapGetters('example', ['cpuJSON', 'playerJSON'])
+  },
+  created: function () {
+  // created: function () {
+    this.gameObj = setup({
+      cpuJSON: this.cpuJSON,
+      playerJSON: this.playerJSON
+    })
+    this.playerTeam = this.gameObj.playerTeam
+    this.cpuTeam = this.gameObj.cpuTeam
+    console.log('created?')
+    this.selector = new Selector({
+      playerTeam: this.playerTeam,
+      cpuTeam: this.cpuTeam,
+      log: [],
+      logID: 0
+    })
+    this.selector.changeState('RoundStart')
+    console.log('new selector???')
+    console.log(this.selector)
   },
   name: 'PageIndex',
   components: { // unitdetail,
