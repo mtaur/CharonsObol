@@ -41,7 +41,8 @@ class Brocantrip {
       skills: ['HEAL', 'INSPIRE', 'YOLOSTRIKE', 'HOMINGBOLT'],
       AISkills: ['HEAL', 'INSPIRE', 'MELEE', 'GUARD', 'YOLOSTRIKE', 'HOMINGBOLT'],
       AIRow: 'front',
-      AIRoles: ['MAGE', 'KNIGHT']
+      AIRoles: ['MAGE', 'KNIGHT'],
+      passives: []
     })
   }
 }

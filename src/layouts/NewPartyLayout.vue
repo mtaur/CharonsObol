@@ -49,7 +49,7 @@ export default {
   name: 'NewPartyLayout',
   data () {
     return {
-      rightDrawerPage: 'newCharInfo',
+      rightDrawerPage: 'souls',
       rightDrawerOpen: true // this.$q.platform.is.desktop
     }
   },

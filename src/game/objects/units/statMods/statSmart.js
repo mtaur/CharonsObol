@@ -1,6 +1,8 @@
 // import { Stat } from '../Stat.js'
 import { cloneDeep as clone } from 'lodash'
 import { Action } from '../../actions/Action.js'
+import { Soul } from 'src/game/objects/souls/Soul.js'
+import { Status } from 'src/game/objects/statuses/Status.js'
 // import { cloneDeep as clone, hasIn as hasProp } from 'lodash'
 
 class StatSmart {
@@ -29,6 +31,34 @@ class StatSmart {
     }
 
     changer(this)
+  }
+
+  static addSoul (soulStr) {
+    function removeDuplicates (arr, propName = 'NAME') {
+      console.log(arr)
+      // let PROPNAME = propName
+      for (let i = arr.length - 1; i > -1; i--) {
+        let str = arr[i][propName]
+        for (let j = i - 1; j > -1; j--) {
+          if (arr[j][propName] === str) {
+            arr.splice(j, 1)
+            i--
+          }
+        }
+      }
+    }
+
+    function tryOn (unit) {
+      let soul = new Soul.LIB[soulStr]()
+      unit.souls.push(soul)
+      soul.skills.forEach((actionStr) => unit.actions.push(new Action.LIB[actionStr](unit)))
+      // obj.templ.actions.forEach((actionStr) => unit.actions.push(new Action.LIB[actionStr](unit)))
+      soul.passives.forEach((status) => unit.statuses.push(new Status.LIB[status.NAME]()))
+      removeDuplicates(unit.actions)
+      removeDuplicates(unit.statuses)
+    }
+
+    this.applyChange(tryOn)
   }
 
   static equip (item) {

@@ -36,7 +36,8 @@ class Lynn {
       skills: ['LUNGE', 'HARRY', 'YOLOSTRIKE', 'LONGSHOT'],
       AISkills: ['LUNGE', 'HARRY', 'RANGED', 'GUARD', 'MOVEBACK', 'YOLOSTRIKE', 'LONGSHOT'],
       AIRow: 'back',
-      AIRoles: ['KNIGHT', 'ARCHER']
+      AIRoles: ['KNIGHT', 'ARCHER'],
+      passives: []
     })
   }
 }

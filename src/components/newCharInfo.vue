@@ -39,12 +39,14 @@
             </div>
             <div class="row text-caption">
               <div class="col-3" v-for="unit in selector.game.playerTeam.front" :key="unit.id">
-                <smallUnit :unit="unit" :selector="selector"></smallUnit>
+                <newSmallUnit :unit="unit" :selector="selector"></newSmallUnit>
+                <!-- <smallUnit :unit="unit" :selector="selector"></smallUnit> -->
               </div>
             </div>
             <div class="row text-caption">
               <div class="col-3" v-for="unit in selector.game.playerTeam.back" :key="unit.id">
-                <smallUnit :unit="unit" :selector="selector"></smallUnit>
+                <newSmallUnit :unit="unit" :selector="selector"></newSmallUnit>
+                <!-- <smallUnit :unit="unit" :selector="selector"></smallUnit> -->
               </div>
             </div>
             <!-- <q-separator inset></q-separator> -->
@@ -53,16 +55,20 @@
       </div>
       <div class="col-2"></div>
     </div>
-    <newUnitInfo v-if="selector.stateData.inspectUnit.name"
+    <newUnitInfo v-if="selector.stateData.activeUnit.name"
     :selector="selector"
-    :unit="selector.stateData.inspectUnit"></newUnitInfo>
+    :unit="selector.stateData.activeUnit"></newUnitInfo>
+    <!-- <newUnitInfo v-if="selector.stateData.inspectUnit.name"
+    :selector="selector"
+    :unit="selector.stateData.inspectUnit"></newUnitInfo> -->
   </div>
 </template>
 
 <script>
 // import { openURL } from 'quasar'
 // import unitdetail from 'src/components/unitdetail'
-import smallUnit from './smallUnit'
+// import smallUnit from './smallUnit'
+import newSmallUnit from './newSmallUnit'
 import newUnitInfo from './newUnitInfo'
 
 export default {
@@ -77,7 +83,8 @@ export default {
   methods: {
   },
   components: {
-    smallUnit,
+    // smallUnit,
+    newSmallUnit,
     newUnitInfo
     // unitdetail
   }

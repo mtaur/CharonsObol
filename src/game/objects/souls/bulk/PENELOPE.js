@@ -51,7 +51,8 @@ class Penelope {
       skills: ['HOMINGBOLT', 'CHAINLGT', 'FLAMEFIST'],
       AISkills: ['HOMINGBOLT', 'CHAINLGT', 'FLAMEFIST', 'GUARD', 'HOMINGBOLT', 'MOVEBACK'],
       AIRow: 'back',
-      AIRoles: ['MAGE']
+      AIRoles: ['MAGE'],
+      passives: []
     })
   }
 }

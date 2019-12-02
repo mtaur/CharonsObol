@@ -40,11 +40,12 @@ export default {
       // return 'statics/icons/souls/' + soul.NAME + '.png'
     },
     unitClick () {
-      if (this.selector.stateData.inspectUnit.id === this.unit.id) {
-        this.selector.stateData.inspectUnit = {}
-      } else {
-        this.selector.stateData.inspectUnit = this.unit
-      }
+      this.selector.stateData.activeUnit = this.unit
+      // if (this.selector.stateData.activeUnit.id === this.unit.id) {
+      //   this.selector.stateData.activeUnit = {}
+      // } else {
+      //   this.selector.stateData.activeUnit = this.unit
+      // }
     }
   },
   components: {

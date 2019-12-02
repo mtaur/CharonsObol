@@ -49,7 +49,8 @@ class Animus {
       // skills: ['FASTING', 'TAURVEST', 'TAURBLAST', 'HOMINGBOLT'],
       AISkills: ['MISSILE', 'ARCANESIGHT', 'MOVEBACK', 'HOMINGBOLT', 'RANGED'],
       AIRow: 'back',
-      AIRoles: ['MAGE', 'ARCHER']
+      AIRoles: ['MAGE', 'ARCHER'],
+      passives: []
     })
   }
 }

@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import example from './module-example/index.js'
+import lostSouls from './lostSouls/index.js'
+import currentTeams from './currentTeams/index.js'
 
 Vue.use(Vuex)
 
@@ -13,11 +15,13 @@ Vue.use(Vuex)
 console.log(example)
 
 export default function (/* { ssrContext } */) {
-  console.log('Function.prototype.toString called on incompatible object???')
+  // console.log('Function.prototype.toString called on incompatible object???')
   const Store = new Vuex.Store({
     modules: {
       // example: example
-      example
+      example,
+      currentTeams,
+      lostSouls
     }
   })
   // console.log(Store)

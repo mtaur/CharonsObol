@@ -1,6 +1,16 @@
 
 const routes = [
   {
+    path: '/battle2',
+    component: () => import('layouts/BattleLayout.vue'),
+    children: [
+      { path: '', component: () => import('pages/Battle2.vue'), name: 'battle2' }
+    ],
+    meta: {
+      title: `Charon's Obol`
+    }
+  },
+  {
     path: '/battle',
     component: () => import('layouts/BattleLayout.vue'),
     children: [

@@ -58,7 +58,8 @@ class Gerald {
       skills: ['STORMCLOUD', 'GUILTTRIP', 'HOMINGBOLT'],
       AISkills: ['STORMCLOUD', 'GUILTTRIP', 'MOVEBACK', 'GUARD', 'HOMINGBOLT'],
       AIRow: 'back',
-      AIRoles: ['MAGE']
+      AIRoles: ['MAGE'],
+      passives: []
     })
   }
 }

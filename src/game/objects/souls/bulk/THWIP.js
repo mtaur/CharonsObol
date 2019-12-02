@@ -35,7 +35,8 @@ class Thwip {
       skills: ['ALERT', 'SNIPE', 'LONGSHOT'],
       AISkills: ['ALERT', 'SNIPE', 'RANGED', 'MOVEBACK', 'LONGSHOT'],
       AIRow: 'front',
-      AIRoles: ['ARCHER']
+      AIRoles: ['ARCHER'],
+      passives: []
     })
   }
 }

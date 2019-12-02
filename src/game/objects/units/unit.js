@@ -207,6 +207,7 @@ class Unit {
 
   applyChange (...params) { StatSmart.applyChange.call(this, ...params) }
   //
+  addSoul (...params) { StatSmart.addSoul.call(this, ...params) }
   equip (...params) { StatSmart.equip.call(this, ...params) }
   levelUp (...params) { StatSmart.levelUp.call(this, ...params) }
   get cloneJSON () { return StatSmart.unitJSON.call(this, this) }

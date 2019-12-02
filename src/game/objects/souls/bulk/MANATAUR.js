@@ -53,7 +53,8 @@ class Manataur {
       // skills: ['FASTING', 'TAURVEST', 'TAURBLAST', 'HOMINGBOLT'],
       AISkills: ['TAURVEST', 'TAURBLAST', 'MOVEFRONT', 'GUARD', 'HOMINGBOLT'],
       AIRow: 'front',
-      AIRoles: ['MAGE']
+      AIRoles: ['MAGE'],
+      passives: []
     })
   }
 }

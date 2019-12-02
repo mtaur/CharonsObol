@@ -45,7 +45,7 @@ class Minobison {
         {
           from: 'INIT',
           to: 'HP',
-          value: 10
+          value: 4
         },
         {
           from: 'HP',
@@ -56,7 +56,8 @@ class Minobison {
       skills: ['COFFEE', 'REPRISAL', 'YOLOSTRIKE', 'LONGSHOT', 'HOMINGBOLT'],
       AISkills: ['COFFEE', 'REPRISAL', 'RANGED', 'GUARD', 'MOVEFRONT', 'YOLOSTRIKE', 'LONGSHOT', 'HOMINGBOLT'],
       AIRow: 'front',
-      AIRoles: ['KNIGHT', 'ARCHER', 'MAGE']
+      AIRoles: ['KNIGHT', 'ARCHER', 'MAGE'],
+      passives: []
     })
   }
 }
