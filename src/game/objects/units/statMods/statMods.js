@@ -136,19 +136,34 @@ class StatMods {
     let scalingMatrixFinal = []
     let scalingMatrixWeighted = []
     let scalingMatrixWeightedFinal = []
+    let rowSumsWeightedFinal = {}
+    let colSumsWeightedFinal = {}
+
+    for (let statName in Stat.LIB) {
+      rowSumsWeightedFinal[statName] = 0
+      colSumsWeightedFinal[statName] = 0
+    }
 
     for (let fromStatName in Stat.LIB) {
       let fromBenScale = new Stat.LIB[fromStatName]().benScale
       for (let toStatName in Stat.LIB) {
         let toBenScale = new Stat.LIB[toStatName]().benScale
-        let val = fromStatName === toStatName ? 1 : 0
+        let delta = fromStatName === toStatName ? 1 : 0
+        // let val = fromStatName === toStatName ? 1 : 0
+        let val = 0
         convertTo[toStatName].forEach((entry) => {
+          // val += entry.value
           if (entry.from === fromStatName) { val += entry.value }
         })
-        scalingMatrix.push({ from: fromStatName, to: toStatName, value: val })
-        scalingMatrixFinal.push({ from: fromStatName, to: toStatName, value: val * alpha })
-        scalingMatrixWeighted.push({ from: fromStatName, to: toStatName, value: val * (fromBenScale / toBenScale) })
-        scalingMatrixWeightedFinal.push({ from: fromStatName, to: toStatName, value: val * alpha * (fromBenScale / toBenScale) })
+        rowSumsWeightedFinal[fromStatName] += val
+        colSumsWeightedFinal[toStatName] += val
+
+        rowSumsWeightedFinal[fromStatName] += val * alpha * (fromBenScale / toBenScale)
+        colSumsWeightedFinal[toStatName] += val * alpha * (fromBenScale / toBenScale)
+        scalingMatrix.push({ from: fromStatName, to: toStatName, value: delta + val })
+        scalingMatrixFinal.push({ from: fromStatName, to: toStatName, value: delta + val * alpha })
+        scalingMatrixWeighted.push({ from: fromStatName, to: toStatName, value: delta + val * (fromBenScale / toBenScale) })
+        scalingMatrixWeightedFinal.push({ from: fromStatName, to: toStatName, value: delta + val * alpha * (fromBenScale / toBenScale) })
       }
     }
 
@@ -158,6 +173,8 @@ class StatMods {
       scalingMatrixFinal: scalingMatrixFinal,
       scalingMatrixWeighted: scalingMatrixWeighted,
       scalingMatrixWeightedFinal: scalingMatrixWeightedFinal,
+      rowSumsWeightedFinal: rowSumsWeightedFinal,
+      colSumsWeightedFinal: colSumsWeightedFinal,
       alpha: alpha
     }
   }

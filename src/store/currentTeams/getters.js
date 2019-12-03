@@ -1,10 +1,10 @@
 // export function someGetter (/* state */) {
 // }
-function playerJSON2 (state) {
-  return state.playerJSON2
+function playerJSON (state) {
+  return state.playerJSON
 }
-function cpuJSON2 (state) {
-  return state.cpuJSON2
+function cpuJSON (state) {
+  return state.cpuJSON
 }
 
-export { playerJSON2, cpuJSON2 }
+export { playerJSON, cpuJSON }

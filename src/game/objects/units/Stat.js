@@ -26,27 +26,9 @@ class Stat {
   increase () { this.counters++ }
 
   constructor (obj) {
-    // console.log('Stat.template:', Stat.template)
     for (let key in Stat.template) {
-      // Receive non-empty fields or fall back to default values
       this[key] = hasProp(obj, key) ? obj[key] : Stat.template[key]
-      // console.log('obj', obj, 'hasProp', key, '?', hasProp(obj, key))
-      // console.log(key, ':', this[key])
-      // this[key] = obj[key] ? obj[key] : Stat.template[key]
-      // if (!hasProp(obj, key)) {
-      //   console.log(key, 'is missing from stat', obj.name)
-      //   console.log('Using fallback value', this[key])
-      // }
     }
-    // resources have current and max...
-    // if (obj.isResource === true) {
-    //   this.current = this.value
-    //   Object.defineProperty(this, 'max',
-    //     {
-    //       get () { return this.value }
-    //     }
-    //   )
-    // }
   }
 
   static LIB = {

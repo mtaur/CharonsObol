@@ -161,10 +161,10 @@ export default {
       selector.stateData.activeUnit = unit
       // selector.getClickMode(unit).onClick(selector, unit)
     },
-    ...mapMutations('currentTeams', ['playerJSON2', 'cpuJSON2']),
+    ...mapMutations('currentTeams', ['playerJSON', 'cpuJSON']),
     batInit: function (playerJSON, cpuJSON) {
-      this.$store.commit('currentTeams/playerJSON2', playerJSON)
-      this.$store.commit('currentTeams/cpuJSON2', cpuJSON)
+      this.$store.commit('currentTeams/playerJSON', playerJSON)
+      this.$store.commit('currentTeams/cpuJSON', cpuJSON)
       this.$router.push({ name: 'battle2' })
     }
   },
@@ -213,7 +213,10 @@ export default {
       }
       return playerJSON
     },
-    ...mapGetters('example', ['cpuJSON'])
+    cpuJSON: function () {
+      return this.cpuJSON0
+    },
+    ...mapGetters('example', ['cpuJSON0'])
   },
   //   SP: function () {
   //     return playerTeam.SP

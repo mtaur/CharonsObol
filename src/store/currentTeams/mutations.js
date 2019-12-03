@@ -1,10 +1,10 @@
-let cpuJSON2 = (state, cpuJSON2) => {
-  state.cpuJSON2 = cpuJSON2
+let cpuJSON = (state, cpuJSON) => {
+  state.cpuJSON = cpuJSON
 }
-let playerJSON2 = (state, playerJSON2) => {
-  state.playerJSON2 = playerJSON2
+let playerJSON = (state, playerJSON) => {
+  state.playerJSON = playerJSON
 }
 
-export { playerJSON2, cpuJSON2 }
+export { playerJSON, cpuJSON }
 // export function someMutation (/* state */) {
 // }

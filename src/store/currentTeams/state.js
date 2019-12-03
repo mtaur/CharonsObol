@@ -1,7 +1,7 @@
-let playerJSON2 = {}
-let cpuJSON2 = {}
+let playerJSON = {}
+let cpuJSON = {}
 
 export default {
-  playerJSON2,
-  cpuJSON2
+  playerJSON,
+  cpuJSON
 }

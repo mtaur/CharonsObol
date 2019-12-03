@@ -15,9 +15,11 @@
         v-for="col in props.cols"
         :key="col.name"
         :props="props"
-        style="font-size: 11px"
+        :style="getHeaderStyle(col.label)"
         class="q-pa-none q-gutter-xs"
         >
+        <!-- style="font-size: 11px; background-color: #cef" -->
+        <!-- :style="{ fontSize: '11px'; backgroundColor: '#cef' }" -->
         {{ col.label }}
         </q-th>
       </template>
@@ -99,6 +101,39 @@ export default {
     }
   },
   methods: {
+    getHeaderStyle (colName) {
+      let colStyleVector = this.unit.getScalingMatrix.colSumsWeightedFinal
+      // let compareVal = props.col.name === 'name' || props.row.name === 'name' ? 0 : stylingMatrix.filter(
+      //   (entry) => {
+      //     return entry.from === props.row.name && entry.to === props.col.name
+      //   })[0].value
+      let compareVal = colStyleVector[colName]
+
+      let style = {
+        fontSize: '11px'
+      }
+      if (colName !== 'from/to') {
+        style.backgroundColor = '#cef'
+        if (compareVal >= 0.2) {
+          style.color = 'green'
+        } else if (compareVal >= -0.4 && compareVal < 0) {
+          style.color = 'orange'
+        } else if (compareVal < -0.4) {
+          style.color = 'red'
+        }
+      }
+      // if (colName === 'from/to') {
+      //   return {
+      //     fontSize: '11px'
+      //   }
+      // } else {
+      //   return {
+      //     fontSize: '11px',
+      //     backgroundColor: '#cef',
+      //   }
+      // }
+      return style
+    },
     getEntryStyle (props) {
       let style = {}
       let stylingMatrix = this.unit.getScalingMatrix.scalingMatrixWeightedFinal
@@ -110,7 +145,20 @@ export default {
       style.fontWeight = 'bold'
       style.fontSize = '11px' // props.col.name === props.row.name ? '12px' : '8px'
       style.backgroundColor = props.col.name === props.row.name ? '#cef' : '#abc'
-      if (props.col.name === 'name') { style.backgroundColor = 'white' }
+      // if (props.col.name === 'name') { style.backgroundColor = 'white' }
+      let rowsVector = this.unit.getScalingMatrix.rowSumsWeightedFinal
+
+      if (props.col.name === 'name') {
+        style.backgroundColor = '#cef' // 'white'
+        if (rowsVector[props.value] >= 0.2) {
+          style.color = 'green'
+        } else if (rowsVector[props.value] < 0 && rowsVector[props.value] >= -0.4) {
+          style.color = 'orange'
+        } else if (rowsVector[props.value] < -0.4) {
+          style.color = 'red'
+        }
+      }
+      // Diagonal does not need weights for self-comparison
       if (props.col.name === props.row.name) {
         if (props.value >= 1.1) { style.color = 'green' }
         if (props.value < 1 && props.value >= 0.8) { style.color = 'orange' }

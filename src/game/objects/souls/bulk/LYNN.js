@@ -20,17 +20,27 @@ class Lynn {
         {
           from: 'MELEE',
           to: 'RANGED',
-          value: 0.25 // 0.15 // 0.1
+          value: 0.4 // 0.25 // 0.15 // 0.1
         },
         {
           from: 'RANGED',
           to: 'MELEE',
-          value: 0.25 // 0.15 // 0.1
+          value: 0.4 // 0.25 // 0.15 // 0.1
+        },
+        {
+          from: 'MELEE',
+          to: 'MELEE',
+          value: -0.1 // -0.15
+        },
+        {
+          from: 'RANGED',
+          to: 'RANGED',
+          value: -0.1 // -0.15
         },
         {
           from: 'MAGIC',
           to: 'MAGIC',
-          value: -0.25 // -0.15
+          value: -0.2 // -0.25 // -0.15
         }
       ],
       skills: ['LUNGE', 'HARRY', 'YOLOSTRIKE', 'LONGSHOT'],
