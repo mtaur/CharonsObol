@@ -29,7 +29,7 @@ class STORMCLOUD {
           NAME: 'DAMAGE',
           name: 'damage',
           scale: {
-            MAGIC: 0.5 / (j + 1)
+            MAGIC: 0.65 / (j + 1)
           },
           DREDScale: 0.65 / (j + 1),
           DREFScale: 0.65 / (j + 1)

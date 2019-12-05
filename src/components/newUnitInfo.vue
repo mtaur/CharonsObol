@@ -139,7 +139,7 @@ export default {
   },
   methods: {
     virtualHero (soul) {
-      console.log([soul])
+      // console.log([soul])
       return new UnitTemplate.LIB.HERO({ soulsArr: [soul.NAME] }, this.selector.game)
     }
     // getEntryStyle (props) {

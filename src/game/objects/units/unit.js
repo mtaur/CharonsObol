@@ -6,11 +6,6 @@ import { StatSmart } from './statMods/statSmart.js'
 import { ResourceManager } from './ResourceManager.js'
 
 import { cloneDeep as clone, hasIn as hasProp } from 'lodash'
-// function uniqClone (unit) {
-//   let copy = clone(unit)
-//   copy.id = Unit.id
-//   return copy
-// }
 
 // Create Team objects
 class Team {
@@ -19,7 +14,6 @@ class Team {
   back = []
   bench = []
   dead = []
-  // dead...?
 
   get field () { return this.front.concat(this.back) }
   get all () { return this.front.concat(this.back).concat(this.bench).concat(this.dead) }
@@ -32,8 +26,7 @@ class Team {
     }
     return total
   }
-  // // let hasTurn = cpuTeam.field.filter((unit) => unit.baseStats.HP.current > 0 && (unit.hasAction.major || unit.hasAction.minor))
-  // let hasTurn = cpuTeam.field.filter(canMove)
+
   get hasTurn () {
     let canMove = function (unit) {
       return unit.actions.some((action) => { return action.betaCanUseTree() })
@@ -74,13 +67,41 @@ class Team {
   inventory = {} // { SMOKEBOMB: 3, HEALTHPOT: 3, ... }
 
   get cloneJSON () { return StatSmart.teamJSON.call(this, this) }
+  // raw soul points (essence?)
   RSP = 0
   SPSpent = 0
+  // Change this to computed property?
+  // get SPSpent () {
+  //   return
+  // }
+  get SPSpentBeta () {
+    let teamSPTot = 0
+    this.all.forEach((unit) => {
+      teamSPTot += unit.betaSP
+    })
+    // playerTeam.inventory.SMOKEBOMB = 1
+    if (this.side === Unit.SIDE.PLAYER) {
+      for (let scrollName in this.inventory) {
+        console.log(this.inventory, 'inventory')
+        console.log(scrollName, 'scrollName')
+        let scroll = new Action.LIB[scrollName](this.all[0])
+        let num = this.inventory[scrollName]
+        teamSPTot += num * scroll.SPCost
+      }
+    }
+    return teamSPTot
+  }
+  set SPSpentBeta (input) {
+    console.log('Tried to set SP to', input)
+    console.log('SPSpent is a computed property based on tracked SP value of assets.')
+  }
   // SPAvail = ...
   // SPSpent = ...
   // SPTotal = ...
   static SPEff = 0.25
-  static SPCap = 300
+  static SPCap = 1000 // 300
+  // static SPCap = 300
+  // SP efficiency. SP per RSP at beginning of SP curve.
   SPEff = 0.25
   static rawToTotal (raw) {
     return Math.floor(raw / ((1 / Team.SPEff) + (raw / Team.SPCap)))
@@ -94,12 +115,11 @@ class Team {
   get SPTotal () {
     return Team.rawToTotal(this.RSP)
   }
-  // get SPSpent () {
-  //   return
-  // }
   // SP is available SP for spending.
-  set SP (val) { this.SPSpent = this.SPTotal - val }
-  get SP () { return this.SPTotal - this.SPSpent }
+  set SP (val) { this.SPSpentBeta = this.SPTotal - val }
+  get SP () { return this.SPTotal - this.SPSpentBeta }
+  // set SP (val) { this.SPSpent = this.SPTotal - val }
+  // get SP () { return this.SPTotal - this.SPSpent }
 
   deploy = function (unit) {
     let deployed = this.all.some((deployedUnit) => deployedUnit.id === unit.id)
@@ -123,13 +143,13 @@ class Team {
 
     // Player spends SP between player units.
     if (side === Unit.SIDE.PLAYER) {
-      this.RSP = 1200 // 200 // 600
+      this.RSP = 4000 // 1200 // 200 // 600
       // this.SP = 100 // 80 // 100 // 60
     }
 
     // CPU units all receive CPU SP separately in full.
     if (side === Unit.SIDE.CPU) {
-      this.RSP = 300 // 100 // 1200 // 140 // 160 // 240 // 90 // 100 // 120
+      this.RSP = 600 // 300 // 100 // 1200 // 140 // 160 // 240 // 90 // 100 // 120
       // this.SP = 200 // 140 // 160 // 240 // 90 // 100 // 120
     }
   }
@@ -156,31 +176,6 @@ class Unit {
 
   raise = function (statName) {
     this.levelUp(statName)
-    // let stat = this.baseStats[statName]
-    // // if global SP > 0...
-    // if (this.playerTeam.SP >= stat.cost) {
-    //   if (stat.isResource) {
-    //     stat.current += stat.benefit
-    //   }
-    //   this.SP += stat.cost
-    //   this.playerTeam.SP -= stat.cost
-    //
-    //   let copy = clone(this)
-    //   copy.baseStats[statName].increase()
-    //   for (let key in this.baseStats) {
-    //     let diff = copy.effectiveStatValues[key] - this.effectiveStatValues[key]
-    //     if (this.baseStats[key].isResource) {
-    //       console.log('key:', key, 'diff:', diff)
-    //       if (diff > 0) {
-    //         this.baseStats[key].current += diff
-    //       }
-    //       if (this.baseStats[key].current > copy.effectiveStatValues[key]) {
-    //         this.baseStats[key].current = copy.effectiveStatValues[key]
-    //       }
-    //     }
-    //   }
-    //   stat.increase()
-    // }
   }
   get allies () {
     if (this.side === Unit.SIDE.PLAYER) {
@@ -204,6 +199,8 @@ class Unit {
   get statConversions () { return StatMods.getStatConversions.call(this) }
   get statReplacements () { return StatMods.getStatReplacements.call(this) }
   get getScalingMatrix () { return StatMods.getScalingMatrix.call(this) }
+
+  get betaSP () { return StatSmart.getBetaSP.call(this) }
 
   applyChange (...params) { StatSmart.applyChange.call(this, ...params) }
   //

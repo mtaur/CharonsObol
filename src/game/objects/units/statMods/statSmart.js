@@ -3,6 +3,7 @@ import { cloneDeep as clone } from 'lodash'
 import { Action } from '../../actions/Action.js'
 import { Soul } from 'src/game/objects/souls/Soul.js'
 import { Status } from 'src/game/objects/statuses/Status.js'
+import { Stat } from 'src/game/objects/units/Stat.js'
 // import { cloneDeep as clone, hasIn as hasProp } from 'lodash'
 
 class StatSmart {
@@ -35,7 +36,7 @@ class StatSmart {
 
   static addSoul (soulStr) {
     function removeDuplicates (arr, propName = 'NAME') {
-      console.log(arr)
+      // console.log(arr)
       // let PROPNAME = propName
       for (let i = arr.length - 1; i > -1; i--) {
         let str = arr[i][propName]
@@ -80,12 +81,14 @@ class StatSmart {
     function raise (unit) {
       unit.baseStats[statName].increase()
     }
-    let stat = this.baseStats[statName]
+    this.applyChange(raise)
 
-    if (this.playerTeam.SP >= stat.cost) {
-      this.playerTeam.SP -= stat.cost
-      this.applyChange(raise)
-    }
+    // let stat = this.baseStats[statName]
+    // if (this.playerTeam.SP >= stat.cost) {
+    // console.log('REMOVED manual SP drain from unit.levelUp(statName)')
+    //  this.playerTeam.SP -= stat.cost
+    // this.applyChange(raise)
+    // }
   }
 
   static unitJSON (unit) {
@@ -160,6 +163,23 @@ class StatSmart {
     json.live = json.field.concat(json.bench)
     json.all = json.live.concat(json.dead)
     return json
+  }
+
+  static getBetaSP () {
+    // let team = this.allies
+    let SPTot = 15
+    SPTot += this.souls.length * 15
+    this.items.forEach((item) => { SPTot += item.cost })
+    // this.baseStats.forEach(
+    for (let statName in this.baseStats) {
+      let stat = this.baseStats[statName]
+      let simulate = new Stat.LIB[statName]()
+      for (let simCounters = simulate.counters; simCounters < stat.counters; simCounters++) {
+        SPTot += simulate.cost
+        simulate.increase()
+      }
+    }
+    return SPTot
   }
 }
 

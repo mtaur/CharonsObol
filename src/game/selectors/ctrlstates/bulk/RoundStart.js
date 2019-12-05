@@ -42,6 +42,9 @@ class RoundStart extends CtrlState {
     selector.game.playerTeam.initReset()
     selector.game.cpuTeam.initReset()
     selector.changeState('InitCycle')
+    selector.showStats = false
+    selector.showConsumables = false
+    selector.showAbilities = true
     // selector.game.playerTeam.initTick()
     // selector.game.cpuTeam.initTick()
     // selector.enemyTurn()

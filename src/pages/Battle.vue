@@ -196,7 +196,7 @@ export default {
       return this.selector.promptIsVerbose ? 'light-green' : 'light-green-2'
       // return hasProp(this, 'selector.promptIsVerbose') ? 'light-green' : 'light-green-2'
     },
-    ...mapGetters('example', ['cpuJSON0', 'playerJSON0'])
+    ...mapGetters('example', ['cpuJSON0', 'playerJSON0', 'scrollJSON0'])
   },
   created: function () {
   // created: function () {
@@ -204,8 +204,12 @@ export default {
       cpuJSON: this.cpuJSON0,
       playerJSON: this.playerJSON0
     })
+    // this.playerTeam.inventory = this.scrollJSON0
     this.playerTeam = this.gameObj.playerTeam
     this.cpuTeam = this.gameObj.cpuTeam
+    for (let scrollName in this.scrollJSON0) {
+      this.playerTeam.inventory[scrollName] = this.scrollJSON0[scrollName]
+    }
     console.log('created?')
     this.selector = new Selector({
       playerTeam: this.playerTeam,

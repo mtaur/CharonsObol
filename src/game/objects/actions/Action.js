@@ -48,27 +48,7 @@ class Action {
       return rule.canFind(this.unit)
       // if (rule.canFind(this.unit) === false) { retVal = false }
     })
-    // this.prereqs.forEach((prereq) => {
-    //   let rule = new TargetRule.LIB[prereq](obj)
-    //   if (rule.canFind(this.unit) === false) { retVal = false }
-    // })
-    // return retVal
   }
-  // old!!!
-  // canUse = function () {
-  //   let retVal = true
-  //   let obj = { playerTeam: this.unit.playerTeam, cpuTeam: this.unit.cpuTeam, caster: this.unit }
-  //   this.prereqs.forEach((prereq) => {
-  //     let rule = new TargetRule.LIB[prereq](obj)
-  //     if (rule.canFind(this.unit) === false) { retVal = false }
-  //   })
-  //   if (this.isConsumable === true && this.unit.playerTeam.inventory[this.NAME] <= 0) { retVal = false }
-  //   if (this.cost > this.unit.baseStats.MP.current) { retVal = false }
-  //   if (this.type === 'both' && !(this.unit.hasAction.major && this.unit.hasAction.minor)) { retVal = false }
-  //   if (this.type === 'major' && !this.unit.hasAction.major) { retVal = false }
-  //   if (this.type === 'minor' && !this.unit.hasAction.minor) { retVal = false }
-  //   return retVal
-  // }
 
   unit = null
   // function (unit, validSlotArrayForItem)
@@ -82,41 +62,22 @@ class Action {
 
   // targSelect (prevTargs = []) {
   targSelect (selector, pendingAction = {}) {
-    let rule = new this.targetRules[0]({
-      caster: this.unit,
-      playerTeam: this.unit.playerTeam,
-      cpuTeam: this.unit.cpuTeam,
-      prevTargs: pendingAction.prevTargs
-    })
-    console.log(rule)
-    let prevTargs = pendingAction.prevTargs
-    if (prevTargs.length > 0) {
-      prevTargs.forEach((targ, index) => { console.log('Target', index, ':', targ.name) })
-    }
-    // rule.find().forEach((item, index) => {
-    //   console.log(item.name + ' is a possible target of ' + this.name)
-    //   // clone & repeat?
-    //   if (this.targetRules.length > 1) {
-    //     let next = clone(this)
-    //     let currTargLog = clone(prevTargs)
-    //     currTargLog.push(item)
-    //     next.targetRules.shift()
-    //     // next.targetRules[0].prevTargs = currTargLog
-    //     next.targLog(currTargLog)
-    //   }
+    // let rule = new this.targetRules[0]({
+    //   caster: this.unit,
+    //   playerTeam: this.unit.playerTeam,
+    //   cpuTeam: this.unit.cpuTeam,
+    //   prevTargs: pendingAction.prevTargs
     // })
+    // console.log(rule)
+    // let prevTargs = pendingAction.prevTargs
+    // if (prevTargs.length > 0) {
+    //   prevTargs.forEach((targ, index) => { console.log('Target', index, ':', targ.name) })
+    // }
   }
 
   betaCanUseTree = function () {
     if (!this.canUse()) { return false }
     return this.betaCanUseRecursion([])
-    // return betaCanUseRecursion([], [])
-    // let testPaths = []
-    // this.betaCanUseRecursion([], testPaths)
-    // if (validPaths.length > 0) {
-    //   return true
-    // }
-    // return false
   }
 
   // betaCanUseRecursion = function (prevTargs = [], testPaths = []) {
@@ -127,13 +88,7 @@ class Action {
       cpuTeam: this.unit.cpuTeam,
       prevTargs: prevTargs
     })
-    // if (rule.find().length === 0) {
-    //   console.log('No targets for', this.name)
-    //   return false
-    // }
 
-    // rule.find().forEach((item, index) => {
-    // This returns FALSE if rule.find() === []
     return rule.find().some((item, index) => {
       // console.log(item.name + ' is a possible target of ' + this.name)
       // clone & repeat?
@@ -176,7 +131,7 @@ class Action {
       cpuTeam: this.unit.cpuTeam,
       prevTargs: prevTargs
     })
-    console.log('betaChosenPath new this.targetRules[0](obj)', rule)
+    // console.log('betaChosenPath new this.targetRules[0](obj)', rule)
 
     let shuffle = (arr) => {
       var j, x, i
@@ -195,8 +150,8 @@ class Action {
       let next = clone(this)
       next.targetRules.shift()
       // next.canUseRecursion(currTargLog, validPaths)
-      console.log('next currTargLog', currTargLog.concat([unit]))
-      console.log('Can use on:', unit, next.betaCanUseRecursion(currTargLog.concat([unit])))
+      // console.log('next currTargLog', currTargLog.concat([unit]))
+      // console.log('Can use on:', unit, next.betaCanUseRecursion(currTargLog.concat([unit])))
       return next.betaCanUseRecursion(currTargLog.concat([unit]))
     }
 
@@ -266,9 +221,9 @@ class Action {
       cpuTeam: this.unit.cpuTeam,
       prevTargs: prevTargs
     })
-    if (prevTargs.length > 0) {
-      prevTargs.forEach((targ, index) => { console.log(index, ':', targ.name) })
-    }
+    // if (prevTargs.length > 0) {
+    //   prevTargs.forEach((targ, index) => { console.log(index, ':', targ.name) })
+    // }
     // console.log('rule.prevTargs:', rule.prevTargs)
     rule.find().forEach((item, index) => {
       // console.log(item.name + ' is a possible target of ' + this.name)
@@ -294,14 +249,6 @@ class Action {
       }
     }
     this.targetRules = this.targetRules.map((str) => TargetRule.LIB[str])
-    // this.name = obj.name
-    // this.statBonus = obj.statBonus
-    // this.desc = obj.desc
-    // this.equip = obj.equip
-    // this.replacements = this.replacements
-    // this.tier = obj.tier
-    //
-    // validate???
   }
 }
 

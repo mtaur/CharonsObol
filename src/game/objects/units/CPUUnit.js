@@ -7,11 +7,12 @@ class CPUUnit extends Unit {
   // cpuTeam = cpuTeam
   raise = function (statName) {
     let stat = this.baseStats[statName]
-    if (this.cpuTeam.SP >= this.SP + stat.cost) {
+    // if (this.cpuTeam.SP >= this.SP + stat.cost) {
+    if (this.cpuTeam.SPTotal >= this.betaSP + stat.cost) {
       if (stat.isResource) {
         stat.current += stat.benefit
       }
-      this.SP += stat.cost
+      // this.SP += stat.cost
       stat.increase()
     }
   }
@@ -41,7 +42,9 @@ class CPUUnit extends Unit {
     // console.log('autoraiseone this: ', this)
     let unit = this
     let baseStats = unit.baseStats
-    let avail = this.cpuTeam.SP - this.SP
+    // let avail = this.cpuTeam.SP - this.SP
+    let avail = this.cpuTeam.SPTotal - this.betaSP
+    console.log(unit.name, 'avail:', avail)
     let totalRatio = 0
     for (let key in this.statWeights) {
       totalRatio += this.statWeights[key]
@@ -75,8 +78,8 @@ class CPUUnit extends Unit {
 
     arr = arr.filter(canAfford).filter(needsRaise).sort(compareStats)
     if (arr.length > 0) {
+      console.log('Auto-raised', arr[0], ', avail =', avail)
       this.raise(arr[0])
-      // console.log('Auto-raised', arr[0], ', avail =', avail)
       return true
     } else {
       return false

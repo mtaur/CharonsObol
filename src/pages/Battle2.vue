@@ -118,15 +118,6 @@ import { hasIn as hasProp } from 'lodash'
 // import { mapState } from 'vuex'
 import { mapGetters } from 'vuex'
 
-// console.log(this.cpuJSON)
-// let cpuJSON = this.$store.example.cpuJSON
-// let playerJSON = this.$store.example.playerJSON
-// let inputs = { cpuJSON: this.cpuJSON, playerJSON: this.playerJSON }
-// let inputs = { cpuJSON: cpuJSON, playerJSON: playerJSON }
-// let gameObj = setup(inputs)
-// let playerTeam = gameObj.playerTeam
-// let cpuTeam = gameObj.cpuTeam
-
 // CREATE DUMMY OBJECTS TO AVOID BREAKING THE VUE TEMPLATE.
 // Placeholder until real objects are generated from Vuex JSON data
 // Selector is idle before the real one is assigned.
@@ -196,7 +187,7 @@ export default {
       return this.selector.promptIsVerbose ? 'light-green' : 'light-green-2'
       // return hasProp(this, 'selector.promptIsVerbose') ? 'light-green' : 'light-green-2'
     },
-    ...mapGetters('currentTeams', ['cpuJSON', 'playerJSON'])
+    ...mapGetters('currentTeams', ['cpuJSON', 'playerJSON', 'scrollJSON'])
   },
   created: function () {
   // created: function () {
@@ -206,7 +197,8 @@ export default {
     })
     this.playerTeam = this.gameObj.playerTeam
     this.cpuTeam = this.gameObj.cpuTeam
-    console.log('created?')
+    this.playerTeam.inventory = this.scrollJSON
+    // console.log('created?')
     this.selector = new Selector({
       playerTeam: this.playerTeam,
       cpuTeam: this.cpuTeam,
@@ -214,8 +206,14 @@ export default {
       logID: 0
     })
     this.selector.changeState('RoundStart')
-    console.log('new selector???')
-    console.log(this.selector)
+    // console.log('new selector???')
+    // console.log(this.selector)
+    this.playerTeam.all.forEach((unit) => {
+      console.log(unit.name, 'betaSP:', unit.betaSP)
+      console.log(unit)
+    })
+    console.log(this.playerTeam.SPSpentBeta)
+    // console.log(this.playerTeam.all[0].name, 'betaSP:', this.playerTeam.all[0].betaSP)
   },
   name: 'PageIndex',
   components: { // unitdetail,

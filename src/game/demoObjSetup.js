@@ -289,10 +289,20 @@ cpuJSON.push({
   NAME: 'HERO',
   passedObj: crazyObj
 })
+let scrolls = {
+  SMOKEBOMB: 1,
+  HEALTHPOT: 1,
+  LIZARDTAIL: 1,
+  MANAPOT: 1,
+  WRATHSCROLL: 1,
+  FLAMEFISTSCROLL: 1,
+  HEALSCROLL: 1,
+  ENLIGHTENSCROLL: 1
+}
 
 // let playerJSON = heroes
 // let cpuJSON = caenenArr.push(crazyObj)
 // console.log(playerJSON)
 // console.log(cpuJSON, 'cpuJSON === 6???')
 
-export { cpuJSON, playerJSON }
+export { cpuJSON, playerJSON, scrolls }

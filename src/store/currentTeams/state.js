@@ -1,7 +1,9 @@
 let playerJSON = {}
 let cpuJSON = {}
+let scrollJSON = {}
 
 export default {
   playerJSON,
-  cpuJSON
+  cpuJSON,
+  scrollJSON
 }

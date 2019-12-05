@@ -6,5 +6,8 @@ function playerJSON (state) {
 function cpuJSON (state) {
   return state.cpuJSON
 }
+function scrollJSON (state) {
+  return state.scrollJSON
+}
 
-export { playerJSON, cpuJSON }
+export { playerJSON, cpuJSON, scrollJSON }

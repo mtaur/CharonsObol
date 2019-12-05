@@ -4,7 +4,10 @@ let cpuJSON = (state, cpuJSON) => {
 let playerJSON = (state, playerJSON) => {
   state.playerJSON = playerJSON
 }
+let scrollJSON = (state, scrolls) => {
+  state.scrollJSON = scrolls
+}
 
-export { playerJSON, cpuJSON }
+export { playerJSON, cpuJSON, scrollJSON }
 // export function someMutation (/* state */) {
 // }

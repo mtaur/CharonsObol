@@ -28,6 +28,9 @@ class ManageTeam extends CtrlState {
     selector.promptVerbose = 'Manage your team. No unit selected.  In progress...'
     selector.prompt = 'Manage your team. No unit selected.'
     selector.resetData()
+    selector.showStats = true
+    selector.showConsumables = false
+    selector.showAbilities = true
   }
 }
 

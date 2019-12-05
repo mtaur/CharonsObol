@@ -70,7 +70,7 @@ class Status {
   triggerCheck = function (unit, trigger, action = {}, selector = {}) {
     // console.log('this:', this)
     // console.log('trigger:', trigger)
-    console.log('triggerCheck', this)
+    // console.log('triggerCheck', this)
     // Maybe loop over more than one effect in the future?
     for (let effectIndx in this.effects) {
       for (let index in this.effects[effectIndx].trigger) {
@@ -100,8 +100,8 @@ class Status {
             selector.log.push(logItem)
             console.log('logItem', logItem)
           }
-          console.log(selector.log)
-          console.log('cond', cond)
+          // console.log(selector.log)
+          // console.log('cond', cond)
           // this.effects[effectIndx].update(unit, trigger, actionType, this.effects[effectIndx])
           this.effects[effectIndx].update(unit, trigger, action, this.effects[effectIndx])
         } // return true
@@ -112,16 +112,16 @@ class Status {
 
   // triggerCheckEffect = function function (unit, trigger, effect = {}, selector = {}) {
   triggerCheckEffect = function (unit, trigger, data) {
-    console.log('Check for effect-level trigger (not complete actions)')
-    console.log('triggerCheckEffect', this)
+    // console.log('Check for effect-level trigger (not complete actions)')
+    // console.log('triggerCheckEffect', this)
     // loop over STATUS's effect
     for (let effectIndx in this.effects) {
       for (let index in this.effects[effectIndx].trigger) {
         let cond = this.effects[effectIndx].trigger[index]
         if (cond === trigger) {
-          console.log('Should fire status update...', this)
+          // console.log('Should fire status update...', this)
           let logItems = this.effects[effectIndx].getLogItem(unit, trigger, data)
-          console.log(logItems)
+          // console.log(logItems)
           let selector = unit.playerTeam.getSelector()
           for (let logIndx in logItems.log) {
             let logItem = logItems.log[logIndx]
@@ -129,7 +129,7 @@ class Status {
             selector.logID++
             logItem.id = selector.logID
             selector.log.push(logItem)
-            console.log('logItem!!!!', logItem)
+            // console.log('logItem!!!!', logItem)
           }
           // let logItem = this.effects[effectIndx].getLogItem(unit, trigger, data).log
           this.effects[effectIndx].update(unit, trigger, data)

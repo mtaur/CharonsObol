@@ -48,7 +48,7 @@ class UnitTemplate {
   static removeByNAME (arr, str, propName = 'NAME') {
     // let found = -1
     // let PROPNAME = propName
-    console.log('searching', arr, str, propName)
+    // console.log('searching', arr, str, propName)
     for (let i = arr.length - 1; i > -1; i--) {
       if (arr[i][propName] === str) {
         arr.splice(i, 1)
@@ -57,7 +57,7 @@ class UnitTemplate {
   }
 
   static removeDuplicates (arr, propName = 'NAME') {
-    console.log(arr)
+    // console.log(arr)
     // let PROPNAME = propName
     for (let i = arr.length - 1; i > -1; i--) {
       let str = arr[i][propName]

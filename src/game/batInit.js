@@ -14,7 +14,7 @@ var cpuTeam = new Team(Unit.SIDE.CPU)
 var gameObj = { playerTeam: playerTeam, cpuTeam: cpuTeam }
 
 function removeDuplicates (arr, propName = 'NAME') {
-  console.log(arr)
+  // console.log(arr)
   // let PROPNAME = propName
   for (let i = arr.length - 1; i > -1; i--) {
     let str = arr[i][propName]
@@ -37,14 +37,6 @@ let unitAdd = function (obj, side) {
     unit = new UnitTemplate.LIB[obj.NAME](gameObj)
   } else {
     unit = new UnitTemplate.LIB[obj.NAME](obj.passedObj, gameObj)
-    // if (hasProp(obj, 'passedObj.lvlUp')) {
-    //   let lvlUp = obj.passedObj.lvlUp
-    //   for (let statName in lvlUp) {
-    //     for (let i = 0; i < lvlUp[statName]; i++) {
-    //       unit.raise(statName)
-    //     }
-    //   }
-    // }
   }
   team.deploy(unit)
   removeDuplicates(unit.actions)
@@ -61,17 +53,28 @@ let setup = function (input) {
     unit.actions.push(new Action.LIB.RESTMINOR(unit))
   })
 
-  playerTeam.inventory.SMOKEBOMB = 1
-  playerTeam.inventory.HEALTHPOT = 1
-  playerTeam.inventory.LIZARDTAIL = 1
-  playerTeam.inventory.MANAPOT = 1
-  playerTeam.inventory.WRATHSCROLL = 1
-  playerTeam.inventory.FLAMEFISTSCROLL = 1
-  playerTeam.inventory.HEALSCROLL = 1
-  playerTeam.inventory.ENLIGHTENSCROLL = 1
+  // let scrolls = {
+  //   SMOKEBOMB: 1,
+  //   HEALTHPOT: 1,
+  //   LIZARDTAIL: 1,
+  //   MANAPOT: 1,
+  //   WRATCHSCROLL: 1,
+  //   FLAMEFISTSCROLL: 1,
+  //   HEALSCROLL: 1,
+  //   ENLIGHTENSCROLL: 1
+  // }
+  // playerTeam.inventory.SMOKEBOMB = 1
+  // playerTeam.inventory.HEALTHPOT = 1
+  // playerTeam.inventory.LIZARDTAIL = 1
+  // playerTeam.inventory.MANAPOT = 1
+  // playerTeam.inventory.WRATHSCROLL = 1
+  // playerTeam.inventory.FLAMEFISTSCROLL = 1
+  // playerTeam.inventory.HEALSCROLL = 1
+  // playerTeam.inventory.ENLIGHTENSCROLL = 1
   let retObj = {
     cpuTeam,
-    playerTeam
+    playerTeam // ,
+    // scrolls
   }
 
   return retObj

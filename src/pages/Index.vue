@@ -40,7 +40,7 @@
         (That's the idea anyway)
       </div> -->
       <div v-if="playerTeam.all.length > 0" class="q-pa-sm">
-        <q-btn @click="batInit(playerJSON, cpuJSON)" color="amber-5" size="lg">Begin custom battle!</q-btn>
+        <q-btn @click="batInit(playerJSON, cpuJSON, scrolls)" color="amber-5" size="lg">Begin custom battle!</q-btn>
       </div>
     </div>
     <div class="column unitrow">
@@ -113,6 +113,9 @@ var selector = new Selector({
   logID: 0
 })
 selector.changeState('ManageTeam')
+// selector.showStats = true
+// selector.showConsumables = false
+// selector.showAbilities = true
 
 // import { playerTeam, cpuTeam } from 'src/game/objects/units/unit.js'
 // import { playerTeam, cpuTeam } from 'src/game/initialize.js'
@@ -162,7 +165,8 @@ export default {
       // selector.getClickMode(unit).onClick(selector, unit)
     },
     ...mapMutations('currentTeams', ['playerJSON', 'cpuJSON']),
-    batInit: function (playerJSON, cpuJSON) {
+    batInit: function (playerJSON, cpuJSON, scrolls) {
+      this.$store.commit('currentTeams/scrollJSON', scrolls)
       this.$store.commit('currentTeams/playerJSON', playerJSON)
       this.$store.commit('currentTeams/cpuJSON', cpuJSON)
       this.$router.push({ name: 'battle2' })
@@ -215,6 +219,14 @@ export default {
     },
     cpuJSON: function () {
       return this.cpuJSON0
+    },
+    scrolls: function () {
+      // return this.playerTeam.inventory
+      let scrolls = {}
+      for (let scrollName in this.playerTeam.inventory) {
+        scrolls[scrollName] = this.playerTeam.inventory[scrollName]
+      }
+      return scrolls
     },
     ...mapGetters('example', ['cpuJSON0'])
   },
