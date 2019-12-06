@@ -26,6 +26,27 @@
           <div v-if="rightDrawerPage==='souls' && rightDrawerOpen" class="q-pa-xs">
             Book of Souls
           </div>
+        </q-btn>
+        <q-btn
+        flat
+        @click="rightDrawerClick('items')"
+        aria-label="Menu"
+        >
+          <q-icon name="ion-shirt" />
+          <div v-if="rightDrawerPage==='items' && rightDrawerOpen" class="q-pa-xs">
+            Metaphysical Forge
+          </div>
+        </q-btn>
+        <q-btn
+        flat
+        @click="rightDrawerClick('consumables')"
+        aria-label="Menu"
+        >
+          <!-- <q-icon name="fas fa-book" /> -->
+          <q-icon name="ion-ios-flask" />
+          <div v-if="rightDrawerPage==='consumables' && rightDrawerOpen" class="q-pa-xs">
+            Potions and Parchments
+          </div>
           <!-- <q-icon name="menu" /> -->
         </q-btn>
         <!-- <div>Built in Quasar v{{ $q.version }}</div> -->

@@ -19,9 +19,6 @@
         <div class="col-2"></div>
         <div class="col-8">
           <h4>Welcome to Charon's Obol!</h4>
-          <!-- <div class="text-h6 q-pa-sm">
-            I'm working on the pre-game and page routing.  Click the button below to start. I've pre-leveled the characters to some extent.  This is to practice passing data into constructors so I can save/load and transition more easily as the game grows.
-          </div> -->
         </div>
         <div class="col-2"></div>
       </div>
@@ -30,15 +27,6 @@
       </div>
       <q-separator></q-separator>
       <h4>...or create custom party:</h4>
-      <!-- <div class="text-h6 q-pa-sm" style="width:66%">
-        Notice how the URL changes when you click the button.  This will make it possible to use the back button in the future. The game state will store some information that should prevent jumping "forward" nonsensically with manual URLs.  When a manual URL is used, it will be scrutinized and the game will roll back or forward to the correct state.
-      </div>
-      <div class="text-h6 q-pa-sm" style="width:66%">
-        In-game interactions will create data points which can be loaded through the proper URLs.
-      </div>
-      <div class="text-body1 q-pa-sm" style="width:66%">
-        (That's the idea anyway)
-      </div> -->
       <div v-if="playerTeam.all.length > 0" class="q-pa-sm">
         <q-btn @click="batInit(playerJSON, cpuJSON, scrolls)" color="amber-5" size="lg">Begin custom battle!</q-btn>
       </div>
