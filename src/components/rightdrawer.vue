@@ -4,7 +4,7 @@
     v-model="visible"
     bordered
     content-class="bg-grey-2"
-    :width="page === 'charInfo' || page === 'newCharInfo' || page === 'souls'
+    :width="page === 'charInfo' || page === 'newCharInfo' || page === 'items' || page === 'souls'
       ? 500 : 350"
     :breakpoint="0"
   >
@@ -13,6 +13,8 @@
       <charInfo v-if="page==='charInfo'" :selector="selector"></charInfo>
       <newCharInfo v-if="page==='newCharInfo'" :selector="selector"></newCharInfo>
       <newCharSouls v-if="page==='souls'" :selector="selector"></newCharSouls>
+      <newCharItems v-if="page==='items'" :selector="selector"></newCharItems>
+      <newCharConsumables v-if="page==='consumables'" :selector="selector"></newCharConsumables>
     </q-scroll-area>
   </q-drawer>
 </template>
@@ -24,6 +26,8 @@ import battleLog from './battleLog'
 import charInfo from './charInfo'
 import newCharInfo from './newCharInfo'
 import newCharSouls from './newCharSouls'
+import newCharItems from './newCharItems'
+import newCharConsumables from './newCharConsumables'
 
 export default {
   name: 'rightDrawer',
@@ -84,6 +88,8 @@ export default {
     battleLog,
     charInfo,
     newCharInfo,
+    newCharItems,
+    newCharConsumables,
     newCharSouls
     // unitdetail
   }

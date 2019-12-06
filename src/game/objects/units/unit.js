@@ -99,7 +99,7 @@ class Team {
   // SPSpent = ...
   // SPTotal = ...
   static SPEff = 0.25
-  static SPCap = 1000 // 300
+  static SPCap = 750 // 1000 // 300
   // static SPCap = 300
   // SP efficiency. SP per RSP at beginning of SP curve.
   SPEff = 0.25
@@ -143,13 +143,13 @@ class Team {
 
     // Player spends SP between player units.
     if (side === Unit.SIDE.PLAYER) {
-      this.RSP = 4000 // 1200 // 200 // 600
+      this.RSP = 3000 // 4000 // 1200 // 200 // 600
       // this.SP = 100 // 80 // 100 // 60
     }
 
     // CPU units all receive CPU SP separately in full.
     if (side === Unit.SIDE.CPU) {
-      this.RSP = 600 // 300 // 100 // 1200 // 140 // 160 // 240 // 90 // 100 // 120
+      this.RSP = 1200 // 600 // 300 // 100 // 1200 // 140 // 160 // 240 // 90 // 100 // 120
       // this.SP = 200 // 140 // 160 // 240 // 90 // 100 // 120
     }
   }

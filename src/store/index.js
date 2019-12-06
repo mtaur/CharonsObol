@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 import example from './module-example/index.js'
 import lostSouls from './lostSouls/index.js'
 import currentTeams from './currentTeams/index.js'
+import itemsForSale from './itemsForSale/index.js'
 
 Vue.use(Vuex)
 
@@ -21,7 +22,8 @@ export default function (/* { ssrContext } */) {
       // example: example
       example,
       currentTeams,
-      lostSouls
+      lostSouls,
+      itemsForSale
     }
   })
   // console.log(Store)
