@@ -152,6 +152,15 @@ class Team {
       this.RSP = 1200 // 600 // 300 // 100 // 1200 // 140 // 160 // 240 // 90 // 100 // 120
       // this.SP = 200 // 140 // 160 // 240 // 90 // 100 // 120
     }
+
+    if (side === Unit.SIDE.PLAYER) {
+      this.inventory = {}
+      for (let action in Action.LIB) {
+        if (action.isConsumable) {
+          this.inventory[action] = 0
+        }
+      }
+    }
   }
 }
 
@@ -307,6 +316,7 @@ class Unit {
     }
     this.id = Unit.id
     this.resourceManager = new ResourceManager(this)
+    if (this.side === Unit.SIDE.PLAYER) { this.inventory = this.playerTeam.inventory }
   }
 }
 /// ^ end of class ^ ///

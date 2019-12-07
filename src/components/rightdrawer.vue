@@ -4,7 +4,7 @@
     v-model="visible"
     bordered
     content-class="bg-grey-2"
-    :width="page === 'charInfo' || page === 'newCharInfo' || page === 'items' || page === 'souls'
+    :width="page === 'charInfo' || page === 'newCharInfo' || page === 'consumables' || page === 'items' || page === 'souls'
       ? 500 : 350"
     :breakpoint="0"
   >

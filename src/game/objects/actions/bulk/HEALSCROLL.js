@@ -14,7 +14,7 @@ class HEALSCROLL {
       type: 'major',
       desc: 'Heal one ally for 1.5x LARGEST between MELEE, RANGED, MAGIC, 4x INIT',
       isConsumable: true,
-      SPCost: 3,
+      SPCost: 4,
       targetRules: ['HEAL'],
       effects: [
         {

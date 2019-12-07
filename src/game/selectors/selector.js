@@ -36,6 +36,7 @@ class Selector {
   stateData = {
     inspectUnit: {},
     inspectItem: {},
+    inspectScroll: {},
     infoPage: 'souls',
     activeUnit: {},
     activeSkill: {}
@@ -49,6 +50,7 @@ class Selector {
       // do not reset infoPage or inspection.  Persist between turns.
       inspectUnit: this.stateData.inspectUnit,
       inspectItem: this.stateData.inspectItem,
+      inspectScroll: this.stateData.inspectScroll,
       infoPage: this.stateData.infoPage,
       // inspectUnit: {},
       // infoPage: 'souls',

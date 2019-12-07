@@ -15,7 +15,7 @@ class MANAPOT {
       desc: 'Restore 2 MP.',
       // cost: 1,
       isConsumable: true,
-      SPCost: 2,
+      SPCost: 4,
       targetRules: ['SELF'],
       effects: [
         {

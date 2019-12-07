@@ -17,6 +17,7 @@ class ENLIGHTENSCROLLv1 {
         `1x MAGIC immediately and 3x MAGIC over time. Set Guard status on target.`, // +
       // `Refund your action points.`,
       isConsumable: true,
+      include: false,
       SPCost: 3,
       targetRules: ['ENLIGHTENv1', 'SAME', 'SAME', 'SAME'],
       prereqs: ['MANANOTFULL'], // TargetRules.LIB.BACK ...

@@ -8,8 +8,6 @@
       class="glossy"
       :style="actionStyle(action)"
       :color="buttonColor(action)" text-color="white">
-      <!-- clickable @click="targLog(action)" -->
-      <!-- clickable @click="skillClick(action)" -->
         <q-avatar>
           <img :src="getIcon(action)">
         </q-avatar>

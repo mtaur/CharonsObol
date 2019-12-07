@@ -16,7 +16,7 @@ class FLAMEFISTSCROLL {
       desc: 'Deal (MELEE + MAGIC + RANGED + 4x INIT) damage with a melee attack. ' +
         'DRED and DREF scaling are both 2.',
       isConsumable: true,
-      SPCost: 4,
+      SPCost: 6,
       // cost: 2,
       targetRules: ['MELEE'],
       prereqs: ['FRONTNOTFULL'],

@@ -15,7 +15,7 @@ class HEALTHPOT {
       desc: 'Heal self for 50% max HP.',
       // cost: 1,
       isConsumable: true,
-      SPCost: 3,
+      SPCost: 5,
       targetRules: ['SELF'],
       effects: [
         {

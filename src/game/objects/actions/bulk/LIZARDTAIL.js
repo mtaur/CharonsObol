@@ -15,7 +15,7 @@ class LIZARDTAIL {
       desc: 'Slowly regenerate 100% max HP',
       // cost: 1,
       isConsumable: true,
-      SPCost: 3,
+      SPCost: 5,
       targetRules: ['SELF'],
       effects: [
         {

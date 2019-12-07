@@ -15,7 +15,7 @@ class WRATHSCROLL {
       type: 'both',
       // cost: 2,
       isConsumable: true,
-      SPCost: 4,
+      SPCost: 6,
       desc: `Target enemy who still has both actions takes (MELEE + MAGIC + RANGED + 4x INIT) ` +
         `damage. Refunds your turn, but delays your team's next action by an additional turn gauge. ` +
         `DRED and DREF scaling are both 2.`,

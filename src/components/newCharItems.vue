@@ -72,7 +72,7 @@ import { mapGetters, mapMutations } from 'vuex'
 // import { Soul } from 'src/game/objects/souls/Soul.js'
 
 export default {
-  name: 'newCharSouls',
+  name: 'newCharItems',
   props: ['selector'], // , 'activeUnit', 'playerTeam'],
   data () {
     return {

@@ -2,9 +2,9 @@
 <!-- <div class="col-3 wind justify-center align-center"> -->
 <div class="col-3 justify-center align-center">
   <div class="row items-center justify-center">
-    <div v-for="action in sortedActions" :key="action.name" class="justify-center">
+    <div v-for="action in sortedActions" :key="generateKey(action)" class="justify-center">
     <!-- <div v-for="action in unit.actions" :key="action.name" class="justify-center"> -->
-      <q-chip square v-if="canUse(action)"
+      <q-chip square
       class="glossy"
       :style="actionStyle(action)"
       :color="buttonColor(action)" text-color="white">
@@ -54,12 +54,15 @@ export default {
       // if (action.type === 'minor') { return 'statics/icons/action-dot.png' }
       // return 'statics/icons/action-none.png'
     },
+    generateKey (action) {
+      return action.NAME + this.unit.playerTeam.inventory[action.NAME]
+    },
     canUse (action) {
       // if (action.type === 'both') { return this.unit.hasAction.major && this.unit.hasAction.minor }
       // if (action.type === 'major') { return this.unit.hasAction.major }
       // if (action.type === 'minor') { return this.unit.hasAction.minor }
       // return true
-      return action.canUseTree()
+      return action.betaCanUseTree()
       // return action.canUse()
     },
     actionStyle (action) {

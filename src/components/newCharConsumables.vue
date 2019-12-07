@@ -1,45 +1,47 @@
 <template>
   <div>
     <h4 class="row justify-center">Metaphysical Forge</h4>
-    <div v-if="lostSoulsGameObj.length > 0" class="row">
+    <div class="row">
       <div class="col-2"></div>
       <div class="col-8">
         <q-card class="q-gutter-md bg-blue-grey-3">
           <q-card-section>
             <div class="row text-h4 q-pa-sm justify-center items-center">
               <div class="text-amber-9">
-                Equipment
+                Consumables
               </div>
             </div>
             <div>
-              All sales are final and binding.  No refunds or transfers.
+              Sales are final. SP is refunded when consumable is expended! Refunds not available in store.
             </div>
             <div class="row text-caption">
               <!-- <div class="col-3" v-for="unit in lostSoulsGameObj" :key="unit.id">
                 <smallUnit :unit="unit" :selector="selector"></smallUnit>
               </div> -->
-              <div class="col-3" v-for="item in itemStoreGameObj" :key="item.NAME">
+              <!-- <div class="col-3" v-for="scroll in scrollList" :key="scroll.NAME"> -->
+              <!-- <div v-for="scroll in scrollList" :key="scroll.NAME"> -->
+              <div v-for="scroll in scrollList" :key="generateKey(scroll)">
                 <q-chip square
                 class="glossy"
-                :style="itemStyle(item)"
-                clickable @click="selectItem(item)"
-                :color="buttonColor(item)" text-color="white">
+                :style="scrollStyle(scroll)"
+                clickable @click="selectItem(scroll)"
+                :color="buttonColor(scroll)" text-color="white">
                 <!-- clickable @click="targLog(action)" -->
                 <!-- clickable @click="skillClick(action)" -->
                   <!-- <q-avatar>
                     <img :src="getIcon(item)">
                   </q-avatar> -->
-                  {{ item.name }}
+                  {{ scroll.name }}
                   <q-tooltip anchor="center right" self="center left" :offset="[10, 10]" content-class="bg-teal" max-width="20vw">
                       <span style="font-size: 14px">
                         <h6>
-                          {{ item.name }}
-                          <div v-if="item.cost > 0" :style="{ color: 'blue' }">
-                            {{ item.cost }} SP
+                          {{ scroll.name }}
+                          <div v-if="scroll.SPCost > 0" :style="{ color: 'blue' }">
+                            {{ scroll.SPCost }} SP
                           </div>
                         </h6>
                         <div>
-                          {{ item.desc }}
+                          {{ scroll.desc }}
                         </div>
                       </span>
                   </q-tooltip>
@@ -52,9 +54,8 @@
       </div>
       <div class="col-2"></div>
     </div>
-    <div v-if="activeUnit.id && inspectUnit.id && inspectUnit.isLostSoul === true" class="column items-center">
-      <q-btn size="xl" color="amber" @click="purchaseItem()">Wield item</q-btn>
-      Make sure you have selected the unit you want to have this!
+    <div v-if="canAfford(inspectScroll) === true" class="column items-center">
+      <q-btn size="xl" color="amber" @click="purchaseScroll()">Allot SP to bring along a(nother) copy of this consumable!</q-btn>
     </div>
     <!-- <newUnitInfo v-if="selector.stateData.inspectUnit.name"
     :selector="selector"
@@ -67,18 +68,28 @@
 // import unitdetail from 'src/components/unitdetail'
 // import smallUnit from './smallUnit'
 // import newUnitInfo from './newUnitInfo'
-// import { Unit } from 'src/game/objects/units/Unit.js'
-import { Item } from 'src/game/objects/items/Item.js'
+import { Unit } from 'src/game/objects/units/Unit.js'
+import { Action } from 'src/game/objects/actions/Action.js'
+import { hasIn as hasProp } from 'lodash'
 // import { UnitTemplate } from 'src/game/objects/units/templates/UnitTemplate.js'
-import { mapGetters, mapMutations } from 'vuex'
+// import { mapGetters, mapMutations } from 'vuex'
 // import { Soul } from 'src/game/objects/souls/Soul.js'
 
 export default {
-  name: 'newCharSouls',
+  name: 'newCharScrolls',
   props: ['selector'], // , 'activeUnit', 'playerTeam'],
   data () {
+    let skillList = []
+    let dummy = new Unit()
+    for (let NAME in Action.LIB) {
+      let skill = new Action.LIB[NAME](dummy)
+      skillList.push(skill)
+    }
+    let scrollList = skillList.filter((skill) => skill.isConsumable && skill.include)
+
     return {
-      itemStoreGameObj: []
+      scrollList: scrollList
+      // itemStoreGameObj: []
       // lostSoulsGameObj: [],
       // lostSouls: []
     }
@@ -87,62 +98,45 @@ export default {
     activeUnit () {
       return this.selector.stateData.activeUnit
     },
-    inspectItem () {
-      return this.selector.stateData.inspectItem
-    },
+    inspectScroll () {
+      return this.selector.stateData.inspectScroll
+    } // ,
     // inspectUnit () {
     //   return this.selector.stateData.inspectUnit
     // },
-    ...mapGetters('itemsForSale', ['itemsForSale'])
+    // ...mapGetters('itemsForSale', ['itemsForSale'])
   },
   methods: {
-    ...mapMutations('itemsForSale', ['buyItem']),
-    purchaseItem () {
-      let itemName = this.inspectItem.NAME
-      let item = new Item.LIB[itemName]()
-      item.equipTo(this.activeUnit)
-      // let soulName = this.inspectUnit.souls[0].NAME
-      // this.activeUnit.addSoul(soulName)
-      // this.activeUnit.souls.push(new Soul.LIB[soulName]())
-      // this.activeUnit.name = this.activeUnit.souls[0].name
-      // this.activeUnit.NAME = this.activeUnit.souls[0].NAME
-      this.$store.commit('itemsForSale/buyItem', itemName)
-      this.selector.stateData.inspectItem = ''
-      // this.selector.stateData.inspectUnit = {}
-      this.computeSouls()
+    // ...mapMutations('itemsForSale', ['buyItem']),
+    generateKey (scroll) {
+      return scroll.NAME + this.selector.game.playerTeam.inventory[scroll.NAME]
     },
-    computeItems () {
-      this.itemStoreGameObj = []
-
-      let addItem = (itemStr) => {
-        let item = new Item.LIB[itemStr]()
-        // unit.isLostSoul = true
-        return item
-      }
-
-      for (let index in this.lostSouls) {
-        this.itemStoreGameObj.push(addItem(this.itemsForSale[index]))
-      }
+    purchaseScroll () {
+      let NAME = this.inspectScroll.NAME
+      let inventory = this.selector.game.playerTeam.inventory
+      inventory[NAME] = hasProp(inventory, NAME) ? inventory[NAME] + 1 : 1
+      // if (!hasProp(inventory, NAME)) { inventory[NAME] = 0 }
+      // this.selector.game.playerTeam.inventory[NAME]++
     },
-    canAfford (item) {
-      return this.selector.game.playerTeam.SP > item.cost
+    canAfford (scroll) {
+      return this.selector.game.playerTeam.SP > scroll.cost
     },
-    selectItem (item) {
+    selectItem (scroll) {
       // action.targSelect(selector)
-      if (this.selector.stateData.inspectItem.name === item.name) {
-        this.selector.stateData.inspectItem = {}
+      if (this.selector.stateData.inspectScroll.name === scroll.name) {
+        this.selector.stateData.inspectScroll = {}
       } else {
-        this.selector.stateData.inspectItem = item
+        this.selector.stateData.inspectScroll = scroll
       }
     },
-    itemStyle (item) {
-      if (this.selector.stateData.inspectItem.name === item.name) {
+    scrollStyle (scroll) {
+      if (this.selector.stateData.inspectScroll.name === scroll.name) {
         return {
           // backgroundColor: 'amber',
           height: '40px',
           fontSize: '18px'
         }
-      } else if (this.canAfford(item)) {
+      } else if (this.canAfford(scroll)) {
         return {
           // backgroundColor: 'indigo',
           height: '32px',
@@ -156,9 +150,9 @@ export default {
         }
       }
     },
-    buttonColor (item) {
-      if (this.selector.stateData.inspectItem.name === item.name) return 'amber'
-      else if (this.canAfford(item)) return 'indigo'
+    buttonColor (scroll) {
+      if (this.selector.stateData.inspectScroll.name === scroll.name) return 'amber'
+      else if (this.canAfford(scroll)) return 'indigo'
       else return 'blue-grey'
     }
   },
@@ -168,7 +162,7 @@ export default {
     // unitdetail
   },
   created: function () {
-    this.computeItems()
+    // this.computeItems()
   }
 }
 </script>

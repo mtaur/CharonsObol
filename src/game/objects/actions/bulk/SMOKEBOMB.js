@@ -17,7 +17,7 @@ class SMOKEBOMB {
         `caster or an ally escapes the battle. Delay enemy turn by 100% of a ` +
         `turn gauge.`,
       isConsumable: true,
-      SPCost: 4,
+      SPCost: 3,
       targetRules: ['RANGED', 'SAME', 'ALLY'],
       // prereqs: ['FRONT'], // TargetRules.LIB.BACK ...
       // after: [{
