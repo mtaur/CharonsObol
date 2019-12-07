@@ -316,7 +316,7 @@ class Unit {
     }
     this.id = Unit.id
     this.resourceManager = new ResourceManager(this)
-    if (this.side === Unit.SIDE.PLAYER) { this.inventory = this.playerTeam.inventory }
+    // if (this.side === Unit.SIDE.PLAYER) { this.inventory = this.playerTeam.inventory }
   }
 }
 /// ^ end of class ^ ///

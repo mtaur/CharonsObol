@@ -29,7 +29,7 @@ class ManageTeam extends CtrlState {
     selector.prompt = 'Manage your team. No unit selected.'
     selector.resetData()
     selector.showStats = true
-    selector.showConsumables = false
+    selector.showConsumables = true
     selector.showAbilities = true
   }
 }

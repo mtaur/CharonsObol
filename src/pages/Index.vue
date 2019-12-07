@@ -1,80 +1,80 @@
 <template>
   <span>
-  <newUnitDrawer :activeUnit="activeUnit" :visible="leftDrawerOpen"
-    :playerTeam="playerTeam"
-    :cpuTeam="cpuTeam"
-    :selector="selector"
-    class="non-selectable">
-  </newUnitDrawer>
-  <rightdrawer
-    :visible="rightDrawerOpen"
-    :page="rightDrawerPage"
-    :selector="selector"
-    class="non-selectable">
-  </rightdrawer>
-  <!-- <q-page class="qpage column align-center items-center justify-center"> -->
-  <q-page class="qpage column non-selectable">
-    <div class="align-center column items-center justify-center">
-      <div class="row items-center">
-        <div class="col-2"></div>
-        <div class="col-8">
-          <h4>Welcome to Charon's Obol!</h4>
+    <newUnitDrawer :key="selector.updateKey" :activeUnit="activeUnit" :visible="leftDrawerOpen"
+      :playerTeam="playerTeam"
+      :cpuTeam="cpuTeam"
+      :selector="selector"
+      class="non-selectable">
+    </newUnitDrawer>
+    <rightdrawer
+      :visible="rightDrawerOpen"
+      :page="rightDrawerPage"
+      :selector="selector"
+      class="non-selectable">
+    </rightdrawer>
+    <!-- <q-page class="qpage column align-center items-center justify-center"> -->
+    <q-page class="qpage column non-selectable">
+      <div class="align-center column items-center justify-center">
+        <div class="row items-center">
+          <div class="col-2"></div>
+          <div class="col-8">
+            <h4>Welcome to Charon's Obol!</h4>
+          </div>
+          <div class="col-2"></div>
         </div>
-        <div class="col-2"></div>
+        <div class="q-pa-sm">
+          <q-btn to="battle" color="green" size="lg">Start battle with random auto party.</q-btn>
+        </div>
+        <q-separator></q-separator>
+        <h4>...or create custom party:</h4>
+        <div v-if="playerTeam.all.length > 0" class="q-pa-sm">
+          <q-btn @click="batInit(playerJSON, cpuJSON, scrolls)" color="amber-5" size="lg">Begin custom battle!</q-btn>
+        </div>
       </div>
-      <div class="q-pa-sm">
-        <q-btn to="battle" color="green" size="lg">Start battle with random auto party.</q-btn>
+      <div class="column unitrow">
+        <div class="row justify-center items-stretch">
+          <h6>Front</h6>
+        </div>
+        <div class="row justify-center items-stretch unitrow">
+          <div v-if="playerTeam.front.length < 4" class="col-3 q-pa-lg">
+            <q-btn @click="addJaqen('front')" color="green" size="xl">Add unit!</q-btn>
+          </div>
+          <newPlayer v-for="unit in playerTeam.front"
+            :unit="unit"
+            :key="unit.id"
+            :isActive="isActive(selector, unit)"
+            :class="{'active': isActive(selector, unit)}"
+            :selector="selector"
+            @click.native="battlefieldClick(selector, unit)"
+            >
+            <!-- :isActive="isActive(unit)" -->
+            <!-- @click.native="makeActive(unit, $event)" -->
+          </newPlayer>
+          <!-- {{ unit.name }} -->
+        </div>
       </div>
-      <q-separator></q-separator>
-      <h4>...or create custom party:</h4>
-      <div v-if="playerTeam.all.length > 0" class="q-pa-sm">
-        <q-btn @click="batInit(playerJSON, cpuJSON, scrolls)" color="amber-5" size="lg">Begin custom battle!</q-btn>
-      </div>
-    </div>
-    <div class="column unitrow">
       <div class="row justify-center items-stretch">
-        <h6>Front</h6>
+        <h6>Back</h6>
       </div>
-      <div class="row justify-center items-stretch unitrow">
-        <div v-if="playerTeam.front.length < 4" class="col-3 q-pa-lg">
-          <q-btn @click="addJaqen('front')" color="green" size="xl">Add unit!</q-btn>
-        </div>
-        <newPlayer v-for="unit in playerTeam.front"
-          :unit="unit"
-          :key="unit.id"
-          :isActive="isActive(selector, unit)"
-          :class="{'active': isActive(selector, unit)}"
-          :selector="selector"
-          @click.native="battlefieldClick(selector, unit)"
+      <div class="column unitrow">
+        <div class="row justify-center items-stretch unitrow">
+          <div v-if="playerTeam.back.length < 4" class="col-3 q-pa-lg">
+            <q-btn @click="addJaqen('back')" color="green" size="xl">Add unit!</q-btn>
+          </div>
+          <newPlayer v-for="unit in playerTeam.back"
+            :unit="unit"
+            :key="unit.id"
+            :isActive="isActive(selector, unit)"
+            :class="{'active': isActive(selector, unit)}"
+            :selector="selector"
+            @click.native="battlefieldClick(selector, unit)"
           >
           <!-- :isActive="isActive(unit)" -->
           <!-- @click.native="makeActive(unit, $event)" -->
-        </newPlayer>
-        <!-- {{ unit.name }} -->
-      </div>
-    </div>
-    <div class="row justify-center items-stretch">
-      <h6>Back</h6>
-    </div>
-    <div class="column unitrow">
-      <div class="row justify-center items-stretch unitrow">
-        <div v-if="playerTeam.back.length < 4" class="col-3 q-pa-lg">
-          <q-btn @click="addJaqen('back')" color="green" size="xl">Add unit!</q-btn>
+          </newPlayer>
         </div>
-        <newPlayer v-for="unit in playerTeam.back"
-          :unit="unit"
-          :key="unit.id"
-          :isActive="isActive(selector, unit)"
-          :class="{'active': isActive(selector, unit)}"
-          :selector="selector"
-          @click.native="battlefieldClick(selector, unit)"
-        >
-        <!-- :isActive="isActive(unit)" -->
-        <!-- @click.native="makeActive(unit, $event)" -->
-        </newPlayer>
       </div>
-    </div>
-  </q-page>
+    </q-page>
     <!-- <div>
     </div> -->
   <!-- </div> -->
@@ -217,6 +217,9 @@ export default {
       return scrolls
     },
     ...mapGetters('example', ['cpuJSON0'])
+  },
+  created: function () {
+    this.addJaqen('front')
   },
   //   SP: function () {
   //     return playerTeam.SP

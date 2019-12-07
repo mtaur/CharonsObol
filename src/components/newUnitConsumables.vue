@@ -41,6 +41,7 @@ export default {
   components: {},
   data () {
     return {
+      // scrollKey = 0
     }
   },
   methods: {

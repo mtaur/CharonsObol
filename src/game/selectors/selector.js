@@ -5,6 +5,7 @@ import { hasIn as hasProp } from 'lodash'
 import { enemyTurn } from './enemyTurn.js'
 
 class Selector {
+  updateKey = 0
   // game object
   game = {}
   // game.cpuTeam, game.playerTeam .....

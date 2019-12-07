@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h4 class="row justify-center">Metaphysical Forge</h4>
+    <h4 class="row justify-center">Potions and Parchments</h4>
     <div class="row">
       <div class="col-2"></div>
       <div class="col-8">
@@ -15,6 +15,7 @@
               Sales are final. SP is refunded when consumable is expended! Refunds not available in store.
             </div>
             <div class="row text-caption">
+            <!-- <div class="row text-caption" :key="scrollKey"> -->
               <!-- <div class="col-3" v-for="unit in lostSoulsGameObj" :key="unit.id">
                 <smallUnit :unit="unit" :selector="selector"></smallUnit>
               </div> -->
@@ -88,6 +89,7 @@ export default {
     let scrollList = skillList.filter((skill) => skill.isConsumable && skill.include)
 
     return {
+      // scrollKey: 0,
       scrollList: scrollList
       // itemStoreGameObj: []
       // lostSoulsGameObj: [],
@@ -115,6 +117,9 @@ export default {
       let NAME = this.inspectScroll.NAME
       let inventory = this.selector.game.playerTeam.inventory
       inventory[NAME] = hasProp(inventory, NAME) ? inventory[NAME] + 1 : 1
+      this.selector.updateKey++
+      // this.selector.stateData.activeUnit = this.activeUnit
+      // this.scrollKey++
       // if (!hasProp(inventory, NAME)) { inventory[NAME] = 0 }
       // this.selector.game.playerTeam.inventory[NAME]++
     },
