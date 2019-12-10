@@ -82,8 +82,8 @@ class Team {
     // playerTeam.inventory.SMOKEBOMB = 1
     if (this.side === Unit.SIDE.PLAYER) {
       for (let scrollName in this.inventory) {
-        console.log(this.inventory, 'inventory')
-        console.log(scrollName, 'scrollName')
+        // console.log(this.inventory, 'inventory')
+        // console.log(scrollName, 'scrollName')
         let scroll = new Action.LIB[scrollName](this.all[0])
         let num = this.inventory[scrollName]
         teamSPTot += num * scroll.SPCost
@@ -98,28 +98,47 @@ class Team {
   // SPAvail = ...
   // SPSpent = ...
   // SPTotal = ...
-  static SPEff = 0.25
-  static SPCap = 750 // 1000 // 300
+  // static SPEff = 0.25
+  // static SPCap = 750 // 1000 // 300
+  // static SPEff = 0.25
+  SPCap = 750 // 1000 // 300
   // static SPCap = 300
   // SP efficiency. SP per RSP at beginning of SP curve.
   SPEff = 0.25
-  static rawToTotal (raw) {
-    return Math.floor(raw / ((1 / Team.SPEff) + (raw / Team.SPCap)))
+  // static rawToTotal (raw) {
+  // return Math.floor(raw / ((1 / Team.SPEff) + (raw / Team.SPCap)))
+  // }
+  rawToTotal (raw) {
+    return Math.floor(raw / ((1 / this.SPEff) + (raw / this.SPCap)))
   }
-  static totalToRaw (total) {
-    return (total / Team.SPEff) / (1 - (total / Team.SPCap))
+  // static totalToRaw (total) {
+  //   // return (total / Team.SPEff) / (1 - (total / Team.SPCap))
+  //   return (total / this.SPEff) / (1 - (total / this.SPCap))
+  // }
+  totalToRaw (total) {
+    return Math.ceil((total / this.SPEff) / (1 - (total / this.SPCap)))
   }
+  // showSPGain (raw) {
+  //   return Team.rawToTotal(this.RSP + raw) - Team.rawToTotal(this.RSP)
+  // }
   showSPGain (raw) {
-    return Team.rawToTotal(this.RSP + raw) - Team.rawToTotal(this.RSP)
+    return this.rawToTotal(this.RSP + raw) - this.rawToTotal(this.RSP)
   }
+  // get SPTotal () {
+  //   return Team.rawToTotal(this.RSP)
+  // }
   get SPTotal () {
-    return Team.rawToTotal(this.RSP)
+    return this.rawToTotal(this.RSP)
   }
   // SP is available SP for spending.
-  set SP (val) { this.SPSpentBeta = this.SPTotal - val }
+  // set SP (val) { this.SPSpentBeta = this.SPTotal - val }
+  set SP (val) {
+    this.RSP = this.SPCap > val ? this.totalToRaw(val) : 9001
+  }
   get SP () { return this.SPTotal - this.SPSpentBeta }
   // set SP (val) { this.SPSpent = this.SPTotal - val }
   // get SP () { return this.SPTotal - this.SPSpent }
+  purchaseScroll (...params) { return StatSmart.purchaseScroll.call(this, ...params) }
 
   deploy = function (unit) {
     let deployed = this.all.some((deployedUnit) => deployedUnit.id === unit.id)
@@ -149,7 +168,7 @@ class Team {
 
     // CPU units all receive CPU SP separately in full.
     if (side === Unit.SIDE.CPU) {
-      this.RSP = 1200 // 600 // 300 // 100 // 1200 // 140 // 160 // 240 // 90 // 100 // 120
+      this.RSP = 1000 // 600 // 300 // 100 // 1200 // 140 // 160 // 240 // 90 // 100 // 120
       // this.SP = 200 // 140 // 160 // 240 // 90 // 100 // 120
     }
 

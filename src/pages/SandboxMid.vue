@@ -28,7 +28,7 @@
         <q-separator></q-separator>
         <h4>...or create custom party:</h4>
         <div v-if="playerTeam.all.length > 0" class="q-pa-sm">
-          <q-btn @click="batInit(playerJSON, cpuJSON, scrolls, config)" color="amber-5" size="lg">Begin custom battle!</q-btn>
+          <q-btn @click="batInit(playerJSON, cpuJSON, scrolls, teamConfig)" color="amber-5" size="lg">Begin custom battle!</q-btn>
         </div>
       </div>
       <div class="column unitrow">
@@ -127,7 +127,7 @@ export default {
     return {
       playerTeam: playerTeam,
       cpuTeam: cpuTeam,
-      config: {
+      teamConfig: {
         playerTeam: {},
         cpuTeam: {}
       },
@@ -225,10 +225,9 @@ export default {
   },
   created: function () {
     this.addJaqen('front')
-    this.config.playerTeam = {
-      SPCap: 750,
-      // RSP: 100000
-      SP: 3000
+    this.teamConfig.playerTeam = {
+      SPCap: 500,
+      SP: 100
     }
   },
   //   SP: function () {

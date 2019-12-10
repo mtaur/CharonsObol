@@ -187,13 +187,14 @@ export default {
       return this.selector.promptIsVerbose ? 'light-green' : 'light-green-2'
       // return hasProp(this, 'selector.promptIsVerbose') ? 'light-green' : 'light-green-2'
     },
-    ...mapGetters('currentTeams', ['cpuJSON', 'playerJSON', 'scrollJSON'])
+    ...mapGetters('currentTeams', ['cpuJSON', 'playerJSON', 'scrollJSON', 'teamConfig'])
   },
   created: function () {
   // created: function () {
     this.gameObj = setup({
       cpuJSON: this.cpuJSON,
-      playerJSON: this.playerJSON
+      playerJSON: this.playerJSON,
+      config: this.teamConfig
     })
     this.playerTeam = this.gameObj.playerTeam
     this.cpuTeam = this.gameObj.cpuTeam

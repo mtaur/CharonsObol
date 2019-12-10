@@ -29,9 +29,9 @@
                 :color="buttonColor(scroll)" text-color="white">
                 <!-- clickable @click="targLog(action)" -->
                 <!-- clickable @click="skillClick(action)" -->
-                  <!-- <q-avatar>
-                    <img :src="getIcon(item)">
-                  </q-avatar> -->
+                  <q-avatar>
+                    <img :src="getIcon(scroll)">
+                  </q-avatar>
                   {{ scroll.name }}
                   <q-tooltip anchor="center right" self="center left" :offset="[10, 10]" content-class="bg-teal" max-width="20vw">
                       <span style="font-size: 14px">
@@ -55,8 +55,8 @@
       </div>
       <div class="col-2"></div>
     </div>
-    <div v-if="canAfford(inspectScroll) === true" class="column items-center">
-      <q-btn size="xl" color="amber" @click="purchaseScroll()">Allot SP to bring along a(nother) copy of this consumable!</q-btn>
+    <div v-if="canAfford(inspectScroll) === true" class="column items-center" :key="selector.updateKey">
+      <q-btn size="xl" color="amber" @click="purchaseScroll(inspectScroll)">Allot SP to bring along a(nother) copy of this consumable!</q-btn>
     </div>
     <!-- <newUnitInfo v-if="selector.stateData.inspectUnit.name"
     :selector="selector"
@@ -113,18 +113,24 @@ export default {
     generateKey (scroll) {
       return scroll.NAME + this.selector.game.playerTeam.inventory[scroll.NAME]
     },
-    purchaseScroll () {
-      let NAME = this.inspectScroll.NAME
-      let inventory = this.selector.game.playerTeam.inventory
-      inventory[NAME] = hasProp(inventory, NAME) ? inventory[NAME] + 1 : 1
-      this.selector.updateKey++
+    purchaseScroll (scroll) {
+      // let NAME = this.inspectScroll.NAME
+      // let inventory = this.selector.game.playerTeam.inventory
+      // this.selector.updateKey++
+
+      // if (this.skillList[NAME].SPCost <= this.selector.game.playerTeam.SP) {
+      if (this.canAfford(scroll)) {
+        this.selector.game.playerTeam.purchaseScroll(scroll)
+        // inventory[NAME] = hasProp(inventory, NAME) ? inventory[NAME] + 1 : 1
+        this.selector.updateKey++
+      }
       // this.selector.stateData.activeUnit = this.activeUnit
       // this.scrollKey++
       // if (!hasProp(inventory, NAME)) { inventory[NAME] = 0 }
       // this.selector.game.playerTeam.inventory[NAME]++
     },
     canAfford (scroll) {
-      return this.selector.game.playerTeam.SP > scroll.cost
+      return hasProp(scroll, 'NAME') && this.selector.game.playerTeam.SP >= scroll.SPCost
     },
     selectItem (scroll) {
       // action.targSelect(selector)
@@ -159,6 +165,16 @@ export default {
       if (this.selector.stateData.inspectScroll.name === scroll.name) return 'amber'
       else if (this.canAfford(scroll)) return 'indigo'
       else return 'blue-grey'
+    },
+    getIcon (scroll) {
+      if (scroll.type === 'both') { return 'statics/gameIcons/action-both.png' }
+      if (scroll.type === 'major') { return 'statics/gameIcons/action-star.png' }
+      if (scroll.type === 'minor') { return 'statics/gameIcons/action-dot.png' }
+      return 'statics/gameIcons/action-none.png'
+      // if (action.type === 'both') { return 'statics/icons/action-both.png' }
+      // if (action.type === 'major') { return 'statics/icons/action-star.png' }
+      // if (action.type === 'minor') { return 'statics/icons/action-dot.png' }
+      // return 'statics/icons/action-none.png'
     }
   },
   components: {

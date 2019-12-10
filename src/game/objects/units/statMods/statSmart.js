@@ -1,10 +1,10 @@
 // import { Stat } from '../Stat.js'
-import { cloneDeep as clone } from 'lodash'
+// import { cloneDeep as clone } from 'lodash'
 import { Action } from '../../actions/Action.js'
 import { Soul } from 'src/game/objects/souls/Soul.js'
 import { Status } from 'src/game/objects/statuses/Status.js'
 import { Stat } from 'src/game/objects/units/Stat.js'
-// import { cloneDeep as clone, hasIn as hasProp } from 'lodash'
+import { cloneDeep as clone, hasIn as hasProp } from 'lodash'
 
 class StatSmart {
   // Don't allow resources to exceed new max.
@@ -50,26 +50,37 @@ class StatSmart {
     }
 
     function tryOn (unit) {
-      let soul = new Soul.LIB[soulStr]()
-      unit.souls.push(soul)
-      soul.skills.forEach((actionStr) => unit.actions.push(new Action.LIB[actionStr](unit)))
-      // obj.templ.actions.forEach((actionStr) => unit.actions.push(new Action.LIB[actionStr](unit)))
-      soul.passives.forEach((status) => unit.statuses.push(new Status.LIB[status.NAME]()))
-      removeDuplicates(unit.actions)
-      removeDuplicates(unit.statuses)
+      if (unit.side === 'player' && unit.playerTeam.SP >= 15) {
+        let soul = new Soul.LIB[soulStr]()
+        unit.souls.push(soul)
+        soul.skills.forEach((actionStr) => unit.actions.push(new Action.LIB[actionStr](unit)))
+        // obj.templ.actions.forEach((actionStr) => unit.actions.push(new Action.LIB[actionStr](unit)))
+        soul.passives.forEach((status) => unit.statuses.push(new Status.LIB[status.NAME]()))
+        removeDuplicates(unit.actions)
+        removeDuplicates(unit.statuses)
+      }
     }
 
     this.applyChange(tryOn)
+  }
+
+  static purchaseScroll (scroll) {
+    let NAME = scroll.NAME
+    // console.log('this.SP', this.SP, 'scroll.cost', scroll.SPCost)
+    if (this.SP >= scroll.SPCost) {
+      this.inventory[NAME] = hasProp(this.inventory, NAME) ? this.inventory[NAME] + 1 : 1
+      // unit.playerTeam.SP -= item.cost
+    }
   }
 
   static equip (item) {
     function tryOn (unit) {
       // if (canEquip) { ... }
       // console.log('unit', unit)
-      unit.items.push(item)
-      item.unit = unit
-      if (unit.side === 'player') {
-        unit.playerTeam.SP -= item.cost
+      if (unit.allies.SP >= item.cost) {
+        unit.items.push(item)
+        item.unit = unit
+        // unit.playerTeam.SP -= item.cost
       }
     }
     this.applyChange(tryOn)
@@ -81,7 +92,9 @@ class StatSmart {
     function raise (unit) {
       unit.baseStats[statName].increase()
     }
-    this.applyChange(raise)
+    if (this.allies.SP >= this.baseStats[statName].cost) {
+      this.applyChange(raise)
+    }
 
     // let stat = this.baseStats[statName]
     // if (this.playerTeam.SP >= stat.cost) {

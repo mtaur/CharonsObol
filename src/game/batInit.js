@@ -45,6 +45,14 @@ let unitAdd = function (obj, side) {
 let setup = function (input) {
   let cpuJSON = input.cpuJSON
   let playerJSON = input.playerJSON
+  let teamConfig = input.config
+
+  // cpuTeam.SPEff = 0.25
+  // playerTeam.SPEff = 0.25
+  // playerTeam.SPCap = 750
+  // playerTeam.RSP
+  // cpuTeam.SPCap = 750
+  // cpuTeam.RSP
   cpuJSON.forEach((json) => { unitAdd(json, Unit.SIDE.CPU) })
   playerJSON.forEach((json) => { unitAdd(json, Unit.SIDE.PLAYER) })
 
@@ -52,6 +60,11 @@ let setup = function (input) {
     unit.actions.push(new Action.LIB.RESTMAJOR(unit))
     unit.actions.push(new Action.LIB.RESTMINOR(unit))
   })
+
+  for (let propName in teamConfig.playerTeam) {
+    playerTeam[propName] = teamConfig.playerTeam[propName]
+    console.log(propName, playerTeam[propName])
+  }
 
   // let scrolls = {
   //   SMOKEBOMB: 1,

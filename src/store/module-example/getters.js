@@ -9,5 +9,8 @@ function playerJSON0 (state) {
 function scrollJSON0 (state) {
   return state.scrollJSON0
 }
+function teamConfig0 (state) {
+  return state.teamConfig0
+}
 
-export { cpuJSON0, playerJSON0, scrollJSON0 }
+export { cpuJSON0, playerJSON0, scrollJSON0, teamConfig0 }
