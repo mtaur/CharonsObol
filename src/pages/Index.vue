@@ -34,7 +34,7 @@
                 <q-separator inset />
                 <q-card-section>
                   <div class="text-italic text-body1">
-                    SP is refunded when you use a consumable or an allied unit dies.  During your turn, you can reinvest SP into stat points!
+                    SP is refunded whenever you use a consumable item or an allied unit dies.  During your turn, you can reinvest SP into stat points!
                   </div>
                 </q-card-section>
               <!-- </div> -->
