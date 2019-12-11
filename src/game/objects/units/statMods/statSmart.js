@@ -181,7 +181,11 @@ class StatSmart {
   static getBetaSP () {
     // let team = this.allies
     let SPTot = 15
-    SPTot += this.souls.length * 15
+    let numSouls = this.souls.length
+    // SPTot += this.souls.length * 15
+    // Cost for each new soul is 10, 20, 30, 40...
+    // SPTot += numSouls * (numSouls + 1) * 0.5 * 10
+    SPTot += numSouls * (numSouls + 1) * 5
     this.items.forEach((item) => { SPTot += item.cost })
     // this.baseStats.forEach(
     for (let statName in this.baseStats) {

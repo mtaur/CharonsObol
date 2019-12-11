@@ -15,7 +15,7 @@
     <!-- <q-page class="qpage column align-center items-center justify-center"> -->
     <q-page class="qpage column non-selectable">
       <div class="align-center column items-center justify-center">
-        <div class="row items-center">
+        <!-- <div class="row items-center">
           <div class="col-2"></div>
           <div class="col-8">
             <h4>Welcome to Charon's Obol!</h4>
@@ -25,8 +25,8 @@
         <div class="q-pa-sm">
           <q-btn to="battle" color="green" size="lg">Start battle with random auto party.</q-btn>
         </div>
-        <q-separator></q-separator>
-        <h4>...or create custom party:</h4>
+        <q-separator></q-separator> -->
+        <h4>Create a party before continuing:</h4>
         <div v-if="playerTeam.all.length > 0" class="q-pa-sm">
           <q-btn @click="batInit(playerJSON, cpuJSON, scrolls, teamConfig)" color="amber-5" size="lg">Begin custom battle!</q-btn>
         </div>
@@ -144,6 +144,7 @@ export default {
     addJaqen: function (row) {
       let unit = new UnitTemplate.LIB.HERO({ soulsArr: [], itemsArr: [], pos: row, side: 'player', lvlUp: {} }, { playerTeam, cpuTeam })
       playerTeam.deploy(unit)
+      unit.pos = row
       this.selector.stateData.activeUnit = unit
       // this.playerTeam.front.push(new UnitTemplate.LIB.HERO({ soulsArr: [], itemsArr: [], POS: 'front' }, { playerTeam, cpuTeam }))
     },
@@ -191,6 +192,7 @@ export default {
           soulsArr: [],
           lvlUp: {},
           POS: '',
+          pos: '',
           side: 'player'
         }
 
@@ -199,6 +201,7 @@ export default {
         obj.passedObj = passedObj
 
         passedObj.POS = unit.pos
+        passedObj.pos = unit.pos
         unit.items.forEach((item) => passedObj.itemsArr.push(item.NAME))
         unit.souls.forEach((soul) => passedObj.soulsArr.push(soul.NAME))
         for (let statName in unit.baseStats) {
@@ -211,7 +214,8 @@ export default {
       return playerJSON
     },
     cpuJSON: function () {
-      return this.cpuJSON0
+      return this.cpuJSONEarly
+      // return this.cpuJSON0
     },
     scrolls: function () {
       // return this.playerTeam.inventory
@@ -221,30 +225,22 @@ export default {
       }
       return scrolls
     },
-    ...mapGetters('example', ['cpuJSON0'])
+    ...mapGetters('earlyDemo', ['cpuJSONEarly'])
+    // ...mapGetters('example', ['cpuJSON0'])
   },
   created: function () {
-    this.addJaqen('front')
+    // this.addJaqen('front')
     this.teamConfig.playerTeam = {
       SPCap: 200,
       SP: 50
     }
+    this.teamConfig.cpuTeam = {
+      SPCap: 200,
+      SP: 21 // 30
+    }
+    this.playerTeam.SPCap = this.teamConfig.playerTeam.SPCap
+    this.playerTeam.SP = this.teamConfig.playerTeam.SP
   },
-  //   SP: function () {
-  //     return playerTeam.SP
-  //   },
-  //   activeUnit: function () {
-  //     return selector.stateData.activeUnit.id
-  //       ? [selector.stateData.activeUnit]
-  //       : []
-  //   },
-  //   prompt: function () {
-  //     return this.selector.promptIsVerbose ? this.selector.promptVerbose : this.selector.prompt
-  //   },
-  //   verboseButtonColor: function () {
-  //     return this.selector.promptIsVerbose ? 'light-green' : 'light-green-2'
-  //   }
-  // },
   name: 'PageIndex',
   components: { // unitdetail,
     // drawer,

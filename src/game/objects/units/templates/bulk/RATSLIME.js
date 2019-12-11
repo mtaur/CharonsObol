@@ -2,9 +2,9 @@
 import { UnitTemplate } from '../UnitTemplate.js'
 import { Unit } from '../../Unit.js'
 
-class TURKEY {
-  static NAME = 'TURKEY'
-  static filename = 'TURKEY'
+class RATSLIME {
+  static NAME = 'RATSLIME'
+  static filename = 'RATSLIME'
 
   constructor (gameObj) {
     // from Stat.js:
@@ -25,43 +25,43 @@ class TURKEY {
     // templ.baseStats.MAGIC.benScale = 3 // 4
 
     return new UnitTemplate({
-      NAME: 'TURKEY',
-      name: 'Chaos Turkey',
+      NAME: 'RATSLIME',
+      name: 'Slime Rat',
       // cost: 8,
-      desc: 'This bird has a death wish.',
+      desc: 'Ratteus Slimeston III, Esq.',
       templ: {
         baseStats: {
           HP: {
             benScale: 0, // 15, // 10,
-            start: 120 // 40
+            start: 80 // 40
           },
           MP: {
             benScale: 0,
-            start: 6
+            start: 0
           },
           MELEE: {
             benScale: 0, // 3
-            start: 30
+            start: 21
           },
           RANGED: {
             benScale: 0, // 3
-            start: 15
+            start: 0
           },
           MAGIC: {
             benScale: 0, // 3
-            start: 15
+            start: 0
           },
           INIT: {
             benScale: 0,
-            start: 8
+            start: 2
           },
           DRED: {
             benScale: 0,
-            start: 0
+            start: 3
           },
           DREF: {
             benScale: 0,
-            start: 8
+            start: 3
           }
         },
         statWeights: {
@@ -74,8 +74,19 @@ class TURKEY {
           DRED: 2, // 3,
           DREF: 2 // 3
         },
-        actions: ['PECK', 'SCRATCH', 'WARBLE'],
-        passives: [],
+        actions: ['MELEE', 'GUARD', 'CONTAGION'],
+        passives: [
+          {
+            name: 'damagetopoisoninhalf',
+            NAME: 'DAMAGETOPOISONINHALF',
+            params: {}
+          }, // 'DAMAGETOPOISONOUTHALF',
+          {
+            name: 'damagetopoisonouthalf',
+            NAME: 'DAMAGETOPOISONOUTHALF',
+            params: {}
+          } // 'DAMAGETOPOISONINHALF'
+        ],
         roles: ['KNIGHT'],
         souls: [],
         pos: Unit.POS.FRONT,
@@ -86,7 +97,7 @@ class TURKEY {
 }
 
 var obj = {
-  filename: 'TURKEY',
-  exprt: TURKEY
+  filename: 'RATSLIME',
+  exprt: RATSLIME
 }
 export default obj

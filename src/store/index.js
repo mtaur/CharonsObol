@@ -5,6 +5,9 @@ import example from './module-example/index.js'
 import lostSouls from './lostSouls/index.js'
 import currentTeams from './currentTeams/index.js'
 import itemsForSale from './itemsForSale/index.js'
+import earlyDemo from './earlyDemo/index.js'
+import midDemo from './midDemo/index.js'
+import lateDemo from './lateDemo/index.js'
 
 Vue.use(Vuex)
 
@@ -23,7 +26,10 @@ export default function (/* { ssrContext } */) {
       example,
       currentTeams,
       lostSouls,
-      itemsForSale
+      itemsForSale,
+      earlyDemo,
+      midDemo,
+      lateDemo
     }
   })
   // console.log(Store)

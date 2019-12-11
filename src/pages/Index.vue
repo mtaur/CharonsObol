@@ -1,6 +1,6 @@
 <template>
   <span>
-    <newUnitDrawer :key="selector.updateKey" :activeUnit="activeUnit" :visible="leftDrawerOpen"
+    <!-- <newUnitDrawer :key="selector.updateKey" :activeUnit="activeUnit" :visible="leftDrawerOpen"
       :playerTeam="playerTeam"
       :cpuTeam="cpuTeam"
       :selector="selector"
@@ -11,8 +11,7 @@
       :page="rightDrawerPage"
       :selector="selector"
       class="non-selectable">
-    </rightdrawer>
-    <!-- <q-page class="qpage column align-center items-center justify-center"> -->
+    </rightdrawer> -->
     <q-page class="qpage column non-selectable">
       <div class="align-center column items-center justify-center">
         <div class="row items-center">
@@ -22,16 +21,81 @@
           </div>
           <div class="col-2"></div>
         </div>
-        <div class="q-pa-sm">
-          <q-btn to="battle" color="green" size="lg">Start battle with random auto party.</q-btn>
+        <div class="row items-center">
+          <div class="col-2"></div>
+          <div class="col-8">
+            <q-card>
+              <!-- <div> -->
+                <q-card-section>
+                <span class="text-h6">
+                  COOL TIP
+                </span>
+                </q-card-section>
+                <q-separator inset />
+                <q-card-section>
+                  <div class="text-italic text-body1">
+                    SP is refunded when you use a consumable or an allied unit dies.  During your turn, you can reinvest SP into stat points!
+                  </div>
+                </q-card-section>
+              <!-- </div> -->
+            </q-card>
+          </div>
+          <div class="col-2"></div>
         </div>
-        <q-separator></q-separator>
-        <h4>...or create custom party:</h4>
+        <div class="row">
+          <div class="q-pa-sm q-gutter-sm col-3">
+            <q-card>
+              <div class="q-pa-sm align-center column items-center justify-center centerbox">
+                <h5>
+                  Sandbox setup for early-game battle.
+                </h5>
+                <q-btn to="sandbox/early" color="green" size="lg">Start!</q-btn>
+              </div>
+            </q-card>
+          </div>
+          <div class="q-pa-sm q-gutter-sm col-3">
+            <q-card>
+              <div class="q-pa-sm align-center column items-center justify-center centerbox">
+                <h5>
+                  Sandbox setup for mid-game battle.
+                </h5>
+                <q-btn to="sandbox/mid" color="orange" size="lg">Start!</q-btn>
+              </div>
+            </q-card>
+          </div>
+          <div class="q-pa-sm q-gutter-sm col-3">
+            <q-card>
+              <div class="q-pa-sm align-center column items-center justify-center centerbox">
+                <h5>
+                  Sandbox setup for late-game battle.
+                </h5>
+                <q-btn to="sandbox/late" color="yellow" size="lg">Start!</q-btn>
+              </div>
+            </q-card>
+          </div>
+          <div class="q-pa-sm q-gutter-sm col-3">
+            <q-card>
+              <div class="q-pa-sm align-center column items-center justify-center centerbox">
+                <h5>
+                  Late-game, random party.
+                </h5>
+                <div>
+                </div>
+                <q-btn to="battle" color="red" size="lg">Start!</q-btn>
+                <div>
+                  (Synergies not guaranteed.  No refunds.)
+                </div>
+              </div>
+            </q-card>
+          </div>
+        </div>
+        <!-- <q-separator></q-separator> -->
+        <!-- <h4>...or create custom party:</h4>
         <div v-if="playerTeam.all.length > 0" class="q-pa-sm">
           <q-btn @click="batInit(playerJSON, cpuJSON, scrolls, config)" color="amber-5" size="lg">Begin custom battle!</q-btn>
-        </div>
+        </div> -->
       </div>
-      <div class="column unitrow">
+      <!-- <div class="column unitrow">
         <div class="row justify-center items-stretch">
           <h6>Front</h6>
         </div>
@@ -47,10 +111,7 @@
             :selector="selector"
             @click.native="battlefieldClick(selector, unit)"
             >
-            <!-- :isActive="isActive(unit)" -->
-            <!-- @click.native="makeActive(unit, $event)" -->
           </newPlayer>
-          <!-- {{ unit.name }} -->
         </div>
       </div>
       <div class="row justify-center items-stretch">
@@ -69,15 +130,10 @@
             :selector="selector"
             @click.native="battlefieldClick(selector, unit)"
           >
-          <!-- :isActive="isActive(unit)" -->
-          <!-- @click.native="makeActive(unit, $event)" -->
           </newPlayer>
         </div>
-      </div>
+      </div> -->
     </q-page>
-    <!-- <div>
-    </div> -->
-  <!-- </div> -->
   </span>
 </template>
 
@@ -87,20 +143,20 @@
 
 <script>
 
-import newPlayer from 'src/components/newPlayer'
-import { Unit, Team } from 'src/game/objects/units/Unit.js'
-import { UnitTemplate } from 'src/game/objects/units/templates/UnitTemplate.js'
-import Selector from 'src/game/selectors/Selector.js'
+// import newPlayer from 'src/components/newPlayer'
+// import { Unit, Team } from 'src/game/objects/units/Unit.js'
+// import { UnitTemplate } from 'src/game/objects/units/templates/UnitTemplate.js'
+// import Selector from 'src/game/selectors/Selector.js'
 
-let playerTeam = new Team(Unit.SIDE.PLAYER)
-let cpuTeam = new Team(Unit.SIDE.CPU)
-var selector = new Selector({
-  playerTeam: playerTeam,
-  cpuTeam: cpuTeam,
-  log: [],
-  logID: 0
-})
-selector.changeState('ManageTeam')
+// let playerTeam = new Team(Unit.SIDE.PLAYER)
+// let cpuTeam = new Team(Unit.SIDE.CPU)
+// var selector = new Selector({
+//   playerTeam: playerTeam,
+//   cpuTeam: cpuTeam,
+//   log: [],
+//   logID: 0
+// })
+// selector.changeState('ManageTeam')
 // selector.showStats = true
 // selector.showConsumables = false
 // selector.showAbilities = true
@@ -108,10 +164,10 @@ selector.changeState('ManageTeam')
 // import { playerTeam, cpuTeam } from 'src/game/objects/units/unit.js'
 // import { playerTeam, cpuTeam } from 'src/game/initialize.js'
 // import fieldplayer from 'src/components/fieldplayer'
-import { hasIn as hasProp } from 'lodash'
-import newUnitDrawer from '../components/newUnitDrawer.vue'
-import rightdrawer from '../components/rightdrawer.vue'
-import { Stat } from 'src/game/objects/units/Stat.js'
+// import { hasIn as hasProp } from 'lodash'
+// import newUnitDrawer from '../components/newUnitDrawer.vue'
+// import rightdrawer from '../components/rightdrawer.vue'
+// import { Stat } from 'src/game/objects/units/Stat.js'
 // import Selector from 'src/game/selectors/Selector.js'
 //
 // selector.changeState('RoundStart')
@@ -119,21 +175,21 @@ import { Stat } from 'src/game/objects/units/Stat.js'
 // console.log('playerTeam', playerTeam)
 //
 // import { openURL } from 'quasar'
-import { mapGetters, mapMutations } from 'vuex'
+// import { mapGetters, mapMutations } from 'vuex'
 // import { mapMutations } from 'vuex'
 
 export default {
   data: function () {
     return {
-      playerTeam: playerTeam,
-      cpuTeam: cpuTeam,
-      config: {
-        playerTeam: {},
-        cpuTeam: {}
-      },
+      // playerTeam: playerTeam,
+      // cpuTeam: cpuTeam,
+      // config: {
+      //   playerTeam: {},
+      //   cpuTeam: {}
+      // },
       // activeUnit: [],
-      leftDrawerOpen: true,
-      selector: selector // ,
+      // leftDrawerOpen: true,
+      // selector: selector // ,
       // rightDrawerOpen: true // this.$q.platform.is.desktop
     }
   },
@@ -141,29 +197,29 @@ export default {
   // props: [],
   props: ['rightDrawerOpen', 'rightDrawerPage'],
   methods: {
-    addJaqen: function (row) {
-      let unit = new UnitTemplate.LIB.HERO({ soulsArr: [], itemsArr: [], pos: row, side: 'player', lvlUp: {} }, { playerTeam, cpuTeam })
-      playerTeam.deploy(unit)
-      this.selector.stateData.activeUnit = unit
-      // this.playerTeam.front.push(new UnitTemplate.LIB.HERO({ soulsArr: [], itemsArr: [], POS: 'front' }, { playerTeam, cpuTeam }))
-    },
-    isActive: function (selector, unit) {
-      return selector.stateData.activeUnit.id
-        ? unit.id === selector.stateData.activeUnit.id
-        : false
-    },
-    battlefieldClick: function (selector, unit) {
-      selector.stateData.activeUnit = unit
-      // selector.getClickMode(unit).onClick(selector, unit)
-    },
-    ...mapMutations('currentTeams', ['playerJSON', 'cpuJSON', 'teamConfig']),
-    batInit: function (playerJSON, cpuJSON, scrolls, teamConfig) {
-      this.$store.commit('currentTeams/scrollJSON', scrolls)
-      this.$store.commit('currentTeams/playerJSON', playerJSON)
-      this.$store.commit('currentTeams/cpuJSON', cpuJSON)
-      this.$store.commit('currentTeams/teamConfig', teamConfig)
-      this.$router.push({ name: 'battle2' })
-    }
+    // addJaqen: function (row) {
+    //   let unit = new UnitTemplate.LIB.HERO({ soulsArr: [], itemsArr: [], pos: row, side: 'player', lvlUp: {} }, { playerTeam, cpuTeam })
+    //   playerTeam.deploy(unit)
+    //   this.selector.stateData.activeUnit = unit
+    //   // this.playerTeam.front.push(new UnitTemplate.LIB.HERO({ soulsArr: [], itemsArr: [], POS: 'front' }, { playerTeam, cpuTeam }))
+    // },
+    // isActive: function (selector, unit) {
+    //   return selector.stateData.activeUnit.id
+    //     ? unit.id === selector.stateData.activeUnit.id
+    //     : false
+    // },
+    // battlefieldClick: function (selector, unit) {
+    //   selector.stateData.activeUnit = unit
+    //   // selector.getClickMode(unit).onClick(selector, unit)
+    // },
+    // ...mapMutations('currentTeams', ['playerJSON', 'cpuJSON', 'teamConfig']),
+    // batInit: function (playerJSON, cpuJSON, scrolls, teamConfig) {
+    //   this.$store.commit('currentTeams/scrollJSON', scrolls)
+    //   this.$store.commit('currentTeams/playerJSON', playerJSON)
+    //   this.$store.commit('currentTeams/cpuJSON', cpuJSON)
+    //   this.$store.commit('currentTeams/teamConfig', teamConfig)
+    //   this.$router.push({ name: 'battle2' })
+    // }
   },
   // props: ['rightDrawerOpen', 'rightDrawerPage'],
   // methods: {
@@ -176,60 +232,60 @@ export default {
   //   openURL
   // },
   computed: {
-    activeUnit: function () {
-      // return this.selector.stateData.activeUnit.id
-      return hasProp(this, 'selector.stateData.activeUnit.id')
-        ? [this.selector.stateData.activeUnit]
-        : []
-    },
-    playerJSON: function () {
-      let playerJSON = []
-      for (let index in this.playerTeam.all) {
-        let unit = this.playerTeam.all[index]
-        let passedObj = {
-          itemsArr: [],
-          soulsArr: [],
-          lvlUp: {},
-          POS: '',
-          side: 'player'
-        }
-
-        let obj = {}
-        obj.NAME = 'HERO' // unit.NAME
-        obj.passedObj = passedObj
-
-        passedObj.POS = unit.pos
-        unit.items.forEach((item) => passedObj.itemsArr.push(item.NAME))
-        unit.souls.forEach((soul) => passedObj.soulsArr.push(soul.NAME))
-        for (let statName in unit.baseStats) {
-          let startCounter = new Stat.LIB[statName]().counters
-          // passedObj.lvlUp[statName] = unit.baseStats[statName].counters - unit.baseStats[statName].start
-          passedObj.lvlUp[statName] = unit.baseStats[statName].counters - startCounter
-        }
-        playerJSON.push(obj)
-      }
-      return playerJSON
-    },
-    cpuJSON: function () {
-      return this.cpuJSON0
-    },
-    scrolls: function () {
-      // return this.playerTeam.inventory
-      let scrolls = {}
-      for (let scrollName in this.playerTeam.inventory) {
-        scrolls[scrollName] = this.playerTeam.inventory[scrollName]
-      }
-      return scrolls
-    },
-    ...mapGetters('example', ['cpuJSON0'])
+    // activeUnit: function () {
+    //   // return this.selector.stateData.activeUnit.id
+    //   return hasProp(this, 'selector.stateData.activeUnit.id')
+    //     ? [this.selector.stateData.activeUnit]
+    //     : []
+    // },
+    // playerJSON: function () {
+    //   let playerJSON = []
+    //   for (let index in this.playerTeam.all) {
+    //     let unit = this.playerTeam.all[index]
+    //     let passedObj = {
+    //       itemsArr: [],
+    //       soulsArr: [],
+    //       lvlUp: {},
+    //       POS: '',
+    //       side: 'player'
+    //     }
+    //
+    //     let obj = {}
+    //     obj.NAME = 'HERO' // unit.NAME
+    //     obj.passedObj = passedObj
+    //
+    //     passedObj.POS = unit.pos
+    //     unit.items.forEach((item) => passedObj.itemsArr.push(item.NAME))
+    //     unit.souls.forEach((soul) => passedObj.soulsArr.push(soul.NAME))
+    //     for (let statName in unit.baseStats) {
+    //       let startCounter = new Stat.LIB[statName]().counters
+    //       // passedObj.lvlUp[statName] = unit.baseStats[statName].counters - unit.baseStats[statName].start
+    //       passedObj.lvlUp[statName] = unit.baseStats[statName].counters - startCounter
+    //     }
+    //     playerJSON.push(obj)
+    //   }
+    //   return playerJSON
+    // },
+    // cpuJSON: function () {
+    //   return this.cpuJSON0
+    // },
+    // scrolls: function () {
+    //   // return this.playerTeam.inventory
+    //   let scrolls = {}
+    //   for (let scrollName in this.playerTeam.inventory) {
+    //     scrolls[scrollName] = this.playerTeam.inventory[scrollName]
+    //   }
+    //   return scrolls
+    // } // ,
+    // ...mapGetters('example', ['cpuJSON0'])
   },
   created: function () {
-    this.addJaqen('front')
-    this.config.playerTeam = {
-      SPCap: 750,
-      // RSP: 100000
-      SP: 3000
-    }
+    // this.addJaqen('front')
+    // this.config.playerTeam = {
+    //   SPCap: 750,
+    //   // RSP: 100000
+    //   SP: 3000
+    // }
   },
   //   SP: function () {
   //     return playerTeam.SP
@@ -250,9 +306,9 @@ export default {
   components: { // unitdetail,
     // drawer,
     // fieldplayer
-    newPlayer,
-    newUnitDrawer,
-    rightdrawer
+    // newPlayer,
+    // newUnitDrawer,
+    // rightdrawer
   }
 }
 </script>
@@ -263,6 +319,12 @@ export default {
     flex: 1 1 20vh;
     /* overflow-y: auto; */
   }
+  .centerbox {
+    height: 300px;
+  }
+  /* .smlbox {
+    height: 100px;
+  } */
   .qpage {
     /* height: 85vh; */
     display: flex;

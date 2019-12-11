@@ -99,6 +99,7 @@ class UnitTemplate {
     if (unit.side === Unit.SIDE.CPU) { unit.actions = [] }
     obj.templ.actions.forEach((actionStr) => unit.actions.push(new Action.LIB[actionStr](unit)))
     obj.templ.passives.forEach((status) => unit.statuses.push(new Status.LIB[status.NAME]()))
+    // obj.templ.passives.forEach((statusStr) => unit.statuses.push(new Status.LIB[statusStr]()))
     obj.templ.souls.forEach((soulStr) => unit.souls.push(new Soul.LIB[soulStr]()))
     obj.templ.items.forEach((itemStr) => {
       let item = new Item.LIB[itemStr]()

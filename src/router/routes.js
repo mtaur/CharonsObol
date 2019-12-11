@@ -22,7 +22,7 @@ const routes = [
   },
   {
     path: '/sandbox',
-    component: () => import('layouts/BattleLayout.vue'),
+    component: () => import('layouts/NewPartyLayout.vue'),
     children: [
       { path: 'early', component: () => import('pages/SandboxEarly.vue') },
       { path: 'mid', component: () => import('pages/SandboxMid.vue') },

@@ -53,18 +53,22 @@ let setup = function (input) {
   // playerTeam.RSP
   // cpuTeam.SPCap = 750
   // cpuTeam.RSP
-  cpuJSON.forEach((json) => { unitAdd(json, Unit.SIDE.CPU) })
-  playerJSON.forEach((json) => { unitAdd(json, Unit.SIDE.PLAYER) })
-
-  playerTeam.all.forEach((unit) => {
-    unit.actions.push(new Action.LIB.RESTMAJOR(unit))
-    unit.actions.push(new Action.LIB.RESTMINOR(unit))
-  })
 
   for (let propName in teamConfig.playerTeam) {
     playerTeam[propName] = teamConfig.playerTeam[propName]
     console.log(propName, playerTeam[propName])
   }
+  for (let propName in teamConfig.cpuTeam) {
+    cpuTeam[propName] = teamConfig.cpuTeam[propName]
+    console.log(propName, cpuTeam[propName])
+  }
+
+  cpuJSON.forEach((json) => { unitAdd(json, Unit.SIDE.CPU) })
+  playerJSON.forEach((json) => { unitAdd(json, Unit.SIDE.PLAYER) })
+  playerTeam.all.forEach((unit) => {
+    unit.actions.push(new Action.LIB.RESTMAJOR(unit))
+    unit.actions.push(new Action.LIB.RESTMINOR(unit))
+  })
 
   // let scrolls = {
   //   SMOKEBOMB: 1,
