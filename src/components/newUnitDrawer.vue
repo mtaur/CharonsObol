@@ -7,6 +7,17 @@
     :breakpoint="0"
   >
     <q-scroll-area class="fit">
+      <div class="sp">
+        <div>
+          <h5 key='SP'>Team SP: {{ playerTeam.SP }} / {{ playerTeam.SPTotal }}</h5>
+        </div>
+        <!-- <div>
+          Raw SP total: {{ playerTeam.RSP }}
+        </div>
+        <div class="text-caption">
+          (RSP converts to total SP with diminishing returns, starting from {{ playerTeam.SPEff * 100 }}% efficiency.)
+        </div> -->
+      </div>
       <span v-if="selector.turnState !== 'player'" @click.stop=''>
       <newUnitDetail v-for="unit in activeUnit"
         :unit="unit"

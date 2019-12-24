@@ -28,9 +28,9 @@
         <q-separator></q-separator>
         <h4>...or create custom party:</h4> -->
         <h4>Create a party before continuing:</h4>
-        <div v-if="playerTeam.all.length > 0" class="q-pa-sm">
+        <!-- <div v-if="playerTeam.all.length > 0" class="q-pa-sm">
           <q-btn @click="batInit(playerJSON, cpuJSON, scrolls, teamConfig)" color="amber-5" size="lg">Begin custom battle!</q-btn>
-        </div>
+        </div> -->
         <div v-if="playerTeam.all.length > 0" class="q-pa-sm">
           <q-btn @click="batInit(playerJSON, cpuJSON, scrolls, teamConfig)" color="amber-5" size="lg">Begin custom battle!</q-btn>
         </div>
@@ -40,8 +40,8 @@
           <h6>Front</h6>
         </div>
         <div class="row justify-center items-stretch unitrow">
-          <div v-if="playerTeam.front.length < 4" class="col-3 q-pa-lg">
-            <q-btn @click="addJaqen('front')" color="green" size="xl">Add unit!</q-btn>
+          <div v-if="playerTeam.front.length < 4 && playerTeam.SP >= 15" class="col-3 q-pa-lg">
+            <q-btn @click="addJaqen('front')" color="green" size="xl">Add unit! (15 SP)</q-btn>
           </div>
           <newPlayer v-for="unit in playerTeam.front"
             :unit="unit"
@@ -62,8 +62,8 @@
       </div>
       <div class="column unitrow">
         <div class="row justify-center items-stretch unitrow">
-          <div v-if="playerTeam.back.length < 4" class="col-3 q-pa-lg">
-            <q-btn @click="addJaqen('back')" color="green" size="xl">Add unit!</q-btn>
+          <div v-if="playerTeam.back.length < 4 && playerTeam.SP >= 15" class="col-3 q-pa-lg">
+            <q-btn @click="addJaqen('back')" color="green" size="xl">Add unit! (15 SP)</q-btn>
           </div>
           <newPlayer v-for="unit in playerTeam.back"
             :unit="unit"
@@ -146,11 +146,13 @@ export default {
   props: ['rightDrawerOpen', 'rightDrawerPage'],
   methods: {
     addJaqen: function (row) {
-      let unit = new UnitTemplate.LIB.HERO({ soulsArr: [], itemsArr: [], pos: row, side: 'player', lvlUp: {} }, { playerTeam, cpuTeam })
-      playerTeam.deploy(unit)
-      unit.pos = row
-      this.selector.stateData.activeUnit = unit
-      // this.playerTeam.front.push(new UnitTemplate.LIB.HERO({ soulsArr: [], itemsArr: [], POS: 'front' }, { playerTeam, cpuTeam }))
+      if (this.playerTeam.SP >= 15) {
+        let unit = new UnitTemplate.LIB.HERO({ soulsArr: [], itemsArr: [], pos: row, side: 'player', lvlUp: {} }, { playerTeam, cpuTeam })
+        playerTeam.deploy(unit)
+        unit.pos = row
+        this.selector.stateData.activeUnit = unit
+        // this.playerTeam.front.push(new UnitTemplate.LIB.HERO({ soulsArr: [], itemsArr: [], POS: 'front' }, { playerTeam, cpuTeam }))
+      }
     },
     isActive: function (selector, unit) {
       return selector.stateData.activeUnit.id
@@ -234,7 +236,7 @@ export default {
     // this.addJaqen('front')
     this.teamConfig.playerTeam = {
       SPCap: 1000,
-      RSP: 400
+      SP: 400
       // SPCap: 750,
       // RSP: 3000
     }

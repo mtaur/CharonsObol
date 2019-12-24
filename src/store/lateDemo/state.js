@@ -2,7 +2,7 @@ import { cpuJSON, playerJSON, scrolls } from 'src/game/demoObjSetupLate.js'
 
 export default {
   //
-  cpuJSONlate: cpuJSON,
+  cpuJSONLate: cpuJSON,
   playerJSONLate: playerJSON,
   teamConfigLate: {
     playerTeam: {},

@@ -21,6 +21,83 @@
           </div>
           <div class="col-2"></div>
         </div>
+        <div class="row items-center items-stretch q-pa-xs">
+          <div class="col-3">
+            <q-card class="bg-grey-10 text-white centerbox">
+              <q-card-section>
+                <span class="text-h6">
+                  NECROMANCY COOL TIPS
+                </span>
+              </q-card-section>
+              <q-card-section>
+                <div class="text-italic text-body1">
+                  When YOLT summons a ZOMBIE, that ZOMBIE
+                  has FREE, NON-TRANSFERABLE SP to spend on its base stats.
+                  You should probably spend points right away, except for HP and INIT.
+                </div>
+              </q-card-section>
+            </q-card>
+          </div>
+          <div class="col-3">
+            <q-card class="bg-grey-9 text-white centerbox">
+              <q-card-section>
+                <span class="text-h6">
+                  NECROMANCY COOL TIPS
+                </span>
+              </q-card-section>
+              <q-card-section>
+                <div class="text-italic text-body1">
+                  The ZOMBIE has ALL of the active abilities of its summoner EXCEPT for
+                  the RAISE ability (for balance reasons which should be obvious).
+                  Try experimenting with an additional soul or two in the sandbox setups!
+                </div>
+              </q-card-section>
+            </q-card>
+          </div>
+          <div class="col-3">
+            <q-card class="bg-grey-8 text-white centerbox">
+              <q-card-section>
+                <span class="text-h6">
+                  NECROMANCY COOL TIPS
+                </span>
+              </q-card-section>
+              <q-card-section>
+                <div class="text-italic text-body1">
+                  ZOMBIES have no INITIATIVE of their own, and their INIT is 0, period.
+                  Essentially, every action taken by a ZOMBIE is "borrowed" from an ally with
+                  non-zero INITIATIVE. In general, turns consume team INITIATIVE, and you'd normally
+                  run out of INITIATIVE and TURN POINTS at the same time.  Not so with summoned
+                  ZOMBIE units!  They spend INITIATIVE but contribute none!
+                </div>
+              </q-card-section>
+            </q-card>
+          </div>
+          <div class="col-3">
+            <q-card class="bg-grey-7 text-white centerbox">
+              <!-- <div> -->
+              <q-card-section>
+                <span class="text-h6">
+                  NECROMANCY COOL TIPS
+                </span>
+              </q-card-section>
+              <q-card-section>
+                <div class="text-italic text-body1">
+                  A summoned ZOMBIE will DECAY at the start of each round.  This means
+                  that their POISON amount will be set to match their CURRENT HP, unless
+                  they already have at least that much poison.  This also cancels
+                  regeneration effects, so don't bother!
+                </div>
+              </q-card-section>
+              <q-card-section>
+                <div class="text-italic text-body1">
+                  Also, damage dealt by a ZOMBIE is converted to POISON, while incoming
+                  damage is treated normally.
+                </div>
+              </q-card-section>
+              <!-- </div> -->
+            </q-card>
+          </div>
+        </div>
         <div class="row items-center">
           <div class="col-2"></div>
           <div class="col-8">

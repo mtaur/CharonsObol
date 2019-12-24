@@ -29,7 +29,7 @@
     </div>
     <!-- <div v-if="activeUnit.id && inspectUnit.id && inspectUnit.isLostSoul === true" class="column items-center"> -->
     <div v-if="canAddSoul()" class="column items-center">
-      <q-btn size="xl" color="amber" @click="claimSoul()">Graft soul {{ 10 * (1 + activeUnit.souls.length) }}</q-btn>
+      <q-btn size="xl" color="amber" @click="claimSoul()">Graft soul ({{ 10 * (1 + activeUnit.souls.length) }} SP)</q-btn>
     </div>
     <newUnitInfo v-if="selector.stateData.inspectUnit.name"
     :selector="selector"
@@ -93,7 +93,7 @@ export default {
     },
     canAddSoul () {
       let logic = this.activeUnit.id && this.inspectUnit.id && this.inspectUnit.isLostSoul === true
-      return logic && this.selector.game.playerTeam.SP >= 10 * (this.activeUnit.souls.length + 1)
+      return logic && this.selector.game.playerTeam.SP >= 10 * (this.activeUnit.souls.length)
     }
   },
   components: {

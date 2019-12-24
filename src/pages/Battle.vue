@@ -196,14 +196,14 @@ export default {
       return this.selector.promptIsVerbose ? 'light-green' : 'light-green-2'
       // return hasProp(this, 'selector.promptIsVerbose') ? 'light-green' : 'light-green-2'
     },
-    ...mapGetters('example', ['cpuJSON0', 'playerJSON0', 'scrollJSON0', 'config0'])
+    ...mapGetters('example', ['cpuJSON0', 'playerJSON0', 'scrollJSON0', 'teamConfig0'])
   },
   created: function () {
   // created: function () {
     this.gameObj = setup({
       cpuJSON: this.cpuJSON0,
       playerJSON: this.playerJSON0,
-      config: this.config0
+      config: this.teamConfig0
     })
     // this.playerTeam.inventory = this.scrollJSON0
     this.playerTeam = this.gameObj.playerTeam

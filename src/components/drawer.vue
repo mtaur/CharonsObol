@@ -10,18 +10,18 @@
       <div class="row justify-center q-pa-xs">
         <q-btn color="teal" @click="turnPoints = !turnPoints">{{ turnPoints ? 'Hide' : 'Show' }} initiative bars</q-btn>
       </div>
-      <div v-if="turnPoints">
-        <div class="sp">
-          <div>
-            <h5 key='SP'>SP: {{ playerTeam.SP }} / {{ playerTeam.SPTotal }}</h5>
-          </div>
-          <div>
-            Raw SP total: {{ playerTeam.RSP }}
-          </div>
-          <div class="text-caption">
-            (RSP converts to total SP with diminishing returns, starting from {{ playerTeam.SPEff * 100 }}% efficiency.)
-          </div>
+      <div class="sp">
+        <div>
+          <h5 key='SP'>Team SP: {{ playerTeam.SP }} / {{ playerTeam.SPTotal }}</h5>
         </div>
+        <div>
+          Raw SP total: {{ playerTeam.RSP }}
+        </div>
+        <div class="text-caption">
+          (RSP converts to total SP with diminishing returns, starting from {{ playerTeam.SPEff * 100 }}% efficiency.)
+        </div>
+      </div>
+      <div v-if="turnPoints">
         <!-- <div>
           <h6>Turn points</h6>
           <div>Player: {{ playerTeam.turnPoints }} / {{ playerTeam.maxTurnPoints }}</div>

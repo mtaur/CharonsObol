@@ -94,6 +94,9 @@ class UnitTemplate {
 
     // let unit = new CPUUnit(gameObj, templ)
     let unit = templ.side === Unit.SIDE.PLAYER ? new Unit(gameObj, templ) : new CPUUnit(gameObj, templ)
+    if (hasProp(obj.templ, 'freeSP')) {
+      unit.freeSP = obj.templ.freeSP
+    } else { unit.freeSP = 0 }
 
     unit.statWeights = templ.statWeights
     if (unit.side === Unit.SIDE.CPU) { unit.actions = [] }

@@ -76,7 +76,8 @@ class Team {
   // }
   get SPSpentBeta () {
     let teamSPTot = 0
-    this.all.forEach((unit) => {
+    // this.all.forEach((unit) => {
+    this.field.forEach((unit) => {
       teamSPTot += unit.betaSP
     })
     // playerTeam.inventory.SMOKEBOMB = 1
@@ -202,6 +203,8 @@ class Unit {
     return Unit._id
   }
 
+  freeSP = 0
+
   raise = function (statName) {
     this.levelUp(statName)
   }
@@ -229,6 +232,8 @@ class Unit {
   get getScalingMatrix () { return StatMods.getScalingMatrix.call(this) }
 
   get betaSP () { return StatSmart.getBetaSP.call(this) }
+  get alphaSP () { return StatSmart.getAlphaSP.call(this) }
+  get availSP () { return StatSmart.getAvailSP.call(this) }
 
   applyChange (...params) { StatSmart.applyChange.call(this, ...params) }
   //

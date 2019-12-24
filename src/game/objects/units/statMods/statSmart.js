@@ -92,7 +92,8 @@ class StatSmart {
     function raise (unit) {
       unit.baseStats[statName].increase()
     }
-    if (this.allies.SP >= this.baseStats[statName].cost) {
+    // if (this.allies.SP >= this.baseStats[statName].cost) {
+    if (this.availSP >= this.baseStats[statName].cost) {
       this.applyChange(raise)
     }
 
@@ -178,6 +179,28 @@ class StatSmart {
     return json
   }
 
+  static getAlphaSP () {
+    // let team = this.allies
+    let SPTot = 15
+    let numSouls = this.souls.length
+    // SPTot += this.souls.length * 15
+    // Cost for each new soul is 10, 20, 30, 40...
+    // SPTot += numSouls * (numSouls + 1) * 0.5 * 10
+    SPTot += numSouls * (numSouls + 1) * 5
+    this.items.forEach((item) => { SPTot += item.cost })
+    // this.baseStats.forEach(
+    for (let statName in this.baseStats) {
+      let stat = this.baseStats[statName]
+      let simulate = new Stat.LIB[statName]()
+      for (let simCounters = simulate.counters; simCounters < stat.counters; simCounters++) {
+        SPTot += simulate.cost
+        simulate.increase()
+      }
+    }
+    // SPTot = SPTot > this.freeSP ? SPTot - this.freeSP : 0
+    return SPTot
+  }
+
   static getBetaSP () {
     // let team = this.allies
     let SPTot = 15
@@ -196,7 +219,19 @@ class StatSmart {
         simulate.increase()
       }
     }
+    SPTot = SPTot > this.freeSP ? SPTot - this.freeSP : 0
     return SPTot
+  }
+
+  static getAvailSP () {
+    // let avail = 0
+    let isZombie = false
+    for (let index in this.statuses) {
+      if (this.statuses[index].NAME === 'DECAY') {
+        isZombie = true
+      }
+    }
+    return isZombie ? this.freeSP - this.alphaSP + this.allies.SP : this.allies.SP
   }
 }
 

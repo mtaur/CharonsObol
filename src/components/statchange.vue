@@ -34,7 +34,8 @@ export default {
       //   this.playerTeam.SP -= stat.cost
       //   this.applyChange(raise)
       // }
-      if (this.unit.playerTeam.SP >= this.stat.cost) {
+      // if (this.unit.playerTeam.SP >= this.stat.cost) {
+      if (this.unit.availSP >= this.stat.cost) {
         return 'amber'
       }
       return 'grey-5'

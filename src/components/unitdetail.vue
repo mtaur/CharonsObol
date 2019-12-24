@@ -65,6 +65,9 @@
     </q-card-section>
     <q-card-section>
       <div class="row text-h4 justify-center text-purple">{{ playerTeam.SP }} SP</div>
+      <div v-if="unit.freeSP > 0" class="row text-orange-10 text-weight-bold justify-center text-center">
+        <div><span class="text-h4">{{ Math.max(unit.freeSP - unit.alphaSP, 0) }} / {{ unit.freeSP }}</span> FREE SP remaining! (Necromancy special!)</div>
+      </div>
       <div class="row statline align-center">
         <statrow v-for="stat in unit.baseStats" :unit="unit" :stat="stat" :key="stat.name"></statrow>
       </div>

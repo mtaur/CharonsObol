@@ -197,7 +197,8 @@ let heroDat = [
   }
 ]
 
-let caenenArr = ['KNIGHT', 'ARCHER', 'MAGE', 'TURKEY', 'ARBALESTIER']
+let caenenArr = ['KNIGHT', 'ARCHER', 'MAGE', 'ARBALESTIER']
+// let caenenArr = ['KNIGHT', 'ARCHER', 'MAGE', 'TURKEY', 'ARBALESTIER']
 
 let shuffle = function (array) {
   let currentIndex = array.length
