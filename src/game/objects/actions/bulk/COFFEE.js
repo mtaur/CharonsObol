@@ -11,7 +11,7 @@ class COFFEE {
       // filename: 'INSPIRE',
       name: 'Coffee',
       type: 'minor',
-      desc: 'Gain TWO gauges worth of Turn Points. +1 Init for this battle.',
+      desc: 'Gain TWO gauges worth of Turn Points. +2 Init for this battle.',
       cost: 1,
       targetRules: ['SELF', 'SELF'],
       // useInitPoints: false,

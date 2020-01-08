@@ -209,6 +209,14 @@ class TargetRule {
         }
       }
       return false
+    },
+    hasAllies: function (unit) {
+      return unit.allies.field.length > 1
+    },
+    reaper: function (unit) {
+      // return unit.id === this.caster.id
+      // let deathwing = this.caster
+      return this.caster.effectiveStatValues.MAGIC * 2.5 > unit.baseStats.HP.current
     }
   }
 
