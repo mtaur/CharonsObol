@@ -3,15 +3,15 @@
 // import { Stat } from '../../../units/Stat.js'
 
 function VOID (effectObj = {}, target = {}, caster = {}) {
-  let targetAllies = target.allies.filter((item) => { return item.id !== target.id })
+  let targetAllies = target.allies.field.filter((item) => { return item.id !== target.id })
 
   let summarize = function () {
-    let canHeal = caster.baseStats.HP.max - caster.baseStats.HP.current
-    let amount = canHeal * Math.ceil(1 / targetAllies.length)
+    let canHeal = target.baseStats.HP.max - target.baseStats.HP.current
+    let amount = Math.ceil(canHeal / targetAllies.length)
 
     for (let index in targetAllies) {
       let ally = targetAllies[index]
-      amount = Math.min(amount, ally.HP.current)
+      amount = Math.min(amount, ally.baseStats.HP.current)
     }
 
     let log = []
@@ -19,7 +19,7 @@ function VOID (effectObj = {}, target = {}, caster = {}) {
     for (let index in targetAllies) {
       let ally = targetAllies[index]
       let logItem = {
-        text: `${caster.name} damaged ${ally.name} for ${amount} HP.`,
+        text: `${target.name} damaged ${ally.name} for ${amount} HP!`,
         type: 'damage',
         // healAmount: healAmount,
         amount: amount,
@@ -39,18 +39,19 @@ function VOID (effectObj = {}, target = {}, caster = {}) {
 
     // let dred = 0
     // let dref = 0
-    let healAmount = Math.Min(canHeal, amount * targetAllies.length)
+    let healAmount = Math.min(canHeal, amount * targetAllies.length)
     let data = {
       type: 'void',
       // dred: dred,
       // dref: dref,
       amount: amount,
+      healAmount: healAmount,
       caster: caster,
       target: target
     }
     log.push(
       {
-        text: `${caster.name} gained ${healAmount} HP.`,
+        text: `${target.name} gained ${healAmount} HP.`,
         type: 'heal',
         healAmount: healAmount,
         amount: amount,
@@ -76,20 +77,47 @@ function VOID (effectObj = {}, target = {}, caster = {}) {
 
     let summary = this.summarize()
     let data = summary.data
+
     targetAllies.forEach((ally) => {
+      let allyData = {
+        type: 'damage',
+        dred: 0,
+        dref: 0,
+        amount: data.amount,
+        // healAmount: healAmount,
+        caster: caster,
+        target: ally
+      }
+
+      let allyWasAlive = ally.live
+      let allyDied = false
+
       ally.baseStats.HP.current -= data.amount
-      ally.baseStats.HP.current = target.baseStats.HP.current > 0 ? Math.floor(ally.baseStats.HP.current) : 0
+      ally.baseStats.HP.current = Math.floor(ally.baseStats.HP.current) // ally.baseStats.HP.current > 0 ? Math.floor(ally.baseStats.HP.current) : 0
       reverseForEach(ally.statuses, (status) => status.clearCheck(ally, 'TAKEDAMAGE')) // target.statuses.forEach((status) => status.clearCheck(target, 'TAKEDAMAGE'))
       reverseForEach(caster.statuses, (status) => status.clearCheck(caster, 'DAMAGE')) // target.statuses.forEach((status) => status.clearCheck(target, 'TAKEDAMAGE'))
-      reverseForEach(ally.statuses, (status) => status.triggerCheckEffect(ally, 'TAKEDAMAGE', data)) // target.statuses.forEach((status) => status.clearCheck(target, 'TAKEDAMAGE'))
-      reverseForEach(caster.statuses, (status) => status.triggerCheckEffect(caster, 'DAMAGE', data)) // target.statuses.forEach((status) => status.clearCheck(target, 'TAKEDAMAGE'))
+      reverseForEach(ally.statuses, (status) => status.triggerCheckEffect(ally, 'TAKEDAMAGE', allyData)) // target.statuses.forEach((status) => status.clearCheck(target, 'TAKEDAMAGE'))
+      reverseForEach(caster.statuses, (status) => status.triggerCheckEffect(caster, 'DAMAGE', allyData)) // target.statuses.forEach((status) => status.clearCheck(target, 'TAKEDAMAGE'))
+
+      // caster.checkAlive()
       ally.checkAlive()
+
+      if (allyWasAlive && ally.live === false) {
+        allyDied = true
+      }
+
+      if (allyDied) {
+        reverseForEach(ally.statuses, (status) => status.clearCheck(target, 'DIE')) // target.statuses.forEach((status) => status.clearCheck(target, 'TAKEDAMAGE'))
+        reverseForEach(caster.statuses, (status) => status.clearCheck(caster, 'KILL')) // target.statuses.forEach((status) => status.clearCheck(target, 'TAKEDAMAGE'))
+        reverseForEach(ally.statuses, (status) => status.triggerCheckEffect(target, 'DIE', allyData)) // target.statuses.forEach((status) => status.clearCheck(target, 'TAKEDAMAGE'))
+        reverseForEach(caster.statuses, (status) => status.triggerCheckEffect(caster, 'KILL', allyData)) // target.statuses.forEach((status) => status.clearCheck(target, 'TAKEDAMAGE'))
+      }
     })
 
     // caster.baseStats.HP.current -= effectObj.DREFScale * target.effectiveStatValues.DREF
     // caster.baseStats.HP.current -= data.dref
-    caster.baseStats.HP.current += data.healAmount
-    caster.baseStats.HP.current = caster.baseStats.HP.current > 0 ? Math.floor(caster.baseStats.HP.current) : 0
+    target.baseStats.HP.current += data.healAmount
+    target.baseStats.HP.current = Math.ceil(target.baseStats.HP.current) // target.baseStats.HP.current > 0 ? Math.floor(target.baseStats.HP.current) : 0
     //
     // caster.checkAlive()
 

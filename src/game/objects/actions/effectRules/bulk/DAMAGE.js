@@ -130,8 +130,22 @@ function DAMAGE (effectObj = {}, target = {}, caster = {}) {
     reverseForEach(target.statuses, (status) => status.triggerCheckEffect(target, 'TAKEDAMAGE', data)) // target.statuses.forEach((status) => status.clearCheck(target, 'TAKEDAMAGE'))
     reverseForEach(caster.statuses, (status) => status.triggerCheckEffect(caster, 'DAMAGE', data)) // target.statuses.forEach((status) => status.clearCheck(target, 'TAKEDAMAGE'))
 
+    let targetWasAlive = target.live
+    let targetDied = false
+
     target.checkAlive()
     caster.checkAlive()
+
+    if (targetWasAlive && target.live === false) {
+      targetDied = true
+    }
+
+    if (targetDied) {
+      reverseForEach(target.statuses, (status) => status.clearCheck(target, 'DIE')) // target.statuses.forEach((status) => status.clearCheck(target, 'TAKEDAMAGE'))
+      reverseForEach(caster.statuses, (status) => status.clearCheck(caster, 'KILL')) // target.statuses.forEach((status) => status.clearCheck(target, 'TAKEDAMAGE'))
+      reverseForEach(target.statuses, (status) => status.triggerCheckEffect(target, 'DIE', data)) // target.statuses.forEach((status) => status.clearCheck(target, 'TAKEDAMAGE'))
+      reverseForEach(caster.statuses, (status) => status.triggerCheckEffect(caster, 'KILL', data)) // target.statuses.forEach((status) => status.clearCheck(target, 'TAKEDAMAGE'))
+    }
 
     this.summary = summary
   }

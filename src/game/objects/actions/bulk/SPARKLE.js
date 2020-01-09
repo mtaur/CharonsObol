@@ -7,11 +7,11 @@ class SPARKLE {
   constructor (unit = null) {
     return new Action({
       unit: unit,
-      NAME: 'HEAL',
+      NAME: 'SPARKLE',
       // filename: 'HEAL',
-      name: 'Heal',
+      name: 'Sparkle',
       type: 'minor',
-      desc: 'Heal self for 0.35x MAGIC HP',
+      desc: 'Heal self for 0.25x MAGIC HP',
       // cost: 1,
       targetRules: ['SELF'],
       effects: [
@@ -19,7 +19,7 @@ class SPARKLE {
           NAME: 'HEAL',
           name: 'heal',
           scale: {
-            MAGIC: 0.35
+            MAGIC: 0.25
           }
         }
       ]

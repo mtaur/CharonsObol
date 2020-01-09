@@ -12,7 +12,7 @@ class RAINBOW {
       // filename: 'LUNGE',
       name: 'Rainbow',
       type: 'major',
-      desc: `Deals 1/2 MELEE damage and restores your minor action point and an .` +
+      desc: `Heals self for 1.0x MAGIC and restores your minor action point and an .` +
         `initiative token.`,
       cost: 1,
       targetRules: ['SELFNOMINOR', 'SELF', 'SELF'],

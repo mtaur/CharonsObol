@@ -12,22 +12,22 @@ class REAPER {
       // filename: 'LUNGE',
       name: 'Reaper',
       type: 'both',
-      cost: 2,
-      desc: 'Deals 2.5x MAGIC damage to an enemy who has at most this much health. ' +
-        '(may fail to kill if damage is converted to poison, etc.)',
+      cost: 3,
+      desc: 'Melee attack which deals 1x (MAGIC + MELEE) damage to an enemy who has at ' +
+        'most this much health, bypassing DRED and DREF. ' +
+        '(May fail to kill enemy if damage is converted to poison, etc.)',
       targetRules: ['REAPER'],
-      // prereqs: [],
-      // after: [{
-      //   NAME: 'ROWFRONT'
-      // }],
+      prereqs: ['FRONTNOTFULL'],
+      after: [{
+        NAME: 'CASTERFRONT'
+      }],
       effects: [
         {
           NAME: 'DAMAGE',
           name: 'damage',
           scale: {
-            min: {
-              MAGIC: 2.5
-            }
+            MAGIC: 1,
+            MELEE: 1
           },
           DREDScale: 0,
           DREFScale: 0

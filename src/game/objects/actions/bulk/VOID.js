@@ -10,7 +10,7 @@ class VOID {
       unit: unit,
       NAME: 'VOID',
       // filename: 'LUNGE',
-      name: 'void',
+      name: 'Void',
       type: 'both', // major
       cost: 1,
       desc: 'Target steals HP from allies until fully healed or someone dies.',

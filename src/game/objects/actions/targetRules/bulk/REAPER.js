@@ -9,8 +9,8 @@ class REAPER {
     return new TargetRule({
       caster: obj.caster,
       reqs: ['enemy', 'reaper'],
-      nots: [],
-      prefs: [],
+      nots: ['behind'],
+      // prefs: ['guarding'],
       playerTeam: obj.playerTeam,
       // prevTargs: obj.prevTargs,
       cpuTeam: obj.cpuTeam
