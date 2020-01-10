@@ -16,6 +16,13 @@ class Item {
   tier = 'CHEAP' // common, fine, ???
   equip = [] // [ ['HEAD'], ['MAINHAND', 'OFFHAND'] ]
   skills = [] // ['CRANK'] (ARBALEST)
+  passives = [
+    // {
+    //   name: 'damagetopoisonin',
+    //   NAME: 'DAMAGETOPOISONIN',
+    //   params: {}
+    // }
+  ]
 
   statBonus = { MELEE: 0 }
   converts = [] // [{ from: 'DRED', to: 'DREF', value: 1 }, ...]

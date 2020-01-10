@@ -85,6 +85,8 @@ class StatSmart {
     }
     this.applyChange(tryOn)
     item.skills.forEach((actionStr) => { this.actions.push(new Action.LIB[actionStr](this)) })
+    item.passives.forEach((passive) => { this.statuses.push(new Status.LIB[passive.NAME]()) })
+    // obj.templ.passives.forEach((status) => unit.statuses.push(new Status.LIB[status.NAME]()))
     // unit.actions.push(new Action.LIB[actionStr](unit))
   }
 
