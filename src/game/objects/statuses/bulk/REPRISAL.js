@@ -9,8 +9,8 @@ class REPRISAL {
     return new Status({
       NAME: 'REPRISAL',
       name: 'reprisal',
-      desc: 'DREF stat increased temporarily by 1x (DRED + DREF) + 0.2x (MELEE + ' +
-        'RANGED + MAGIC).  Buff lasts until GUARD is used.',
+      desc: 'DREF stat scaling increased temporarily by 0.5x (DRED + DREF) + 0.1x (MELEE + ' +
+        'RANGED + MAGIC).  Buff lasts until GUARD is consumed.',
       remove: [
         'TAKEDAMAGE',
         'DAMAGE',
@@ -25,27 +25,27 @@ class REPRISAL {
         {
           from: 'DRED',
           to: 'DREF',
-          value: 1
+          value: 0.5
         },
         {
           from: 'DREF',
           to: 'DREF',
-          value: 1
+          value: 0.5
         },
         {
           from: 'MELEE',
           to: 'DREF',
-          value: 0.2
+          value: 0.1
         },
         {
           from: 'MAGIC',
           to: 'DREF',
-          value: 0.2
+          value: 0.1
         },
         {
           from: 'RANGED',
           to: 'DREF',
-          value: 0.2
+          value: 0.1
         }
       ]
     })

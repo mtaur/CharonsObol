@@ -63,15 +63,18 @@ var enemyTurn = function () {
     if (skill.useInitPoints) {
       if (skill.type === 'minor') {
         caster.allies.initArr.shift()
+        cpuTeam.turnPoints -= Math.floor(playerTeam.maxTurnPoints * 0.35)
       }
       if (skill.type === 'major') {
         caster.allies.initArr.shift()
         caster.allies.initArr.shift()
+        cpuTeam.turnPoints -= Math.floor(playerTeam.maxTurnPoints * 0.65)
       }
       if (skill.type === 'both') {
         caster.allies.initArr.shift()
         caster.allies.initArr.shift()
         caster.allies.initArr.shift()
+        cpuTeam.turnPoints -= Math.floor(playerTeam.maxTurnPoints)
       }
     }
     caster.statuses.forEach((status) => status.triggerCheck(caster, 'ENDTURN', skill, selector))

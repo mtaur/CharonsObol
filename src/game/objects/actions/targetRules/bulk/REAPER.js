@@ -10,7 +10,7 @@ class REAPER {
       caster: obj.caster,
       reqs: ['enemy', 'reaper'],
       nots: ['behind'],
-      // prefs: ['guarding'],
+      prefs: [], // 9'guarding'],
       playerTeam: obj.playerTeam,
       // prevTargs: obj.prevTargs,
       cpuTeam: obj.cpuTeam

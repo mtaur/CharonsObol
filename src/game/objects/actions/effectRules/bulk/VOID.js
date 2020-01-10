@@ -84,10 +84,20 @@ function VOID (effectObj = {}, target = {}, caster = {}) {
         dred: 0,
         dref: 0,
         amount: data.amount,
-        // healAmount: healAmount,
+        // amount is automatically capped at the amount needed to kill lowest health ally
+        actualAmount: data.amount,
         caster: caster,
         target: ally
       }
+      // let data = {
+      //   type: 'damage',
+      //   dred: dred,
+      //   dref: dref,
+      //   amount: amount,
+      //   actualAmount: actualAmount, // ONLY recover this much health if convert-to-poison!
+      //   caster: caster,
+      //   target: target
+      // }
 
       let allyWasAlive = ally.live
       let allyDied = false
@@ -99,6 +109,7 @@ function VOID (effectObj = {}, target = {}, caster = {}) {
       reverseForEach(ally.statuses, (status) => status.triggerCheckEffect(ally, 'TAKEDAMAGE', allyData)) // target.statuses.forEach((status) => status.clearCheck(target, 'TAKEDAMAGE'))
       reverseForEach(caster.statuses, (status) => status.triggerCheckEffect(caster, 'DAMAGE', allyData)) // target.statuses.forEach((status) => status.clearCheck(target, 'TAKEDAMAGE'))
 
+      // Skip this if DAMAGETOPOISON might interfere?
       // caster.checkAlive()
       ally.checkAlive()
 

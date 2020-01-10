@@ -76,14 +76,10 @@ class InitCycle extends CtrlState {
       this.tick(selector, playerTeam, cpuTeam)
     } else if (playerTeam.hasTurn && playerTeam.turnPoints >= playerTeam.maxTurnPoints) {
       // console.log('Player turn...')
-      playerTeam.turnPoints -= playerTeam.maxTurnPoints
+      // playerTeam.turnPoints -= playerTeam.maxTurnPoints
       selector.changeState('ChooseUnit')
     } else if (cpuTeam.hasTurn && cpuTeam.turnPoints >= cpuTeam.maxTurnPoints) {
-      // console.log('cpu turn...', cpuTeam)
-      // console.log('front:', cpuTeam.front)
-      // console.log('back:', cpuTeam.back)
-      // console.log('back:', cpuTeam.back)
-      cpuTeam.turnPoints -= cpuTeam.maxTurnPoints
+      // cpuTeam.turnPoints -= cpuTeam.maxTurnPoints
       selector.changeState('EnemyTurn')
     } else {
       // console.log('Player has turns but CPU team turn gauge was full?')

@@ -2,14 +2,10 @@
 import { EffectRule } from '../../../objects/actions/effectRules/EffectRule.js'
 
 var execute = function (selector, unit) {
-  // stateData = {
-  //   // activeUnit = {}
-  //   // skill = {}
-  //   // (skill will have info about valid click targets and number of steps)
-  //   // targets[i] = target clicked at step i
-  // }
   let skill = selector.stateData.activeSkill
   let caster = selector.stateData.activeUnit
+  // let cpuTeam = selector.game.cpuTeam
+  let playerTeam = selector.game.playerTeam
   selector.log.push(
     {
       text: `${selector.stateData.activeUnit.name} used ${selector.stateData.activeSkill.name}.`,
@@ -18,14 +14,10 @@ var execute = function (selector, unit) {
       caster: caster,
       skill: skill
     })
+
   skill.prevTargs.push(unit)
   skill.targetRules.shift()
-  // console.log('LIB:', EffectRule.LIB)
-  // console.log('Execute!')
-  // console.log('Skill:', skill)
-  // console.log('Caster:', caster)
-  // console.log('Skill:', skill.name)
-  // console.log('Targets:', skill.prevTargs)
+
   for (let index in skill.effects) {
     let effectObj = skill.effects[index]
     let effect = new EffectRule(effectObj, skill.prevTargs[index], caster)
@@ -73,47 +65,24 @@ var execute = function (selector, unit) {
   if (skill.useInitPoints) {
     if (skill.type === 'minor') {
       selector.stateData.activeUnit.allies.initArr.shift()
+      playerTeam.turnPoints -= Math.floor(playerTeam.maxTurnPoints * 0.35)
     }
     if (skill.type === 'major') {
       selector.stateData.activeUnit.allies.initArr.shift()
       selector.stateData.activeUnit.allies.initArr.shift()
+      playerTeam.turnPoints -= Math.floor(playerTeam.maxTurnPoints * 0.65)
     }
     if (skill.type === 'both') {
       selector.stateData.activeUnit.allies.initArr.shift()
       selector.stateData.activeUnit.allies.initArr.shift()
       selector.stateData.activeUnit.allies.initArr.shift()
+      playerTeam.turnPoints -= playerTeam.maxTurnPoints
     }
   }
   if (skill.isConsumable) {
     selector.game.playerTeam.inventory[skill.NAME]--
   }
-  // caster.statuses.forEach((status) => status.triggerCheck(caster, 'ENDTURN', skill.type, selector))
-  // let target = skill.prevTargs[index]
-
-  // let didDamage = false
-  // for (let index in skill.effects) {
-  //   if (skill.effects[index].NAME === 'DAMAGE') { didDamage = true }
-  // }
-  // if (didDamage) {
-  //   caster.statuses.forEach((status) => status.triggerCheck(caster, 'DAMAGE', skill, selector))
-  //   let targIDs = []
-  //   for (let index in skill.prevTargs) {
-  //     let target = skill.prevTargs[index]
-  //     if (targIDs.indexOf(target.id) === -1) {
-  //       target.statuses.forEach((status) => status.triggerCheck(caster, 'TAKEDAMAGE', skill, selector))
-  //     }
-  //   }
-  // }
-  // caster.statuses.forEach
   caster.statuses.forEach((status) => status.triggerCheck(caster, 'ENDTURN', skill, selector))
-  // after.summary.log.forEach(
-  //   (item) => {
-  //     item.round = selector.roundNum
-  //     selector.logID++
-  //     item.id = selector.logID
-  //     selector.log.push(item)
-  //   }
-  // )
 
   selector.stateData.activeUnit = {}
   selector.stateData.activeSkill = {}

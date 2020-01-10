@@ -13,7 +13,8 @@ class VOID {
       name: 'Void',
       type: 'both', // major
       cost: 1,
-      desc: 'Target steals HP from allies until fully healed or someone dies.',
+      desc: 'Target steals HP from allies until fully healed or someone dies. Cannot ' +
+        'be used on DECAYing minions.',
       targetRules: ['VOID'],
       // prereqs: [],
       // after: [{

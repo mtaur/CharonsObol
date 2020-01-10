@@ -9,7 +9,7 @@ class GUARD {
     return new Status({
       NAME: 'GUARD',
       name: 'guard',
-      desc: 'Increased DRED and DREF stats by 100% base value.' +
+      desc: 'Increased TOTAL DRED and DREF stats by 100% until damage is dealt or received.' +
         'Interrupts targeting of melee or ranged skills.',
       remove: [
         'TAKEDAMAGE',
@@ -21,16 +21,30 @@ class GUARD {
         // { trigger: , effect: }
       ],
       bonus: [],
-      converts: [
+      // converts: [
+      //   {
+      //     from: 'DRED',
+      //     to: 'DRED',
+      //     value: 1
+      //   },
+      //   {
+      //     from: 'DREF',
+      //     to: 'DREF',
+      //     value: 1
+      //   }
+      // ],
+      replacements: [
         {
-          from: 'DRED',
-          to: 'DRED',
-          value: 1
+          statName: 'DRED',
+          value: function (unit) {
+            return 2 * unit.convertedStatValues.DRED
+          }
         },
         {
-          from: 'DREF',
-          to: 'DREF',
-          value: 1
+          statName: 'DREF',
+          value: function (unit) {
+            return 2 * unit.convertedStatValues.DREF
+          }
         }
       ]
     })

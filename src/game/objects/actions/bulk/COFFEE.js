@@ -11,7 +11,7 @@ class COFFEE {
       // filename: 'INSPIRE',
       name: 'Coffee',
       type: 'minor',
-      desc: 'Gain TWO gauges worth of Turn Points. +2 Init for this battle.',
+      desc: 'Gain 1.5 gauges worth of Turn Points. +2 base INIT for this battle.',
       cost: 1,
       targetRules: ['SELF', 'SELF'],
       // useInitPoints: false,
@@ -20,7 +20,7 @@ class COFFEE {
         {
           NAME: 'ALERT',
           name: 'alert',
-          alertFrac: 2
+          alertFrac: 1.5 // 2
         },
         {
           NAME: 'COFFEEBUFF',

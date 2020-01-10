@@ -37,7 +37,11 @@
               :value="1" color="green"
               />
             </div>
-            <div class="col-3">READY</div>
+            <div class="col-3">READY
+              <div>
+                {{ playerTeam.turnPoints }}/{{ playerTeam.maxTurnPoints }}
+              </div>
+            </div>
           </div>
           <div>{{ playerTeam.initTotal }} initiave points remaining (turn gauge refill rate)</div>
         </span>

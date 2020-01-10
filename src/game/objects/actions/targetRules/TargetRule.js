@@ -216,7 +216,6 @@ class TargetRule {
     reaper: function (unit) {
       // return unit.id === this.caster.id
       // let deathwing = this.caster
-
       if (unit.allies.front.some(this.basics.guarding) && !this.basics.guarding(unit)) { return false }
       if (unit.pos === 'BACK' && unit.allies.back.some(this.basics.guarding)) { return false }
       return this.caster.effectiveStatValues.MAGIC * 1 + this.caster.effectiveStatValues.MELEE * 1 > unit.baseStats.HP.current
