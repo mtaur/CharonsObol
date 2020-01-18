@@ -10,18 +10,61 @@
       <div class="row justify-center q-pa-xs">
         <q-btn color="teal" @click="turnPoints = !turnPoints">{{ turnPoints ? 'Hide' : 'Show' }} initiative bars</q-btn>
       </div>
-      <div class="sp">
+      <div class="sp" key="SP">
         <div>
-          <h5 key='SP'>Team SP: {{ playerTeam.SP }} / {{ playerTeam.SPTotal }}</h5>
+          <div class="text-h5">
+            Team SP
+            <q-tooltip anchor="center right" self="center left" :offset="[10, 10]" content-class="bg-teal" max-width="20vw">
+              <div style="font-size: 14px">
+                SP stands for "spirit points." Units, items, consumables, stat upgrades, and souls cost SP. SP spent on stat
+                upgrades or souls for the same unit has an escaleting cost, so choose carefully for synergy.
+                SP is uninvested when consumables are used or an ally dies.  Otherwise, there are no refunds.
+              </div>
+            </q-tooltip>
+          </div>
+          <div style="font-size: 20px">{{ playerTeam.SP }} Available</div>
+          <div style="font-size: 14px">{{ playerTeam.SPTotal - playerTeam.SP }} Invested, {{ playerTeam.SPTotal }} total.</div>
+          <div style="font-size: 14px">Current maximum possible SP total is {{ playerTeam.SPCap }}.</div>
         </div>
-        <div>
-          Essence total: {{ playerTeam.RSP }}
+        <div class="text-h5">
+          Essence summary:
+          <q-tooltip anchor="center right" self="center left" :offset="[10, 10]" content-class="bg-teal" max-width="20vw">
+            <div style="font-size: 14px">
+              Essence is a sort of "experience point" which is invested in the form of SP, with diminishing returns, starting from {{ playerTeam.SPEff * 100 }}%
+              efficiency and decreasing with higher Essence totals.
+            </div>
+            <div style="font-size: 14px">
+              Some classes will be able to use essence directly for some of their skills and passives.
+            </div>
+          </q-tooltip>
         </div>
-        <div class="text-caption">
-          (Essence converts to total SP with diminishing returns, starting from {{ playerTeam.SPEff * 100 }}% efficiency.)
+        <div class="col-12 row items-center">
+          <div class="col-3">Available: {{ playerTeam.RSPAvail }}</div>
+          <div class="col-6">
+            <q-linear-progress
+            class="q-mt-sm"
+            rounded style="height: 10px"
+            :value="playerTeam.RSPAvail / playerTeam.RSP" color="grey"
+            />
+          </div>
+          <div class="col-3">Total: {{ playerTeam.RSP }}</div>
         </div>
       </div>
-      <div v-if="turnPoints">
+      <div v-if="turnPoints" class="sp">
+        <div class="text-h5">
+          Turn summary:
+          <q-tooltip anchor="center right" self="center left" :offset="[10, 10]" content-class="bg-teal" max-width="20vw">
+            <div style="font-size: 14px">
+              Between turns, the turn guages gain TURN POINTS until one of them is full, at which time that team takes a turn, with priority going to the player if both are full.
+              Initiative (INIT) is used to generate these turn points.  Each unit contributes three "initiative tokens" carrying their INIT value at the start of each round.
+              When a unit takes a minor/major/full action, that team's 1/2/3 highest value tokens are spent, as well as 350/650/100 turn points,
+              delaying the next turn AND slowing the rate of the guage refill for the rest of the round, until the team runs out of actions and/or non-zero initiative tokens.
+            </div>
+            <div style="font-size: 14px">
+              Full actions early in the round will delay your next turn a lot, so weigh your options.
+            </div>
+          </q-tooltip>
+        </div>
         <!-- <div>
           <h6>Turn points</h6>
           <div>Player: {{ playerTeam.turnPoints }} / {{ playerTeam.maxTurnPoints }}</div>
@@ -29,11 +72,11 @@
         </div> -->
         <span v-if="selector.turnState === 'player'">
           <div v-if="selector.turnState === 'player'" class="col-12 row items-center">
-            <div class="col-2">Player:</div>
-            <div class="col-7">
+            <div class="col-3">Player:</div>
+            <div class="col-6">
               <q-linear-progress
               class="q-mt-sm"
-              rounded style="height: 30px"
+              rounded style="height: 18px"
               :value="1" color="green"
               />
             </div>
@@ -43,29 +86,29 @@
               </div>
             </div>
           </div>
-          <div>{{ playerTeam.initTotal }} initiave points remaining (turn gauge refill rate)</div>
+          <div>{{ playerTeam.initTotal }} initiave points remaining</div>
         </span>
         <span v-else-if="playerTeam.hasTurn && playerTeam.initTotal > 0">
           <div class="col-12 row items-center">
-            <div class="col-2">Player:</div>
-            <div class="col-7">
+            <div class="col-3">Player:</div>
+            <div class="col-6">
               <q-linear-progress
               class="q-mt-sm"
-              rounded style="height: 30px"
+              rounded style="height: 18px"
               :value="playerTeam.turnPoints / playerTeam.maxTurnPoints" color="yellow"
               />
             </div>
             <div class="col-3">{{ playerTeam.turnPoints }}/{{ playerTeam.maxTurnPoints }}</div>
           </div>
-          <div>{{ playerTeam.initTotal }} initiave points remaining (turn gauge refill rate)</div>
+          <div>{{ playerTeam.initTotal }} initiave points remaining</div>
         </span>
         <span v-else>
           <div class="col-12 row items-center">
-            <div class="col-2">Player:</div>
-            <div class="col-7">
+            <div class="col-3">Player:</div>
+            <div class="col-6">
               <q-linear-progress
               class="q-mt-sm"
-              rounded style="height: 30px"
+              rounded style="height: 18px"
               :value="playerTeam.turnPoints / playerTeam.maxTurnPoints" color="grey"
               />
             </div>
@@ -74,30 +117,36 @@
           <div>{{ playerTeam.initTotal }} initiave points remaining (turn gauge refill rate)</div>
           <div>0 team initiative point total and/or no usable actions.</div>
         </span>
-        <div v-if="cpuTeam.hasTurn && cpuTeam.initTotal > 0" class="col-12 row items-center">
-          <div class="col-2">CPU:</div>
-          <div class="col-7">
-            <q-linear-progress
-            class="q-mt-sm"
-            rounded style="height: 30px"
-            :value="cpuTeam.turnPoints / cpuTeam.maxTurnPoints" color="yellow"
-            />
+        <div v-if="cpuTeam.hasTurn && cpuTeam.initTotal > 0">
+          <div class="col-12 row items-center">
+            <div class="col-3">CPU:</div>
+            <div class="col-6">
+              <q-linear-progress
+              class="q-mt-sm"
+              rounded style="height: 18px"
+              :value="cpuTeam.turnPoints / cpuTeam.maxTurnPoints" color="yellow"
+              />
+            </div>
+            <div class="col-3">{{ cpuTeam.turnPoints }}/{{ cpuTeam.maxTurnPoints }}</div>
           </div>
-          <div class="col-3">{{ cpuTeam.turnPoints }}/{{ cpuTeam.maxTurnPoints }}</div>
-          <div>{{ cpuTeam.initTotal }} initiave points remaining (turn gauge refill rate)</div>
-        </div>
-        <div v-else class="col-12 row items-center">
-          <div class="col-2">CPU:</div>
-          <div class="col-7">
-            <q-linear-progress
-            class="q-mt-sm"
-            rounded style="height: 30px"
-            :value="cpuTeam.turnPoints / cpuTeam.maxTurnPoints" color="grey"
-            />
-          </div>
-          <div class="col-3">{{ cpuTeam.turnPoints }}/{{ cpuTeam.maxTurnPoints }}</div>
           <div>{{ cpuTeam.initTotal }} initiave points remaining</div>
-          <div>0 team initiative point total and/or no usable actions.</div>
+        </div>
+        <div v-else>
+          <div class="col-12 row items-center">
+            <div class="col-3">CPU:</div>
+            <div class="col-6">
+              <q-linear-progress
+              class="q-mt-sm"
+              rounded style="height: 18px"
+              :value="cpuTeam.turnPoints / cpuTeam.maxTurnPoints" color="grey"
+              />
+            </div>
+            <div class="col-3">{{ cpuTeam.turnPoints }}/{{ cpuTeam.maxTurnPoints }}</div>
+          </div>
+          <div class="sp">
+            <div>{{ cpuTeam.initTotal }} initiave points remaining</div>
+            <div>0 team initiative point total and/or no usable actions.</div>
+          </div>
         </div>
       </div>
         <!-- <div class="justify-center">

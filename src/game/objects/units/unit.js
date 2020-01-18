@@ -96,6 +96,12 @@ class Team {
     console.log('Tried to set SP to', input)
     console.log('SPSpent is a computed property based on tracked SP value of assets.')
   }
+  get RSPInvested () {
+    return this.totalToRaw(this.SPSpentBeta)
+  }
+  get RSPAvail () {
+    return this.RSP - this.RSPInvested
+  }
   // SPAvail = ...
   // SPSpent = ...
   // SPTotal = ...
