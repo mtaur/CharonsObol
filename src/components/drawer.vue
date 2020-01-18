@@ -15,10 +15,10 @@
           <h5 key='SP'>Team SP: {{ playerTeam.SP }} / {{ playerTeam.SPTotal }}</h5>
         </div>
         <div>
-          Raw SP total: {{ playerTeam.RSP }}
+          Essence total: {{ playerTeam.RSP }}
         </div>
         <div class="text-caption">
-          (RSP converts to total SP with diminishing returns, starting from {{ playerTeam.SPEff * 100 }}% efficiency.)
+          (Essence converts to total SP with diminishing returns, starting from {{ playerTeam.SPEff * 100 }}% efficiency.)
         </div>
       </div>
       <div v-if="turnPoints">

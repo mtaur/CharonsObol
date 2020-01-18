@@ -98,6 +98,15 @@ class UnitTemplate {
       unit.freeSP = obj.templ.freeSP
     } else { unit.freeSP = 0 }
 
+    if (templ.side === Unit.SIDE.CPU) {
+      obj.templ.passives.push(
+        {
+          name: 'dropessence',
+          NAME: 'DROPESSENCE',
+          params: {}
+        })
+    }
+
     unit.statWeights = templ.statWeights
     if (unit.side === Unit.SIDE.CPU) { unit.actions = [] }
     obj.templ.actions.forEach((actionStr) => unit.actions.push(new Action.LIB[actionStr](unit)))

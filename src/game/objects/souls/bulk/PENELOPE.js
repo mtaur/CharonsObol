@@ -52,7 +52,13 @@ class Penelope {
       AISkills: ['HOMINGBOLT', 'CHAINLGT', 'FLAMEFIST', 'GUARD', 'HOMINGBOLT', 'MOVEBACK'],
       AIRow: 'back',
       AIRoles: ['MAGE'],
-      passives: []
+      passives: [
+        {
+          name: 'manabarrier',
+          NAME: 'MANABARRIER',
+          params: {}
+        }
+      ]
     })
   }
 }
