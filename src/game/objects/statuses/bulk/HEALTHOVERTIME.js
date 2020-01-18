@@ -71,7 +71,36 @@ class HEALTHOVERTIME {
       unit.baseStats.HP.current += tick * sign
       unit.baseStats.HP.current = unit.baseStats.HP.current >= 0 ? unit.baseStats.HP.current : 0
       unit.baseStats.HP.current = unit.baseStats.HP.current <= unit.baseStats.HP.max ? unit.baseStats.HP.current : unit.baseStats.HP.max
+
+      let targetWasAlive = target.live
+      let targetDied = false
+
+      let reverseForEach = (arr, fcn) => {
+        for (let index = arr.length - 1; index >= 0; index--) {
+          fcn(arr[index])
+          index = Math.min(index, arr.length)
+        }
+      }
+
       unit.checkAlive()
+      if (targetWasAlive && target.live === false) {
+        targetDied = true
+      }
+
+      if (targetDied) {
+        let data = {
+          type: 'tick',
+          amount: amt,
+          // actualAmount: actualAmount, // ONLY recover this much health if convert-to-poison!
+          caster: caster,
+          target: target
+        }
+        reverseForEach(target.statuses, (status) => status.clearCheck(target, 'DIE')) // target.statuses.forEach((status) => status.clearCheck(target, 'TAKEDAMAGE'))
+        reverseForEach(caster.statuses, (status) => status.clearCheck(caster, 'KILL')) // target.statuses.forEach((status) => status.clearCheck(target, 'TAKEDAMAGE'))
+        reverseForEach(target.statuses, (status) => status.triggerCheckEffect(target, 'DIE', data)) // target.statuses.forEach((status) => status.clearCheck(target, 'TAKEDAMAGE'))
+        reverseForEach(caster.statuses, (status) => status.triggerCheckEffect(caster, 'KILL', data)) // target.statuses.forEach((status) => status.clearCheck(target, 'TAKEDAMAGE'))
+      }
+
       effect.amount -= tick * sign
       console.log('Tick!', tick, 'Remaining amount:', effect.amount)
       console.log('Tick! Unit:', unit, 'Effect:', effect)

@@ -10,7 +10,7 @@ class DROPESSENCE {
   constructor (effectObj = {}, target = {}, caster = {}) {
     let dropEssence = function (unit, trigger, data) {
       let target = data.target
-      let caster = data.caster
+      // let caster = data.caster
       let SP = target.betaSP
       let scaleSP = 1
       let essenceAmount = SP * scaleSP
@@ -23,7 +23,8 @@ class DROPESSENCE {
       //   target: data.caster
       // }
 
-      caster.allies.RSP += essenceAmount
+      // caster.allies.RSP += essenceAmount
+      unit.playerTeam.RSP += essenceAmount
     }
 
     let getLogItem = function (unit, trigger, data) {

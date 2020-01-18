@@ -23,6 +23,7 @@ class MANABARRIER {
         let MPCost = MAGIC > 0 ? Math.ceil((overkill + 1) / (magScale * MAGIC)) : 0
         MPCost = Math.min(MPCost, MP)
         let healAmount = Math.ceil(MPCost * magScale * MAGIC)
+        healAmount = Math.min(healAmount, target.baseStats.HP.max - target.baseStats.HP.current)
 
         target.baseStats.HP.current += healAmount
         target.baseStats.MP.current -= MPCost
@@ -51,6 +52,7 @@ class MANABARRIER {
         let MPCost = MAGIC > 0 ? Math.ceil((overkill + 1) / (magScale * MAGIC)) : 0
         MPCost = Math.min(MPCost, MP)
         let healAmount = Math.ceil(MPCost * magScale * MAGIC)
+        healAmount = Math.min(healAmount, target.baseStats.HP.max - target.baseStats.HP.current)
 
         // target.baseStats.HP.current += healAmount
         let newData = {

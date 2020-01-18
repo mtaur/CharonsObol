@@ -25,6 +25,27 @@ class LIFESTEAL {
       gain = Math.min(gain, caster.baseStats.HP.max - caster.baseStats.HP.current)
       caster.baseStats.HP.current += gain
 
+      let reverseForEach = (arr, fcn) => {
+        for (let index = arr.length - 1; index >= 0; index--) {
+          fcn(arr[index])
+          index = Math.min(index, arr.length)
+        }
+      }
+      let healData = {
+        type: 'lifesteal',
+        amount: gain, // data.amount,
+        // preventAmount: data.actualAmount,
+        caster: caster,
+        target: caster
+      }
+
+      reverseForEach(caster.statuses, (status) => status.clearCheck(caster, 'GETHEAL')) // target.statuses.forEach((status) => status.clearCheck(target, 'TAKEDAMAGE'))
+      reverseForEach(caster.statuses, (status) => status.clearCheck(caster, 'HEAL')) // target.statuses.forEach((status) => status.clearCheck(target, 'TAKEDAMAGE'))
+      reverseForEach(caster.statuses, (status) => status.triggerCheckEffect(caster, 'GETHEAL', healData)) // target.statuses.forEach((status) => status.clearCheck(target, 'TAKEDAMAGE'))
+      reverseForEach(caster.statuses, (status) => status.triggerCheckEffect(caster, 'HEAL', healData)) // target.statuses.forEach((status) => status.clearCheck(target, 'TAKEDAMAGE'))
+
+      caster.baseStats.HP.current += gain
+
       // let logItem = [
       //   {
       //     // text: `${newData.target.name} converted ${newData.amount} damage to poison.`,
