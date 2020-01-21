@@ -68,26 +68,16 @@ let setup = function (input) {
   playerTeam.all.forEach((unit) => {
     unit.actions.push(new Action.LIB.RESTMAJOR(unit))
     unit.actions.push(new Action.LIB.RESTMINOR(unit))
+    removeDuplicates(unit.actions)
   })
 
-  // let scrolls = {
-  //   SMOKEBOMB: 1,
-  //   HEALTHPOT: 1,
-  //   LIZARDTAIL: 1,
-  //   MANAPOT: 1,
-  //   WRATCHSCROLL: 1,
-  //   FLAMEFISTSCROLL: 1,
-  //   HEALSCROLL: 1,
-  //   ENLIGHTENSCROLL: 1
+  // let reverseForEach = (arr, fcn) => {
+  //   for (let index = arr.length - 1; index >= 0; index--) {
+  //     fcn(arr[index])
+  //     index = Math.min(index, arr.length)
+  //   }
   // }
-  // playerTeam.inventory.SMOKEBOMB = 1
-  // playerTeam.inventory.HEALTHPOT = 1
-  // playerTeam.inventory.LIZARDTAIL = 1
-  // playerTeam.inventory.MANAPOT = 1
-  // playerTeam.inventory.WRATHSCROLL = 1
-  // playerTeam.inventory.FLAMEFISTSCROLL = 1
-  // playerTeam.inventory.HEALSCROLL = 1
-  // playerTeam.inventory.ENLIGHTENSCROLL = 1
+
   let retObj = {
     cpuTeam,
     playerTeam // ,

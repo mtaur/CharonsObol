@@ -235,6 +235,18 @@ class StatSmart {
     }
     return isZombie ? this.freeSP - this.alphaSP + this.allies.SP : this.allies.SP
   }
+
+  static getEssence () {
+    return this.bonusEssence + this.allies.RSPAvail
+  }
+
+  static setEssence (value) {
+    let delta = value - this.essence
+    let deltaTeam = delta < -this.bonusEssence ? delta + this.bonusEssence : 0
+    let deltaUnit = delta < -this.bonusEssence ? -this.bonusEssence : delta
+    this.allies.RSP += deltaTeam
+    this.bonusEssence += deltaUnit
+  }
 }
 
 export { StatSmart }

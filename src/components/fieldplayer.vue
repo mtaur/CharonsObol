@@ -54,6 +54,18 @@
       </div>
       <div class="col-3">{{ healthOverTime.amount }} total</div>
     </div>
+    <div v-if="hasEssence" class="col-12 row">
+      <div class="col-2" style="font-size: 10px">{{ unit.bonusEssence }} essence</div>
+      <div class="col-7">
+        <q-linear-progress
+        class="q-mt-sm"
+        rounded style="height: 8px"
+        :value="(Math.abs(unit.bonusEssence)) / (unit.betaSP * 4)"
+        :color="'grey-4'"
+        />
+      </div>
+      <div class="col-3">{{ unit.betaSP }} unit SP total</div>
+    </div>
     <div class="row namebox justify-center align-center items-center q-gutter-xs">
       <!-- <q-chip color="deep-orange"> -->
       <q-chip color="teal" text-color="white">
@@ -208,6 +220,14 @@ export default {
         }
       }
       return effect
+    },
+    hasEssence () {
+      for (let index in this.unit.statuses) {
+        if (this.unit.statuses[index].NAME === 'ESSENCEUSER') {
+          return true
+        }
+      }
+      return false
     } // ,
     // selectableClass () {
     //   if (this.unit.side === 'player' && this.selector.turnState === 'player') {

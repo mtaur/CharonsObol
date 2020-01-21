@@ -16,6 +16,7 @@ class Action {
   desc = 'Derp around doing nothing.'
   type = 'minor'
   cost = 0
+  essenceCostScale = 0
   after = []
   prereqs = []
   isConsumable = false
@@ -36,6 +37,7 @@ class Action {
     if (this.type === 'both' && !(this.unit.hasAction.major && this.unit.hasAction.minor)) { return false }
     if (this.type === 'major' && !this.unit.hasAction.major) { return false }
     if (this.type === 'minor' && !this.unit.hasAction.minor) { return false }
+    if (this.essenceCostScale > 0 && this.essenceCostScale * this.unit.betaSP > this.unit.essence) { return false }
 
     // let retVal = true
     let obj = { playerTeam: this.unit.playerTeam, cpuTeam: this.unit.cpuTeam, caster: this.unit }

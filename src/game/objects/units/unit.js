@@ -247,6 +247,8 @@ class Unit {
   equip (...params) { StatSmart.equip.call(this, ...params) }
   levelUp (...params) { StatSmart.levelUp.call(this, ...params) }
   get cloneJSON () { return StatSmart.unitJSON.call(this, this) }
+  get essence () { return StatSmart.getEssence.call(this) }
+  set essence (value) { StatSmart.setEssence.call(this, value) }
 
   get baseSummary () {
     let obj = this.baseStatValues
@@ -331,7 +333,8 @@ class Unit {
       ],
       statuses: [],
       hasAction: { major: true, minor: true },
-      SP: 0
+      SP: 0,
+      bonusEssence: 0
     }
     for (let key in template) {
       // this[key] = obj[key] ? obj[key] : template[key]

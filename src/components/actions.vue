@@ -46,6 +46,12 @@
                 <div v-if="action.cost > 0 && action.cost <= unit.baseStats.MP.current" :style="{ color: 'blue' }">
                   {{ action.cost }} MP
                 </div>
+                <div v-if="action.essenceCostScale > 0 && action.essenceCostScale * unit.betaSP > unit.essence" :style="{ color: 'red' }">
+                  {{ action.essenceCostScale * unit.betaSP }} essence cost.
+                </div>
+                <div v-if="action.essenceCostScale > 0 && action.essenceCostScale * unit.betaSP <= unit.essence" :style="{ color: 'blue-4' }">
+                  {{ action.essenceCostScale * unit.betaSP }} essence cost.
+                </div>
               </h6>
               <div>
                 {{ action.desc }}

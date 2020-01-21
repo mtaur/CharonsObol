@@ -54,14 +54,26 @@ class RoundStart extends CtrlState {
         index = Math.min(index, arr.length)
       }
     }
+    let batData = {
+      playerTeam: selector.game.playerTeam,
+      cpuTeam: selector.game.cpuTeam
+    }
 
     selector.game.playerTeam.field.forEach((unit) => {
       reverseForEach(unit.statuses, (status) => status.clearCheck(unit, 'ROUNDSTART')) // target.statuses.forEach((status) => status.clearCheck(target, 'TAKEDAMAGE'))
       reverseForEach(unit.statuses, (status) => status.triggerCheckEffect(unit, 'ROUNDSTART')) // target.statuses.forEach((status) => status.clearCheck(target, 'TAKEDAMAGE'))
+      if (selector.roundNum === 1) {
+        reverseForEach(unit.statuses, (status) => status.clearCheck(unit, 'BATSTART')) // target.statuses.forEach((status) => status.clearCheck(target, 'TAKEDAMAGE'))
+        reverseForEach(unit.statuses, (status) => status.triggerCheckEffect(unit, 'BATSTART', batData)) // target.statuses.forEach((status) => status.clearCheck(target, 'TAKEDAMAGE'))
+      }
     })
     selector.game.cpuTeam.field.forEach((unit) => {
       reverseForEach(unit.statuses, (status) => status.clearCheck(unit, 'ROUNDSTART')) // target.statuses.forEach((status) => status.clearCheck(target, 'TAKEDAMAGE'))
       reverseForEach(unit.statuses, (status) => status.triggerCheckEffect(unit, 'ROUNDSTART')) // target.statuses.forEach((status) => status.clearCheck(target, 'TAKEDAMAGE'))
+      if (selector.roundNum === 1) {
+        reverseForEach(unit.statuses, (status) => status.clearCheck(unit, 'BATSTART')) // target.statuses.forEach((status) => status.clearCheck(target, 'TAKEDAMAGE'))
+        reverseForEach(unit.statuses, (status) => status.triggerCheckEffect(unit, 'BATSTART', batData)) // target.statuses.forEach((status) => status.clearCheck(target, 'TAKEDAMAGE'))
+      }
     })
 
     selector.changeState('InitCycle')

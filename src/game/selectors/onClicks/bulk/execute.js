@@ -62,6 +62,7 @@ var execute = function (selector, unit) {
     // selector.log.push(after.summary)
   }
   if (skill.cost > 0) { caster.baseStats.MP.current -= skill.cost }
+  if (skill.essenceCostScale !== 0) { caster.essence -= skill.essenceCostScale * caster.betaSP }
   if (skill.useInitPoints) {
     if (skill.type === 'minor') {
       selector.stateData.activeUnit.allies.initArr.shift()
