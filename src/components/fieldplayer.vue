@@ -60,8 +60,8 @@
         <q-linear-progress
         class="q-mt-sm"
         rounded style="height: 8px"
-        :value="(Math.abs(unit.bonusEssence)) / (unit.betaSP * 4)"
-        :color="'grey-4'"
+        :value="(Math.abs(unit.bonusEssence)) / (unit.betaSP * 1)"
+        :color="'indigo-3'"
         />
       </div>
       <div class="col-3">{{ unit.betaSP }} unit SP total</div>

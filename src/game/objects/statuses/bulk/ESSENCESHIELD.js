@@ -14,19 +14,24 @@ class ESSENCESHIELD {
       let overkill = amount - preventAmount
       let target = data.target
       // let caster = data.caster
-      let magScale = 0.5
+      let baseEff = 0.2
+      let SP = target.betaSP
+      SP = Math.max(SP, 1)
+      let essence = target.essence
       let wouldKill = overkill >= target.baseStats.HP.current // 0
 
       if (wouldKill) {
-        let MP = target.baseStats.MP.current
-        let MAGIC = target.effectiveStatValues.MAGIC
-        let MPCost = MAGIC > 0 ? Math.ceil((overkill + 1) / (magScale * MAGIC)) : 0
-        MPCost = Math.min(MPCost, MP)
-        let healAmount = Math.ceil(MPCost * magScale * MAGIC)
+        let totEff = (baseEff * (50 + Math.pow(SP, 0.5)) / SP)
+        let essenceCost = totEff > 0 ? Math.ceil((overkill + 1) / (totEff)) : 0
+        essenceCost = Math.min(essenceCost, essence)
+        // let essenceCost = MAGIC > 0 ? Math.ceil((overkill + 1) / (magScale * MAGIC)) : 0
+        // MPCost = Math.min(MPCost, MP)
+        // let healAmount = Math.ceil(MPCost * magScale * MAGIC)
+        let healAmount = Math.ceil(essenceCost * totEff)
         healAmount = Math.min(healAmount, target.baseStats.HP.max - target.baseStats.HP.current)
 
         target.baseStats.HP.current += healAmount
-        target.baseStats.MP.current -= MPCost
+        target.essence -= essenceCost
       }
     }
 
@@ -36,8 +41,14 @@ class ESSENCESHIELD {
       let amount = data.amount
       let preventAmount = data.actualAmount
       let overkill = amount - preventAmount
-      let magScale = 0.5
+      // let magScale = 0.5
       let wouldKill = overkill >= target.baseStats.HP.current // 0
+
+      let baseEff = 0.2
+      let SP = target.betaSP
+      SP = Math.max(SP, 1)
+      let essence = target.essence
+      // let wouldKill = overkill >= target.baseStats.HP.current // 0
 
       // selector.logID++
       let summary = {
@@ -47,11 +58,13 @@ class ESSENCESHIELD {
       }
 
       if (wouldKill) {
-        let MP = target.baseStats.MP.current
-        let MAGIC = target.effectiveStatValues.MAGIC
-        let MPCost = MAGIC > 0 ? Math.ceil((overkill + 1) / (magScale * MAGIC)) : 0
-        MPCost = Math.min(MPCost, MP)
-        let healAmount = Math.ceil(MPCost * magScale * MAGIC)
+        let totEff = (baseEff * (50 + Math.pow(SP, 0.5)) / SP)
+        let essenceCost = totEff > 0 ? Math.ceil((overkill + 1) / (totEff)) : 0
+        essenceCost = Math.min(essenceCost, essence)
+        // let essenceCost = MAGIC > 0 ? Math.ceil((overkill + 1) / (magScale * MAGIC)) : 0
+        // MPCost = Math.min(MPCost, MP)
+        // let healAmount = Math.ceil(MPCost * magScale * MAGIC)
+        let healAmount = Math.ceil(essenceCost * totEff)
         healAmount = Math.min(healAmount, target.baseStats.HP.max - target.baseStats.HP.current)
 
         // target.baseStats.HP.current += healAmount
@@ -59,18 +72,24 @@ class ESSENCESHIELD {
           type: 'manabarrier',
           amount: data.amount,
           preventAmount: data.actualAmount,
-          MPCost: MPCost,
-          MAGIC: MAGIC,
+          essenceCost: essenceCost,
+          essence: essence,
+          baseEff: baseEff,
+          totEff: totEff,
           healAmount: healAmount,
           caster: data.caster,
           target: data.target
         }
         let log = [
           {
-            text: `${newData.target.name} prevented ${newData.healAmount} damage with mana barrier.`,
-            type: 'manabarrierheal',
+            text: `${newData.target.name} prevented ${newData.healAmount} damage with essence shield.`,
+            type: 'essenceshieldheal',
             amount: newData.amount,
-            MPCost: newData.MPCost,
+            essenceCost: essenceCost,
+            essence: essence,
+            baseEff: baseEff,
+            totEff: totEff,
+            // MPCost: newData.MPCost,
             // virulence: this.effects[0].virulence,
             // virulence: thisObj.effects[0].virulence,
             // virulence: virulence,
@@ -78,10 +97,14 @@ class ESSENCESHIELD {
             target: target
           },
           {
-            text: `${newData.target.name} lost ${newData.MPCost} MP to the barrier.`,
-            type: 'manabarriermana',
+            text: `${newData.target.name} lost ${newData.essenceCost} essence to the shield.`,
+            type: 'essenceshieldessence',
             amount: newData.amount,
-            MPCost: MPCost,
+            essenceCost: essenceCost,
+            essence: essence,
+            baseEff: baseEff,
+            totEff: totEff,
+            // MPCost: MPCost,
             // virulence: this.effects[0].virulence,
             // virulence: thisObj.effects[0].virulence,
             // virulence: virulence,
@@ -101,8 +124,8 @@ class ESSENCESHIELD {
     return new Status({
       NAME: 'ESSENCESHIELD',
       name: 'essenceshield',
-      desc: 'Incoming fatal damage healed by 0.5x MAGIC for each 1 MP (up to current ' +
-        'total or enough to prevent death)',
+      desc: 'Incoming fatal damage is converted to ESSENCE loss.  Essence loss rate increases ' +
+        'as you invest more SP into this character.',
       remove: [
         //
       ],

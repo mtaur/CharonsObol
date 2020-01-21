@@ -59,6 +59,11 @@ class Manataur {
           name: 'essenceuser',
           NAME: 'ESSENCEUSER',
           params: {}
+        },
+        {
+          name: 'essenceshield',
+          NAME: 'ESSENCESHIELD',
+          params: {}
         }
       ]
     })

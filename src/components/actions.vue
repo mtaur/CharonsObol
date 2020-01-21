@@ -22,6 +22,9 @@
                 <div v-if="action.cost > 0" :style="{ color: 'blue' }">
                   {{ action.cost }} MP
                 </div>
+                <div v-if="action.essenceCostScale > 0" class="text-indigo-3">
+                  {{ action.essenceCostScale * unit.betaSP }} essence cost.
+                </div>
               </h6>
               <div>
                 {{ action.desc }}
@@ -49,9 +52,10 @@
                 <div v-if="action.essenceCostScale > 0 && action.essenceCostScale * unit.betaSP > unit.essence" :style="{ color: 'red' }">
                   {{ action.essenceCostScale * unit.betaSP }} essence cost.
                 </div>
-                <div v-if="action.essenceCostScale > 0 && action.essenceCostScale * unit.betaSP <= unit.essence" :style="{ color: 'blue-4' }">
+                <div v-if="action.essenceCostScale > 0 && action.essenceCostScale * unit.betaSP <= unit.essence">
                   {{ action.essenceCostScale * unit.betaSP }} essence cost.
                 </div>
+                <!-- <div v-if="action.essenceCostScale > 0 && action.essenceCostScale * unit.betaSP <= unit.essence" :style="{ color: 'grey-4' }"> -->
               </h6>
               <div>
                 {{ action.desc }}

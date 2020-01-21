@@ -88,20 +88,20 @@ function DAMAGE (effectObj = {}, target = {}, caster = {}) {
         target: target
       }
     ]
-    if (data.amount >= target.baseStats.HP.current && !target.statuses.some((status) => { return status.NAME === 'DAMAGETOPOISONIN' }) && !caster.statuses.some((status) => { return status.NAME === 'DAMAGETOPOISONOUT' })) {
-      log.push({
-        text: `${target.name} died...`,
-        type: 'death',
-        caster: target
-      })
-    }
-    if (data.dref >= caster.baseStats.HP.current) {
-      log.push({
-        text: `${caster.name} died...`,
-        type: 'death',
-        caster: caster
-      })
-    }
+    // if (data.amount >= target.baseStats.HP.current && !target.statuses.some((status) => { return status.NAME === 'DAMAGETOPOISONIN' }) && !caster.statuses.some((status) => { return status.NAME === 'DAMAGETOPOISONOUT' })) {
+    //   log.push({
+    //     text: `${target.name} died...`,
+    //     type: 'death',
+    //     caster: target
+    //   })
+    // }
+    // if (data.dref >= caster.baseStats.HP.current) {
+    //   log.push({
+    //     text: `${caster.name} died...`,
+    //     type: 'death',
+    //     caster: caster
+    //   })
+    // }
     let summary = {
       data: data,
       log: log
@@ -132,6 +132,8 @@ function DAMAGE (effectObj = {}, target = {}, caster = {}) {
 
     let targetWasAlive = target.live
     let targetDied = false
+    let casterWasAlive = target.live
+    let casterDied = false
 
     target.checkAlive()
     caster.checkAlive()
@@ -139,12 +141,35 @@ function DAMAGE (effectObj = {}, target = {}, caster = {}) {
     if (targetWasAlive && target.live === false) {
       targetDied = true
     }
+    if (casterWasAlive && caster.live === false) {
+      casterDied = true
+    }
 
     if (targetDied) {
       reverseForEach(target.statuses, (status) => status.clearCheck(target, 'DIE')) // target.statuses.forEach((status) => status.clearCheck(target, 'TAKEDAMAGE'))
       reverseForEach(caster.statuses, (status) => status.clearCheck(caster, 'KILL')) // target.statuses.forEach((status) => status.clearCheck(target, 'TAKEDAMAGE'))
       reverseForEach(target.statuses, (status) => status.triggerCheckEffect(target, 'DIE', data)) // target.statuses.forEach((status) => status.clearCheck(target, 'TAKEDAMAGE'))
       reverseForEach(caster.statuses, (status) => status.triggerCheckEffect(caster, 'KILL', data)) // target.statuses.forEach((status) => status.clearCheck(target, 'TAKEDAMAGE'))
+      // if (data.amount >= target.baseStats.HP.current && !target.statuses.some((status) => { return status.NAME === 'DAMAGETOPOISONIN' }) && !caster.statuses.some((status) => { return status.NAME === 'DAMAGETOPOISONOUT' })) {
+      summary.log.push({
+        text: `${target.name} died...`,
+        type: 'death',
+        caster: target
+      })
+      // }
+      // if (data.dref >= caster.baseStats.HP.current) {
+      // }
+    }
+    if (casterDied) {
+      reverseForEach(caster.statuses, (status) => status.clearCheck(caster, 'DIE')) // target.statuses.forEach((status) => status.clearCheck(target, 'TAKEDAMAGE'))
+      reverseForEach(caster.statuses, (status) => status.clearCheck(caster, 'KILL')) // target.statuses.forEach((status) => status.clearCheck(target, 'TAKEDAMAGE'))
+      reverseForEach(caster.statuses, (status) => status.triggerCheckEffect(caster, 'DIE', data)) // target.statuses.forEach((status) => status.clearCheck(target, 'TAKEDAMAGE'))
+      reverseForEach(caster.statuses, (status) => status.triggerCheckEffect(caster, 'KILL', data)) // target.statuses.forEach((status) => status.clearCheck(target, 'TAKEDAMAGE'))
+      summary.log.push({
+        text: `${caster.name} died...`,
+        type: 'death',
+        caster: caster
+      })
     }
 
     this.summary = summary
