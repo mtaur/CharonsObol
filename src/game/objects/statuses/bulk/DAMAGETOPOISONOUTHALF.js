@@ -9,7 +9,7 @@ class DAMAGETOPOISONOUTHALF {
 
   constructor (effectObj = {}, target = {}, caster = {}) {
     // let amount = 0
-    let virulence = 0.1
+    let virulence = 0.05
     if (hasProp(effectObj, 'virulence')) {
       // this.effects[0].virulence = effectObj.virulence
       virulence = effectObj.virulence

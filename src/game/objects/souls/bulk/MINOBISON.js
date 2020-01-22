@@ -53,7 +53,7 @@ class Minobison {
           value: 0.1
         }
       ],
-      skills: ['COFFEE', 'REPRISAL', 'YOLOSTRIKE', 'LONGSHOT', 'HOMINGBOLT'],
+      skills: ['COFFEE', 'REPRISAL', 'YOLOSTRIKE', 'LONGSHOT', 'HOMINGBOLT', 'BREWOIL', 'BREWVENOM'],
       AISkills: ['COFFEE', 'REPRISAL', 'RANGED', 'GUARD', 'MOVEFRONT', 'YOLOSTRIKE', 'LONGSHOT', 'HOMINGBOLT'],
       AIRow: 'front',
       AIRoles: ['KNIGHT', 'ARCHER', 'MAGE'],

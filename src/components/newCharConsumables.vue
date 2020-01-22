@@ -86,7 +86,7 @@ export default {
       let skill = new Action.LIB[NAME](dummy)
       skillList.push(skill)
     }
-    let scrollList = skillList.filter((skill) => skill.isConsumable && skill.include)
+    let scrollList = skillList.filter((skill) => skill.isConsumable && skill.include && !skill.isTransient)
 
     return {
       // scrollKey: 0,

@@ -3,9 +3,9 @@ import { hasIn as hasProp } from 'lodash'
 // import { Stat } from '../../units/Stat.js'
 
 // console.log(Soul)
-class DAMAGEECHOPOISONOUT {
-  static NAME = 'DAMAGEECHOPOISONOUT'
-  static filename = 'DAMAGEECHOPOISONOUT'
+class DAMAGEECHOPOISONOUTSELF {
+  static NAME = 'DAMAGEECHOPOISONOUTSELF'
+  static filename = 'DAMAGEECHOPOISONOUTSELF'
 
   constructor (effectObj = {}, target = {}, caster = {}) {
     // let amount = 0
@@ -45,7 +45,10 @@ class DAMAGEECHOPOISONOUT {
       let amount = data.amount
       // let amount = data.actualAmount
       // let preventAmount = data.actualAmount
-      let target = data.target
+
+      // let target = data.target
+      // let oldTarget = data.target
+      let target = data.caster
       let caster = data.caster
 
       // the only change!!!
@@ -89,27 +92,31 @@ class DAMAGEECHOPOISONOUT {
     let getLogItem = function (unit, trigger, data) {
       // let summary = {}
       // summary.id = selector.logID
+      let oldTarget = data.target
+      // let target = data.target
+      let target = data.caster
       let caster = data.caster
-      let target = data.target
       // let oldData = data
 
       let newData = {
-        type: 'damageechopoison',
+        type: 'damageechopoisonself',
         amount: data.amount,
         // amount: data.actualAmount,
         preventAmount: data.actualAmount,
-        caster: data.caster,
-        target: data.target
+        caster: caster, // data.caster,
+        target: target, // data.target,
+        oldTarget: oldTarget
       }
       let log = [
         {
-          text: `${newData.target.name} echoed the ${newData.amount} damage as poison.`,
-          type: 'damageechopoison',
+          text: `${newData.target.name} self-poisoned by ${newData.amount} points.`,
+          type: 'damageechopoisonself',
           amount: newData.amount,
           virulence: virulence,
           // virulence: this.effects[0].virulence,
           caster: caster,
-          target: target
+          target: target,
+          oldTarget: oldTarget
         }
       ]
 
@@ -123,16 +130,16 @@ class DAMAGEECHOPOISONOUT {
     }
 
     return new Status({
-      NAME: 'DAMAGETOPOISONOUT',
-      name: 'damagetopoisonout',
+      NAME: 'DAMAGEECHOPOISONOUTSELF',
+      name: 'damagetopoisonoutself',
       desc: 'Outgoing echoed with poison damage.',
       remove: [
         //
       ],
       effects: [
         {
-          NAME: 'DAMAGEECHOPOISONOUT',
-          name: 'damageechopoisonout',
+          NAME: 'DAMAGEECHOPOISONOUTSELF',
+          name: 'damageechopoisonoutself',
           trigger: ['DAMAGE'], // ['TAKEDAMAGE'] for DAMAGETOPOISONIN
           // amount: amount,
           virulence: virulence,
@@ -157,8 +164,8 @@ class DAMAGEECHOPOISONOUT {
   }
 }
 var obj = {
-  filename: 'DAMAGEECHOPOISONOUT',
-  exprt: DAMAGEECHOPOISONOUT
+  filename: 'DAMAGEECHOPOISONOUTSELF',
+  exprt: DAMAGEECHOPOISONOUTSELF
 }
 export default obj
 // export default Yolomace

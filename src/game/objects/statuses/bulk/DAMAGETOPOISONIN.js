@@ -9,7 +9,7 @@ class DAMAGETOPOISONIN {
 
   constructor (effectObj = {}, target = {}, caster = {}) {
     // let amount = 0
-    let virulence = 0.1
+    let virulence = 0.05
     // this.effects[0].virulence = 0.1
     if (hasProp(effectObj, 'virulence')) {
       // this.effects[0].virulence = effectObj.virulence

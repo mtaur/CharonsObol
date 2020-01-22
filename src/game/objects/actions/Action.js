@@ -20,6 +20,7 @@ class Action {
   after = []
   prereqs = []
   isConsumable = false
+  isTransient = false
   SPCost = 0
   include = true // false used to remove beta scrolls from spawning in alpha build
   // Must encode general data object for all targeting schemes...
