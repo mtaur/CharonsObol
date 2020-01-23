@@ -92,7 +92,7 @@ class ENMITY {
           // amount: amount,
           // virulence: ... ,
           // scaleDivided: 0.5,
-          scaleMagic: 1,
+          scaleMagic: 0.5, // 1,
           scaleTargLife: 0,
           update: healSelf,
           getLogItem: getLogItem

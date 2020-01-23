@@ -126,12 +126,13 @@
                 <h5>
                   Ratslime empress boss fight, whoa.
                 </h5>
+                <div class="q-pa-sm text-h6">
+                  The empress can FESTER when below 100 POISON, and can BLIGHT when above 100 POISON.
+                </div>
                 <div>
+                  Just like all ratslimes, the Empress converts 50% of damage to POISON, incoming and outgoing.
                 </div>
                 <q-btn to="sandbox/ratslimeboss" color="red" size="lg">Start!</q-btn>
-                <div>
-                  (Synergies not guaranteed.  No refunds.)
-                </div>
               </div>
             </q-card>
           </div>

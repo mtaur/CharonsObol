@@ -11,10 +11,10 @@ class BLIGHTMISSILE {
       // filename: 'MELEE',
       name: 'Blight Missile',
       type: 'both',
-      desc: `Ranged attack dealing damage equal to 30% of the unit's total POISON, ` +
+      desc: `Ranged attack dealing damage equal to 35% of the unit's total POISON, ` +
         `as well as the average of MELEE, RANGED, and MAGIC.  Bypasses DRED and DREF. ` +
-        `Remove 30% of POISON.  Must have 100 POISON or more to use.`,
-      cost: 3,
+        `Remove 35% of POISON.  Must have 100 POISON or more to use.`,
+      cost: 0,
       targetRules: ['RANGED', 'SELF'],
       prereqs: ['LOSINGHP100'],
       // after: [{
@@ -31,7 +31,7 @@ class BLIGHTMISSILE {
           },
           DREDScale: 0,
           DREFScale: 0,
-          poisonScale: 0.3
+          poisonScale: 0.35
           // virulence: 0.1
         },
         {
@@ -40,7 +40,7 @@ class BLIGHTMISSILE {
           scale: {
             // HP: -0.25
           },
-          poisonScale: 0.3,
+          poisonScale: 0.35,
           virulence: 0.1,
           flat: 10
         }

@@ -121,10 +121,12 @@ caenenArr.forEach((str) => {
 // ENLIGHTENSCROLL: 1
 // }
 
+let playerJSON = {}
+let scrolls = {}
 // let playerJSON = heroes
 // let cpuJSON = caenenArr.push(crazyObj)
 // console.log(playerJSON)
 // console.log(cpuJSON, 'cpuJSON === 6???')
 
-// export { cpuJSON, playerJSON, scrolls }
-export { cpuJSON }
+export { cpuJSON, playerJSON, scrolls }
+// export { cpuJSON }

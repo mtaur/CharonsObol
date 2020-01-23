@@ -220,14 +220,14 @@ export default {
   created: function () {
     // this.addJaqen('front')
     this.teamConfig.playerTeam = {
-      SPCap: 800,
-      SP: 150
+      SPCap: 500,
+      SP: 125
       // SPCap: 750,
       // RSP: 3000
     }
     this.teamConfig.cpuTeam = {
-      SPCap: 800,
-      SP: 150 // 150 // 200
+      SPCap: 500,
+      SP: 125 // 150 // 200
     }
     this.playerTeam.SPCap = this.teamConfig.playerTeam.SPCap
     this.playerTeam.SP = this.teamConfig.playerTeam.SP
