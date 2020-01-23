@@ -187,6 +187,17 @@ class TargetRule {
       }
       return false
     },
+    losinghp100: function (unit) {
+      for (let index in unit.statuses) {
+        if (unit.statuses[index].NAME === 'HEALTHOVERTIME') {
+          let poison = unit.statuses[index].effects[0]
+          if (poison.amount <= -100) {
+            return true
+          }
+        }
+      }
+      return false
+    },
     feral: function (unit) {
       for (let index in unit.statuses) {
         if (unit.statuses[index].NAME === 'FERAL') {

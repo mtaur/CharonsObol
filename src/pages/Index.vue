@@ -120,6 +120,23 @@
           <div class="col-2"></div>
         </div>
         <div class="row">
+          <div class="q-pa-sm q-gutter-sm">
+            <q-card>
+              <div class="q-pa-sm align-center column items-center justify-center centerbox">
+                <h5>
+                  Ratslime empress boss fight, whoa.
+                </h5>
+                <div>
+                </div>
+                <q-btn to="sandbox/ratslimeboss" color="red" size="lg">Start!</q-btn>
+                <div>
+                  (Synergies not guaranteed.  No refunds.)
+                </div>
+              </div>
+            </q-card>
+          </div>
+        </div>
+        <div class="row">
           <div class="q-pa-sm q-gutter-sm col-3">
             <q-card>
               <div class="q-pa-sm align-center column items-center justify-center centerbox">

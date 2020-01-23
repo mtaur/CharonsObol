@@ -8,6 +8,7 @@ import itemsForSale from './itemsForSale/index.js'
 import earlyDemo from './earlyDemo/index.js'
 import midDemo from './midDemo/index.js'
 import lateDemo from './lateDemo/index.js'
+import ratslimeDemo from './ratslimeDemo/index.js'
 
 Vue.use(Vuex)
 
@@ -29,7 +30,8 @@ export default function (/* { ssrContext } */) {
       itemsForSale,
       earlyDemo,
       midDemo,
-      lateDemo
+      lateDemo,
+      ratslimeDemo
     }
   })
   // console.log(Store)

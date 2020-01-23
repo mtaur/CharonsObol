@@ -13,7 +13,7 @@ class RATSLIMEOIL {
       // filename: 'HEAL',
       name: 'Ratslime Oil',
       type: 'minor',
-      desc: 'Heal self for 50% max HP. Poison self for half that amount.',
+      desc: 'Heal self for 30% max HP. Poison self for half that amount.',
       // cost: 1,
       isConsumable: true,
       isTransient: true,
@@ -24,14 +24,14 @@ class RATSLIMEOIL {
           NAME: 'HEAL',
           name: 'heal',
           scale: {
-            HP: 0.5
+            HP: 0.3
           }
         },
         {
           NAME: 'HEALTHOVERTIME',
           name: 'healthovertime',
           scale: {
-            HP: -0.25
+            HP: -0.15
           }
         }
       ]

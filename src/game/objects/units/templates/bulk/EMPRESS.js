@@ -2,9 +2,9 @@
 import { UnitTemplate } from '../UnitTemplate.js'
 import { Unit } from '../../Unit.js'
 
-class RATSLIME {
-  static NAME = 'RATSLIME'
-  static filename = 'RATSLIME'
+class EMPRESS {
+  static NAME = 'EMPRESS'
+  static filename = 'EMPRESS'
 
   constructor (gameObj) {
     // from Stat.js:
@@ -26,42 +26,42 @@ class RATSLIME {
 
     return new UnitTemplate({
       NAME: 'RATSLIME',
-      name: 'Slime Rat',
+      name: 'Ratslime Empress',
       // cost: 8,
-      desc: 'Ratteus Slimeston III, Esq.',
+      desc: 'The empress of the ratslimes.  Skills:  Spawning, festering, blighting.',
       templ: {
         baseStats: {
           HP: {
             benScale: 0, // 15, // 10,
-            start: 80 // 40
+            start: 500 // 40
           },
           MP: {
             benScale: 0,
-            start: 0
+            start: 7
           },
           MELEE: {
             benScale: 0, // 3
-            start: 21
+            start: 25
           },
           RANGED: {
             benScale: 0, // 3
-            start: 0
+            start: 25
           },
           MAGIC: {
             benScale: 0, // 3
-            start: 0
+            start: 25
           },
           INIT: {
             benScale: 0,
-            start: 2
+            start: 4
           },
           DRED: {
             benScale: 0,
-            start: 3
+            start: 5
           },
           DREF: {
             benScale: 0,
-            start: 3
+            start: 5
           }
         },
         statWeights: {
@@ -74,7 +74,8 @@ class RATSLIME {
           DRED: 2, // 3,
           DREF: 2 // 3
         },
-        actions: ['MELEE', 'GUARD', 'CONTAGION'],
+        // actions: ['MELEE', 'GUARD', 'CONTAGION'],
+        actions: ['SPAWNRATSLIME', 'BLIGHTMISSILE', 'MOVEBACK', 'RECONSTITUTE'],
         passives: [
           {
             name: 'damagetopoisoninhalf',
@@ -87,14 +88,14 @@ class RATSLIME {
             params: {}
           }, // 'DAMAGETOPOISONINHALF'
           {
-            name: 'dropratslimeoil',
-            NAME: 'DROPRATSLIMEOIL',
+            name: 'manaregen1',
+            NAME: 'MANAREGEN1',
             params: {}
-          }
+          } // 'DAMAGETOPOISONINHALF'
         ],
-        roles: ['KNIGHT'],
+        roles: ['MAGE', 'ARCHER'],
         souls: [],
-        pos: Unit.POS.FRONT,
+        pos: Unit.POS.BACK,
         items: []
       }
     }, gameObj)
@@ -102,7 +103,7 @@ class RATSLIME {
 }
 
 var obj = {
-  filename: 'RATSLIME',
-  exprt: RATSLIME
+  filename: 'EMPRESS',
+  exprt: EMPRESS
 }
 export default obj

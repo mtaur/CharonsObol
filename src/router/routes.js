@@ -26,7 +26,8 @@ const routes = [
     children: [
       { path: 'early', component: () => import('pages/SandboxEarly.vue') },
       { path: 'mid', component: () => import('pages/SandboxMid.vue') },
-      { path: 'late', component: () => import('pages/SandboxLate.vue') }
+      { path: 'late', component: () => import('pages/SandboxLate.vue') },
+      { path: 'ratslimeboss', component: () => import('pages/RatslimeBoss.vue') }
     ],
     meta: {
       title: `Charon's Obol`
