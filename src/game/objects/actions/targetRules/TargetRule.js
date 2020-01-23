@@ -225,6 +225,16 @@ class TargetRule {
       if (unit.allies.front.some(this.basics.guarding) && !this.basics.guarding(unit)) { return false }
       if (unit.pos === 'BACK' && unit.allies.back.some(this.basics.guarding)) { return false }
       return this.caster.effectiveStatValues.MAGIC * 1 + this.caster.effectiveStatValues.MELEE * 1 > unit.baseStats.HP.current
+    },
+    ratslimevenom: function (unit) {
+      for (let index in unit.statuses) {
+        let status = unit.statuses[index]
+        if (status.NAME === 'DAMAGEECOPOISONOUTSELF') {
+          return true
+        }
+      }
+      return false
+      // return unit.statuses.indexOf('guard') > -1
     }
   }
 

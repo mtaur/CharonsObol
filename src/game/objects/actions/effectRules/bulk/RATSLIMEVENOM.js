@@ -31,6 +31,7 @@ function RATSLIMEVENOM (effectObj = {}, target = {}, caster = {}) {
   let apply = function () {
     this.summary = this.summarize()
     target.statuses.push(new Status.LIB.DAMAGEECHOPOISONOUTSELF())
+    target.statuses.push(new Status.LIB.DAMAGEECHOPOISONOUT())
     // this.summary.text =
     // this.summary =
     // [

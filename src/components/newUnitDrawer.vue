@@ -7,8 +7,7 @@
     :breakpoint="0"
   >
     <q-scroll-area class="fit">
-      <SPPanel :playerTeam="playerTeam">
-      </SPPanel>
+      <SPPanel :playerTeam="playerTeam"></SPPanel>
       <span v-if="selector.turnState !== 'player'" @click.stop=''>
       <newUnitDetail v-for="unit in activeUnit"
         :unit="unit"

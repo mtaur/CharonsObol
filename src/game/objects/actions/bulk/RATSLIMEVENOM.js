@@ -3,6 +3,8 @@ import { Action } from '../Action.js'
 class RATSLIMEVENOM {
   static NAME = 'RATSLIMEVENOM'
   static filename = 'RATSLIMEVENOM'
+  static isConsumable = true
+  static isTransient = true
 
   // { name: 'guard', type: 'minor', desc: 'Doubles DRED, and prevents back row from being attacked by ranged attacks.  Deactived upon taking a hit or performing another action.' },
   constructor (unit = null) {
@@ -10,7 +12,7 @@ class RATSLIMEVENOM {
       unit: unit,
       NAME: 'RATSLIMEVENOM',
       // filename: 'GUARD',
-      name: 'Rat slime venom',
+      name: 'Ratslime venom',
       type: 'both',
       desc: `Deal 100% bonus damage as poison (also to yourself).`,
       // cost: 1,

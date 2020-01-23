@@ -4,6 +4,7 @@ class RATSLIMEOIL {
   static NAME = 'RATSLIMEOIL'
   static filename = 'RATSLIMEOIL'
   static isConsumable = true
+  static isTransient = true
 
   constructor (unit = null) {
     return new Action({
