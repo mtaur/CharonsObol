@@ -229,7 +229,7 @@ class TargetRule {
     ratslimevenom: function (unit) {
       for (let index in unit.statuses) {
         let status = unit.statuses[index]
-        if (status.NAME === 'DAMAGEECOPOISONOUTSELF') {
+        if (status.NAME === 'DAMAGEECHOPOISONOUTSELF') {
           return true
         }
       }
