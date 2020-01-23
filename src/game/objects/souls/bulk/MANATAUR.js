@@ -49,23 +49,12 @@ class Manataur {
           value: -0.25 // -0.35
         }
       ],
-      skills: ['FASTING', 'TAURVEST', 'TAURBLAST', 'HOMINGBOLT', 'ESSENCEBLAST'],
+      skills: ['FASTING', 'TAURVEST', 'TAURBLAST', 'HOMINGBOLT'],
       // skills: ['FASTING', 'TAURVEST', 'TAURBLAST', 'HOMINGBOLT'],
       AISkills: ['TAURVEST', 'TAURBLAST', 'MOVEFRONT', 'GUARD', 'HOMINGBOLT'],
       AIRow: 'front',
       AIRoles: ['MAGE'],
-      passives: [
-        {
-          name: 'essenceuser',
-          NAME: 'ESSENCEUSER',
-          params: {}
-        },
-        {
-          name: 'essenceshield',
-          NAME: 'ESSENCESHIELD',
-          params: {}
-        }
-      ]
+      passives: []
     })
   }
 }

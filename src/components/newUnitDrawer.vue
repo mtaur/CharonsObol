@@ -7,17 +7,8 @@
     :breakpoint="0"
   >
     <q-scroll-area class="fit">
-      <div class="sp">
-        <div>
-          <h5 key='SP'>Team SP: {{ playerTeam.SP }} / {{ playerTeam.SPTotal }}</h5>
-        </div>
-        <!-- <div>
-          Raw SP total: {{ playerTeam.RSP }}
-        </div>
-        <div class="text-caption">
-          (RSP converts to total SP with diminishing returns, starting from {{ playerTeam.SPEff * 100 }}% efficiency.)
-        </div> -->
-      </div>
+      <SPPanel :playerTeam="playerTeam">
+      </SPPanel>
       <span v-if="selector.turnState !== 'player'" @click.stop=''>
       <newUnitDetail v-for="unit in activeUnit"
         :unit="unit"
@@ -43,6 +34,7 @@
 <script>
 import { openURL } from 'quasar'
 import newUnitDetail from 'src/components/newUnitDetail'
+import SPPanel from 'src/components/SPPanel'
 
 export default {
   name: 'leftDrawer',
@@ -94,7 +86,7 @@ export default {
       // return 'statics/icons/souls/' + soul.NAME + '.png'
     }
   },
-  components: { newUnitDetail }
+  components: { newUnitDetail, SPPanel }
 }
 </script>
 
