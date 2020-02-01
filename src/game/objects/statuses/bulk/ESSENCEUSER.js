@@ -15,7 +15,7 @@ class ESSENCEUSER {
       let scaleSP = 0.25
       let essenceAmount = Math.ceil(SP * scaleSP)
 
-      unit.bonusEssence = essenceAmount
+      unit.bonusEssence += essenceAmount
     }
 
     let gainEssence = function (unit, trigger, data) {

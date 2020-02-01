@@ -12,7 +12,7 @@ class Lucre {
       desc: `Wasn't able to take it with him.  No matter.`,
       bonus: {
         HP: 10,
-        INIT: 1
+        INIT: 2
         // MP: 1
         // DRED: 2,
         // DREF: 2,
@@ -32,9 +32,19 @@ class Lucre {
           from: 'MAGIC',
           to: 'MAGIC',
           value: -0.1
+        },
+        {
+          from: 'INIT',
+          to: 'DRED',
+          value: 1
+        },
+        {
+          from: 'INIT',
+          to: 'DREF',
+          value: 1
         }
       ],
-      skills: ['BREWOIL', 'BREWVENOM'],
+      skills: ['BREWOIL', 'BREWVENOM', 'YOLOSTRIKE', 'LONGSHOT'],
       // skills: ['FASTING', 'TAURVEST', 'TAURBLAST', 'HOMINGBOLT'],
       AISkills: ['MOVEFRONT', 'GUARD', 'MELEE'],
       AIRow: 'front',

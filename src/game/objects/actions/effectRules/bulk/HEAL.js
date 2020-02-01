@@ -43,6 +43,9 @@ function HEAL (effectObj = {}, target = {}, caster = {}) {
       }
       amount += maxScale
     }
+    if (hasProp(effectObj, 'flat')) {
+      amount += effectObj.flat
+    }
     amount = Math.floor(amount)
 
     let data = {

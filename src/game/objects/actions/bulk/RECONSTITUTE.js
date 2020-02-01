@@ -13,7 +13,7 @@ class RECONSTITUTE {
       // filename: 'HEAL',
       name: 'Fester',
       type: 'both',
-      desc: 'Heal self for 25 points and 25% of current POISON, but increase current POISON by 25% and .' +
+      desc: 'Heal self for 35 HP, but increase current POISON by 25% and .' +
         '25 additional points.', // +
       // `Must have at least 100 POISON to use.`,
       cost: 0,
@@ -29,8 +29,8 @@ class RECONSTITUTE {
           scale: {
             // MELEE: 0.5
           },
-          poisonScale: 0.25,
-          flat: 25
+          // poisonScale: 0.25,
+          flat: 35
         },
         {
           NAME: 'HEALTHOVERTIME',

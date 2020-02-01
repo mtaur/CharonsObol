@@ -60,7 +60,8 @@ class DAMAGEECHOPOISONOUTSELF {
           NAME: 'HEALTHOVERTIME',
           name: 'healthovertime',
           scale: {},
-          flat: -1 * amount,
+          // flat: -1 * amount,
+          flat: -0.25 * amount,
           virulence: this.virulence
         },
         target,
@@ -100,7 +101,7 @@ class DAMAGEECHOPOISONOUTSELF {
 
       let newData = {
         type: 'damageechopoisonself',
-        amount: data.amount,
+        amount: 0.25 * data.amount,
         // amount: data.actualAmount,
         preventAmount: data.actualAmount,
         caster: caster, // data.caster,

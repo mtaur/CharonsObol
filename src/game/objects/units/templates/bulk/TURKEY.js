@@ -37,7 +37,7 @@ class TURKEY {
           },
           MP: {
             benScale: 0,
-            start: 6
+            start: 2
           },
           MELEE: {
             benScale: 0, // 3
@@ -75,7 +75,13 @@ class TURKEY {
           DREF: 2 // 3
         },
         actions: ['PECK', 'SCRATCH', 'WARBLE'],
-        passives: [],
+        passives: [
+          {
+            name: 'manaregen1',
+            NAME: 'MANAREGEN1',
+            params: {}
+          }
+        ],
         roles: ['KNIGHT'],
         souls: [],
         pos: Unit.POS.FRONT,

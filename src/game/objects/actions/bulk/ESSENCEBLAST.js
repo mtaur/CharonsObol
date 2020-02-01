@@ -11,8 +11,8 @@ class ESSENCEBLAST {
       // filename: 'MELEE',
       name: 'Essence Blast',
       type: 'both',
-      desc: `Deals 1.5x MAGIC damage to an enemy at random. ` +
-        `Bypasses DRED and DREF. Costs ESSENCE equal to 2x total SP.`,
+      desc: `Deals 2.5x MAGIC damage to an enemy at random. ` +
+        `Bypasses DRED and DREF. Costs ESSENCE equal to total SP.`,
       targetRules: ['STORMCLOUDBOLT'],
       prereqs: [],
       after: [],
@@ -22,7 +22,7 @@ class ESSENCEBLAST {
           NAME: 'DAMAGE',
           name: 'damage',
           scale: {
-            MAGIC: 1.5
+            MAGIC: 2.5
           },
           DREDScale: 0,
           DREFScale: 0

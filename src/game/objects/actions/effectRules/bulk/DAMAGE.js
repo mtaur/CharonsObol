@@ -47,6 +47,9 @@ function DAMAGE (effectObj = {}, target = {}, caster = {}) {
       }
       amount += maxScale
     }
+    if (hasProp(effectObj, 'flat')) {
+      amount += effectObj.flat
+    }
 
     let rawFloat = amount
     amount -= target.effectiveStatValues.DRED * effectObj.DREDScale

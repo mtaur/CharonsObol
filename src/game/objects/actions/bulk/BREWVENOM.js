@@ -10,7 +10,7 @@ class BREWVENOM {
       NAME: 'BREWVENOM',
       // filename: 'INSPIRE',
       name: 'Brew Ratslime Venom',
-      type: 'both',
+      type: 'minor',
       desc: `A patented venom of Ratslime fangs.  Harms enemies and friends alike.`,
       // cost: 1,
       essenceCostScale: 1,

@@ -33,7 +33,7 @@ class EMPRESS {
         baseStats: {
           HP: {
             benScale: 0, // 15, // 10,
-            start: 500 // 40
+            start: 400 // 40
           },
           MP: {
             benScale: 0,

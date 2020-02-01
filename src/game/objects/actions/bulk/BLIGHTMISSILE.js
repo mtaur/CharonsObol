@@ -13,9 +13,9 @@ class BLIGHTMISSILE {
       type: 'both',
       desc: `Ranged attack dealing damage equal to 35% of the unit's total POISON, ` +
         `as well as the average of MELEE, RANGED, and MAGIC.  Bypasses DRED and DREF. ` +
-        `Remove 35% of POISON.  Must have 100 POISON or more to use.`,
+        `Must have 100 POISON or more to use.`,
       cost: 0,
-      targetRules: ['RANGED', 'SELF'],
+      targetRules: ['RANGED'],
       prereqs: ['LOSINGHP100'],
       // after: [{
       //   NAME: 'CASTERFRONT'
@@ -33,17 +33,17 @@ class BLIGHTMISSILE {
           DREFScale: 0,
           poisonScale: 0.35
           // virulence: 0.1
-        },
-        {
-          NAME: 'HEALTHOVERTIME',
-          name: 'healthovertime',
-          scale: {
-            // HP: -0.25
-          },
-          poisonScale: 0.35,
-          virulence: 0.1,
-          flat: 10
-        }
+        } // ,
+        // {
+        //   NAME: 'HEALTHOVERTIME',
+        //   name: 'healthovertime',
+        //   scale: {
+        //     // HP: -0.25
+        //   },
+        //   poisonScale: 0.35,
+        //   virulence: 0.1,
+        //   flat: 10
+        // }
         // {
         //   NAME: 'HEALTHOVERTIME',
         //   name: 'healthovertime',

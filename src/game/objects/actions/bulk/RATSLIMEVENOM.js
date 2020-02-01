@@ -13,7 +13,7 @@ class RATSLIMEVENOM {
       NAME: 'RATSLIMEVENOM',
       // filename: 'GUARD',
       name: 'Ratslime venom',
-      type: 'both',
+      type: 'minor',
       desc: `Deal 100% bonus damage as poison (also to yourself).`,
       // cost: 1,
       // useInitPoints: false,

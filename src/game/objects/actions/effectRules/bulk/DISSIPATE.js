@@ -189,6 +189,8 @@ function DISSIPATE (effectObj = {}, target = {}, caster = {}) {
     let healTot = data.healTot
     let amounts = data.amounts
 
+    caster.baseStats.HP.current -= healTot
+
     targetAllies.forEach((ally) => {
       let allyData = {
         type: 'heal',
@@ -207,8 +209,17 @@ function DISSIPATE (effectObj = {}, target = {}, caster = {}) {
       // target.baseStats.HP.current = Math.ceil(target.baseStats.HP.current) // target.baseStats.HP.current > 0 ? Math.floor(target.baseStats.HP.current) : 0
       //
       // caster.checkAlive()
+      let reverseForEach = (arr, fcn) => {
+        for (let index = arr.length - 1; index >= 0; index--) {
+          fcn(arr[index])
+          index = Math.min(index, arr.length)
+        }
+      }
+      reverseForEach(ally.statuses, (status) => status.clearCheck(ally, 'GETHEAL')) // target.statuses.forEach((status) => status.clearCheck(target, 'TAKEDAMAGE'))
+      reverseForEach(target.statuses, (status) => status.clearCheck(target, 'HEAL')) // target.statuses.forEach((status) => status.clearCheck(target, 'TAKEDAMAGE'))
+      reverseForEach(ally.statuses, (status) => status.triggerCheckEffect(ally, 'GETHEAL', allyData)) // target.statuses.forEach((status) => status.clearCheck(target, 'TAKEDAMAGE'))
+      reverseForEach(target.statuses, (status) => status.triggerCheckEffect(target, 'HEAL', allyData)) // target.statuses.forEach((status) => status.clearCheck(target, 'TAKEDAMAGE'))
     })
-    caster.baseStats.HP.current -= healTot
 
     this.summary = summary
   }

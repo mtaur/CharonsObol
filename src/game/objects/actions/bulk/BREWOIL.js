@@ -10,7 +10,7 @@ class BREWOIL {
       NAME: 'BREWOIL',
       // filename: 'INSPIRE',
       name: 'Brew Ratslime Oil',
-      type: 'major',
+      type: 'minor',
       desc: `A patented elixir of Ratslime oil.  Side effects include acute toxosis.`,
       // cost: 1,
       essenceCostScale: 1,
