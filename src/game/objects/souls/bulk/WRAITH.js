@@ -7,7 +7,7 @@ class Wraith {
 
   constructor () {
     return new Soul({
-      name: 'Wraith',
+      name: 'Wraithy McWraithface',
       NAME: 'WRAITH',
       desc: `Once a famous naturalist, now known as Wraithy McWraithface.`,
       bonus: {

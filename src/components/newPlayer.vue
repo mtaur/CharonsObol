@@ -58,10 +58,10 @@
       <!-- <q-chip color="deep-orange"> -->
       <q-chip color="teal" text-color="white">
         <q-avatar>
-          <q-btn round size="9px" color="grey-5">
-          <!-- <q-btn round size="9px" color="grey-5" @click.stop="rest"> -->
-            <!-- <img src="statics/icons/action-both.png"> -->
-            <!-- <q-img :src="actStatusImg" /> -->
+          <!-- <q-btn round size="9px" color="grey-5"> -->
+          <q-btn round size="9px" color="grey-5" @click.stop="rowswap">
+            <!-- <img src="statics/gameIcons/swap-row.png"> -->
+            <q-img :src="'statics/gameIcons/swap-row.png'" />
           </q-btn>
         </q-avatar>
         <span class="text-subtitle2">{{ unit.name }}</span>
@@ -97,6 +97,7 @@
 // import statrow from './statchange.vue'
 import resbar from './resbar.vue'
 import { hasIn as hasProp, cloneDeep as clone } from 'lodash'
+import { Unit } from 'src/game/objects/units/Unit.js'
 
 export default {
   props: ['unit', 'isActive', 'canTarget', 'prevTarget', 'selector'],
@@ -227,6 +228,23 @@ export default {
         this.selector.onClicks.execute(this.selector, this.unit)
       }
       // alert(this.unit.name)
+    },
+
+    rowswap () {
+      let oldPos = this.unit.pos
+      let newPos = oldPos === Unit.POS.FRONT ? Unit.POS.BACK : Unit.POS.FRONT
+      let oldRow = this.unit.playerTeam[oldPos]
+      let newRow = this.unit.playerTeam[newPos]
+      let oldIndex = -1
+      oldRow.forEach((dude, index) => { if (dude.id === this.unit.id) { oldIndex = index } })
+      if (newRow.length < 4 && oldIndex > -1) {
+        // console.log('oldIndex:', oldIndex)
+        // console.log(oldRow.splice(oldIndex, 1))
+        oldRow.splice(oldIndex, 1)
+        // console.log('oldRow:', oldRow)
+        newRow.push(this.unit)
+        this.unit.pos = newPos
+      }
     },
 
     getImg (soul) {
