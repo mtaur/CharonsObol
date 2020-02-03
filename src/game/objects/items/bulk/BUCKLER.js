@@ -1,24 +1,24 @@
 import { Item } from '../Item.js'
 
 // console.log(Soul)
-class BRONZERING {
-  static NAME = 'BRONZERING'
-  static filename = 'BRONZERING'
+class BUCKLER {
+  static NAME = 'BUCKLER'
+  static filename = 'BUCKLER'
 
   constructor () {
     return new Item({
-      NAME: 'BRONZERING',
-      name: 'Bronze Ring',
-      cost: 3,
-      tier: 'cheap',
+      NAME: 'BUCKLER',
+      name: 'Buckler',
+      cost: 4,
+      tier: 'common',
       desc: '+2 DRED',
       statBonus: { DRED: 2 }
     })
   }
 }
 var obj = {
-  filename: 'BRONZERING',
-  exprt: BRONZERING
+  filename: 'BUCKLER',
+  exprt: BUCKLER
 }
 export default obj
 // export default BronzeRing

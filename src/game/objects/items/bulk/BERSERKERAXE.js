@@ -10,7 +10,7 @@ class BERSERKERAXE {
       NAME: 'BERSERKERAXE',
       name: 'Berserker Axe',
       cost: 7,
-      desc: 'Lose 35% of base DRED. Gain 15% of missing health as MELEE, ' +
+      desc: 'Lose 30% of base DRED. Gain 15% of missing health as MELEE, ' +
         'and 7.5% of missing health as DREF.',
       // desc: 'Lose 35% of base DRED. Gain 10% of current health as MELEE, ' +
       //   'and 5% of current health as DREF.',
@@ -35,7 +35,7 @@ class BERSERKERAXE {
         }
       ],
       converts: [
-        { from: 'DRED', to: 'DRED', value: -0.35 }
+        { from: 'DRED', to: 'DRED', value: -0.3 }
       ]
     })
   }

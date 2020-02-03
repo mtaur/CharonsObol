@@ -12,7 +12,7 @@ class BOW {
       cost: 4,
       tier: 'common',
       statBonus: { RANGED: 6 },
-      desc: '+6 RANGED. (If you manage to kill an Archer of Caenenfoeder, take a bow!)'
+      desc: '+6 RANGED.  (Take a bow, you earned it.)'
     })
   }
 }

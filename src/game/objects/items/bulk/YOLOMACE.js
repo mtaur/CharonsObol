@@ -9,12 +9,12 @@ class YOLOMACE {
     return new Item({
       NAME: 'YOLOMACE',
       name: 'YOLO Mace',
-      cost: 6,
-      desc: 'Nullifies base 35% DRED, converting each point to 1 DREF and 3 MELEE.\nYOLO!!!',
+      cost: 8,
+      desc: '-0.35x base DRED. Adds 0.5x base DRED to DREF and 2x base DRED to MELEE.\nYOLO!!!',
       tier: 'fine',
       converts: [
-        { from: 'DRED', to: 'DREF', value: 0.35 },
-        { from: 'DRED', to: 'MELEE', value: 1.05 },
+        { from: 'DRED', to: 'DREF', value: 0.5 },
+        { from: 'DRED', to: 'MELEE', value: 2 },
         { from: 'DRED', to: 'DRED', value: -0.35 }
       ]
     })

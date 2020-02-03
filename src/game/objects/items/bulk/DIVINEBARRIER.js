@@ -11,11 +11,11 @@ class DIVINEBARRIER {
       name: 'Divine Barrier',
       cost: 7,
       tier: 'fine',
-      desc: 'Lose 20% base MP, gaining 1 DRED per base MP and 0.1 DRED per base MAGIC.',
+      desc: 'Gain 1 DRED per base MP and 0.1 DRED per base MAGIC.',
       converts: [
         { from: 'MAGIC', to: 'DRED', value: 0.1 },
-        { from: 'MP', to: 'DRED', value: 1 },
-        { from: 'MP', to: 'MP', value: -0.2 }
+        { from: 'MP', to: 'DRED', value: 1 } // ,
+        // { from: 'MP', to: 'MP', value: -0.2 }
         // { from: 'MAGIC', to: 'DRED', value: 0.15 },
         // { from: 'MP', to: 'DRED', value: 2 },
         // { from: 'MP', to: 'MP', value: -0.25 }
