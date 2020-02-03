@@ -14,7 +14,8 @@
             <div class="row text-caption">
               <!-- <div class="col-3" v-for="unit in selector.game.cpuTeam.back" :key="unit.id"> -->
               <div class="col-3" v-for="unit in lostSoulsGameObj" :key="unit.id">
-                <smallUnit :unit="unit" :selector="selector"></smallUnit>
+                <!-- <smallUnit :unit="unit" :selector="selector"></smallUnit> -->
+                <lostSoul :unit="unit" :selector="selector"></lostSoul>
               </div>
             </div>
             <!-- <div class="row text-caption">
@@ -40,7 +41,8 @@
 <script>
 // import { openURL } from 'quasar'
 // import unitdetail from 'src/components/unitdetail'
-import smallUnit from './smallUnit'
+// import smallUnit from './smallUnit'
+import lostSoul from './lostSoul'
 import newUnitInfo from './newUnitInfo'
 // import { Unit } from 'src/game/objects/units/Unit.js'
 import { UnitTemplate } from 'src/game/objects/units/templates/UnitTemplate.js'
@@ -97,7 +99,8 @@ export default {
     }
   },
   components: {
-    smallUnit,
+    // smallUnit,
+    lostSoul,
     newUnitInfo
     // unitdetail
   },

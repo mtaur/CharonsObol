@@ -28,7 +28,8 @@
                     <img :src="getIcon(item)">
                   </q-avatar> -->
                   {{ item.name }}
-                  <q-tooltip anchor="center right" self="center left" :offset="[10, 10]" content-class="bg-teal" max-width="20vw">
+                  <itemTooltip :item="item" :unit="activeUnit"></itemTooltip>
+                  <!-- <q-tooltip anchor="center right" self="center left" :offset="[10, 10]" content-class="bg-teal" max-width="20vw">
                       <span style="font-size: 14px">
                         <h6>
                           {{ item.name }}
@@ -40,7 +41,7 @@
                           {{ item.desc }}
                         </div>
                       </span>
-                  </q-tooltip>
+                  </q-tooltip> -->
                 </q-chip>
                 <!-- <smallUnit :unit="unit" :selector="selector"></smallUnit> -->
               </div>
@@ -67,6 +68,7 @@
 // import newUnitInfo from './newUnitInfo'
 // import { Unit } from 'src/game/objects/units/Unit.js'
 import { Item } from 'src/game/objects/items/Item.js'
+import itemTooltip from 'src/components/itemTooltip.vue'
 // import { UnitTemplate } from 'src/game/objects/units/templates/UnitTemplate.js'
 import { mapGetters, mapMutations } from 'vuex'
 // import { Soul } from 'src/game/objects/souls/Soul.js'
@@ -161,6 +163,7 @@ export default {
     }
   },
   components: {
+    itemTooltip
     // smallUnit,
     // newUnitInfo
     // unitdetail
@@ -172,4 +175,7 @@ export default {
 </script>
 
 <style>
+  .red {
+    color: red
+  }
 </style>

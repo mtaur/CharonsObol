@@ -3,21 +3,21 @@
     <!-- <q-card dark bordered class="bg-grey-9 my-card"> -->
     <q-card class="bg-blue-grey-7">
       <q-card-section>
-        <div class="text-h6">{{ item.name }}</div>
-        <div class="text-subtitle2" v-if="item.cost > 0" :style="{ color: 'blue' }">
+        <div class="text-h6">{{ soul.name }}</div>
+        <!-- <div class="text-subtitle2" v-if="item.cost > 0" :style="{ color: 'blue' }">
           {{ item.cost }} SP
-        </div>
+        </div> -->
       </q-card-section>
 
       <q-separator dark inset />
 
       <q-card-section>
-        <div>{{ item.desc }}</div>
+        <div>{{ soul.desc }}</div>
       </q-card-section>
 
       <q-separator dark inset />
 
-      <q-card-section>
+      <q-card-section v-if="showChanges">
         <div class="text-subtitle2">
           Total stat changes:
         </div>
@@ -31,19 +31,29 @@
 </template>
 
 <script>
-import { cloneDeep as clone } from 'lodash'
+import { cloneDeep as clone, hasIn as hasProp } from 'lodash'
 
 export default {
-  props: ['item', 'unit'],
+  props: ['soul', 'unit', 'selector'],
   data () {
     return {
       // newStats: 'false'
     }
   },
   computed: {
+    activeUnit: function () {
+      if (this.showChanges) {
+        return this.selector.stateData.activeUnit
+      } else { return null }
+    },
+    showChanges: function () {
+      return hasProp(this.selector, 'stateData.activeUnit.name')
+    },
     newStats: function () {
-      let copy = clone(this.unit)
-      copy.equip(clone(this.item))
+      if (!this.activeUnit) { return [] }
+      let copy = clone(this.activeUnit)
+      console.log('copy', copy)
+      copy.souls.push(clone(this.soul))
       // copy.raise(this.stat.name)
       // copy.baseStats[this.stat.name].counters++
       // console.log('Nothing happened?')
@@ -53,12 +63,13 @@ export default {
     },
     statChanges: function () {
       let changes = []
+      if (!this.activeUnit) { return [] }
       for (let key in this.newStats) {
-        if (this.newStats[key] !== this.unit.effectiveStatValues[key]) {
+        if (this.newStats[key] !== this.activeUnit.effectiveStatValues[key]) {
           // changes[key] = this.newStats[key] - this.unit.effectiveStatValues[key]
           let stat = {
             name: key,
-            value: this.newStats[key] - this.unit.effectiveStatValues[key]
+            value: this.newStats[key] - this.activeUnit.effectiveStatValues[key]
           }
           changes.push(stat)
         }

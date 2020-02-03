@@ -62,6 +62,13 @@
           <q-btn round size="9px" color="grey-5" @click.stop="rowswap">
             <!-- <img src="statics/gameIcons/swap-row.png"> -->
             <q-img :src="'statics/gameIcons/swap-row.png'" />
+            <q-tooltip anchor="center left" self="center right" :offset="[10, 10]" content-class="bg-blue-10" max-width="20vw">
+                <span style="font-size: 14px">
+                  <h6>
+                    Swap rows!
+                  </h6>
+                </span>
+            </q-tooltip>
           </q-btn>
         </q-avatar>
         <span class="text-subtitle2">{{ unit.name }}</span>
