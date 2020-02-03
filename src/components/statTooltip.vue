@@ -1,5 +1,5 @@
 <template>
-  <q-tooltip anchor="center right" self="center left" :offset="[10, 10]">
+  <q-tooltip anchor="center right" self="center left" :offset="[10, 10]" :content-class="bgColor">
       <strong>Effects of raising this stat:</strong>
       <!-- {{ newStats }} -->
       <div v-for="stat in statChanges" :key="stat.name" :class="{ red: stat.value < 0 }">
@@ -21,7 +21,8 @@ export default {
   computed: {
     newStats: function () {
       let copy = clone(this.unit)
-      copy.raise(this.stat.name)
+      // copy.raise(this.stat.name)
+      copy.baseStats[this.stat.name].counters++
       // console.log('Nothing happened?')
       // return copy.effectiveStatValues
       return copy.effectiveStatValues
@@ -40,6 +41,12 @@ export default {
         }
       }
       return changes
+    },
+    bgColor: function () {
+      let canAfford = this.unit.availSP >= this.unit.baseStats[this.stat.name].cost
+      if (canAfford) {
+        return 'bg-purple'
+      } else return 'bg-grey'
     }
   },
   methods: {

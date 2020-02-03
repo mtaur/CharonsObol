@@ -11,9 +11,9 @@ class BLUERING {
       name: 'Blue Ring',
       cost: 4,
       tier: 'common',
-      desc: 'A simple blue ring that raises base MP by 1.',
       statBonus: { MP: 1 },
-      desc: '+1 MP'
+      // desc: '+1 MP'
+      desc: 'A simple blue ring that raises base MP by 1.'
     })
   }
 }
