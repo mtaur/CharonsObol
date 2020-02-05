@@ -145,7 +145,7 @@ let heroDat = [
     soulStr: 'LYNN',
     POS: 'BACK',
     itemArr: [
-      'BRONZERING', 'DORY'
+      'BUCKLER', 'DORY'
     ]
   },
   {
@@ -182,6 +182,41 @@ let heroDat = [
     lvlUp: {
       HP: 1,
       RANGED: 2
+    }
+  },
+  {
+    soulStr: 'LIFEHORN',
+    POS: 'FRONT',
+    itemArr: [
+      'DIVINEBARRIER'
+    ],
+    lvlUp: {
+      HP: 1,
+      MAGIC: 1,
+      MELEE: 1
+    }
+  },
+  {
+    soulStr: 'WRAITH',
+    POS: 'BACK',
+    itemArr: [
+      'MAGICSTAFF'
+    ],
+    lvlUp: {
+      HP: 1,
+      MAGIC: 2
+    }
+  },
+  {
+    soulStr: 'DEATHWING',
+    POS: 'BACK',
+    itemArr: [
+      'BLUERING'
+    ],
+    lvlUp: {
+      HP: 1,
+      MAGIC: 1,
+      MELEE: 1
     }
   },
   {

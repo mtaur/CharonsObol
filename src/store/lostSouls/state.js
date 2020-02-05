@@ -5,7 +5,9 @@ import { Soul } from 'src/game/objects/souls/Soul.js'
 // let cpuTeam = new Team(Unit.SIDE.CPU)
 let lostSouls = []
 for (let NAME in Soul.LIB) {
-  lostSouls.push(NAME)
+  if (!Soul.LIB[NAME].restricted) {
+    lostSouls.push(NAME)
+  }
 }
 
 // let addLostSoul = (soulStr) => {

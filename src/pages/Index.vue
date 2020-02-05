@@ -120,7 +120,20 @@
           <div class="col-2"></div>
         </div>
         <div class="row">
-          <div class="q-pa-sm q-gutter-sm">
+          <div class="q-pa-sm q-gutter-sm col-4">
+            <q-card>
+              <div class="q-pa-sm align-center column items-center justify-center centerbox">
+                <h5>
+                  Cerberus fight, whoa.
+                </h5>
+                <div class="q-pa-sm text-h6">
+                  Cerberus will lose its copies of souls, skills, and passives whenever that ally dies.
+                </div>
+                <q-btn to="sandbox/sandboxcerberus" color="red" size="lg">Start!</q-btn>
+              </div>
+            </q-card>
+          </div>
+          <div class="q-pa-sm q-gutter-sm col-4">
             <q-card>
               <div class="q-pa-sm align-center column items-center justify-center centerbox">
                 <h5>

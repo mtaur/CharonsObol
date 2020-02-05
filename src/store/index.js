@@ -9,6 +9,7 @@ import earlyDemo from './earlyDemo/index.js'
 import midDemo from './midDemo/index.js'
 import lateDemo from './lateDemo/index.js'
 import ratslimeDemo from './ratslimeDemo/index.js'
+import cerberusDemo from './cerberusDemo/index.js'
 
 Vue.use(Vuex)
 
@@ -31,7 +32,8 @@ export default function (/* { ssrContext } */) {
       earlyDemo,
       midDemo,
       lateDemo,
-      ratslimeDemo
+      ratslimeDemo,
+      cerberusDemo
     }
   })
   // console.log(Store)

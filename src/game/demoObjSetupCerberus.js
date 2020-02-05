@@ -145,7 +145,7 @@ let heroDat = [
     soulStr: 'LYNN',
     POS: 'BACK',
     itemArr: [
-      'BUCKLE', 'DORY'
+      'BUCKLER', 'DORY'
     ]
   },
   {
@@ -185,6 +185,41 @@ let heroDat = [
     }
   },
   {
+    soulStr: 'LIFEHORN',
+    POS: 'FRONT',
+    itemArr: [
+      'DIVINEBARRIER'
+    ],
+    lvlUp: {
+      HP: 1,
+      MAGIC: 1,
+      MELEE: 1
+    }
+  },
+  {
+    soulStr: 'WRAITH',
+    POS: 'BACK',
+    itemArr: [
+      'MAGICSTAFF'
+    ],
+    lvlUp: {
+      HP: 1,
+      MAGIC: 2
+    }
+  },
+  {
+    soulStr: 'DEATHWING',
+    POS: 'BACK',
+    itemArr: [
+      'BLUERING'
+    ],
+    lvlUp: {
+      HP: 1,
+      MAGIC: 1,
+      MELEE: 1
+    }
+  },
+  {
     soulStr: 'AHNWEI',
     POS: 'BACK',
     itemArr: [
@@ -197,8 +232,9 @@ let heroDat = [
   }
 ]
 
-let caenenArr = ['KNIGHT', 'ARCHER', 'MAGE', 'ARBALESTIER']
+// let caenenArr = ['KNIGHT', 'ARCHER', 'MAGE', 'ARBALESTIER']
 // let caenenArr = ['KNIGHT', 'ARCHER', 'MAGE', 'TURKEY', 'ARBALESTIER']
+// let caenenArr = []
 
 let shuffle = function (array) {
   let currentIndex = array.length
@@ -255,50 +291,65 @@ let extraBack = heroDat.filter((obj) => obj.POS === 'BACK').slice(2)
 let extras = extraFront.concat(extraBack)
 shuffle(extras)
 
+let playerJSON = []
 heroes.forEach(
   (data) => {
     jsonMerge(extras[0], data)
     extras.shift()
   }
 )
-
-let crazyObj = { soulsArr: [], itemsArr: [], side: Unit.SIDE.CPU }
-let dataArr = extras.slice(0, 4)
-crazyObj = jsonMerge(dataArr[0], crazyObj)
-dataArr.shift()
-// console.log(crazyObj, 'crazyObj step 1')
-dataArr.forEach((datum) => {
-  crazyObj = jsonMerge(datum, crazyObj)
-})
-
-let playerJSON = []
-let cpuJSON = []
-
 heroes.forEach((json) => {
   playerJSON.push({
     NAME: 'HERO',
     passedObj: json
   })
 })
-caenenArr.forEach((str) => {
+
+let cpuJSON = []
+
+let dataArr = extras.slice(0, 3)
+// let cerberusArr = extras.slice(0, 3)
+let cerberusObj = { soulsArr: [], itemsArr: [], side: Unit.SIDE.CPU }
+cerberusObj = jsonMerge({
+  soulStr: 'CERBERUS',
+  POS: 'BACK',
+  itemArr: [
+    'BALANCESYM', 'BLUERING', 'BERSERKERAXE'
+  ],
+  lvlUp: {
+  }
+}, cerberusObj)
+dataArr.forEach((headData) => {
+  let headObj = { soulsArr: [], itemsArr: [], side: Unit.SIDE.CPU }
+  headObj = jsonMerge(headData, headObj)
+  cerberusObj = jsonMerge(headData, cerberusObj)
+
   cpuJSON.push({
-    NAME: str,
-    passedObj: false
+    NAME: 'HERO',
+    passedObj: headObj
   })
 })
+
 cpuJSON.push({
-  NAME: 'HERO',
-  passedObj: crazyObj
+  NAME: 'CERBERUS',
+  passedObj: cerberusObj
 })
+
+// caenenArr.forEach((str) => {
+//   cpuJSON.push({
+//     NAME: str,
+//     passedObj: false
+//   })
+// })
 let scrolls = {
-  SMOKEBOMB: 1,
-  HEALTHPOT: 1,
-  LIZARDTAIL: 1,
-  MANAPOT: 1,
-  WRATHSCROLL: 1,
-  FLAMEFISTSCROLL: 1,
-  HEALSCROLL: 1,
-  ENLIGHTENSCROLL: 1
+  // SMOKEBOMB: 1,
+  // HEALTHPOT: 1,
+  // LIZARDTAIL: 1,
+  // MANAPOT: 1,
+  // WRATHSCROLL: 1,
+  // FLAMEFISTSCROLL: 1,
+  // HEALSCROLL: 1,
+  // ENLIGHTENSCROLL: 1
 }
 
 // let playerJSON = heroes
