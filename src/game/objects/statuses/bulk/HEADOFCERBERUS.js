@@ -54,15 +54,20 @@ class HEADOFCERBERUS {
             // log.push(logItem)
           }
         }
+        let dontRemove = ['MELEE', 'RANGED', 'HOMINGBOLT', 'GUARD']
+        let canRemove = (action) => {
+          console.log('Can remove', action, '?', dontRemove.indexOf(action.NAME) === -1)
+          return dontRemove.indexOf(action.NAME) === -1
+        }
         let purgeSkillIfMatch = (action, index, arr) => {
-          if (ally.souls[0].skills.some((skill) => { return skill === action.NAME })) {
+          if (ally.souls[0].AISkills.some((skill) => { return skill === action.NAME && canRemove(action) })) {
             arr.splice(index, 1)
           }
         }
 
         reverseForEachFull(caster.souls, purgeIfMatch)
         reverseForEachFull(caster.statuses, purgeStatusIfMatch)
-        reverseForEachFull(caster.statuses, purgeSkillIfMatch)
+        reverseForEachFull(caster.actions, purgeSkillIfMatch)
       })
     }
 
@@ -150,31 +155,31 @@ class HEADOFCERBERUS {
         {
           statName: 'INIT',
           value: function (unit) {
-            return (1 + (unit.souls.length * 0.15)) * unit.convertedStatValues.INIT
+            return (1 + (unit.souls.length * 0.2)) * unit.convertedStatValues.INIT
           }
         },
         {
           statName: 'MELEE',
           value: function (unit) {
-            return (1 + (unit.souls.length * 0.15)) * unit.convertedStatValues.MELEE
+            return (1 + (unit.souls.length * 0.2)) * unit.convertedStatValues.MELEE
           }
         },
         {
           statName: 'RANGED',
           value: function (unit) {
-            return (1 + (unit.souls.length * 0.15)) * unit.convertedStatValues.RANGED
+            return (1 + (unit.souls.length * 0.2)) * unit.convertedStatValues.RANGED
           }
         },
         {
           statName: 'MAGIC',
           value: function (unit) {
-            return (1 + (unit.souls.length * 0.15)) * unit.convertedStatValues.MAGIC
+            return (1 + (unit.souls.length * 0.2)) * unit.convertedStatValues.MAGIC
           }
         },
         {
           statName: 'DRED',
           value: function (unit) {
-            return (1 + (unit.souls.length * 0.15)) * unit.convertedStatValues.DRED
+            return (1 + (unit.souls.length * 0.2)) * unit.convertedStatValues.DRED
           }
         },
         {

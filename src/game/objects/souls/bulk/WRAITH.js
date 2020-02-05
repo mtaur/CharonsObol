@@ -46,7 +46,7 @@ class Wraith {
       ],
       skills: ['HOMINGBOLT', 'ESSENCEBLAST', 'DISSIPATE'],
       // skills: ['FASTING', 'TAURVEST', 'TAURBLAST', 'HOMINGBOLT'],
-      AISkills: ['GUARD', 'HOMINGBOLT', 'MOVEFRONT'],
+      AISkills: ['GUARD', 'HOMINGBOLT', 'MOVEFRONT', 'DISSIPATE', 'TAURBLAST'],
       AIRow: 'front',
       AIRoles: ['MAGE', 'KNIGHT'],
       passives: [

@@ -17,7 +17,7 @@ class DISSIPATE {
       desc: `Heal all allies equally, damaging self by the total amount. Cannot spend ` +
         `more than 50% of current health this way.`,
       targetRules: ['SELF'],
-      // prereqs: ['FRONTNOTFULL'],
+      prereqs: ['ALLYWOUNDED'],
       // after: [{
       //   NAME: 'CASTERFRONT'
       // }],

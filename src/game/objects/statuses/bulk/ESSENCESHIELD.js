@@ -24,6 +24,7 @@ class ESSENCESHIELD {
         let totEff = (baseEff * (50 + Math.pow(SP, 0.5)) / SP)
         let essenceCost = totEff > 0 ? Math.ceil((overkill + 1) / (totEff)) : 0
         essenceCost = Math.min(essenceCost, essence)
+        essenceCost = Math.max(essenceCost, 0)
         // let essenceCost = MAGIC > 0 ? Math.ceil((overkill + 1) / (magScale * MAGIC)) : 0
         // MPCost = Math.min(MPCost, MP)
         // let healAmount = Math.ceil(MPCost * magScale * MAGIC)

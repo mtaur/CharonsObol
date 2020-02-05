@@ -237,6 +237,7 @@ class StatSmart {
   }
 
   static getEssence () {
+    if (this.side === 'cpu') { return this.bonusEssence }
     return this.bonusEssence + this.allies.RSPAvail
   }
 

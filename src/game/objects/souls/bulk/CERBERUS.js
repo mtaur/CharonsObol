@@ -12,7 +12,7 @@ class Cerberus {
       NAME: 'CERBERUS',
       desc: `One very bad doggo...`,
       bonus: {
-        HP: 10,
+        HP: 20,
         MP: 4,
         INIT: 2,
         DREF: 4,
@@ -22,18 +22,18 @@ class Cerberus {
         MAGIC: 10
       },
       converts: [
-        {
-          from: 'HP',
-          to: 'HP',
-          // value: 0.25
-          value: -0.3
-        },
-        {
-          from: 'MP',
-          to: 'MP',
-          // value: 0.25
-          value: -0.3
-        },
+        // {
+        //   from: 'HP',
+        //   to: 'HP',
+        //   // value: 0.25
+        //   value: -0.3
+        // },
+        // {
+        //   from: 'MP',
+        //   to: 'MP',
+        //   // value: 0.25
+        //   value: -0.3
+        // },
         {
           from: 'INIT',
           to: 'INIT',
