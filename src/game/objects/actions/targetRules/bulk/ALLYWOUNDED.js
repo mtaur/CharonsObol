@@ -8,8 +8,8 @@ class ALLYWOUNDED {
   constructor (obj) {
     return new TargetRule({
       caster: obj.caster,
-      reqs: ['ally'],
-      nots: ['caster', 'fullhp'],
+      reqs: ['allywounded'],
+      nots: [],
       prefs: [],
       playerTeam: obj.playerTeam,
       // prevTargs: obj.prevTargs,

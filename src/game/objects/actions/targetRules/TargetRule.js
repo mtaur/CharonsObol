@@ -246,6 +246,9 @@ class TargetRule {
       }
       return false
       // return unit.statuses.indexOf('guard') > -1
+    },
+    allywounded: function (unit) {
+      return unit.allies.field.some((ally) => { return ally.id !== unit.id && ally.baseStats.HP.current < ally.baseStats.HP.max })
     }
   }
 

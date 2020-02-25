@@ -8,13 +8,6 @@ class FRIENDSHIP {
   static filename = 'FRIENDSHIP'
 
   constructor (effectObj = {}, target = {}, caster = {}) {
-    // let virulence = 0.1
-    // this.effects[0].virulence = 0.1
-    // if (hasProp(effectObj, 'virulence')) {
-    //   this.effects[0].virulence = effectObj.virulence
-    //   virulence = effectObj.virulence
-    // }
-
     // update: shareHeal
     let shareHeal = function (unit, trigger, data) {
       let amount = data.amount
@@ -30,33 +23,9 @@ class FRIENDSHIP {
       targetAllies.forEach((ally) => {
         ally.baseStats.HP.current += Math.min(maxHeal, ally.baseStats.HP.max - ally.baseStats.HP.current)
       })
-
-      // target.baseStats.HP.current += preventAmount
-      // let poison = new Status.LIB.HEALTHOVERTIME(
-      //   {
-      //     NAME: 'HEALTHOVERTIME',
-      //     name: 'healthovertime',
-      //     scale: {},
-      //     flat: -1 * amount,
-      //     virulence: this.virulence
-      //   },
-      //   target,
-      //   caster
-      // )
-
-      // unit.baseStats.HP.current = unit.baseStats.HP.current >= 0 ? unit.baseStats.HP.current : 0
-      // let newDat = merge(findCopies(target))
-      // unit.baseStats.HP.current = unit.baseStats.HP.current <= unit.baseStats.HP.max ? unit.baseStats.HP.current : unit.baseStats.HP.max
-      // unit.checkAlive()
     }
 
-    // let logItem = this.effects[effectIndx].getLogItem(unit, trigger, data)
-    // this.effects[effectIndx].update(unit, trigger, data)
     let getLogItem = function (unit, trigger, data) {
-      // let summary = {}
-      // summary.id = selector.logID
-      // let thisObj = this
-      // let oldData = data
       let caster = data.caster
       let target = data.target
       let amount = data.amount
@@ -116,15 +85,7 @@ class FRIENDSHIP {
           update: shareHeal,
           getLogItem: getLogItem
         }
-      ] // ,
-      // bonus: [],
-      // converts: [
-      //   {
-      //     from: 'DRED',
-      //     to: 'DRED',
-      //     value: 1
-      //   }
-      // ]
+      ]
     })
   }
 }

@@ -38,37 +38,37 @@ class Cerberus {
           from: 'INIT',
           to: 'INIT',
           // value: 0.25
-          value: -0.3
+          value: -0.2
         },
         {
           from: 'RANGED',
           to: 'RANGED',
           // value: 0.25
-          value: -0.3
+          value: -0.2
         },
         {
           from: 'MAGIC',
           to: 'MAGIC',
           // value: 0.25
-          value: -0.3
+          value: -0.2
         },
         {
           from: 'MELEE',
           to: 'MELEE',
           // value: 0.25
-          value: -0.3
+          value: -0.2
         },
         {
           from: 'DREF',
           to: 'DREF',
           // value: 0.25
-          value: -0.3
+          value: -0.2
         },
         {
           from: 'DRED',
           to: 'DRED',
           // value: 0.25
-          value: -0.3
+          value: -0.2
         }
       ],
       skills: [],

@@ -119,8 +119,8 @@ class CERBERUS {
         hero: true,
         baseStats: {
           HP: {
-            benScale: 25, // 15, // 10,
-            start: 120 // 60 // 40
+            benScale: 40, // 25, // 15, // 10,
+            start: 180 // 120 // 60 // 40
           },
           MELEE: {
             benScale: 6 // 4 // 3
