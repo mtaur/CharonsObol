@@ -80,7 +80,7 @@ class ENMITY {
     return new Status({
       NAME: 'ENMITY',
       name: 'enmity',
-      desc: `Heals self for 1x MAGIC after each kill.`,
+      desc: `Heals self for 0.5x MAGIC after each kill.`,
       remove: [
         //
       ],
