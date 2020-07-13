@@ -45,8 +45,8 @@ const routes = [
     path: '/',
     component: () => import('layouts/NewPartyLayout.vue'),
     children: [
-      // { path: '', component: () => import('pages/Index.vue') }
-      { path: '', component: () => import('pages/Sandbox-proto-15.vue') }
+      { path: '', component: () => import('pages/Index.vue') }
+      // { path: '', component: () => import('pages/Sandbox-proto-15.vue') }
     ],
     meta: {
       title: `Charon's Obol`

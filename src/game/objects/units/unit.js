@@ -39,6 +39,9 @@ class Team {
   waitTime = 100 // 300 // 200 // 100 // 250
   numBenchmarks = 10 // 10
   initArr = []
+  get checkInitArr () {
+    return this.initArr.concat([0, 0, 0])
+  }
   initReset () {
     // this.initVal = 0
     this.initArr = []

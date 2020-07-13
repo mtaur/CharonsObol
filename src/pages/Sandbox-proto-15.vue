@@ -82,8 +82,8 @@
                     <div class="text-italic text-body1">
                       When YOLT summons a ZOMBIE, that ZOMBIE
                       has FREE, NON-TRANSFERABLE SP to spend on its base stats.
-                      You should probably spend points in MELEE, RANGED, and/or
-                      MAGIC right away.
+                      You should probably spend some points in MELEE, RANGED, MAGIC, and/or
+                      MP right away. Sometimes hoarding some SP for later turns is an option.
                     </div>
                   </q-card-section>
                 </q-card>
@@ -112,8 +112,10 @@
                   </q-card-section>
                   <q-card-section>
                     <div class="text-italic text-body1">
-                      Budgeting just enough SP into MP for the skills you plan to use is
-                      an important part of necromancing efficiently.
+                      Budgeting just enough SP into MP to cast the skills you plan to use is
+                      an important part of necromancing efficiently.  Alternately, you may
+                      find it effective to raise a ZOMBIE with the right stat configuration
+                      to use your consumables.
                     </div>
                   </q-card-section>
                 </q-card>
@@ -130,8 +132,9 @@
                       A summoned ZOMBIE will DECAY at the start of each round.  This means
                       that their POISON amount will be set to match their CURRENT HP, unless
                       they already have at least that much poison.  This also cancels
-                      regeneration effects, so don't bother!  When SP on a ZOMBIE's HP,
-                      getting too much before you need it will accelerate the DECAY.
+                      regeneration effects, so don't bother!  Spending SP on a ZOMBIE's HP,
+                      will add maximum AND current HP, but getting too much before you need
+                      it will accelerate the DECAY with no benefit to you.
                     </div>
                   </q-card-section>
                   <q-card-section>

@@ -33,9 +33,11 @@ function INITPUSH (effectObj = {}, target = {}, caster = {}) {
     // let data = summary.data
 
     for (let i = 1; i <= effectObj.times; i++) {
-      target.allies.initArr.push(caster.effectiveStatValues.INIT)
+      target.allies.initArr.push(caster.allies.checkInitArr[0])
+      // target.allies.initArr.push(caster.effectiveStatValues.INIT)
     }
-    // decreasing order!
+    // decreasing order! Could have used "unshift" and skipped this step
+    // due to rework (use first token instead of caster)
     target.allies.initArr.sort((a, b) => { return b - a })
 
     this.summary = summary

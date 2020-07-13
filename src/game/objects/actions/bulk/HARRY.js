@@ -10,9 +10,9 @@ class HARRY {
       NAME: 'HARRY',
       name: 'Harry',
       type: 'minor',
-      desc: `Wizard or not, you can use a minor action point to perform a lesser ' +
-        'ranged attack from the front row, dealing damage equal to 0.35x the lesser ' +
-        'of RANGED and MELEE.`,
+      desc: `Wizard or not, you can use a minor action point to perform a lesser ` +
+        `ranged attack from the front row, dealing damage equal to 0.35x the lesser ` +
+        `of RANGED and MELEE.`,
       targetRules: ['RANGED'],
       prereqs: ['FRONT'],
       // after: [{

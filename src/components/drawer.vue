@@ -48,6 +48,7 @@
             </div>
           </div>
           <div>{{ playerTeam.initTotal }} initiave points remaining</div>
+          <div>Next three initiative marbles used: {{ playerTeam.checkInitArr[0] }}/{{ playerTeam.checkInitArr[1] }}/{{ playerTeam.checkInitArr[2] }}</div>
         </span>
         <span v-else-if="playerTeam.hasTurn && playerTeam.initTotal > 0">
           <div class="col-12 row items-center">
@@ -62,6 +63,7 @@
             <div class="col-3">{{ playerTeam.turnPoints }}/{{ playerTeam.maxTurnPoints }}</div>
           </div>
           <div>{{ playerTeam.initTotal }} initiave points remaining</div>
+          <div>Next three initiative marbles used: {{ playerTeam.checkInitArr[0] }}/{{ playerTeam.checkInitArr[1] }}/{{ playerTeam.checkInitArr[2] }}</div>
         </span>
         <span v-else>
           <div class="col-12 row items-center">
@@ -76,6 +78,7 @@
             <div class="col-3">{{ playerTeam.turnPoints }}/{{ playerTeam.maxTurnPoints }}</div>
           </div>
           <div>{{ playerTeam.initTotal }} initiave points remaining (turn gauge refill rate)</div>
+          <div>Next three initiative marbles used: {{ playerTeam.checkInitArr[0] }}/{{ playerTeam.checkInitArr[1] }}/{{ playerTeam.checkInitArr[2] }}</div>
           <div>0 team initiative point total and/or no usable actions.</div>
         </span>
         <div v-if="cpuTeam.hasTurn && cpuTeam.initTotal > 0">
@@ -91,6 +94,7 @@
             <div class="col-3">{{ cpuTeam.turnPoints }}/{{ cpuTeam.maxTurnPoints }}</div>
           </div>
           <div>{{ cpuTeam.initTotal }} initiave points remaining</div>
+          <div>Next three initiative marbles used: {{ cpuTeam.checkInitArr[0] }}/{{ cpuTeam.checkInitArr[1] }}/{{ cpuTeam.checkInitArr[2] }}</div>
         </div>
         <div v-else>
           <div class="col-12 row items-center">
@@ -106,6 +110,7 @@
           </div>
           <div class="sp">
             <div>{{ cpuTeam.initTotal }} initiave points remaining</div>
+            <div>Next three initiative marbles used: {{ cpuTeam.checkInitArr[0] }}/{{ cpuTeam.checkInitArr[1] }}/{{ cpuTeam.checkInitArr[2] }}</div>
             <div>0 team initiative point total and/or no usable actions.</div>
           </div>
         </div>
